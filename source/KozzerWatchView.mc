@@ -18,7 +18,7 @@ class KozzerWatchView extends WatchUi.WatchFace
     var dateBuffer;
     var curClip;
     var screenCenterPoint;
-    var fullScreenRefresh;
+    var fullScreenRefresh;      // Flag used in onUpdate() & onPartialUpdate()
     var partialUpdatesAllowed;
 
     const BACKGROUND_COLOR  = 0xDEDEDE; // Light gray
@@ -199,7 +199,7 @@ class KozzerWatchView extends WatchUi.WatchFace
         if( null != dateBuffer ) {
             var dateDc = dateBuffer.getDc();
 
-            dateDc.setColor(0x881111,0x111177);
+            dateDc.setColor(0x881111,0x111177);  // silly colors to stand out
 
             //Draw the background image buffer into the date buffer to set the background
             dateDc.drawBitmap(0, -(height / 4), offscreenBuffer);
@@ -258,13 +258,13 @@ class KozzerWatchView extends WatchUi.WatchFace
             drawBackground(dc);
         }
 
-        var clockTime = System.getClockTime();
-        var secondHand = (clockTime.sec / 60.0) * Math.PI * 2;
+        var clockTime        = System.getClockTime();
+        var secondHand       = (clockTime.sec / 60.0) * Math.PI * 2;
         var secondHandPoints = generateHandCoordinates(screenCenterPoint, secondHand, 100, 20, 2);
 
         // Update the cliping rectangle to the new location of the second hand.
-        curClip = getBoundingBox( secondHandPoints );
-        var bboxWidth = curClip[1][0] - curClip[0][0] + 1;
+        curClip        = getBoundingBox( secondHandPoints );
+        var bboxWidth  = curClip[1][0] - curClip[0][0] + 1;
         var bboxHeight = curClip[1][1] - curClip[0][1] + 1;
         dc.setClip(curClip[0][0], curClip[0][1], bboxWidth, bboxHeight);
 
@@ -298,13 +298,14 @@ class KozzerWatchView extends WatchUi.WatchFace
 
         return [min, max];
     }
-   // Draw the watch face background
+
+    // Draw the watch face background
     // onUpdate uses this method to transfer newly rendered Buffered Bitmaps
     // to the main display.
     // onPartialUpdate uses this to blank the second hand from the previous
     // second before outputing the new one.
     function drawBackground(dc) {
-        var width = dc.getWidth();
+        var width  = dc.getWidth();
         var height = dc.getHeight();
 
         //If we have an offscreen buffer that has been written to
