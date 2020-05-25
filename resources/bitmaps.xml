@@ -1,0 +1,13 @@
+<resources>
+    <bitmap id="LauncherIcon" filename="images/icon.png" />
+    <bitmap id="BluetoothLightIcon" filename="images/bluetooth_light.png">
+        <palette>
+            <color>EFEFEF</color>
+        </palette>
+    </bitmap>
+    <bitmap id="BluetoothDarkIcon" filename="images/bluetooth_dark.png">
+        <palette>
+            <color>000000</color>
+        </palette>
+    </bitmap>
+</resources>

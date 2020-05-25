@@ -1,0 +1,22 @@
+Set Path:
+---------
+set PATH=%PATH%;C:\Users\David\Desktop\ConnectIQ_SDK\bin
+
+CD:
+----
+CD C:\Users\David\ConnectIQ\kozzer\KozzerLight
+
+
+Build:
+-------
+C:\Users\David\ConnectIQ\bin\monkeyc -d fr645m -f .\monkey.jungle -o .\kozzerLight.prg -y C:\Users\David\ConnectIQ\developer_key.der
+
+
+Load Simulator:
+----------------
+C:\Users\David\ConnectIQ\kozzer\KozzerLight> connectiq 
+
+
+Run App:
+---------
+C:\Users\David\ConnectIQ\kozzer\KozzerLight> monkeydo .\kozzerLight.prg fr645m
