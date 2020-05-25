@@ -199,7 +199,7 @@ class KozzerWatchView extends WatchUi.WatchFace
         if( null != dateBuffer ) {
             var dateDc = dateBuffer.getDc();
 
-            dateDc.setColor(0x881111,0x111177);  // silly colors to stand out
+            dateDc.setColor(0x881111,0x111177);     // silly colors to stand out
 
             //Draw the background image buffer into the date buffer to set the background
             dateDc.drawBitmap(0, -(height / 4), offscreenBuffer);
