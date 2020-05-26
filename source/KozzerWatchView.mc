@@ -125,7 +125,7 @@ class KozzerWatchView extends WatchUi.WatchFace
             onPartialUpdate( dc );
         } else if ( isAwake ) {
             // If awake & partial updates not allowed, we don't need clipping
-            drawSecondHand( dc, false );
+            drawSecondHand( dc, true );
         }
 
         fullScreenRefresh = false;
@@ -145,7 +145,7 @@ class KozzerWatchView extends WatchUi.WatchFace
         }
 
         // Draw second hand, and use clip to save power (limits # of pixels that change)
-        drawSecondHand( dc, clockTime, true );
+        drawSecondHand( dc, true );
     }
     
    
@@ -237,7 +237,8 @@ class KozzerWatchView extends WatchUi.WatchFace
         dc.fillPolygon(generateHandCoordinates(screenCenterPoint, minuteHandAngle, 100, 20, 5));
     }
     
-    function drawSecondHand(dc, clockTime, setClip) {
+    function drawSecondHand(dc, setClip) {
+        var clockTime        = System.getClockTime();
         var secondHand       = (clockTime.sec / 60.0) * Math.PI * 2;
         var secondHandPoints = generateHandCoordinates(screenCenterPoint, secondHand, 100, 20, 2);
         
