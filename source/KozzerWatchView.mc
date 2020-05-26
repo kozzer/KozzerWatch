@@ -10,7 +10,6 @@ using Toybox.WatchUi;
 
 class KozzerWatchView extends WatchUi.WatchFace
 {
-    var settings;
     var isAwake;
     var btIcon;
     var offscreenBuffer;
@@ -36,9 +35,6 @@ class KozzerWatchView extends WatchUi.WatchFace
 
     // Configure the layout of the watchface for this device
     function onLayout(dc) {
-
-        // Load device settings
-        settings = System.getDeviceSettings();
 
         // load the bt Icon into memory.
         btIcon = WatchUi.loadResource(Rez.Drawables.BluetoothDarkIcon);
@@ -101,7 +97,7 @@ class KozzerWatchView extends WatchUi.WatchFace
         drawDateString( bufferDc, width / 2, 14 );
 
         // Draw the bluetooth icon if phone is connected
-        if (null != btIcon && settings.phoneConnected) {
+        if (null != btIcon && System.getDeviceSettings().phoneConnected) {
             bufferDc.drawBitmap( width * 0.75, height / 4 - 6, btIcon);
         }
 
