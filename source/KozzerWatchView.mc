@@ -14,14 +14,18 @@ class KozzerWatchView extends WatchUi.WatchFace
     var isAwake;
     var btIcon;
     var offscreenBuffer;
-    var dateBuffer;
     var curClip;
     var screenCenterPoint;
     var fullScreenRefresh;      // Flag used in onUpdate() & onPartialUpdate()
     var partialUpdatesAllowed;
 
-    const BACKGROUND_COLOR  = 0x44FF44; // Light gray -- DEDEDE
-    const FONT_COLOR        = 0x1111FF; // Very dark gray  -- 111111
+    const BACKGROUND_COLOR  = 0xDEDEDE; // Light gray 
+    const FONT_COLOR        = 0x111111; // Very dark gray 
+    const SECOND_HAND_COLOR = 0xFF0000; // Red
+    const FULL_COLOR        = 0x007700; // Green
+    const MOST_COLOR        = 0x777700; // Yellow
+    const SOME_COLOR        = 0x995500; // Orange
+    const LOW_COLOR         = 0xCC0000; // Darker red
 
     // Initialize variables for this view
     function initialize() {
@@ -45,26 +49,20 @@ class KozzerWatchView extends WatchUi.WatchFace
             :height=>dc.getHeight()
         });
 
-        // Buffered bitmap that's 1/2 width of face, tall as the font
-        dateBuffer = new Graphics.BufferedBitmap({
-            :width=>dc.getWidth() / 2,
-            :height=>Graphics.getFontHeight(Graphics.FONT_MEDIUM)
-        });
-
+        // Clear any clip
         curClip = null;
+
+        // Set center point of watchface
         screenCenterPoint = [dc.getWidth()/2, dc.getHeight()/2];
     }
 
-    // Handle the update event
+    // Handle the full screen refresh/update event, called once per minute or upon request
     function onUpdate(dc) {
         var width;
         var height;
         var screenWidth = dc.getWidth();
-        var clockTime = System.getClockTime();
-        var minuteHandAngle;
-        var hourHandAngle;
-        var secondHand;
-        var targetDc = null;
+        var clockTime   = System.getClockTime();
+        var bufferDc    = null;
 
         // We always want to refresh the full screen when we get a regular onUpdate call.
         fullScreenRefresh = true;
@@ -74,68 +72,58 @@ class KozzerWatchView extends WatchUi.WatchFace
         curClip = null;
 
         // Get draw context for offscreen buffer
-        targetDc = offscreenBuffer.getDc();
+        bufferDc = offscreenBuffer.getDc();
 
         // Get dimensions of context
-        width  = targetDc.getWidth();
-        height = targetDc.getHeight();
+        width  = bufferDc.getWidth();
+        height = bufferDc.getHeight();
 
         // Fill the entire background with color
-        targetDc.setColor(BACKGROUND_COLOR, BACKGROUND_COLOR);
-        targetDc.fillRectangle(0, 0, dc.getWidth(), dc.getHeight());
+        bufferDc.setColor(BACKGROUND_COLOR, BACKGROUND_COLOR);
+        bufferDc.fillRectangle(0, 0, dc.getWidth(), dc.getHeight());
+
+        // Reset colors for rendering our info items (font, background)
+        resetColorsForRendering(bufferDc);
 
         // Draw the tick marks around the edges of the screen
-        targetDc.setColor(FONT_COLOR, Graphics.COLOR_TRANSPARENT);
-        drawHashMarks(targetDc);
-
-        // Use font color to draw the hour and minute hands
-        targetDc.setColor(FONT_COLOR, Graphics.COLOR_TRANSPARENT);
+        drawHashMarks(bufferDc);
 
         // Draw the hour hand. Convert it to minutes and compute the angle.
-        hourHandAngle = (((clockTime.hour % 12) * 60) + clockTime.min);
-        hourHandAngle = hourHandAngle / (12 * 60.0);
-        hourHandAngle = hourHandAngle * Math.PI * 2;
-        targetDc.fillPolygon(generateHandCoordinates(screenCenterPoint, hourHandAngle, 70, 14, 7));
+        drawHourHand(bufferDc, clockTime);
 
         // Draw the minute hand.
-        minuteHandAngle = (clockTime.min / 60.0) * Math.PI * 2;
-        targetDc.fillPolygon(generateHandCoordinates(screenCenterPoint, minuteHandAngle, 100, 20, 5));
+        drawMinuteHand(bufferDc, clockTime);
 
         // Draw the circle in the middle
-        targetDc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_BLACK);
-        targetDc.fillCircle(width / 2, height / 2, 7);
-        targetDc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_BLACK);
-        targetDc.drawCircle(width / 2, height / 2, 7);
+        drawClockCenter(bufferDc, width, height);
 
-        // Reset colors
-        targetDc.setColor(FONT_COLOR, Graphics.COLOR_TRANSPARENT);
+        // Draw the date on the top
+        drawDateString( bufferDc, width / 2, 14 );
 
         // Draw the bluetooth icon if phone is connected
         if (null != btIcon && settings.phoneConnected) {
-            targetDc.drawBitmap( width * 0.70, height / 4 - 6, btIcon);
+            bufferDc.drawBitmap( width * 0.75, height / 4 - 6, btIcon);
         }
 
         // Battery - Draw the battery percentage directly to the main screen.
-        var dataString = (System.getSystemStats().battery + 0.5).toNumber().toString() + "%";
-        targetDc.drawText(width / 2, height - 36, Graphics.FONT_XTINY, dataString, Graphics.TEXT_JUSTIFY_CENTER);
+        var batteryPerc = (System.getSystemStats().battery + 0.5).toNumber();
+        var dataString  = batteryPerc.toString() + "%";
+        setDisplayLevelColor(bufferDc, batteryPerc);
+        bufferDc.drawText(width / 2, height - 36, Graphics.FONT_XTINY, dataString, Graphics.TEXT_JUSTIFY_CENTER);
 
         // Daily Steps
-        dataString = ActivityMonitor.getInfo().steps.toString() + "s";
-        targetDc.drawText(14, height / 2 - Graphics.getFontHeight(Graphics.FONT_XTINY) / 2, Graphics.FONT_XTINY, dataString, Graphics.TEXT_JUSTIFY_LEFT);
-        
+        var info = ActivityMonitor.getInfo();
+        dataString = info.steps.toString() + "s";
+        var stepPerc = ((info.steps * 100) / info.stepGoal).toNumber();
+        setDisplayLevelColor(bufferDc, stepPerc);
+        bufferDc.drawText(14, height / 2 - Graphics.getFontHeight(Graphics.FONT_XTINY) / 2, Graphics.FONT_XTINY, dataString, Graphics.TEXT_JUSTIFY_LEFT);
+        resetColorsForRendering(bufferDc);
+
         // Daily Miles 
         dataString = (ActivityMonitor.getInfo().distance / 160934).format("%3.1f") + "m";  // 160,934 cm per mile
-        targetDc.drawText(width - 14, height / 2 - Graphics.getFontHeight(Graphics.FONT_XTINY) / 2, Graphics.FONT_XTINY, dataString, Graphics.TEXT_JUSTIFY_RIGHT);
+        bufferDc.drawText(width - 14, height / 2 - Graphics.getFontHeight(Graphics.FONT_XTINY) / 2, Graphics.FONT_XTINY, dataString, Graphics.TEXT_JUSTIFY_RIGHT);
 
-        // Draw date to buffer
-        var dateDc = dateBuffer.getDc();
-        dateDc.setColor(FONT_COLOR, Graphics.COLOR_TRANSPARENT);    
-
-        // Draw the background image buffer into the date buffer to set the background
-        dateDc.drawBitmap(width / 4, height + 14, offscreenBuffer);
-        drawDateString( dateDc, width / 4, 0 );
-
-        // Output the offscreen buffers to the main display if required.
+        // Output the offscreen buffer to the main display 
         drawBackground(dc);
 
         if( partialUpdatesAllowed ) {
@@ -146,7 +134,7 @@ class KozzerWatchView extends WatchUi.WatchFace
             // Otherwise, if we are out of sleep mode, draw the second hand
             // directly in the full update method.
             dc.setColor(FONT_COLOR, Graphics.COLOR_TRANSPARENT);
-            secondHand = (clockTime.sec / 60.0) * Math.PI * 2;
+            var secondHand = (clockTime.sec / 60.0) * Math.PI * 2;
 
             dc.fillPolygon(generateHandCoordinates(screenCenterPoint, secondHand, 60, 20, 2));
         }
@@ -155,23 +143,27 @@ class KozzerWatchView extends WatchUi.WatchFace
     }
 
     // Handle the partial update event - 1/second, write to buffer not screen
+    //  This method only really does the second hand using clipping
     function onPartialUpdate( dc ) {
 
+        // If not coming from onUpdate() (ie, *not* full refresh), just draw background to the buffer since
+        //      drawBackground() was already called in onUpdate();
         if(!fullScreenRefresh) {
             drawBackground(dc);
         }
 
+        // Get second hand info
         var clockTime        = System.getClockTime();
         var secondHand       = (clockTime.sec / 60.0) * Math.PI * 2;
         var secondHandPoints = generateHandCoordinates(screenCenterPoint, secondHand, 100, 20, 2);
 
-        // Update the cliping rectangle to the new location of the second hand.
+        // Update the cliping rectangle to the new location of the second hand
         curClip        = getBoundingBox( secondHandPoints );
         var bboxWidth  = curClip[1][0] - curClip[0][0] + 1;
         var bboxHeight = curClip[1][1] - curClip[0][1] + 1;
         dc.setClip(curClip[0][0], curClip[0][1], bboxWidth, bboxHeight);
 
-        // Draw the second hand to the screen.
+        // Draw the second hand to the screen
         dc.setColor(Graphics.COLOR_RED, Graphics.COLOR_TRANSPARENT);
         dc.fillPolygon(secondHandPoints);
     }
@@ -180,8 +172,6 @@ class KozzerWatchView extends WatchUi.WatchFace
     function drawDateString( dc, x, y ) {
         var info = Gregorian.info(Time.now(), Time.FORMAT_MEDIUM);
         var dateStr = Lang.format("$1$ $2$", [info.month, info.day]);
-
-        dc.setColor(FONT_COLOR, Graphics.COLOR_TRANSPARENT);
         dc.drawText(x, y, Graphics.FONT_MEDIUM, dateStr, Graphics.TEXT_JUSTIFY_CENTER);
     }
 
@@ -195,15 +185,49 @@ class KozzerWatchView extends WatchUi.WatchFace
         if( null != offscreenBuffer ) {
             dc.drawBitmap(0, 0, offscreenBuffer);
         }
+    }
 
-        // Draw the date
-        if( null != dateBuffer ) {
-            // If the date is saved in a Buffered Bitmap, just copy it from there.
-            dc.drawBitmap( width / 4, 14, dateBuffer );
+    function resetColorsForRendering(dc) {
+        dc.setColor(FONT_COLOR, Graphics.COLOR_TRANSPARENT);
+    }
+
+    function setDisplayLevelColor(dc, perc){
+        if (perc > 60) {
+            dc.setColor(FULL_COLOR, Graphics.COLOR_TRANSPARENT);
+        } else if (perc > 40) {
+            dc.setColor(MOST_COLOR, Graphics.COLOR_TRANSPARENT);
+        } else if (perc > 20) {
+            dc.setColor(SOME_COLOR, Graphics.COLOR_TRANSPARENT);
+        } else if (perc > 0) {
+            dc.setColor(LOW_COLOR, Graphics.COLOR_TRANSPARENT);
         } else {
-            // Otherwise, draw it from scratch.
-            drawDateString( dc, width / 4, 14 );
+            // Default to normal font color
+            resetColorsForRendering(dc);
         }
+    }
+
+    function drawHourHand(dc, clockTime){
+        // Draw the hour hand. Convert it to minutes and compute the angle.
+        var hourHandAngle = (((clockTime.hour % 12) * 60) + clockTime.min);
+        hourHandAngle     = hourHandAngle / (12 * 60.0);
+        hourHandAngle     = hourHandAngle * Math.PI * 2;
+        dc.fillPolygon(generateHandCoordinates(screenCenterPoint, hourHandAngle, 70, 14, 7));
+    }
+
+    function drawMinuteHand(dc, clockTime) {
+        var minuteHandAngle = (clockTime.min / 60.0) * Math.PI * 2;
+        dc.fillPolygon(generateHandCoordinates(screenCenterPoint, minuteHandAngle, 100, 20, 5));
+    }
+
+    function drawClockCenter(dc, width, height) {
+        // Draw the circle in the middle
+        dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_BLACK);
+        dc.fillCircle(width / 2, height / 2, 7);
+        dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_BLACK);
+        dc.drawCircle(width / 2, height / 2, 7);
+
+        // Reset colors
+        dc.setColor(FONT_COLOR, Graphics.COLOR_TRANSPARENT);
     }
 
     // Get 4 points of clock hand polygon
@@ -227,7 +251,7 @@ class KozzerWatchView extends WatchUi.WatchFace
 
     // Draws the clock tick marks around the outside edges of the screen.
     function drawHashMarks(dc) {
-        var width = dc.getWidth();
+        var width  = dc.getWidth();
         var height = dc.getHeight();
 
         // FR 645M has a round fact
@@ -237,22 +261,7 @@ class KozzerWatchView extends WatchUi.WatchFace
         var innerRad = outerRad - 10;
 
         // draw tick marks around circumference
-        for (var i = Math.PI / 6; i <= 11 * Math.PI / 6; i += (Math.PI / 6)) {
-
-            sY = outerRad + innerRad * Math.sin(i);
-            eY = outerRad + outerRad * Math.sin(i);
-            sX = outerRad + innerRad * Math.cos(i);
-            eX = outerRad + outerRad * Math.cos(i);
-            dc.drawLine(sX, sY, eX, eY);
-
-            i += Math.PI / 6;
-            sY = outerRad + innerRad * Math.sin(i);
-            eY = outerRad + outerRad * Math.sin(i);
-            sX = outerRad + innerRad * Math.cos(i);
-            eX = outerRad + outerRad * Math.cos(i);
-            dc.drawLine(sX, sY, eX, eY);
-
-            i += Math.PI / 6;
+        for (var i = Math.PI / 6; i <= 12 * Math.PI / 6; i += (Math.PI / 6)) {
             sY = outerRad + innerRad * Math.sin(i);
             eY = outerRad + outerRad * Math.sin(i);
             sX = outerRad + innerRad * Math.cos(i);
