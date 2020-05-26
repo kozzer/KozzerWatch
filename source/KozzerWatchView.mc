@@ -10,21 +10,28 @@ using Toybox.WatchUi;
 
 class KozzerWatchView extends WatchUi.WatchFace
 {
-    var isAwake;
-    var btIcon;
-    var offscreenBuffer;
-    var curClip;
-    var screenCenterPoint;
-    var fullScreenRefresh;      // Flag used in onUpdate() & onPartialUpdate()
-    var partialUpdatesAllowed;
+    // General class-level fields
+    var isAwake;                            // Flag indicating whether watch is awake or in sleep mode
+    var btIcon;                             // Reference to bluetooth icon png
+    var offscreenBuffer;                    // Watch-screen-sized buffer where everything is written to (actually written to screen when appropriate)
+    var curClip;                            // Clip for partial updates, so only pixels where second hand is will actually be changed
+    var screenCenterPoint;                  // Center x,y point of screen
+    var fullScreenRefresh;                  // Flag used in onUpdate() & onPartialUpdate()
+    var partialUpdatesAllowed;              // Is true until the KozzerWatchViewDelegate.onPowerBudgetExceeded() is fired
+    
+    // Battery icon dimensions - hard-coded
+    const batteryWidth      = 36;
+    const batteryHeight     = 12;
+    const batteryRadius     = 3;
 
-    const BACKGROUND_COLOR  = 0xDEDEDE; // Light gray 
-    const FONT_COLOR        = 0x111111; // Very dark gray 
-    const SECOND_HAND_COLOR = 0xFF0000; // Red
-    const FULL_COLOR        = 0x007700; // Green
-    const MOST_COLOR        = 0x777700; // Yellow
-    const SOME_COLOR        = 0x995500; // Orange
-    const LOW_COLOR         = 0xCC0000; // Darker red
+    // UI colors
+    const BACKGROUND_COLOR  = 0xDEDEDE;     // Light gray 
+    const FONT_COLOR        = 0x111111;     // Very dark gray 
+    const SECOND_HAND_COLOR = 0xFF0000;     // Red
+    const FULL_COLOR        = 0x007700;     // Green
+    const MOST_COLOR        = 0x777700;     // Yellow
+    const SOME_COLOR        = 0x995500;     // Orange
+    const LOW_COLOR         = 0xCC0000;     // Darker red
 
     // Initialize variables for this view
     function initialize() {
@@ -41,10 +48,10 @@ class KozzerWatchView extends WatchUi.WatchFace
 
         // Set up screen buffer for partial updates
         offscreenBuffer = new Graphics.BufferedBitmap({
-            :width=>dc.getWidth(),
-            :height=>dc.getHeight()
+            :width  => dc.getWidth(),
+            :height => dc.getHeight()
         });
-
+        
         // Clear any clip
         curClip = null;
 
@@ -54,26 +61,25 @@ class KozzerWatchView extends WatchUi.WatchFace
 
     // Handle the full screen refresh/update event, called once per minute or upon request
     function onUpdate(dc) {
-        var width;
-        var height;
-        var screenWidth = dc.getWidth();
-        var clockTime   = System.getClockTime();
-        var bufferDc    = null;
-
+    
         // We always want to refresh the full screen when we get a regular onUpdate call.
         fullScreenRefresh = true;
 
         // Clear the clip
         dc.clearClip();
         curClip = null;
-
-        // Get draw context for offscreen buffer
-        bufferDc = offscreenBuffer.getDc();
-
-        // Get dimensions of context
-        width  = bufferDc.getWidth();
-        height = bufferDc.getHeight();
-
+        
+        // Get dimensions of actual screen
+        var screenWidth = dc.getWidth();
+        
+        // Get current system clock time
+        var clockTime   = System.getClockTime();
+    
+        // Get draw context & dimensions for offscreen buffer
+        var bufferDc    = offscreenBuffer.getDc();
+        var width       = bufferDc.getWidth();
+        var height      = bufferDc.getHeight();
+        
         // Fill the entire background with color
         bufferDc.setColor(BACKGROUND_COLOR, BACKGROUND_COLOR);
         bufferDc.fillRectangle(0, 0, dc.getWidth(), dc.getHeight());
@@ -81,37 +87,28 @@ class KozzerWatchView extends WatchUi.WatchFace
         // Reset colors for rendering our info items (font, background)
         resetColorsForRendering(bufferDc);
 
-        // Draw the tick marks around the edges of the screen
+        // Draw the clock - ticks around edge, hour hand, minute hand, center of clock (second hand handled below)
         drawHashMarks(bufferDc);
-
-        // Draw the hour hand. Convert it to minutes and compute the angle.
         drawHourHand(bufferDc, clockTime);
-
-        // Draw the minute hand.
         drawMinuteHand(bufferDc, clockTime);
-
-        // Draw the circle in the middle
         drawClockCenter(bufferDc, width, height);
 
         // Draw the date on the top
         drawDateString( bufferDc, width / 2, 14 );
 
+        // Battery - Draw the battery percentage directly to the main screen.
+        drawBatteryStatus(bufferDc);
+        
         // Draw the bluetooth icon if phone is connected
         if (null != btIcon && System.getDeviceSettings().phoneConnected) {
             bufferDc.drawBitmap( width * 0.75, height / 4 - 6, btIcon);
         }
-
-        // Battery - Draw the battery percentage directly to the main screen.
-        var batteryPerc = (System.getSystemStats().battery + 0.5).toNumber();
-        var dataString  = batteryPerc.toString() + "%";
-        setDisplayLevelColor(bufferDc, batteryPerc);
-        bufferDc.drawText(width / 2, height - 36, Graphics.FONT_XTINY, dataString, Graphics.TEXT_JUSTIFY_CENTER);
-
+        
         // Daily Steps
-        var info = ActivityMonitor.getInfo();
-        dataString = info.steps.toString() + "s";
-        var stepPerc = ((info.steps * 100) / info.stepGoal).toNumber();
-        setDisplayLevelColor(bufferDc, stepPerc);
+        var info       = ActivityMonitor.getInfo();
+        var dataString = info.steps.toString() + "s";
+        var stepPerc   = ((info.steps * 100) / info.stepGoal).toNumber();
+        setStepsDisplayLevelColor(bufferDc, stepPerc);
         bufferDc.drawText(14, height / 2 - Graphics.getFontHeight(Graphics.FONT_XTINY) / 2, Graphics.FONT_XTINY, dataString, Graphics.TEXT_JUSTIFY_LEFT);
         resetColorsForRendering(bufferDc);
 
@@ -119,82 +116,104 @@ class KozzerWatchView extends WatchUi.WatchFace
         dataString = (info.distance.toFloat() / 160934).format("%3.1f") + "m";  // 160,934 cm per mile
         bufferDc.drawText(width - 14, height / 2 - Graphics.getFontHeight(Graphics.FONT_XTINY) / 2, Graphics.FONT_XTINY, dataString, Graphics.TEXT_JUSTIFY_RIGHT);
 
-        // Output the offscreen buffer to the main display 
-        drawBackground(dc);
+        // Always output the offscreen buffer to the main display in onUpdate() - once per minute
+        writeBufferToDisplay(dc);
 
+        // Only draw the second hand if partial updates are currently allowed, OR if the watch is awake
         if( partialUpdatesAllowed ) {
-            // If this device supports partial updates and they are currently
-            // allowed run the onPartialUpdate method to draw the second hand.
+            // Partial update draws second hand to clipped area, so draw second hand using clip
             onPartialUpdate( dc );
         } else if ( isAwake ) {
-            // Otherwise, if we are out of sleep mode, draw the second hand
-            // directly in the full update method.
-            dc.setColor(FONT_COLOR, Graphics.COLOR_TRANSPARENT);
-            var secondHand = (clockTime.sec / 60.0) * Math.PI * 2;
-
-            dc.fillPolygon(generateHandCoordinates(screenCenterPoint, secondHand, 60, 20, 2));
+            // If awake & partial updates not allowed, we don't need clipping
+            drawSecondHand( dc, clockTime, false );
         }
 
         fullScreenRefresh = false;
     }
 
+
     // Handle the partial update event - 1/second, write to buffer not screen
     //  This method only really does the second hand using clipping
     function onPartialUpdate( dc ) {
 
-        // If not coming from onUpdate() (ie, *not* full refresh), just draw background to the buffer since
-        //      drawBackground() was already called in onUpdate();
+        // Only call this if not coming from onUpdate(), since drawBackgrounbd() is already called there
         if(!fullScreenRefresh) {
-            drawBackground(dc);
+            writeBufferToDisplay( dc );
         }
 
-        // Get second hand info
-        var clockTime        = System.getClockTime();
-        var secondHand       = (clockTime.sec / 60.0) * Math.PI * 2;
-        var secondHandPoints = generateHandCoordinates(screenCenterPoint, secondHand, 100, 20, 2);
-
-        // Update the cliping rectangle to the new location of the second hand
-        curClip        = getBoundingBox( secondHandPoints );
-        var bboxWidth  = curClip[1][0] - curClip[0][0] + 1;
-        var bboxHeight = curClip[1][1] - curClip[0][1] + 1;
-        dc.setClip(curClip[0][0], curClip[0][1], bboxWidth, bboxHeight);
-
-        // Draw the second hand to the screen
-        dc.setColor(Graphics.COLOR_RED, Graphics.COLOR_TRANSPARENT);
-        dc.fillPolygon(secondHandPoints);
+        // Draw second hand, and use clip to save power (limits # of pixels that change)
+        drawSecondHand( dc, clockTime, true );
     }
-
+    
+   
     // Draw the date string into the provided buffer at the specified location
     function drawDateString( dc, x, y ) {
         var info = Gregorian.info(Time.now(), Time.FORMAT_MEDIUM);
         var dateStr = Lang.format("$1$ $2$", [info.month, info.day]);
         dc.drawText(x, y, Graphics.FONT_MEDIUM, dateStr, Graphics.TEXT_JUSTIFY_CENTER);
     }
-
-    // Draw the watch face background onto the given draw context
-    function drawBackground(dc) {
+    
+    // Draw battery icon with % indicated
+    function drawBatteryStatus( dc ) {   
+    
+        // Get battery % from system
+        var batteryPerc = (System.getSystemStats().battery + 0.5).toNumber();
+        setBatteryDisplayLevelColor(dc, batteryPerc);
+        
+        // dc dimensions
         var width  = dc.getWidth();
         var height = dc.getHeight();
+               
+        // Put it bottom center
+        var batteryX = (width / 2)   - (batteryWidth / 2);
+        var batteryY = (height - 14) - (batteryHeight / 2);
+        
+        // Draw outline
+        dc.drawRoundedRectangle(batteryX, batteryY, batteryWidth, batteryHeight, batteryRadius);
+        
+        // Draw filled (only fill based on %)
+        dc.fillRoundedRectangle(batteryX, batteryY, (batteryWidth * batteryPerc) / 100, batteryHeight, batteryRadius);
+        
+        // Draw positive-end nub (on right)
+        dc.fillRectangle((batteryX + batteryWidth), (batteryY + (batteryHeight / 4)), (batteryHeight / 3), (batteryHeight / 2)); 
+    }
 
-        //If we have an offscreen buffer that has been written to
-        //draw it to the screen.
+
+    // Draw the watch face background onto the given draw context
+    function writeBufferToDisplay(dc) { 
+        // Write the entire display buffer to the display
         if( null != offscreenBuffer ) {
             dc.drawBitmap(0, 0, offscreenBuffer);
-        }
+        }        
     }
 
     function resetColorsForRendering(dc) {
         dc.setColor(FONT_COLOR, Graphics.COLOR_TRANSPARENT);
     }
+    
+    function setStepsDisplayLevelColor(dc, perc){
+        if (perc > 100) {
+            dc.setColor(FULL_COLOR, Graphics.COLOR_TRANSPARENT);
+        } else if (perc > 60) {
+            dc.setColor(MOST_COLOR, Graphics.COLOR_TRANSPARENT);
+        } else if (perc > 30) {
+            dc.setColor(SOME_COLOR, Graphics.COLOR_TRANSPARENT);
+        } else if (perc > 0) {
+            dc.setColor(LOW_COLOR, Graphics.COLOR_TRANSPARENT);
+        } else {
+            // Default to normal font color for 0 steps
+            resetColorsForRendering(dc);
+        }
+    }
 
-    function setDisplayLevelColor(dc, perc){
+    function setBatteryDisplayLevelColor(dc, perc){
         if (perc > 60) {
             dc.setColor(FULL_COLOR, Graphics.COLOR_TRANSPARENT);
         } else if (perc > 40) {
             dc.setColor(MOST_COLOR, Graphics.COLOR_TRANSPARENT);
-        } else if (perc > 20) {
+        } else if (perc > 15) {
             dc.setColor(SOME_COLOR, Graphics.COLOR_TRANSPARENT);
-        } else if (perc > 0) {
+        } else if (perc >= 0) {
             dc.setColor(LOW_COLOR, Graphics.COLOR_TRANSPARENT);
         } else {
             // Default to normal font color
@@ -213,6 +232,23 @@ class KozzerWatchView extends WatchUi.WatchFace
     function drawMinuteHand(dc, clockTime) {
         var minuteHandAngle = (clockTime.min / 60.0) * Math.PI * 2;
         dc.fillPolygon(generateHandCoordinates(screenCenterPoint, minuteHandAngle, 100, 20, 5));
+    }
+    
+    function drawSecondHand(dc, clockTime, setClip) {
+        var secondHand       = (clockTime.sec / 60.0) * Math.PI * 2;
+        var secondHandPoints = generateHandCoordinates(screenCenterPoint, secondHand, 100, 20, 2);
+        
+        if ( setClip ) {
+            // Update the cliping rectangle to the new location of the second hand
+            curClip        = getBoundingBox( secondHandPoints );
+            var bboxWidth  = curClip[1][0] - curClip[0][0] + 1;
+            var bboxHeight = curClip[1][1] - curClip[0][1] + 1;
+            dc.setClip(curClip[0][0], curClip[0][1], bboxWidth, bboxHeight);
+        }
+
+        // Draw the second hand to the screen
+        dc.setColor(Graphics.COLOR_RED, Graphics.COLOR_TRANSPARENT);
+        dc.fillPolygon(secondHandPoints);
     }
 
     function drawClockCenter(dc, width, height) {
