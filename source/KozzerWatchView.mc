@@ -120,7 +120,7 @@ class KozzerWatchView extends WatchUi.WatchFace
         resetColorsForRendering(bufferDc);
 
         // Daily Miles 
-        dataString = (ActivityMonitor.getInfo().distance / 160934).format("%3.1f") + "m";  // 160,934 cm per mile
+        dataString = (info.distance.toFloat() / 160934).format("%3.1f") + "m";  // 160,934 cm per mile
         bufferDc.drawText(width - 14, height / 2 - Graphics.getFontHeight(Graphics.FONT_XTINY) / 2, Graphics.FONT_XTINY, dataString, Graphics.TEXT_JUSTIFY_RIGHT);
 
         // Output the offscreen buffer to the main display 
