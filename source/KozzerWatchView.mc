@@ -20,8 +20,8 @@ class KozzerWatchView extends WatchUi.WatchFace
     var partialUpdatesAllowed;              // Is true until the KozzerWatchViewDelegate.onPowerBudgetExceeded() is fired
     
     // Battery icon dimensions - hard-coded
-    const batteryWidth      = 36;
-    const batteryHeight     = 12;
+    const batteryWidth      = 32;
+    const batteryHeight     = 16;
     const batteryRadius     = 3;
 
     // UI colors
@@ -125,7 +125,7 @@ class KozzerWatchView extends WatchUi.WatchFace
             onPartialUpdate( dc );
         } else if ( isAwake ) {
             // If awake & partial updates not allowed, we don't need clipping
-            drawSecondHand( dc, clockTime, false );
+            drawSecondHand( dc, false );
         }
 
         fullScreenRefresh = false;
@@ -135,6 +135,9 @@ class KozzerWatchView extends WatchUi.WatchFace
     // Handle the partial update event - 1/second, write to buffer not screen
     //  This method only really does the second hand using clipping
     function onPartialUpdate( dc ) {
+
+        // Get current system clock time
+        var clockTime   = System.getClockTime();
 
         // Only call this if not coming from onUpdate(), since drawBackgrounbd() is already called there
         if(!fullScreenRefresh) {
@@ -166,16 +169,17 @@ class KozzerWatchView extends WatchUi.WatchFace
                
         // Put it bottom center
         var batteryX = (width / 2)   - (batteryWidth / 2);
-        var batteryY = (height - 14) - (batteryHeight / 2);
+        var batteryY = (height - 20) - (batteryHeight / 2);
         
         // Draw outline
-        dc.drawRoundedRectangle(batteryX, batteryY, batteryWidth, batteryHeight, batteryRadius);
+        dc.drawRoundedRectangle(batteryX,     batteryY,     batteryWidth,     batteryHeight,     batteryRadius);
+        dc.drawRoundedRectangle(batteryX + 1, batteryY + 1, batteryWidth - 2, batteryHeight - 2, batteryRadius);
         
         // Draw filled (only fill based on %)
         dc.fillRoundedRectangle(batteryX, batteryY, (batteryWidth * batteryPerc) / 100, batteryHeight, batteryRadius);
         
         // Draw positive-end nub (on right)
-        dc.fillRectangle((batteryX + batteryWidth), (batteryY + (batteryHeight / 4)), (batteryHeight / 3), (batteryHeight / 2)); 
+        dc.fillRectangle((batteryX + batteryWidth), (batteryY + (batteryHeight / 4)), (batteryHeight / 4), (batteryHeight / 2)); 
     }
 
 
@@ -199,7 +203,7 @@ class KozzerWatchView extends WatchUi.WatchFace
         } else if (perc > 30) {
             dc.setColor(SOME_COLOR, Graphics.COLOR_TRANSPARENT);
         } else if (perc > 0) {
-            dc.setColor(LOW_COLOR, Graphics.COLOR_TRANSPARENT);
+            dc.setColor(LOW_COLOR,  Graphics.COLOR_TRANSPARENT);
         } else {
             // Default to normal font color for 0 steps
             resetColorsForRendering(dc);
@@ -208,17 +212,16 @@ class KozzerWatchView extends WatchUi.WatchFace
 
     function setBatteryDisplayLevelColor(dc, perc){
         if (perc > 60) {
-            dc.setColor(FULL_COLOR, Graphics.COLOR_TRANSPARENT);
+            dc.setColor(FONT_COLOR, Graphics.COLOR_TRANSPARENT);
         } else if (perc > 40) {
+            dc.setColor(FULL_COLOR, Graphics.COLOR_TRANSPARENT);
+        } else if (perc > 25) {
             dc.setColor(MOST_COLOR, Graphics.COLOR_TRANSPARENT);
-        } else if (perc > 15) {
+        } else if (perc >= 15) {
             dc.setColor(SOME_COLOR, Graphics.COLOR_TRANSPARENT);
-        } else if (perc >= 0) {
-            dc.setColor(LOW_COLOR, Graphics.COLOR_TRANSPARENT);
-        } else {
-            // Default to normal font color
-            resetColorsForRendering(dc);
-        }
+        } else { 
+            dc.setColor(LOW_COLOR,  Graphics.COLOR_TRANSPARENT);
+        } 
     }
 
     function drawHourHand(dc, clockTime){
