@@ -159,25 +159,29 @@ class KozzerWatchView extends WatchUi.WatchFace
     
         // Get battery % from system
         var batteryPerc = (System.getSystemStats().battery + 0.5).toNumber();
-        setBatteryDisplayLevelColor(dc, batteryPerc);
         
         // dc dimensions
         var width  = dc.getWidth();
         var height = dc.getHeight();
                
         // Put it bottom center
-        var batteryX = (width / 2)   - (batteryWidth / 2);
+        var batteryX = ((width / 2)  - (batteryWidth / 2)) - (batteryHeight / 12);
         var batteryY = (height - 20) - (batteryHeight / 2);
+
+        // Reset colors to font / background
+        resetColorsForRendering(dc);
         
         // Draw outline
-        dc.drawRoundedRectangle(batteryX,     batteryY,     batteryWidth,     batteryHeight,     batteryRadius);
-        dc.drawRoundedRectangle(batteryX + 1, batteryY + 1, batteryWidth - 2, batteryHeight - 2, batteryRadius);
+        dc.drawRoundedRectangle(batteryX, batteryY, batteryWidth, batteryHeight, batteryRadius);
+
+        // Draw positive-end nub (on right)
+        dc.fillRectangle((batteryX + batteryWidth), (batteryY + (batteryHeight / 4)), (batteryHeight / 6), (batteryHeight / 2)); 
+
+        // Change to color-coded fill
+        setBatteryDisplayLevelColor(dc, batteryPerc);
         
         // Draw filled (only fill based on %)
-        dc.fillRoundedRectangle(batteryX, batteryY, (batteryWidth * batteryPerc) / 100, batteryHeight, batteryRadius);
-        
-        // Draw positive-end nub (on right)
-        dc.fillRectangle((batteryX + batteryWidth), (batteryY + (batteryHeight / 4)), (batteryHeight / 4), (batteryHeight / 2)); 
+        dc.fillRoundedRectangle(batteryX + 2, batteryY + 2, ((batteryWidth - 4) * batteryPerc) / 100, batteryHeight - 4, batteryRadius - 1);
     }
 
 
@@ -210,12 +214,10 @@ class KozzerWatchView extends WatchUi.WatchFace
 
     function setBatteryDisplayLevelColor(dc, perc){
         if (perc > 60) {
-            dc.setColor(FONT_COLOR, Graphics.COLOR_TRANSPARENT);
-        } else if (perc > 40) {
             dc.setColor(FULL_COLOR, Graphics.COLOR_TRANSPARENT);
-        } else if (perc > 25) {
+        } else if (perc > 40) {
             dc.setColor(MOST_COLOR, Graphics.COLOR_TRANSPARENT);
-        } else if (perc >= 10) {
+        } else if (perc > 25) {
             dc.setColor(SOME_COLOR, Graphics.COLOR_TRANSPARENT);
         } else { 
             dc.setColor(LOW_COLOR,  Graphics.COLOR_TRANSPARENT);
