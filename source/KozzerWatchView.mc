@@ -114,11 +114,10 @@ class KozzerWatchView extends WatchUi.WatchFace
         // Only draw the second hand if partial updates are currently allowed, OR if the watch is awake
         if( partialUpdatesAllowed ) {
             // Partial update draws second hand and bluetooth icon
-            onPartialUpdate( dc );
+            onPartialUpdate(dc);
         } else if ( isAwake ) {
             // If awake & partial updates not allowed draw second hand and bluetooth icon
-            drawSecondHand(dc);
-            drawBluetoothIconIfActive(dc);
+            partialUpdateActions(dc);
         }
 
         fullScreenRefresh = false;
@@ -134,13 +133,15 @@ class KozzerWatchView extends WatchUi.WatchFace
             writeBufferToDisplay(dc);
         }
 
-        // Draw second hand, and use clip to save power (limits # of pixels that change)
-        drawSecondHand(dc);
-        
-        // Draw the bluetooth icon if active (also uses clipping)
-        drawBluetoothIconIfActive(dc);
+        // Draw second hand and bluetooth icon if connected
+        partialUpdateActions(dc);
     }
     
+    // Draws second hand and bluetooth icon if connected, both using clipping
+    private function partialUpdateActions(dc) {
+        drawSecondHand(dc);
+        drawBluetoothIconIfActive(dc);
+    }  
    
     // Draw the date string into the provided buffer at the specified location
     private function drawDateString(dc, x, y) {
@@ -248,7 +249,7 @@ class KozzerWatchView extends WatchUi.WatchFace
     }
 
     private function drawHourHand(dc, clockTime){
-        // Draw the hour hand. Convert it to minutes and compute the angle.
+        // Draw the hour hand - convert it to minutes and compute the angle
         var hourHandAngle = (((clockTime.hour % 12) * 60) + clockTime.min);
         hourHandAngle     = hourHandAngle / (12 * 60.0);
         hourHandAngle     = hourHandAngle * Math.PI * 2;
@@ -303,12 +304,12 @@ class KozzerWatchView extends WatchUi.WatchFace
         return result;
     }
 
-    // Draws the clock tick marks around the outside edges of the screen.
+    // Draws the clock tick marks around the outside edges of the screen
     private function drawHashMarks(dc) {
         var width  = dc.getWidth();
         var height = dc.getHeight();
 
-        // FR 645M has a round fact
+        // Forerunner 645 Music has a round face
         var sX, sY;
         var eX, eY;
         var outerRad = width / 2;
@@ -372,14 +373,12 @@ class KozzerWatchView extends WatchUi.WatchFace
     }
 
     // This method is called when the device re-enters sleep mode.
-    // Set the isAwake flag to let onUpdate know it should stop rendering the second hand.
     function onEnterSleep() {
         isAwake = false;
         WatchUi.requestUpdate();
     }
 
     // This method is called when the device exits sleep mode.
-    // Set the isAwake flag to let onUpdate know it should render the second hand.
     function onExitSleep() {
         isAwake = true;
     }
@@ -388,9 +387,7 @@ class KozzerWatchView extends WatchUi.WatchFace
 class KozzerWatchDelegate extends WatchUi.WatchFaceDelegate {
     // The onPowerBudgetExceeded callback is called by the system if the
     // onPartialUpdate method exceeds the allowed power budget. If this occurs,
-    // the system will stop invoking onPartialUpdate each second, so we set the
-    // partialUpdatesAllowed flag here to let the rendering methods know they
-    // should not be rendering a second hand.
+    // the system will stop invoking onPartialUpdate each second
     function onPowerBudgetExceeded(powerInfo) {
         System.println( "Average execution time: " + powerInfo.executionTimeAverage );
         System.println( "Allowed execution time: " + powerInfo.executionTimeLimit );
