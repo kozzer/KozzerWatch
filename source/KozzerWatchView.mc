@@ -20,9 +20,9 @@ class KozzerWatchView extends WatchUi.WatchFace
     var partialUpdatesAllowed;              // Is true until the KozzerWatchViewDelegate.onPowerBudgetExceeded() is fired
     
     // Battery icon dimensions - hard-coded
-    const batteryWidth      = 32;
-    const batteryHeight     = 16;
-    const batteryRadius     = 3;
+    const batteryWidth  = 32;
+    const batteryHeight = 16;
+    const batteryRadius = 3;
 
     // UI colors
     const BACKGROUND_COLOR  = 0xDEDEDE;     // Light gray 
@@ -72,13 +72,10 @@ class KozzerWatchView extends WatchUi.WatchFace
         // Get dimensions of actual screen
         var screenWidth = dc.getWidth();
         
-        // Get current system clock time
-        var clockTime   = System.getClockTime();
-    
         // Get draw context & dimensions for offscreen buffer
-        var bufferDc    = offscreenBuffer.getDc();
-        var width       = bufferDc.getWidth();
-        var height      = bufferDc.getHeight();
+        var bufferDc = offscreenBuffer.getDc();
+        var width    = bufferDc.getWidth();
+        var height   = bufferDc.getHeight();
         
         // Fill the entire background with color
         bufferDc.setColor(BACKGROUND_COLOR, BACKGROUND_COLOR);
@@ -88,6 +85,7 @@ class KozzerWatchView extends WatchUi.WatchFace
         resetColorsForRendering(bufferDc);
 
         // Draw the clock - ticks around edge, hour hand, minute hand, center of clock (second hand handled below)
+        var clockTime = System.getClockTime();
         drawHashMarks(bufferDc);
         drawHourHand(bufferDc, clockTime);
         drawMinuteHand(bufferDc, clockTime);
@@ -96,7 +94,7 @@ class KozzerWatchView extends WatchUi.WatchFace
         // Draw the date on the top
         drawDateString( bufferDc, width / 2, 14 );
 
-        // Battery - Draw the battery percentage directly to the main screen.
+        // Battery - Draw the battery status
         drawBatteryStatus(bufferDc);
         
         // Draw the bluetooth icon if phone is connected
@@ -106,7 +104,7 @@ class KozzerWatchView extends WatchUi.WatchFace
         
         // Daily Steps
         var info       = ActivityMonitor.getInfo();
-        var dataString = info.steps.toString() + "s";
+        var dataString = info.steps.toString();
         var stepPerc   = ((info.steps * 100) / info.stepGoal).toNumber();
         setStepsDisplayLevelColor(bufferDc, stepPerc);
         bufferDc.drawText(14, height / 2 - Graphics.getFontHeight(Graphics.FONT_XTINY) / 2, Graphics.FONT_XTINY, dataString, Graphics.TEXT_JUSTIFY_LEFT);
@@ -124,8 +122,8 @@ class KozzerWatchView extends WatchUi.WatchFace
             // Partial update draws second hand to clipped area, so draw second hand using clip
             onPartialUpdate( dc );
         } else if ( isAwake ) {
-            // If awake & partial updates not allowed, we don't need clipping
-            drawSecondHand( dc, true );
+            // If awake & partial updates not allowed
+            drawSecondHand(dc);
         }
 
         fullScreenRefresh = false;
@@ -134,30 +132,30 @@ class KozzerWatchView extends WatchUi.WatchFace
 
     // Handle the partial update event - 1/second, write to buffer not screen
     //  This method only really does the second hand using clipping
-    function onPartialUpdate( dc ) {
+    function onPartialUpdate(dc) {
 
         // Get current system clock time
-        var clockTime   = System.getClockTime();
+        var clockTime = System.getClockTime();
 
-        // Only call this if not coming from onUpdate(), since drawBackgrounbd() is already called there
+        // Only call this if not coming from onUpdate(), since writeBufferToDisplay() is already called there
         if(!fullScreenRefresh) {
-            writeBufferToDisplay( dc );
+            writeBufferToDisplay(dc);
         }
 
         // Draw second hand, and use clip to save power (limits # of pixels that change)
-        drawSecondHand( dc, true );
+        drawSecondHand(dc);
     }
     
    
     // Draw the date string into the provided buffer at the specified location
-    function drawDateString( dc, x, y ) {
+    function drawDateString(dc, x, y) {
         var info = Gregorian.info(Time.now(), Time.FORMAT_MEDIUM);
         var dateStr = Lang.format("$1$ $2$", [info.month, info.day]);
         dc.drawText(x, y, Graphics.FONT_MEDIUM, dateStr, Graphics.TEXT_JUSTIFY_CENTER);
     }
     
     // Draw battery icon with % indicated
-    function drawBatteryStatus( dc ) {   
+    function drawBatteryStatus(dc) {   
     
         // Get battery % from system
         var batteryPerc = (System.getSystemStats().battery + 0.5).toNumber();
@@ -186,7 +184,7 @@ class KozzerWatchView extends WatchUi.WatchFace
     // Draw the watch face background onto the given draw context
     function writeBufferToDisplay(dc) { 
         // Write the entire display buffer to the display
-        if( null != offscreenBuffer ) {
+        if (null != offscreenBuffer) {
             dc.drawBitmap(0, 0, offscreenBuffer);
         }        
     }
@@ -217,7 +215,7 @@ class KozzerWatchView extends WatchUi.WatchFace
             dc.setColor(FULL_COLOR, Graphics.COLOR_TRANSPARENT);
         } else if (perc > 25) {
             dc.setColor(MOST_COLOR, Graphics.COLOR_TRANSPARENT);
-        } else if (perc >= 15) {
+        } else if (perc >= 10) {
             dc.setColor(SOME_COLOR, Graphics.COLOR_TRANSPARENT);
         } else { 
             dc.setColor(LOW_COLOR,  Graphics.COLOR_TRANSPARENT);
@@ -237,18 +235,16 @@ class KozzerWatchView extends WatchUi.WatchFace
         dc.fillPolygon(generateHandCoordinates(screenCenterPoint, minuteHandAngle, 100, 20, 5));
     }
     
-    function drawSecondHand(dc, setClip) {
+    function drawSecondHand(dc) {
         var clockTime        = System.getClockTime();
         var secondHand       = (clockTime.sec / 60.0) * Math.PI * 2;
         var secondHandPoints = generateHandCoordinates(screenCenterPoint, secondHand, 100, 20, 2);
         
-        if ( setClip ) {
-            // Update the cliping rectangle to the new location of the second hand
-            curClip        = getBoundingBox( secondHandPoints );
-            var bboxWidth  = curClip[1][0] - curClip[0][0] + 1;
-            var bboxHeight = curClip[1][1] - curClip[0][1] + 1;
-            dc.setClip(curClip[0][0], curClip[0][1], bboxWidth, bboxHeight);
-        }
+        // Update the cliping rectangle to the new location of the second hand
+        curClip        = getBoundingBox( secondHandPoints );
+        var bboxWidth  = curClip[1][0] - curClip[0][0] + 1;
+        var bboxHeight = curClip[1][1] - curClip[0][1] + 1;
+        dc.setClip(curClip[0][0], curClip[0][1], bboxWidth, bboxHeight);
 
         // Draw the second hand to the screen
         dc.setColor(Graphics.COLOR_RED, Graphics.COLOR_TRANSPARENT);
