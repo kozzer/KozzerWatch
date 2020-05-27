@@ -8,6 +8,8 @@ using Toybox.Time;
 using Toybox.Time.Gregorian;
 using Toybox.WatchUi;
 
+var partialUpdatesAllowed = false;          // Outside class so the Delegate class below can access the value    
+
 class KozzerWatchView extends WatchUi.WatchFace
 {
     // General class-level fields
@@ -17,7 +19,6 @@ class KozzerWatchView extends WatchUi.WatchFace
     var curClip;                            // Clip for partial updates, so only pixels where second hand is will actually be changed
     var screenCenterPoint;                  // Center x,y point of screen
     var fullScreenRefresh;                  // Flag used in onUpdate() & onPartialUpdate()
-    var partialUpdatesAllowed;              // Is true until the KozzerWatchViewDelegate.onPowerBudgetExceeded() is fired
     
     // Battery icon dimensions - hard-coded
     const batteryWidth  = 32;
@@ -37,7 +38,7 @@ class KozzerWatchView extends WatchUi.WatchFace
     function initialize() {
         WatchFace.initialize();
         fullScreenRefresh     = true;
-        partialUpdatesAllowed = ( Toybox.WatchUi.WatchFace has :onPartialUpdate );
+        partialUpdatesAllowed = ( Toybox.WatchUi.WatchFace has :onPartialUpdate ); // Will be set to true until KozzerWatchViewDelegate.onPowerBudgetExceeded() is fired
     }
 
     // Configure the layout of the watchface for this device
@@ -112,10 +113,10 @@ class KozzerWatchView extends WatchUi.WatchFace
         writeBufferToDisplay(dc);
 
         // Only draw the second hand if partial updates are currently allowed, OR if the watch is awake
-        if( partialUpdatesAllowed ) {
+        if (partialUpdatesAllowed) {
             // Partial update draws second hand and bluetooth icon
             onPartialUpdate(dc);
-        } else if ( isAwake ) {
+        } else if (isAwake) {
             // If awake & partial updates not allowed draw second hand and bluetooth icon
             partialUpdateActions(dc);
         }
@@ -155,19 +156,24 @@ class KozzerWatchView extends WatchUi.WatchFace
     
         // Only draw icon if bluetooth is active
         if (System.getDeviceSettings().phoneConnected) {           
-        
+            // Get dc dimensions
+            var width      = dc.getWidth();
+            var height     = dc.getHeight();
             // Set loction points for our icon
-            var iconX      = width * 0.75;
-            var iconY      = height / 4 - 6;
-            var iconW      = bluetoothIcon.getDimensions[0];
-            var iconH      = bluetoothIcon.getDimentsion[1];
+            var iconW      = bluetoothIcon.getWidth();
+            var iconH      = bluetoothIcon.getHeight();
+            var iconX      = width / 2 - 12;
+            var iconY      = height - batteryHeight - 40;
             var iconPoints = [ [iconX, iconY], [iconX + iconW, iconY], [iconX + iconW, iconY + iconH], [iconX, iconY + iconH] ];
         
             // Update the cliping rectangle to the location of the icon
             setDrawingClip(dc, iconPoints);
             
             // Actually draw icon
-            dc.drawBitmap(width * 0.75, height / 4 - 6, bluetoothIcon);
+            dc.drawBitmap(iconX, iconY, bluetoothIcon);
+
+            // Clear the clip
+            clearDrawingClip(dc);
         } 
     }
     
@@ -215,7 +221,7 @@ class KozzerWatchView extends WatchUi.WatchFace
     }
     
     private function setStepsDisplayLevelColor(dc, perc){
-        if (System.getClickTime().hour < 14) {
+        if (System.getClockTime().hour < 14) {
             // Only show step value colors if >= 2pm
             resetColorsForRendering(dc);
         } else if (perc > 100) {
@@ -272,6 +278,9 @@ class KozzerWatchView extends WatchUi.WatchFace
         // Draw the second hand to the screen
         dc.setColor(Graphics.COLOR_RED, Graphics.COLOR_TRANSPARENT);
         dc.fillPolygon(secondHandPoints);
+
+        // Clear the clip
+        clearDrawingClip(dc);
     }
 
     private function drawClockCenter(dc, width, height) {
@@ -337,7 +346,7 @@ class KozzerWatchView extends WatchUi.WatchFace
         dc.clearClip();
     
         // Update the cliping rectangle to polygon
-        curClip        = getBoundingBox(polygonPoints);
+        curClip        = getBoundingBox(rectanglePoints);
         var bboxWidth  = curClip[1][0] - curClip[0][0] + 1;
         var bboxHeight = curClip[1][1] - curClip[0][1] + 1;
         

@@ -5,9 +5,9 @@
             <color>EFEFEF</color>
         </palette>
     </bitmap>
-    <bitmap id="BluetoothDarkIcon" filename="images/bluetooth_dark.png">
+    <bitmap id="BluetoothDarkIcon" filename="images/bluetooth_blue.png">
         <palette>
-            <color>000000</color>
+            <color>2546E9</color>
         </palette>
     </bitmap>
 </resources>
