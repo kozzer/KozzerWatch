@@ -83,15 +83,15 @@
 <entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="16" lineNum="133" pc="268437436" symbol="onPartialUpdate"/>
 <entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="16" lineNum="134" pc="268437448" symbol="onPartialUpdate"/>
 <entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="16" lineNum="138" pc="268437465" symbol="onPartialUpdate"/>
-<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="34" lineNum="385" pc="268440606" symbol="onEnterSleep"/>
-<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="34" lineNum="386" pc="268440610" symbol="onEnterSleep"/>
-<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="34" lineNum="387" pc="268440620" symbol="onEnterSleep"/>
-<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="35" lineNum="391" pc="268440637" symbol="onExitSleep"/>
-<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="35" lineNum="392" pc="268440641" symbol="onExitSleep"/>
-<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="37" lineNum="400" pc="268440652" symbol="onPowerBudgetExceeded"/>
-<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="37" lineNum="401" pc="268440656" symbol="onPowerBudgetExceeded"/>
-<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="37" lineNum="402" pc="268440686" symbol="onPowerBudgetExceeded"/>
-<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="37" lineNum="403" pc="268440716" symbol="onPowerBudgetExceeded"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="34" lineNum="385" pc="268440622" symbol="onEnterSleep"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="34" lineNum="386" pc="268440626" symbol="onEnterSleep"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="34" lineNum="387" pc="268440636" symbol="onEnterSleep"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="35" lineNum="391" pc="268440653" symbol="onExitSleep"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="35" lineNum="392" pc="268440657" symbol="onExitSleep"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="37" lineNum="400" pc="268440668" symbol="onPowerBudgetExceeded"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="37" lineNum="401" pc="268440672" symbol="onPowerBudgetExceeded"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="37" lineNum="402" pc="268440702" symbol="onPowerBudgetExceeded"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="37" lineNum="403" pc="268440732" symbol="onPowerBudgetExceeded"/>
 </pcToLineNum>
 <symbolTable>
 <entry id="8388644" module="true" symbol="System"/>
@@ -202,71 +202,71 @@
 <entry endPc="268437664" name="x" stackId="2" startPc="268437513"/>
 <entry endPc="268437664" name="dc" stackId="1" startPc="268437513"/>
 <entry endPc="268437664" name="y" stackId="3" startPc="268437513"/>
-<entry endPc="268438001" name="height" stackId="3" startPc="268437692"/>
-<entry endPc="268438001" name="iconH" stackId="5" startPc="268437692"/>
-<entry endPc="268438001" name="iconPoints" stackId="8" startPc="268437692"/>
-<entry endPc="268438001" name="width" stackId="2" startPc="268437692"/>
-<entry endPc="268438001" name="iconY" stackId="7" startPc="268437692"/>
-<entry endPc="268438001" name="iconX" stackId="6" startPc="268437692"/>
-<entry endPc="268438001" name="iconW" stackId="4" startPc="268437692"/>
-<entry endPc="268438005" name="dc" stackId="1" startPc="268437664"/>
-<entry endPc="268438355" name="height" stackId="4" startPc="268438009"/>
-<entry endPc="268438355" name="batteryY" stackId="6" startPc="268438009"/>
-<entry endPc="268438355" name="batteryX" stackId="5" startPc="268438009"/>
-<entry endPc="268438355" name="width" stackId="3" startPc="268438009"/>
-<entry endPc="268438355" name="batteryPerc" stackId="2" startPc="268438009"/>
-<entry endPc="268438356" name="dc" stackId="1" startPc="268438005"/>
-<entry endPc="268438407" name="dc" stackId="1" startPc="268438356"/>
-<entry endPc="268438444" name="dc" stackId="1" startPc="268438407"/>
-<entry endPc="268438694" name="dc" stackId="1" startPc="268438444"/>
-<entry endPc="268438694" name="perc" stackId="2" startPc="268438444"/>
-<entry endPc="268438869" name="dc" stackId="1" startPc="268438694"/>
-<entry endPc="268438869" name="perc" stackId="2" startPc="268438694"/>
-<entry endPc="268438985" name="hourHandAngle" stackId="3" startPc="268438873"/>
-<entry endPc="268438986" name="dc" stackId="1" startPc="268438869"/>
-<entry endPc="268438986" name="clockTime" stackId="2" startPc="268438869"/>
-<entry endPc="268439073" name="minuteHandAngle" stackId="3" startPc="268438990"/>
-<entry endPc="268439074" name="dc" stackId="1" startPc="268438986"/>
-<entry endPc="268439074" name="clockTime" stackId="2" startPc="268438986"/>
-<entry endPc="268439248" name="secondHand" stackId="3" startPc="268439078"/>
-<entry endPc="268439248" name="secondHandPoints" stackId="4" startPc="268439078"/>
-<entry endPc="268439248" name="clockTime" stackId="2" startPc="268439078"/>
-<entry endPc="268439249" name="dc" stackId="1" startPc="268439074"/>
-<entry endPc="268439424" name="height" stackId="3" startPc="268439249"/>
-<entry endPc="268439424" name="dc" stackId="1" startPc="268439249"/>
-<entry endPc="268439424" name="width" stackId="2" startPc="268439249"/>
-<entry endPc="268439807" name="x" stackId="11" startPc="268439684"/>
-<entry endPc="268439807" name="y" stackId="12" startPc="268439684"/>
-<entry endPc="268439820" name="i" stackId="10" startPc="268439684"/>
-<entry endPc="268439823" name="result" stackId="7" startPc="268439428"/>
-<entry endPc="268439823" name="sin" stackId="9" startPc="268439428"/>
-<entry endPc="268439823" name="cos" stackId="8" startPc="268439428"/>
-<entry endPc="268439823" name="coords" stackId="6" startPc="268439428"/>
-<entry endPc="268439824" name="handLength" stackId="3" startPc="268439424"/>
-<entry endPc="268439824" name="tailLength" stackId="4" startPc="268439424"/>
-<entry endPc="268439824" name="width" stackId="5" startPc="268439424"/>
-<entry endPc="268439824" name="angle" stackId="2" startPc="268439424"/>
-<entry endPc="268439824" name="centerPoint" stackId="1" startPc="268439424"/>
-<entry endPc="268440070" name="i" stackId="10" startPc="268439924"/>
-<entry endPc="268440070" name="height" stackId="3" startPc="268439828"/>
-<entry endPc="268440070" name="eY" stackId="7" startPc="268439828"/>
-<entry endPc="268440070" name="eX" stackId="6" startPc="268439828"/>
-<entry endPc="268440070" name="width" stackId="2" startPc="268439828"/>
-<entry endPc="268440070" name="innerRad" stackId="9" startPc="268439828"/>
-<entry endPc="268440070" name="outerRad" stackId="8" startPc="268439828"/>
-<entry endPc="268440070" name="sY" stackId="5" startPc="268439828"/>
-<entry endPc="268440070" name="sX" stackId="4" startPc="268439828"/>
-<entry endPc="268440071" name="dc" stackId="1" startPc="268439824"/>
-<entry endPc="268440097" name="dc" stackId="1" startPc="268440071"/>
-<entry endPc="268440288" name="bboxHeight" stackId="4" startPc="268440101"/>
-<entry endPc="268440288" name="bboxWidth" stackId="3" startPc="268440101"/>
-<entry endPc="268440289" name="rectanglePoints" stackId="2" startPc="268440097"/>
-<entry endPc="268440289" name="dc" stackId="1" startPc="268440097"/>
-<entry endPc="268440578" name="i" stackId="4" startPc="268440385"/>
-<entry endPc="268440605" name="max" stackId="3" startPc="268440293"/>
-<entry endPc="268440605" name="min" stackId="2" startPc="268440293"/>
-<entry endPc="268440606" name="points" stackId="1" startPc="268440289"/>
-<entry endPc="268440727" name="powerInfo" stackId="1" startPc="268440652"/>
+<entry endPc="268438017" name="height" stackId="3" startPc="268437692"/>
+<entry endPc="268438017" name="iconH" stackId="5" startPc="268437692"/>
+<entry endPc="268438017" name="iconPoints" stackId="8" startPc="268437692"/>
+<entry endPc="268438017" name="width" stackId="2" startPc="268437692"/>
+<entry endPc="268438017" name="iconY" stackId="7" startPc="268437692"/>
+<entry endPc="268438017" name="iconX" stackId="6" startPc="268437692"/>
+<entry endPc="268438017" name="iconW" stackId="4" startPc="268437692"/>
+<entry endPc="268438021" name="dc" stackId="1" startPc="268437664"/>
+<entry endPc="268438371" name="height" stackId="4" startPc="268438025"/>
+<entry endPc="268438371" name="batteryY" stackId="6" startPc="268438025"/>
+<entry endPc="268438371" name="batteryX" stackId="5" startPc="268438025"/>
+<entry endPc="268438371" name="width" stackId="3" startPc="268438025"/>
+<entry endPc="268438371" name="batteryPerc" stackId="2" startPc="268438025"/>
+<entry endPc="268438372" name="dc" stackId="1" startPc="268438021"/>
+<entry endPc="268438423" name="dc" stackId="1" startPc="268438372"/>
+<entry endPc="268438460" name="dc" stackId="1" startPc="268438423"/>
+<entry endPc="268438710" name="dc" stackId="1" startPc="268438460"/>
+<entry endPc="268438710" name="perc" stackId="2" startPc="268438460"/>
+<entry endPc="268438885" name="dc" stackId="1" startPc="268438710"/>
+<entry endPc="268438885" name="perc" stackId="2" startPc="268438710"/>
+<entry endPc="268439001" name="hourHandAngle" stackId="3" startPc="268438889"/>
+<entry endPc="268439002" name="dc" stackId="1" startPc="268438885"/>
+<entry endPc="268439002" name="clockTime" stackId="2" startPc="268438885"/>
+<entry endPc="268439089" name="minuteHandAngle" stackId="3" startPc="268439006"/>
+<entry endPc="268439090" name="dc" stackId="1" startPc="268439002"/>
+<entry endPc="268439090" name="clockTime" stackId="2" startPc="268439002"/>
+<entry endPc="268439264" name="secondHand" stackId="3" startPc="268439094"/>
+<entry endPc="268439264" name="secondHandPoints" stackId="4" startPc="268439094"/>
+<entry endPc="268439264" name="clockTime" stackId="2" startPc="268439094"/>
+<entry endPc="268439265" name="dc" stackId="1" startPc="268439090"/>
+<entry endPc="268439440" name="height" stackId="3" startPc="268439265"/>
+<entry endPc="268439440" name="dc" stackId="1" startPc="268439265"/>
+<entry endPc="268439440" name="width" stackId="2" startPc="268439265"/>
+<entry endPc="268439823" name="x" stackId="11" startPc="268439700"/>
+<entry endPc="268439823" name="y" stackId="12" startPc="268439700"/>
+<entry endPc="268439836" name="i" stackId="10" startPc="268439700"/>
+<entry endPc="268439839" name="result" stackId="7" startPc="268439444"/>
+<entry endPc="268439839" name="sin" stackId="9" startPc="268439444"/>
+<entry endPc="268439839" name="cos" stackId="8" startPc="268439444"/>
+<entry endPc="268439839" name="coords" stackId="6" startPc="268439444"/>
+<entry endPc="268439840" name="handLength" stackId="3" startPc="268439440"/>
+<entry endPc="268439840" name="tailLength" stackId="4" startPc="268439440"/>
+<entry endPc="268439840" name="width" stackId="5" startPc="268439440"/>
+<entry endPc="268439840" name="angle" stackId="2" startPc="268439440"/>
+<entry endPc="268439840" name="centerPoint" stackId="1" startPc="268439440"/>
+<entry endPc="268440086" name="i" stackId="10" startPc="268439940"/>
+<entry endPc="268440086" name="height" stackId="3" startPc="268439844"/>
+<entry endPc="268440086" name="eY" stackId="7" startPc="268439844"/>
+<entry endPc="268440086" name="eX" stackId="6" startPc="268439844"/>
+<entry endPc="268440086" name="width" stackId="2" startPc="268439844"/>
+<entry endPc="268440086" name="innerRad" stackId="9" startPc="268439844"/>
+<entry endPc="268440086" name="outerRad" stackId="8" startPc="268439844"/>
+<entry endPc="268440086" name="sY" stackId="5" startPc="268439844"/>
+<entry endPc="268440086" name="sX" stackId="4" startPc="268439844"/>
+<entry endPc="268440087" name="dc" stackId="1" startPc="268439840"/>
+<entry endPc="268440113" name="dc" stackId="1" startPc="268440087"/>
+<entry endPc="268440304" name="bboxHeight" stackId="4" startPc="268440117"/>
+<entry endPc="268440304" name="bboxWidth" stackId="3" startPc="268440117"/>
+<entry endPc="268440305" name="rectanglePoints" stackId="2" startPc="268440113"/>
+<entry endPc="268440305" name="dc" stackId="1" startPc="268440113"/>
+<entry endPc="268440594" name="i" stackId="4" startPc="268440401"/>
+<entry endPc="268440621" name="max" stackId="3" startPc="268440309"/>
+<entry endPc="268440621" name="min" stackId="2" startPc="268440309"/>
+<entry endPc="268440622" name="points" stackId="1" startPc="268440305"/>
+<entry endPc="268440743" name="powerInfo" stackId="1" startPc="268440668"/>
 </localVars>
 <annotations/>
 <dataEntryOffsetMappings>

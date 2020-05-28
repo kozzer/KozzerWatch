@@ -92,7 +92,7 @@ class KozzerWatchView extends WatchUi.WatchFace
         drawClockCenter(bufferDc, width, height);
 
         // Draw the date on the top
-        drawDateString( bufferDc, width / 2, 14 );
+        drawDateString(bufferDc, width / 2, 14);
 
         // Battery - Draw the battery status
         drawBatteryStatus(bufferDc);
@@ -140,8 +140,8 @@ class KozzerWatchView extends WatchUi.WatchFace
     
     // Draws second hand and bluetooth icon if connected, both using clipping
     private function partialUpdateActions(dc) {
-        drawSecondHand(dc);
         drawBluetoothIconIfActive(dc);
+        drawSecondHand(dc);
     }  
    
     // Draw the date string into the provided buffer at the specified location
@@ -163,7 +163,7 @@ class KozzerWatchView extends WatchUi.WatchFace
             var iconW      = bluetoothIcon.getWidth();
             var iconH      = bluetoothIcon.getHeight();
             var iconX      = width / 2 - 12;
-            var iconY      = height - batteryHeight - 40;
+            var iconY      = Graphics.getFontHeight(Graphics.FONT_MEDIUM) + 20;  // below date
             var iconPoints = [ [iconX, iconY], [iconX + iconW, iconY], [iconX + iconW, iconY + iconH], [iconX, iconY + iconH] ];
         
             // Update the cliping rectangle to the location of the icon
@@ -189,7 +189,7 @@ class KozzerWatchView extends WatchUi.WatchFace
                
         // Put it bottom center
         var batteryX = ((width / 2)  - (batteryWidth / 2)) - (batteryHeight / 12);
-        var batteryY = (height - 20) - (batteryHeight / 2);
+        var batteryY = (height - 28) - (batteryHeight / 2);
 
         // Reset colors to font / background
         resetColorsForRendering(dc);

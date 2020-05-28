@@ -3,14 +3,14 @@ Set Path:
 set PATH=%PATH%;C:\Users\David\Desktop\ConnectIQ_SDK\bin
 
 
-CD:
-----
+CD [if not already there]:
+--------------------------
 CD C:\Users\David\ConnectIQ\kozzer\KozzerLight
 
 
 Load Simulator:
 ----------------
-C:\Users\David\ConnectIQ\kozzer\KozzerLight> connectiq 
+connectiq 
 
 
 Build:
@@ -20,4 +20,4 @@ C:\Users\David\ConnectIQ\bin\monkeyc -d fr645m -f .\monkey.jungle -o .\kozzerLig
 
 Run App:
 ---------
-C:\Users\David\ConnectIQ\kozzer\KozzerLight> monkeydo .\kozzerLight.prg fr645m
+monkeydo .\kozzerLight.prg fr645m
