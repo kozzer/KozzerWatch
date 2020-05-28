@@ -15,6 +15,7 @@ class KozzerWatchView extends WatchUi.WatchFace
     // General class-level fields
     var isAwake;                            // Flag indicating whether watch is awake or in sleep mode
     var bluetoothIcon;                      // Reference to bluetooth icon png
+    var bluetoothLayer;                     // Layer to hold bluetooth, toggling visibility
     var screenBuffer;                       // Watch-screen-sized buffer where everything is written to (actually written to screen when appropriate)
     var curClip;                            // Clip for partial updates, so only pixels where second hand is will actually be changed
     var screenCenterPoint;                  // Center x,y point of screen
@@ -45,7 +46,9 @@ class KozzerWatchView extends WatchUi.WatchFace
     function onLayout(dc) {
 
         // Initialize bluetooth icon
-        bluetoothIcon   = WatchUi.loadResource(Rez.Drawables.BluetoothDarkIcon);
+        bluetoothIcon  = WatchUi.loadResource(Rez.Drawables.BluetoothDarkIcon);
+        bluetoothLayer = new WatchUi.Layer({:x=>0,:y=>Graphics.getFontHeight(Graphics.FONT_MEDIUM) + 20,:width=>24,:height=>24});
+        bluetoothLayer.getDc().drawBitmap(0, 0, bluetoothIcon);
 
         // Set up screen buffer for partial updates
         screenBuffer = new Graphics.BufferedBitmap({

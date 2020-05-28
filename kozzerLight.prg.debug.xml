@@ -39,134 +39,140 @@
 <entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerGoalView.mc" id="11" lineNum="59" pc="268436317" symbol="onUpdate"/>
 <entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerGoalView.mc" id="11" lineNum="60" pc="268436353" symbol="onUpdate"/>
 <entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerGoalView.mc" id="11" lineNum="63" pc="268436407" symbol="onUpdate"/>
-<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="13" lineNum="38" pc="268436468" symbol="initialize"/>
-<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="13" lineNum="39" pc="268436472" symbol="initialize"/>
-<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="13" lineNum="40" pc="268436490" symbol="initialize"/>
-<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="13" lineNum="41" pc="268436500" symbol="initialize"/>
-<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="14" lineNum="45" pc="268436535" symbol="onLayout"/>
-<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="14" lineNum="48" pc="268436539" symbol="onLayout"/>
-<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="14" lineNum="51" pc="268436582" symbol="onLayout"/>
-<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="14" lineNum="57" pc="268436660" symbol="onLayout"/>
-<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="14" lineNum="60" pc="268436674" symbol="onLayout"/>
-<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="15" lineNum="64" pc="268436739" symbol="onUpdate"/>
-<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="15" lineNum="67" pc="268436743" symbol="onUpdate"/>
-<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="15" lineNum="70" pc="268436753" symbol="onUpdate"/>
-<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="15" lineNum="73" pc="268436767" symbol="onUpdate"/>
-<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="15" lineNum="76" pc="268436780" symbol="onUpdate"/>
-<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="15" lineNum="77" pc="268436799" symbol="onUpdate"/>
-<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="15" lineNum="78" pc="268436812" symbol="onUpdate"/>
-<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="15" lineNum="81" pc="268436825" symbol="onUpdate"/>
-<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="15" lineNum="82" pc="268436853" symbol="onUpdate"/>
-<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="15" lineNum="85" pc="268436897" symbol="onUpdate"/>
-<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="15" lineNum="88" pc="268436911" symbol="onUpdate"/>
-<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="15" lineNum="89" pc="268436928" symbol="onUpdate"/>
-<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="15" lineNum="90" pc="268436942" symbol="onUpdate"/>
-<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="15" lineNum="91" pc="268436958" symbol="onUpdate"/>
-<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="15" lineNum="92" pc="268436974" symbol="onUpdate"/>
-<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="15" lineNum="95" pc="268436992" symbol="onUpdate"/>
-<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="15" lineNum="98" pc="268437019" symbol="onUpdate"/>
-<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="15" lineNum="101" pc="268437033" symbol="onUpdate"/>
-<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="15" lineNum="102" pc="268437050" symbol="onUpdate"/>
-<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="15" lineNum="103" pc="268437069" symbol="onUpdate"/>
-<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="15" lineNum="104" pc="268437103" symbol="onUpdate"/>
-<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="15" lineNum="105" pc="268437119" symbol="onUpdate"/>
-<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="15" lineNum="106" pc="268437204" symbol="onUpdate"/>
-<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="15" lineNum="109" pc="268437218" symbol="onUpdate"/>
-<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="15" lineNum="110" pc="268437263" symbol="onUpdate"/>
-<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="15" lineNum="113" pc="268437351" symbol="onUpdate"/>
-<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="15" lineNum="116" pc="268437365" symbol="onUpdate"/>
-<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="15" lineNum="118" pc="268437376" symbol="onUpdate"/>
-<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="15" lineNum="119" pc="268437393" symbol="onUpdate"/>
-<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="15" lineNum="121" pc="268437404" symbol="onUpdate"/>
-<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="15" lineNum="124" pc="268437421" symbol="onUpdate"/>
-<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="16" lineNum="130" pc="268437432" symbol="onPartialUpdate"/>
-<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="16" lineNum="133" pc="268437436" symbol="onPartialUpdate"/>
-<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="16" lineNum="134" pc="268437448" symbol="onPartialUpdate"/>
-<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="16" lineNum="138" pc="268437465" symbol="onPartialUpdate"/>
-<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="34" lineNum="385" pc="268440622" symbol="onEnterSleep"/>
-<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="34" lineNum="386" pc="268440626" symbol="onEnterSleep"/>
-<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="34" lineNum="387" pc="268440636" symbol="onEnterSleep"/>
-<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="35" lineNum="391" pc="268440653" symbol="onExitSleep"/>
-<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="35" lineNum="392" pc="268440657" symbol="onExitSleep"/>
-<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="37" lineNum="400" pc="268440668" symbol="onPowerBudgetExceeded"/>
-<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="37" lineNum="401" pc="268440672" symbol="onPowerBudgetExceeded"/>
-<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="37" lineNum="402" pc="268440702" symbol="onPowerBudgetExceeded"/>
-<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="37" lineNum="403" pc="268440732" symbol="onPowerBudgetExceeded"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="13" lineNum="39" pc="268436468" symbol="initialize"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="13" lineNum="40" pc="268436472" symbol="initialize"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="13" lineNum="41" pc="268436490" symbol="initialize"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="13" lineNum="42" pc="268436500" symbol="initialize"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="14" lineNum="46" pc="268436535" symbol="onLayout"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="14" lineNum="49" pc="268436539" symbol="onLayout"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="14" lineNum="50" pc="268436582" symbol="onLayout"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="14" lineNum="51" pc="268436702" symbol="onLayout"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="14" lineNum="54" pc="268436747" symbol="onLayout"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="14" lineNum="60" pc="268436825" symbol="onLayout"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="14" lineNum="63" pc="268436839" symbol="onLayout"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="15" lineNum="67" pc="268436904" symbol="onUpdate"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="15" lineNum="70" pc="268436908" symbol="onUpdate"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="15" lineNum="73" pc="268436918" symbol="onUpdate"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="15" lineNum="76" pc="268436932" symbol="onUpdate"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="15" lineNum="79" pc="268436945" symbol="onUpdate"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="15" lineNum="80" pc="268436964" symbol="onUpdate"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="15" lineNum="81" pc="268436977" symbol="onUpdate"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="15" lineNum="84" pc="268436990" symbol="onUpdate"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="15" lineNum="85" pc="268437018" symbol="onUpdate"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="15" lineNum="88" pc="268437062" symbol="onUpdate"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="15" lineNum="91" pc="268437082" symbol="onUpdate"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="15" lineNum="94" pc="268437096" symbol="onUpdate"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="15" lineNum="95" pc="268437113" symbol="onUpdate"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="15" lineNum="96" pc="268437127" symbol="onUpdate"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="15" lineNum="97" pc="268437143" symbol="onUpdate"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="15" lineNum="98" pc="268437159" symbol="onUpdate"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="15" lineNum="101" pc="268437177" symbol="onUpdate"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="15" lineNum="104" pc="268437204" symbol="onUpdate"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="15" lineNum="107" pc="268437218" symbol="onUpdate"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="15" lineNum="108" pc="268437235" symbol="onUpdate"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="15" lineNum="109" pc="268437254" symbol="onUpdate"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="15" lineNum="110" pc="268437288" symbol="onUpdate"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="15" lineNum="111" pc="268437304" symbol="onUpdate"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="15" lineNum="112" pc="268437389" symbol="onUpdate"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="15" lineNum="115" pc="268437403" symbol="onUpdate"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="15" lineNum="116" pc="268437448" symbol="onUpdate"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="15" lineNum="119" pc="268437536" symbol="onUpdate"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="15" lineNum="122" pc="268437550" symbol="onUpdate"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="15" lineNum="124" pc="268437561" symbol="onUpdate"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="15" lineNum="125" pc="268437578" symbol="onUpdate"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="15" lineNum="127" pc="268437589" symbol="onUpdate"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="15" lineNum="130" pc="268437606" symbol="onUpdate"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="16" lineNum="136" pc="268437617" symbol="onPartialUpdate"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="16" lineNum="139" pc="268437621" symbol="onPartialUpdate"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="16" lineNum="140" pc="268437633" symbol="onPartialUpdate"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="16" lineNum="144" pc="268437650" symbol="onPartialUpdate"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="34" lineNum="391" pc="268440807" symbol="onEnterSleep"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="34" lineNum="392" pc="268440811" symbol="onEnterSleep"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="34" lineNum="393" pc="268440821" symbol="onEnterSleep"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="35" lineNum="397" pc="268440838" symbol="onExitSleep"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="35" lineNum="398" pc="268440842" symbol="onExitSleep"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="37" lineNum="406" pc="268440853" symbol="onPowerBudgetExceeded"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="37" lineNum="407" pc="268440857" symbol="onPowerBudgetExceeded"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="37" lineNum="408" pc="268440887" symbol="onPowerBudgetExceeded"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerLight\\source\\KozzerWatchView.mc" id="37" lineNum="409" pc="268440917" symbol="onPowerBudgetExceeded"/>
 </pcToLineNum>
 <symbolTable>
 <entry id="8388644" module="true" symbol="System"/>
-<entry field="true" id="33" symbol="FULL_COLOR"/>
+<entry field="true" id="34" symbol="FULL_COLOR"/>
 <entry id="8389124" method="true" symbol="onUpdate"/>
 <entry id="8388637" module="true" symbol="Communications"/>
-<entry id="41" method="true" symbol="&lt;globals/KozzerWatchView/&lt;&gt;writeBufferToDisplay&gt;"/>
+<entry id="42" method="true" symbol="&lt;globals/KozzerWatchView/&lt;&gt;writeBufferToDisplay&gt;"/>
 <entry id="13" object="true" symbol="KozzerWatchDelegate"/>
 <entry id="8390097" method="true" symbol="onPartialUpdate"/>
-<entry id="44" method="true" symbol="&lt;globals/KozzerWatchView/&lt;&gt;setBatteryDisplayLevelColor&gt;"/>
+<entry id="45" method="true" symbol="&lt;globals/KozzerWatchView/&lt;&gt;setBatteryDisplayLevelColor&gt;"/>
 <entry id="12" object="true" symbol="KozzerWatchView"/>
-<entry field="true" id="30" symbol="BACKGROUND_COLOR"/>
+<entry field="true" id="23" symbol="bluetoothLayer"/>
+<entry field="true" id="31" symbol="BACKGROUND_COLOR"/>
 <entry id="10" object="true" symbol="KozzerGoalView"/>
-<entry id="47" method="true" symbol="&lt;globals/KozzerWatchView/&lt;&gt;drawSecondHand&gt;"/>
+<entry id="48" method="true" symbol="&lt;globals/KozzerWatchView/&lt;&gt;drawSecondHand&gt;"/>
 <entry field="true" id="8388611" module="true" symbol="Toybox"/>
 <entry id="8388645" module="true" symbol="Time"/>
 <entry id="8388770" module="true" object="true" symbol="Strings"/>
-<entry id="48" method="true" symbol="&lt;globals/KozzerWatchView/&lt;&gt;drawClockCenter&gt;"/>
+<entry id="49" method="true" symbol="&lt;globals/KozzerWatchView/&lt;&gt;drawClockCenter&gt;"/>
 <entry id="8389280" method="true" symbol="getInitialView"/>
 <entry id="8389377" method="true" symbol="onExitSleep"/>
-<entry id="39" method="true" symbol="&lt;globals/KozzerWatchView/&lt;&gt;drawBluetoothIconIfActive&gt;"/>
+<entry id="40" method="true" symbol="&lt;globals/KozzerWatchView/&lt;&gt;drawBluetoothIconIfActive&gt;"/>
 <entry id="8390098" method="true" symbol="onPowerBudgetExceeded"/>
 <entry id="8388640" module="true" symbol="Lang"/>
 <entry id="8388639" module="true" symbol="Graphics"/>
-<entry id="50" method="true" symbol="&lt;globals/KozzerWatchView/&lt;&gt;drawHashMarks&gt;"/>
-<entry field="true" id="31" symbol="FONT_COLOR"/>
+<entry id="51" method="true" symbol="&lt;globals/KozzerWatchView/&lt;&gt;drawHashMarks&gt;"/>
+<entry field="true" id="32" symbol="FONT_COLOR"/>
 <entry id="8388769" module="true" object="true" symbol="Rez"/>
 <entry id="8388924" module="true" symbol="Gregorian"/>
 <entry id="8389916" method="true" symbol="getGoalView"/>
-<entry id="53" method="true" symbol="&lt;globals/KozzerWatchView/&lt;&gt;getBoundingBox&gt;"/>
-<entry id="38" method="true" symbol="&lt;globals/KozzerWatchView/&lt;&gt;drawDateString&gt;"/>
-<entry field="true" id="32" symbol="SECOND_HAND_COLOR"/>
+<entry id="54" method="true" symbol="&lt;globals/KozzerWatchView/&lt;&gt;getBoundingBox&gt;"/>
+<entry id="39" method="true" symbol="&lt;globals/KozzerWatchView/&lt;&gt;drawDateString&gt;"/>
+<entry field="true" id="33" symbol="SECOND_HAND_COLOR"/>
 <entry id="8390095" object="true" symbol="WatchFaceDelegate"/>
 <entry field="true" id="22" symbol="bluetoothIcon"/>
-<entry field="true" id="28" symbol="batteryHeight"/>
+<entry field="true" id="29" symbol="batteryHeight"/>
 <entry id="8388702" method="true" symbol="initialize"/>
 <entry field="true" id="20" symbol="AppName"/>
-<entry id="51" method="true" symbol="&lt;globals/KozzerWatchView/&lt;&gt;clearDrawingClip&gt;"/>
-<entry field="true" id="27" symbol="batteryWidth"/>
-<entry id="52" method="true" symbol="&lt;globals/KozzerWatchView/&lt;&gt;setDrawingClip&gt;"/>
-<entry id="42" method="true" symbol="&lt;globals/KozzerWatchView/&lt;&gt;resetColorsForRendering&gt;"/>
-<entry id="37" method="true" symbol="&lt;globals/KozzerWatchView/&lt;&gt;partialUpdateActions&gt;"/>
+<entry id="52" method="true" symbol="&lt;globals/KozzerWatchView/&lt;&gt;clearDrawingClip&gt;"/>
+<entry field="true" id="28" symbol="batteryWidth"/>
+<entry id="53" method="true" symbol="&lt;globals/KozzerWatchView/&lt;&gt;setDrawingClip&gt;"/>
+<entry id="43" method="true" symbol="&lt;globals/KozzerWatchView/&lt;&gt;resetColorsForRendering&gt;"/>
+<entry id="38" method="true" symbol="&lt;globals/KozzerWatchView/&lt;&gt;partialUpdateActions&gt;"/>
 <entry id="8388641" module="true" symbol="Math"/>
 <entry field="true" id="18" symbol="LauncherIcon"/>
 <entry id="8388648" module="true" symbol="WatchUi"/>
 <entry id="8389281" method="true" symbol="onStop"/>
-<entry field="true" id="23" symbol="screenBuffer"/>
+<entry field="true" id="24" symbol="screenBuffer"/>
 <entry id="8388771" module="true" object="true" symbol="Drawables"/>
 <entry id="8389122" method="true" symbol="onLayout"/>
 <entry id="8389279" method="true" symbol="onStart"/>
 <entry field="true" id="8389670" symbol="screenShape"/>
-<entry field="true" id="54" symbol="goalString"/>
-<entry field="true" id="34" symbol="MOST_COLOR"/>
+<entry field="true" id="55" symbol="goalString"/>
+<entry field="true" id="35" symbol="MOST_COLOR"/>
 <entry id="8389376" method="true" symbol="onEnterSleep"/>
-<entry field="true" id="25" symbol="screenCenterPoint"/>
+<entry field="true" id="26" symbol="screenCenterPoint"/>
 <entry field="true" id="21" symbol="isAwake"/>
-<entry id="43" method="true" symbol="&lt;globals/KozzerWatchView/&lt;&gt;setStepsDisplayLevelColor&gt;"/>
+<entry id="44" method="true" symbol="&lt;globals/KozzerWatchView/&lt;&gt;setStepsDisplayLevelColor&gt;"/>
 <entry field="true" id="8389067" symbol="height"/>
 <entry field="true" id="16" symbol="BluetoothLightIcon"/>
 <entry id="14" module="true" symbol="Layouts"/>
-<entry field="true" id="36" symbol="LOW_COLOR"/>
-<entry field="true" id="35" symbol="SOME_COLOR"/>
-<entry field="true" id="29" symbol="batteryRadius"/>
-<entry field="true" id="26" symbol="fullScreenRefresh"/>
+<entry field="true" id="37" symbol="LOW_COLOR"/>
+<entry field="true" id="36" symbol="SOME_COLOR"/>
+<entry field="true" id="30" symbol="batteryRadius"/>
+<entry field="true" id="27" symbol="fullScreenRefresh"/>
 <entry id="8390088" module="true" object="true" symbol="JsonData"/>
 <entry field="true" id="8389066" symbol="width"/>
-<entry id="46" method="true" symbol="&lt;globals/KozzerWatchView/&lt;&gt;drawMinuteHand&gt;"/>
-<entry field="true" id="24" symbol="curClip"/>
+<entry id="47" method="true" symbol="&lt;globals/KozzerWatchView/&lt;&gt;drawMinuteHand&gt;"/>
+<entry field="true" id="25" symbol="curClip"/>
 <entry id="15" module="true" symbol="Menus"/>
-<entry id="45" method="true" symbol="&lt;globals/KozzerWatchView/&lt;&gt;drawHourHand&gt;"/>
+<entry id="46" method="true" symbol="&lt;globals/KozzerWatchView/&lt;&gt;drawHourHand&gt;"/>
 <entry field="true" id="17" symbol="BluetoothDarkIcon"/>
-<entry id="40" method="true" symbol="&lt;globals/KozzerWatchView/&lt;&gt;drawBatteryStatus&gt;"/>
+<entry id="41" method="true" symbol="&lt;globals/KozzerWatchView/&lt;&gt;drawBatteryStatus&gt;"/>
 <entry field="true" id="19" symbol="id_font_black_diamond"/>
-<entry id="49" method="true" symbol="&lt;globals/KozzerWatchView/&lt;&gt;generateHandCoordinates&gt;"/>
+<entry id="50" method="true" symbol="&lt;globals/KozzerWatchView/&lt;&gt;generateHandCoordinates&gt;"/>
 <entry field="true" id="11" symbol="partialUpdatesAllowed"/>
+<entry field="true" id="8390079" symbol="y"/>
+<entry field="true" id="8390078" symbol="x"/>
 <entry id="8388772" module="true" object="true" symbol="Fonts"/>
 <entry id="8388633" module="true" symbol="ActivityMonitor"/>
 <entry id="8388635" module="true" symbol="Application"/>
@@ -185,88 +191,88 @@
 <entry endPc="268436467" name="clockTime" stackId="4" startPc="268435883"/>
 <entry endPc="268436467" name="info" stackId="6" startPc="268435883"/>
 <entry endPc="268436468" name="dc" stackId="1" startPc="268435879"/>
-<entry endPc="268436739" name="dc" stackId="1" startPc="268436535"/>
-<entry endPc="268437431" name="stepPerc" stackId="9" startPc="268436743"/>
-<entry endPc="268437431" name="height" stackId="5" startPc="268436743"/>
-<entry endPc="268437431" name="dataString" stackId="8" startPc="268436743"/>
-<entry endPc="268437431" name="width" stackId="4" startPc="268436743"/>
-<entry endPc="268437431" name="bufferDc" stackId="3" startPc="268436743"/>
-<entry endPc="268437431" name="clockTime" stackId="6" startPc="268436743"/>
-<entry endPc="268437431" name="screenWidth" stackId="2" startPc="268436743"/>
-<entry endPc="268437431" name="info" stackId="7" startPc="268436743"/>
-<entry endPc="268437432" name="dc" stackId="1" startPc="268436739"/>
-<entry endPc="268437480" name="dc" stackId="1" startPc="268437432"/>
-<entry endPc="268437513" name="dc" stackId="1" startPc="268437480"/>
-<entry endPc="268437663" name="dateStr" stackId="5" startPc="268437517"/>
-<entry endPc="268437663" name="info" stackId="4" startPc="268437517"/>
-<entry endPc="268437664" name="x" stackId="2" startPc="268437513"/>
-<entry endPc="268437664" name="dc" stackId="1" startPc="268437513"/>
-<entry endPc="268437664" name="y" stackId="3" startPc="268437513"/>
-<entry endPc="268438017" name="height" stackId="3" startPc="268437692"/>
-<entry endPc="268438017" name="iconH" stackId="5" startPc="268437692"/>
-<entry endPc="268438017" name="iconPoints" stackId="8" startPc="268437692"/>
-<entry endPc="268438017" name="width" stackId="2" startPc="268437692"/>
-<entry endPc="268438017" name="iconY" stackId="7" startPc="268437692"/>
-<entry endPc="268438017" name="iconX" stackId="6" startPc="268437692"/>
-<entry endPc="268438017" name="iconW" stackId="4" startPc="268437692"/>
-<entry endPc="268438021" name="dc" stackId="1" startPc="268437664"/>
-<entry endPc="268438371" name="height" stackId="4" startPc="268438025"/>
-<entry endPc="268438371" name="batteryY" stackId="6" startPc="268438025"/>
-<entry endPc="268438371" name="batteryX" stackId="5" startPc="268438025"/>
-<entry endPc="268438371" name="width" stackId="3" startPc="268438025"/>
-<entry endPc="268438371" name="batteryPerc" stackId="2" startPc="268438025"/>
-<entry endPc="268438372" name="dc" stackId="1" startPc="268438021"/>
-<entry endPc="268438423" name="dc" stackId="1" startPc="268438372"/>
-<entry endPc="268438460" name="dc" stackId="1" startPc="268438423"/>
-<entry endPc="268438710" name="dc" stackId="1" startPc="268438460"/>
-<entry endPc="268438710" name="perc" stackId="2" startPc="268438460"/>
-<entry endPc="268438885" name="dc" stackId="1" startPc="268438710"/>
-<entry endPc="268438885" name="perc" stackId="2" startPc="268438710"/>
-<entry endPc="268439001" name="hourHandAngle" stackId="3" startPc="268438889"/>
-<entry endPc="268439002" name="dc" stackId="1" startPc="268438885"/>
-<entry endPc="268439002" name="clockTime" stackId="2" startPc="268438885"/>
-<entry endPc="268439089" name="minuteHandAngle" stackId="3" startPc="268439006"/>
-<entry endPc="268439090" name="dc" stackId="1" startPc="268439002"/>
-<entry endPc="268439090" name="clockTime" stackId="2" startPc="268439002"/>
-<entry endPc="268439264" name="secondHand" stackId="3" startPc="268439094"/>
-<entry endPc="268439264" name="secondHandPoints" stackId="4" startPc="268439094"/>
-<entry endPc="268439264" name="clockTime" stackId="2" startPc="268439094"/>
-<entry endPc="268439265" name="dc" stackId="1" startPc="268439090"/>
-<entry endPc="268439440" name="height" stackId="3" startPc="268439265"/>
-<entry endPc="268439440" name="dc" stackId="1" startPc="268439265"/>
-<entry endPc="268439440" name="width" stackId="2" startPc="268439265"/>
-<entry endPc="268439823" name="x" stackId="11" startPc="268439700"/>
-<entry endPc="268439823" name="y" stackId="12" startPc="268439700"/>
-<entry endPc="268439836" name="i" stackId="10" startPc="268439700"/>
-<entry endPc="268439839" name="result" stackId="7" startPc="268439444"/>
-<entry endPc="268439839" name="sin" stackId="9" startPc="268439444"/>
-<entry endPc="268439839" name="cos" stackId="8" startPc="268439444"/>
-<entry endPc="268439839" name="coords" stackId="6" startPc="268439444"/>
-<entry endPc="268439840" name="handLength" stackId="3" startPc="268439440"/>
-<entry endPc="268439840" name="tailLength" stackId="4" startPc="268439440"/>
-<entry endPc="268439840" name="width" stackId="5" startPc="268439440"/>
-<entry endPc="268439840" name="angle" stackId="2" startPc="268439440"/>
-<entry endPc="268439840" name="centerPoint" stackId="1" startPc="268439440"/>
-<entry endPc="268440086" name="i" stackId="10" startPc="268439940"/>
-<entry endPc="268440086" name="height" stackId="3" startPc="268439844"/>
-<entry endPc="268440086" name="eY" stackId="7" startPc="268439844"/>
-<entry endPc="268440086" name="eX" stackId="6" startPc="268439844"/>
-<entry endPc="268440086" name="width" stackId="2" startPc="268439844"/>
-<entry endPc="268440086" name="innerRad" stackId="9" startPc="268439844"/>
-<entry endPc="268440086" name="outerRad" stackId="8" startPc="268439844"/>
-<entry endPc="268440086" name="sY" stackId="5" startPc="268439844"/>
-<entry endPc="268440086" name="sX" stackId="4" startPc="268439844"/>
-<entry endPc="268440087" name="dc" stackId="1" startPc="268439840"/>
-<entry endPc="268440113" name="dc" stackId="1" startPc="268440087"/>
-<entry endPc="268440304" name="bboxHeight" stackId="4" startPc="268440117"/>
-<entry endPc="268440304" name="bboxWidth" stackId="3" startPc="268440117"/>
-<entry endPc="268440305" name="rectanglePoints" stackId="2" startPc="268440113"/>
-<entry endPc="268440305" name="dc" stackId="1" startPc="268440113"/>
-<entry endPc="268440594" name="i" stackId="4" startPc="268440401"/>
-<entry endPc="268440621" name="max" stackId="3" startPc="268440309"/>
-<entry endPc="268440621" name="min" stackId="2" startPc="268440309"/>
-<entry endPc="268440622" name="points" stackId="1" startPc="268440305"/>
-<entry endPc="268440743" name="powerInfo" stackId="1" startPc="268440668"/>
+<entry endPc="268436904" name="dc" stackId="1" startPc="268436535"/>
+<entry endPc="268437616" name="stepPerc" stackId="9" startPc="268436908"/>
+<entry endPc="268437616" name="height" stackId="5" startPc="268436908"/>
+<entry endPc="268437616" name="dataString" stackId="8" startPc="268436908"/>
+<entry endPc="268437616" name="width" stackId="4" startPc="268436908"/>
+<entry endPc="268437616" name="bufferDc" stackId="3" startPc="268436908"/>
+<entry endPc="268437616" name="clockTime" stackId="6" startPc="268436908"/>
+<entry endPc="268437616" name="screenWidth" stackId="2" startPc="268436908"/>
+<entry endPc="268437616" name="info" stackId="7" startPc="268436908"/>
+<entry endPc="268437617" name="dc" stackId="1" startPc="268436904"/>
+<entry endPc="268437665" name="dc" stackId="1" startPc="268437617"/>
+<entry endPc="268437698" name="dc" stackId="1" startPc="268437665"/>
+<entry endPc="268437848" name="dateStr" stackId="5" startPc="268437702"/>
+<entry endPc="268437848" name="info" stackId="4" startPc="268437702"/>
+<entry endPc="268437849" name="x" stackId="2" startPc="268437698"/>
+<entry endPc="268437849" name="dc" stackId="1" startPc="268437698"/>
+<entry endPc="268437849" name="y" stackId="3" startPc="268437698"/>
+<entry endPc="268438202" name="height" stackId="3" startPc="268437877"/>
+<entry endPc="268438202" name="iconH" stackId="5" startPc="268437877"/>
+<entry endPc="268438202" name="iconPoints" stackId="8" startPc="268437877"/>
+<entry endPc="268438202" name="width" stackId="2" startPc="268437877"/>
+<entry endPc="268438202" name="iconY" stackId="7" startPc="268437877"/>
+<entry endPc="268438202" name="iconX" stackId="6" startPc="268437877"/>
+<entry endPc="268438202" name="iconW" stackId="4" startPc="268437877"/>
+<entry endPc="268438206" name="dc" stackId="1" startPc="268437849"/>
+<entry endPc="268438556" name="height" stackId="4" startPc="268438210"/>
+<entry endPc="268438556" name="batteryY" stackId="6" startPc="268438210"/>
+<entry endPc="268438556" name="batteryX" stackId="5" startPc="268438210"/>
+<entry endPc="268438556" name="width" stackId="3" startPc="268438210"/>
+<entry endPc="268438556" name="batteryPerc" stackId="2" startPc="268438210"/>
+<entry endPc="268438557" name="dc" stackId="1" startPc="268438206"/>
+<entry endPc="268438608" name="dc" stackId="1" startPc="268438557"/>
+<entry endPc="268438645" name="dc" stackId="1" startPc="268438608"/>
+<entry endPc="268438895" name="dc" stackId="1" startPc="268438645"/>
+<entry endPc="268438895" name="perc" stackId="2" startPc="268438645"/>
+<entry endPc="268439070" name="dc" stackId="1" startPc="268438895"/>
+<entry endPc="268439070" name="perc" stackId="2" startPc="268438895"/>
+<entry endPc="268439186" name="hourHandAngle" stackId="3" startPc="268439074"/>
+<entry endPc="268439187" name="dc" stackId="1" startPc="268439070"/>
+<entry endPc="268439187" name="clockTime" stackId="2" startPc="268439070"/>
+<entry endPc="268439274" name="minuteHandAngle" stackId="3" startPc="268439191"/>
+<entry endPc="268439275" name="dc" stackId="1" startPc="268439187"/>
+<entry endPc="268439275" name="clockTime" stackId="2" startPc="268439187"/>
+<entry endPc="268439449" name="secondHand" stackId="3" startPc="268439279"/>
+<entry endPc="268439449" name="secondHandPoints" stackId="4" startPc="268439279"/>
+<entry endPc="268439449" name="clockTime" stackId="2" startPc="268439279"/>
+<entry endPc="268439450" name="dc" stackId="1" startPc="268439275"/>
+<entry endPc="268439625" name="height" stackId="3" startPc="268439450"/>
+<entry endPc="268439625" name="dc" stackId="1" startPc="268439450"/>
+<entry endPc="268439625" name="width" stackId="2" startPc="268439450"/>
+<entry endPc="268440008" name="x" stackId="11" startPc="268439885"/>
+<entry endPc="268440008" name="y" stackId="12" startPc="268439885"/>
+<entry endPc="268440021" name="i" stackId="10" startPc="268439885"/>
+<entry endPc="268440024" name="result" stackId="7" startPc="268439629"/>
+<entry endPc="268440024" name="sin" stackId="9" startPc="268439629"/>
+<entry endPc="268440024" name="cos" stackId="8" startPc="268439629"/>
+<entry endPc="268440024" name="coords" stackId="6" startPc="268439629"/>
+<entry endPc="268440025" name="handLength" stackId="3" startPc="268439625"/>
+<entry endPc="268440025" name="tailLength" stackId="4" startPc="268439625"/>
+<entry endPc="268440025" name="width" stackId="5" startPc="268439625"/>
+<entry endPc="268440025" name="angle" stackId="2" startPc="268439625"/>
+<entry endPc="268440025" name="centerPoint" stackId="1" startPc="268439625"/>
+<entry endPc="268440271" name="i" stackId="10" startPc="268440125"/>
+<entry endPc="268440271" name="height" stackId="3" startPc="268440029"/>
+<entry endPc="268440271" name="eY" stackId="7" startPc="268440029"/>
+<entry endPc="268440271" name="eX" stackId="6" startPc="268440029"/>
+<entry endPc="268440271" name="width" stackId="2" startPc="268440029"/>
+<entry endPc="268440271" name="innerRad" stackId="9" startPc="268440029"/>
+<entry endPc="268440271" name="outerRad" stackId="8" startPc="268440029"/>
+<entry endPc="268440271" name="sY" stackId="5" startPc="268440029"/>
+<entry endPc="268440271" name="sX" stackId="4" startPc="268440029"/>
+<entry endPc="268440272" name="dc" stackId="1" startPc="268440025"/>
+<entry endPc="268440298" name="dc" stackId="1" startPc="268440272"/>
+<entry endPc="268440489" name="bboxHeight" stackId="4" startPc="268440302"/>
+<entry endPc="268440489" name="bboxWidth" stackId="3" startPc="268440302"/>
+<entry endPc="268440490" name="rectanglePoints" stackId="2" startPc="268440298"/>
+<entry endPc="268440490" name="dc" stackId="1" startPc="268440298"/>
+<entry endPc="268440779" name="i" stackId="4" startPc="268440586"/>
+<entry endPc="268440806" name="max" stackId="3" startPc="268440494"/>
+<entry endPc="268440806" name="min" stackId="2" startPc="268440494"/>
+<entry endPc="268440807" name="points" stackId="1" startPc="268440490"/>
+<entry endPc="268440928" name="powerInfo" stackId="1" startPc="268440853"/>
 </localVars>
 <annotations/>
 <dataEntryOffsetMappings>
@@ -281,7 +287,7 @@
 <dataEntry offset="519" parentId="Rez" symbolId="Strings" type="module"/>
 <dataEntry offset="558" parentId="globals" symbolId="KozzerWatchDelegate" type="class"/>
 <dataEntry offset="613" parentId="globals" symbolId="KozzerWatchView" type="class"/>
-<dataEntry offset="964" parentId="globals" symbolId="KozzerGoalView" type="class"/>
+<dataEntry offset="972" parentId="globals" symbolId="KozzerGoalView" type="class"/>
 </dataEntryOffsetMappings>
 <functions>
 <functionEntry accessMode="public" name="initialize" parent="KozzerWatch">
