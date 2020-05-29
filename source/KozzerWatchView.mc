@@ -146,12 +146,12 @@ class KozzerWatchView extends WatchUi.WatchFace
 
                 // Now draw clock over the top of any bt icon (uses clipping)
                 drawClock(dc);
-
             } 
         }
 
         // Draw second hand and bluetooth icon if connected
         drawSecondHand(dc);
+        
     }
    
     // Draw the date string into the provided buffer at the specified location
