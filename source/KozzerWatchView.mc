@@ -143,15 +143,15 @@ class KozzerWatchView extends WatchUi.WatchFace
                 if (bluetoothIsActive){
                     dc.drawBitmap(dc.getWidth() / 2 - 12, Graphics.getFontHeight(Graphics.FONT_MEDIUM) + 20, bluetoothIcon);
                 } 
+            }
 
-                // Now draw clock over the top of any bt icon (uses clipping)
-                drawClock(dc);
-            } 
+            // Now draw clock over the top of any bt icon (uses clipping)
+            drawClock(dc);        
         }
 
         // Draw second hand and bluetooth icon if connected
         drawSecondHand(dc);
-        
+
     }
    
     // Draw the date string into the provided buffer at the specified location
