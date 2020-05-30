@@ -21,3 +21,8 @@ C:\Users\David\ConnectIQ\bin\monkeyc -d fr645m -f .\monkey.jungle -o .\kozzerLig
 Run App:
 ---------
 monkeydo .\kozzerLight.prg fr645m
+
+
+Prune Local Copies of Deleted Branches:
+----------------------------------------
+git fetch -p
