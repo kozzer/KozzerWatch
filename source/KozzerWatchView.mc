@@ -210,7 +210,7 @@ class KozzerWatchView extends WatchUi.WatchFace
         setBatteryDisplayLevelColor(dc, batteryPerc);
         
         // Draw filled (only fill based on %)
-        dc.fillRoundedRectangle(batteryX + 2, batteryY + 2, ((batteryWidth - 4) * batteryPerc) / 100, batteryHeight - 4, batteryRadius - 1);
+        dc.fillRoundedRectangle(batteryX + 2, batteryY + 2, ((batteryWidth * batteryPerc) / 100) - 4, batteryHeight - 4, batteryRadius - 1);
     }
 
 
