@@ -141,7 +141,7 @@ class KozzerWatchView extends WatchUi.WatchFace
 
                 // If active, draw icon
                 if (bluetoothIsActive){
-                    dc.drawBitmap(dc.getWidth() / 2 - 12, Graphics.getFontHeight(Graphics.FONT_MEDIUM) + 20, bluetoothIcon);
+                    setBluetoothIcon(dc);
                 } 
             }
 
@@ -163,28 +163,24 @@ class KozzerWatchView extends WatchUi.WatchFace
     
     // Draw icon onto given dc
     private function setBluetoothIcon(dc){
+
+        // Only do anything if bluetooth is active
+        if (bluetoothIsActive) {  
             
-        // Get location of points for icon location
-        var iconX = dc.getWidth() / 2 - 12;
-        var iconY = Graphics.getFontHeight(Graphics.FONT_MEDIUM) + 20;
-        var iconPoints = [ [iconX, iconY], [iconX+24, iconY], [iconX+24, iconY+24], [iconX, iconY+24] ];
-    
-        // Update the cliping rectangle to the location of the icon
-        setDrawingClip(dc, iconPoints);
+            // Get location of points for icon location
+            var iconX = dc.getWidth() / 2 - 12;
+            var iconY = Graphics.getFontHeight(Graphics.FONT_MEDIUM) + 20;
+            var iconPoints = [ [iconX, iconY], [iconX+24, iconY], [iconX+24, iconY+24], [iconX, iconY+24] ];
         
-        // Actually draw icon
-        if (bluetoothIsActive) {
+            // Update the cliping rectangle to the location of the icon
+            setDrawingClip(dc, iconPoints);
+            
+            // Actually write the icon to the dc
             dc.drawBitmap(iconX, iconY, bluetoothIcon);
-        } else {
-            dc.setColor(BACKGROUND_COLOR, BACKGROUND_COLOR);
-            dc.fillRectangle(iconX, iconY, 24, 24);
+
+            // Clear the clip
+            clearDrawingClip(dc);
         }
-
-        // Draw clock so it's "above" bt icon
-        drawClock(dc);
-
-        // Clear the clip
-        clearDrawingClip(dc);
     }
     
     // Draw battery icon with % indicated
