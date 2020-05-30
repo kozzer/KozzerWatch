@@ -1,6 +1,6 @@
 Set Path:
 ---------
-set PATH=%PATH%;C:\Users\David\Desktop\ConnectIQ_SDK\bin
+set PATH=%PATH%;C:\Users\David\ConnectIQ\bin
 
 
 CD [if not already there]:

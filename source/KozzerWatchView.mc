@@ -15,8 +15,8 @@ class KozzerWatchView extends WatchUi.WatchFace
     // General class-level fields
     var isAwake;                            // Flag indicating whether watch is awake or in sleep mode
     var bluetoothIcon;                      // Reference to bluetooth icon png
-    var bluetoothLayer;                     // Layer to hold bluetooth, toggling visibility
-    var screenBuffer;                       // Watch-screen-sized buffer where everything is written to (actually written to screen when appropriate)
+    var bluetoothIsActive;                  // Flag indicating whether the phone is connected
+    var screenBuffer;                       // Buffer for the entire screen
     var curClip;                            // Clip for partial updates, so only pixels where second hand is will actually be changed
     var screenCenterPoint;                  // Center x,y point of screen
     var fullScreenRefresh;                  // Flag used in onUpdate() & onPartialUpdate()
@@ -46,16 +46,13 @@ class KozzerWatchView extends WatchUi.WatchFace
     function onLayout(dc) {
 
         // Initialize bluetooth icon
-        bluetoothIcon  = WatchUi.loadResource(Rez.Drawables.BluetoothDarkIcon);
-        bluetoothLayer = new WatchUi.Layer({:x=>0,:y=>Graphics.getFontHeight(Graphics.FONT_MEDIUM) + 20,:width=>24,:height=>24});
-        bluetoothLayer.getDc().drawBitmap(0, 0, bluetoothIcon);
+        bluetoothIcon = WatchUi.loadResource(Rez.Drawables.BluetoothDarkIcon);
+        // Set whether bluetooth is active
+        bluetoothIsActive = System.getDeviceSettings().phoneConnected;
 
-        // Set up screen buffer for partial updates
-        screenBuffer = new Graphics.BufferedBitmap({
-            :width  => dc.getWidth(),
-            :height => dc.getHeight()
-        });
-        
+        // Set up buffer for whole screen
+        screenBuffer = new Graphics.BufferedBitmap({ :width => dc.getWidth(), :height => dc.getHeight() });
+
         // Clear any clip
         clearDrawingClip(dc);
 
@@ -65,37 +62,28 @@ class KozzerWatchView extends WatchUi.WatchFace
 
     // Handle the full screen refresh/update event, called once per minute or upon request
     function onUpdate(dc) {
+
+        // Set an alias for the passed-in screen dc for clarity
+        var screenDc     = dc;
+        var screenWidth  = screenDc.getWidth();
+        var screenHeight = screenDc.getHeight();
     
         // We always want to refresh the full screen when we get a regular onUpdate call.
         fullScreenRefresh = true;
 
         // Clear the clip
-        clearDrawingClip(dc);
+        clearDrawingClip(screenDc);
         
-        // Get dimensions of actual screen
-        var screenWidth = dc.getWidth();
-        
-        // Get draw context & dimensions for offscreen buffer
+        // Draw background color to screen buffer
         var bufferDc = screenBuffer.getDc();
-        var width    = bufferDc.getWidth();
-        var height   = bufferDc.getHeight();
-        
-        // Fill the entire background with color
         bufferDc.setColor(BACKGROUND_COLOR, BACKGROUND_COLOR);
-        bufferDc.fillRectangle(0, 0, dc.getWidth(), dc.getHeight());
+        bufferDc.fillRectangle(0, 0, bufferDc.getWidth(), bufferDc.getHeight());
 
         // Reset colors for rendering our info items (font, background)
         resetColorsForRendering(bufferDc);
-
-        // Draw the clock - ticks around edge, hour hand, minute hand, center of clock (second hand handled below)
-        var clockTime = System.getClockTime();
-        drawHashMarks(bufferDc);
-        drawHourHand(bufferDc, clockTime);
-        drawMinuteHand(bufferDc, clockTime);
-        drawClockCenter(bufferDc, width, height);
-
+        
         // Draw the date on the top
-        drawDateString(bufferDc, width / 2, 14);
+        drawDateString(bufferDc, screenWidth / 2, 14);
 
         // Battery - Draw the battery status
         drawBatteryStatus(bufferDc);
@@ -105,23 +93,30 @@ class KozzerWatchView extends WatchUi.WatchFace
         var dataString = info.steps.toString();
         var stepPerc   = ((info.steps * 100) / info.stepGoal).toNumber();
         setStepsDisplayLevelColor(bufferDc, stepPerc);
-        bufferDc.drawText(14, height / 2 - Graphics.getFontHeight(Graphics.FONT_XTINY) / 2, Graphics.FONT_XTINY, dataString, Graphics.TEXT_JUSTIFY_LEFT);
+        bufferDc.drawText(14, screenHeight / 2 - Graphics.getFontHeight(Graphics.FONT_XTINY) / 2, Graphics.FONT_XTINY, dataString, Graphics.TEXT_JUSTIFY_LEFT);
         resetColorsForRendering(bufferDc);
 
         // Daily Miles 
         dataString = (info.distance.toFloat() / 160934).format("%3.1f") + "m";  // 160,934 cm per mile
-        bufferDc.drawText(width - 14, height / 2 - Graphics.getFontHeight(Graphics.FONT_XTINY) / 2, Graphics.FONT_XTINY, dataString, Graphics.TEXT_JUSTIFY_RIGHT);
+        bufferDc.drawText(screenWidth - 14, screenHeight / 2 - Graphics.getFontHeight(Graphics.FONT_XTINY) / 2, Graphics.FONT_XTINY, dataString, Graphics.TEXT_JUSTIFY_RIGHT);
 
         // Always output the offscreen buffer to the main display in onUpdate() - once per minute
-        writeBufferToDisplay(dc);
+        writeBufferToDisplay(screenDc, screenBuffer);
+
+        // Check bluetooth status and write icon appropriately
+        bluetoothIsActive = System.getDeviceSettings().phoneConnected;
+        setBluetoothIcon(screenDc);
+
+        // Draw the clock - ticks around edge, hour hand, minute hand, center of clock (second hand handled below)
+        drawClock(screenDc);
 
         // Only draw the second hand if partial updates are currently allowed, OR if the watch is awake
         if (partialUpdatesAllowed) {
             // Partial update draws second hand and bluetooth icon
-            onPartialUpdate(dc);
+            onPartialUpdate(screenDc);
         } else if (isAwake) {
-            // If awake & partial updates not allowed draw second hand and bluetooth icon
-            partialUpdateActions(dc);
+            // If awake & partial updates not allowed draw second hand 
+            drawSecondHand(screenDc);
         }
 
         fullScreenRefresh = false;
@@ -132,20 +127,32 @@ class KozzerWatchView extends WatchUi.WatchFace
     //  This method only really does the second hand using clipping
     function onPartialUpdate(dc) {
 
-        // Only writye buffer if not coming from onUpdate(), since writeBufferToDisplay() is already called there
+        // Only write buffer if not coming from onUpdate(), since writeBufferToDisplay() is already called there
         if(!fullScreenRefresh) {
-            writeBufferToDisplay(dc);
+
+            // Re-write buffer to display 
+            writeBufferToDisplay(dc, screenBuffer);
+
+            // If bluetooth setting changed, update our flag and change which buffer we're using
+            if (bluetoothIsActive != System.getDeviceSettings().phoneConnected)
+            {
+                //Set flag to current value
+                bluetoothIsActive = System.getDeviceSettings().phoneConnected;
+
+                // If active, draw icon
+                if (bluetoothIsActive){
+                    setBluetoothIcon(dc);
+                } 
+            }
+
+            // Now draw clock over the top of any bt icon (uses clipping)
+            drawClock(dc);        
         }
 
         // Draw second hand and bluetooth icon if connected
-        partialUpdateActions(dc);
-    }
-    
-    // Draws second hand and bluetooth icon if connected, both using clipping
-    private function partialUpdateActions(dc) {
-        drawBluetoothIconIfActive(dc);
         drawSecondHand(dc);
-    }  
+
+    }
    
     // Draw the date string into the provided buffer at the specified location
     private function drawDateString(dc, x, y) {
@@ -154,30 +161,26 @@ class KozzerWatchView extends WatchUi.WatchFace
         dc.drawText(x, y, Graphics.FONT_MEDIUM, dateStr, Graphics.TEXT_JUSTIFY_CENTER);
     }
     
-    // Draw icon if needed
-    private function drawBluetoothIconIfActive(dc){
-    
-        // Only draw icon if bluetooth is active
-        if (System.getDeviceSettings().phoneConnected) {           
-            // Get dc dimensions
-            var width      = dc.getWidth();
-            var height     = dc.getHeight();
-            // Set loction points for our icon
-            var iconW      = bluetoothIcon.getWidth();
-            var iconH      = bluetoothIcon.getHeight();
-            var iconX      = width / 2 - 12;
-            var iconY      = Graphics.getFontHeight(Graphics.FONT_MEDIUM) + 20;  // below date
-            var iconPoints = [ [iconX, iconY], [iconX + iconW, iconY], [iconX + iconW, iconY + iconH], [iconX, iconY + iconH] ];
+    // Draw icon onto given dc
+    private function setBluetoothIcon(dc){
+
+        // Only do anything if bluetooth is active
+        if (bluetoothIsActive) {  
+            
+            // Get location of points for icon location
+            var iconX = dc.getWidth() / 2 - 12;
+            var iconY = Graphics.getFontHeight(Graphics.FONT_MEDIUM) + 20;
+            var iconPoints = [ [iconX, iconY], [iconX+24, iconY], [iconX+24, iconY+24], [iconX, iconY+24] ];
         
             // Update the cliping rectangle to the location of the icon
             setDrawingClip(dc, iconPoints);
             
-            // Actually draw icon
+            // Actually write the icon to the dc
             dc.drawBitmap(iconX, iconY, bluetoothIcon);
 
             // Clear the clip
             clearDrawingClip(dc);
-        } 
+        }
     }
     
     // Draw battery icon with % indicated
@@ -212,11 +215,9 @@ class KozzerWatchView extends WatchUi.WatchFace
 
 
     // Draw the watch face background onto the given draw context
-    private function writeBufferToDisplay(dc) { 
+    private function writeBufferToDisplay(screenDc, screenBuffer) { 
         // Write the entire display buffer to the display
-        if (null != screenBuffer) {
-            dc.drawBitmap(0, 0, screenBuffer);
-        }        
+        screenDc.drawBitmap(0, 0, screenBuffer);    
     }
 
     private function resetColorsForRendering(dc) {
@@ -257,17 +258,44 @@ class KozzerWatchView extends WatchUi.WatchFace
         } 
     }
 
+    private function drawClock(dc){
+        resetColorsForRendering(dc);
+        var clockTime = System.getClockTime();
+        drawHashMarks(dc);
+        drawHourHand(dc, clockTime);
+        drawMinuteHand(dc, clockTime);
+        drawClockCenter(dc, dc.getWidth(), dc.getHeight());
+    }
+
     private function drawHourHand(dc, clockTime){
         // Draw the hour hand - convert it to minutes and compute the angle
-        var hourHandAngle = (((clockTime.hour % 12) * 60) + clockTime.min);
-        hourHandAngle     = hourHandAngle / (12 * 60.0);
-        hourHandAngle     = hourHandAngle * Math.PI * 2;
-        dc.fillPolygon(generateHandCoordinates(screenCenterPoint, hourHandAngle, 70, 14, 7));
+        var hourHandAngle  = (((clockTime.hour % 12) * 60) + clockTime.min);
+        hourHandAngle      = hourHandAngle / (12 * 60.0);
+        hourHandAngle      = hourHandAngle * Math.PI * 2;
+        var hourHandPoints = generateHandCoordinates(screenCenterPoint, hourHandAngle, 70, 14, 7);
+
+        // Update the cliping rectangle to the new location of the hour hand
+        setDrawingClip(dc, hourHandPoints);
+
+        // Draw hour hand
+        dc.fillPolygon(hourHandPoints);
+
+        // Clear the clip
+        clearDrawingClip(dc);
     }
 
     private function drawMinuteHand(dc, clockTime) {
-        var minuteHandAngle = (clockTime.min / 60.0) * Math.PI * 2;
-        dc.fillPolygon(generateHandCoordinates(screenCenterPoint, minuteHandAngle, 100, 20, 5));
+        var minuteHandAngle  = (clockTime.min / 60.0) * Math.PI * 2;
+        var minuteHandPoints = generateHandCoordinates(screenCenterPoint, minuteHandAngle, 100, 20, 5);
+
+        // Update the cliping rectangle to the new location of the minute hand
+        setDrawingClip(dc, minuteHandPoints);
+
+        // Draw hour hand
+        dc.fillPolygon(minuteHandPoints);
+
+        // Clear the clip
+        clearDrawingClip(dc);
     }
     
     private function drawSecondHand(dc) {
