@@ -8,12 +8,14 @@ using Toybox.WatchUi;
 
 class KozzerGoalView extends WatchUi.View {
     var goalString;
-    var screenShape;
+
+    // UI colors
+    const BACKGROUND_COLOR  = 0x111111;     // Very dark gray 
+    const FONT_COLOR        = 0xDEDEDE;     // Light
 
     // goal is Application.GOAL_TYPE_? enumeration value 
     function initialize(goal) {
         View.initialize();
-        screenShape = System.getDeviceSettings().screenShape;
 
         goalString = "GOAL!";
 
@@ -35,31 +37,19 @@ class KozzerGoalView extends WatchUi.View {
 
     // Update the clock face graphics during update
     function onUpdate(dc) {
-        var width;
-        var height;
-        var clockTime = System.getClockTime();
-
-        width = dc.getWidth();
-        height = dc.getHeight();
-
-        var now = Time.now();
-        var info = Gregorian.info(now, Time.FORMAT_LONG);
-
-        var dateStr = Lang.format("$1$ $2$ $3$", [info.day_of_week, info.month, info.day]);
+        var width  = dc.getWidth();
+        var height = dc.getHeight();
 
         // Fill the screen with a black rectangle
-        dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_WHITE);
+        dc.setColor(BACKGROUND_COLOR, BACKGROUND_COLOR);
         dc.fillRectangle(0, 0, width, height);
 
-        // Fill the top right half of the screen with a grey triangle
-        dc.setColor(Graphics.COLOR_DK_GRAY, Graphics.COLOR_DK_GRAY);
-        dc.fillPolygon([[0, 0], [width, 0], [width, height], [0, 0]]);
+        // Set color for text
+        dc.setColor(FONT_COLOR, Graphics.COLOR_TRANSPARENT);
 
-        // Draw the date
-        dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
-        dc.drawText(width / 2, (height / 4), Graphics.FONT_MEDIUM, dateStr, Graphics.TEXT_JUSTIFY_CENTER);
-
-        // Draw the Goal String
-        dc.drawText(width / 2, (height / 2), Graphics.FONT_MEDIUM, goalString, Graphics.TEXT_JUSTIFY_CENTER);
+        // Draw text
+        dc.drawText(width / 2, (height / 4) + 12, Graphics.FONT_SMALL, "You did a good job!", Graphics.TEXT_JUSTIFY_CENTER);
+        dc.drawText(width / 2, (height / 2) - 7, Graphics.FONT_LARGE, goalString, Graphics.TEXT_JUSTIFY_CENTER);
+        dc.drawText(width / 2, (height * 0.62) + 12, Graphics.FONT_SMALL, "Keep it up!", Graphics.TEXT_JUSTIFY_CENTER);
     }
 }
