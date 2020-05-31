@@ -91,77 +91,75 @@
 </pcToLineNum>
 <symbolTable>
 <entry id="8388644" module="true" symbol="System"/>
-<entry field="true" id="34" symbol="FULL_COLOR"/>
+<entry field="true" id="32" symbol="FULL_COLOR"/>
 <entry id="8389124" method="true" symbol="onUpdate"/>
 <entry id="8388637" module="true" symbol="Communications"/>
-<entry id="41" method="true" symbol="&lt;globals/KozzerWatchView/&lt;&gt;writeBufferToDisplay&gt;"/>
+<entry id="39" method="true" symbol="&lt;globals/KozzerWatchView/&lt;&gt;writeBufferToDisplay&gt;"/>
 <entry id="13" object="true" symbol="KozzerWatchDelegate"/>
 <entry id="8390097" method="true" symbol="onPartialUpdate"/>
-<entry id="44" method="true" symbol="&lt;globals/KozzerWatchView/&lt;&gt;setBatteryDisplayLevelColor&gt;"/>
+<entry id="42" method="true" symbol="&lt;globals/KozzerWatchView/&lt;&gt;setBatteryDisplayLevelColor&gt;"/>
 <entry id="12" object="true" symbol="KozzerWatchView"/>
-<entry field="true" id="31" symbol="BACKGROUND_COLOR"/>
+<entry field="true" id="29" symbol="BACKGROUND_COLOR"/>
 <entry id="10" object="true" symbol="KozzerGoalView"/>
-<entry id="48" method="true" symbol="&lt;globals/KozzerWatchView/&lt;&gt;drawSecondHand&gt;"/>
+<entry id="46" method="true" symbol="&lt;globals/KozzerWatchView/&lt;&gt;drawSecondHand&gt;"/>
 <entry field="true" id="8388611" module="true" symbol="Toybox"/>
 <entry id="8388645" module="true" symbol="Time"/>
 <entry id="8388770" module="true" object="true" symbol="Strings"/>
-<entry id="49" method="true" symbol="&lt;globals/KozzerWatchView/&lt;&gt;drawClockCenter&gt;"/>
+<entry id="47" method="true" symbol="&lt;globals/KozzerWatchView/&lt;&gt;drawClockCenter&gt;"/>
 <entry id="8389280" method="true" symbol="getInitialView"/>
 <entry id="8389377" method="true" symbol="onExitSleep"/>
 <entry id="8390098" method="true" symbol="onPowerBudgetExceeded"/>
 <entry id="8388640" module="true" symbol="Lang"/>
 <entry id="8388639" module="true" symbol="Graphics"/>
-<entry id="51" method="true" symbol="&lt;globals/KozzerWatchView/&lt;&gt;drawHashMarks&gt;"/>
-<entry field="true" id="32" symbol="FONT_COLOR"/>
+<entry id="49" method="true" symbol="&lt;globals/KozzerWatchView/&lt;&gt;drawHashMarks&gt;"/>
+<entry field="true" id="30" symbol="FONT_COLOR"/>
 <entry id="8388769" module="true" object="true" symbol="Rez"/>
 <entry id="8388924" module="true" symbol="Gregorian"/>
 <entry id="8389916" method="true" symbol="getGoalView"/>
-<entry id="54" method="true" symbol="&lt;globals/KozzerWatchView/&lt;&gt;getBoundingBox&gt;"/>
-<entry id="38" method="true" symbol="&lt;globals/KozzerWatchView/&lt;&gt;drawDateString&gt;"/>
-<entry field="true" id="33" symbol="SECOND_HAND_COLOR"/>
+<entry field="true" id="16" symbol="BluetoothIcon"/>
+<entry id="52" method="true" symbol="&lt;globals/KozzerWatchView/&lt;&gt;getBoundingBox&gt;"/>
+<entry id="36" method="true" symbol="&lt;globals/KozzerWatchView/&lt;&gt;drawDateString&gt;"/>
+<entry field="true" id="31" symbol="SECOND_HAND_COLOR"/>
 <entry id="8390095" object="true" symbol="WatchFaceDelegate"/>
-<entry field="true" id="22" symbol="bluetoothIcon"/>
-<entry field="true" id="29" symbol="batteryHeight"/>
+<entry field="true" id="20" symbol="bluetoothIcon"/>
+<entry field="true" id="27" symbol="batteryHeight"/>
 <entry id="8388702" method="true" symbol="initialize"/>
-<entry field="true" id="20" symbol="AppName"/>
-<entry id="52" method="true" symbol="&lt;globals/KozzerWatchView/&lt;&gt;clearDrawingClip&gt;"/>
-<entry field="true" id="28" symbol="batteryWidth"/>
-<entry id="53" method="true" symbol="&lt;globals/KozzerWatchView/&lt;&gt;setDrawingClip&gt;"/>
-<entry id="42" method="true" symbol="&lt;globals/KozzerWatchView/&lt;&gt;resetColorsForRendering&gt;"/>
+<entry field="true" id="18" symbol="AppName"/>
+<entry id="50" method="true" symbol="&lt;globals/KozzerWatchView/&lt;&gt;clearDrawingClip&gt;"/>
+<entry field="true" id="26" symbol="batteryWidth"/>
+<entry id="51" method="true" symbol="&lt;globals/KozzerWatchView/&lt;&gt;setDrawingClip&gt;"/>
+<entry id="40" method="true" symbol="&lt;globals/KozzerWatchView/&lt;&gt;resetColorsForRendering&gt;"/>
 <entry id="8388641" module="true" symbol="Math"/>
-<entry field="true" id="18" symbol="LauncherIcon"/>
+<entry field="true" id="17" symbol="LauncherIcon"/>
 <entry id="8388648" module="true" symbol="WatchUi"/>
 <entry id="8389281" method="true" symbol="onStop"/>
-<entry field="true" id="24" symbol="screenBuffer"/>
+<entry field="true" id="22" symbol="screenBuffer"/>
 <entry id="8388771" module="true" object="true" symbol="Drawables"/>
 <entry id="8389122" method="true" symbol="onLayout"/>
 <entry id="8389279" method="true" symbol="onStart"/>
-<entry field="true" id="55" symbol="goalString"/>
-<entry field="true" id="35" symbol="MOST_COLOR"/>
+<entry field="true" id="53" symbol="goalString"/>
+<entry field="true" id="33" symbol="MOST_COLOR"/>
 <entry id="8389376" method="true" symbol="onEnterSleep"/>
-<entry field="true" id="26" symbol="screenCenterPoint"/>
-<entry field="true" id="21" symbol="isAwake"/>
-<entry id="43" method="true" symbol="&lt;globals/KozzerWatchView/&lt;&gt;setStepsDisplayLevelColor&gt;"/>
+<entry field="true" id="24" symbol="screenCenterPoint"/>
+<entry field="true" id="19" symbol="isAwake"/>
+<entry id="41" method="true" symbol="&lt;globals/KozzerWatchView/&lt;&gt;setStepsDisplayLevelColor&gt;"/>
 <entry field="true" id="8389067" symbol="height"/>
-<entry field="true" id="16" symbol="BluetoothLightIcon"/>
-<entry id="39" method="true" symbol="&lt;globals/KozzerWatchView/&lt;&gt;setBluetoothIcon&gt;"/>
+<entry id="37" method="true" symbol="&lt;globals/KozzerWatchView/&lt;&gt;setBluetoothIcon&gt;"/>
 <entry id="14" module="true" symbol="Layouts"/>
-<entry field="true" id="23" symbol="bluetoothIsActive"/>
-<entry field="true" id="37" symbol="LOW_COLOR"/>
-<entry field="true" id="36" symbol="SOME_COLOR"/>
-<entry field="true" id="30" symbol="batteryRadius"/>
-<entry field="true" id="27" symbol="fullScreenRefresh"/>
-<entry id="45" method="true" symbol="&lt;globals/KozzerWatchView/&lt;&gt;drawClock&gt;"/>
+<entry field="true" id="21" symbol="bluetoothIsActive"/>
+<entry field="true" id="35" symbol="LOW_COLOR"/>
+<entry field="true" id="34" symbol="SOME_COLOR"/>
+<entry field="true" id="28" symbol="batteryRadius"/>
+<entry field="true" id="25" symbol="fullScreenRefresh"/>
+<entry id="43" method="true" symbol="&lt;globals/KozzerWatchView/&lt;&gt;drawClock&gt;"/>
 <entry id="8390088" module="true" object="true" symbol="JsonData"/>
 <entry field="true" id="8389066" symbol="width"/>
-<entry id="47" method="true" symbol="&lt;globals/KozzerWatchView/&lt;&gt;drawMinuteHand&gt;"/>
-<entry field="true" id="25" symbol="curClip"/>
+<entry id="45" method="true" symbol="&lt;globals/KozzerWatchView/&lt;&gt;drawMinuteHand&gt;"/>
+<entry field="true" id="23" symbol="curClip"/>
 <entry id="15" module="true" symbol="Menus"/>
-<entry id="46" method="true" symbol="&lt;globals/KozzerWatchView/&lt;&gt;drawHourHand&gt;"/>
-<entry field="true" id="17" symbol="BluetoothDarkIcon"/>
-<entry id="40" method="true" symbol="&lt;globals/KozzerWatchView/&lt;&gt;drawBatteryStatus&gt;"/>
-<entry field="true" id="19" symbol="id_font_black_diamond"/>
-<entry id="50" method="true" symbol="&lt;globals/KozzerWatchView/&lt;&gt;generateHandCoordinates&gt;"/>
+<entry id="44" method="true" symbol="&lt;globals/KozzerWatchView/&lt;&gt;drawHourHand&gt;"/>
+<entry id="38" method="true" symbol="&lt;globals/KozzerWatchView/&lt;&gt;drawBatteryStatus&gt;"/>
+<entry id="48" method="true" symbol="&lt;globals/KozzerWatchView/&lt;&gt;generateHandCoordinates&gt;"/>
 <entry field="true" id="11" symbol="partialUpdatesAllowed"/>
 <entry id="8388772" module="true" object="true" symbol="Fonts"/>
 <entry id="8388633" module="true" symbol="ActivityMonitor"/>
@@ -265,14 +263,14 @@
 <dataEntry offset="174" parentId="globals" symbolId="KozzerWatch" type="class"/>
 <dataEntry offset="253" parentId="globals" symbolId="Rez" type="module"/>
 <dataEntry offset="332" parentId="Rez" symbolId="Drawables" type="module"/>
-<dataEntry offset="387" parentId="Rez" symbolId="Menus" type="module"/>
-<dataEntry offset="418" parentId="Rez" symbolId="Fonts" type="module"/>
-<dataEntry offset="457" parentId="Rez" symbolId="Layouts" type="module"/>
-<dataEntry offset="488" parentId="Rez" symbolId="JsonData" type="module"/>
-<dataEntry offset="519" parentId="Rez" symbolId="Strings" type="module"/>
-<dataEntry offset="558" parentId="globals" symbolId="KozzerWatchDelegate" type="class"/>
-<dataEntry offset="613" parentId="globals" symbolId="KozzerWatchView" type="class"/>
-<dataEntry offset="972" parentId="globals" symbolId="KozzerGoalView" type="class"/>
+<dataEntry offset="379" parentId="Rez" symbolId="Menus" type="module"/>
+<dataEntry offset="410" parentId="Rez" symbolId="Fonts" type="module"/>
+<dataEntry offset="441" parentId="Rez" symbolId="Layouts" type="module"/>
+<dataEntry offset="472" parentId="Rez" symbolId="JsonData" type="module"/>
+<dataEntry offset="503" parentId="Rez" symbolId="Strings" type="module"/>
+<dataEntry offset="542" parentId="globals" symbolId="KozzerWatchDelegate" type="class"/>
+<dataEntry offset="597" parentId="globals" symbolId="KozzerWatchView" type="class"/>
+<dataEntry offset="956" parentId="globals" symbolId="KozzerGoalView" type="class"/>
 </dataEntryOffsetMappings>
 <functions>
 <functionEntry accessMode="public" name="initialize" parent="KozzerWatch">

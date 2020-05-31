@@ -46,7 +46,7 @@ class KozzerWatchView extends WatchUi.WatchFace
     function onLayout(dc) {
 
         // Initialize bluetooth icon
-        bluetoothIcon = WatchUi.loadResource(Rez.Drawables.BluetoothDarkIcon);
+        bluetoothIcon = WatchUi.loadResource(Rez.Drawables.BluetoothIcon);
         // Set whether bluetooth is active
         bluetoothIsActive = System.getDeviceSettings().phoneConnected;
 
