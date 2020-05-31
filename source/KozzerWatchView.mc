@@ -30,7 +30,7 @@ class KozzerWatchView extends WatchUi.WatchFace
     // UI colors
     const BACKGROUND_COLOR  = 0xDEDEDE;     // Light gray 
     const FONT_COLOR        = 0x111111;     // Very dark gray 
-    const SECOND_HAND_COLOR = 0xFF0000;     // Red
+    const RED_COLOR         = 0xFF0000;     // Red
 
     const BLUE_COLOR        = 0x0055FF;     // Blue
     const FULL_COLOR        = 0x00BB00;     // Green
@@ -54,7 +54,9 @@ class KozzerWatchView extends WatchUi.WatchFace
         bluetoothIsActive = System.getDeviceSettings().phoneConnected;
 
         // Set up buffer for whole screen
-        screenBuffer = new Graphics.BufferedBitmap({ :width => dc.getWidth(), :height => dc.getHeight() });
+        screenBuffer = new Graphics.BufferedBitmap({ 
+            :width   => dc.getWidth(), 
+            :height  => dc.getHeight() });
 
         // Clear any clip
         clearDrawingClip(dc);
@@ -348,7 +350,7 @@ class KozzerWatchView extends WatchUi.WatchFace
         setDrawingClip(dc, secondHandPoints);
 
         // Draw the second hand to the screen
-        dc.setColor(Graphics.COLOR_RED, Graphics.COLOR_TRANSPARENT);
+        dc.setColor(RED_COLOR, Graphics.COLOR_TRANSPARENT);
         dc.fillPolygon(secondHandPoints);
 
         // Clear the clip
