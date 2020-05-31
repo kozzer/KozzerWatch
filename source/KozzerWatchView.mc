@@ -25,15 +25,18 @@ class KozzerWatchView extends WatchUi.WatchFace
     const batteryWidth  = 32;
     const batteryHeight = 16;
     const batteryRadius = 3;
+    const moveBarHeight = 3;
 
     // UI colors
     const BACKGROUND_COLOR  = 0xDEDEDE;     // Light gray 
     const FONT_COLOR        = 0x111111;     // Very dark gray 
-    const SECOND_HAND_COLOR = 0xFF0000;     // Red
-    const FULL_COLOR        = 0x007700;     // Green
-    const MOST_COLOR        = 0x777700;     // Yellow
-    const SOME_COLOR        = 0x995500;     // Orange
-    const LOW_COLOR         = 0xCC0000;     // Darker red
+    const RED_COLOR         = 0xFF0000;     // Red
+
+    const BLUE_COLOR        = 0x0055FF;     // Blue
+    const FULL_COLOR        = 0x00BB00;     // Green
+    const MOST_COLOR        = 0xCCCC00;     // Yellow
+    const SOME_COLOR        = 0xFF9900;     // Orange
+    const LOW_COLOR         = 0xFF0000;     // Red
 
     // Initialize variables for this view
     function initialize() {
@@ -46,12 +49,14 @@ class KozzerWatchView extends WatchUi.WatchFace
     function onLayout(dc) {
 
         // Initialize bluetooth icon
-        bluetoothIcon = WatchUi.loadResource(Rez.Drawables.BluetoothDarkIcon);
+        bluetoothIcon = WatchUi.loadResource(Rez.Drawables.BluetoothIcon);
         // Set whether bluetooth is active
         bluetoothIsActive = System.getDeviceSettings().phoneConnected;
 
         // Set up buffer for whole screen
-        screenBuffer = new Graphics.BufferedBitmap({ :width => dc.getWidth(), :height => dc.getHeight() });
+        screenBuffer = new Graphics.BufferedBitmap({ 
+            :width   => dc.getWidth(), 
+            :height  => dc.getHeight() });
 
         // Clear any clip
         clearDrawingClip(dc);
@@ -84,6 +89,9 @@ class KozzerWatchView extends WatchUi.WatchFace
         
         // Draw the date on the top
         drawDateString(bufferDc, screenWidth / 2, 14);
+
+        // Draw move bar under date string
+        drawMoveBar(bufferDc);
 
         // Battery - Draw the battery status
         drawBatteryStatus(bufferDc);
@@ -160,6 +168,41 @@ class KozzerWatchView extends WatchUi.WatchFace
         var dateStr = Lang.format("$1$ $2$", [info.month, info.day]);
         dc.drawText(x, y, Graphics.FONT_MEDIUM, dateStr, Graphics.TEXT_JUSTIFY_CENTER);
     }
+
+    private function drawMoveBar(dc){
+        // Get location of the blue bar
+        var barX = dc.getWidth() / 2 - 39;      // Total 78px wide, so 39px left of center
+        var barY = Graphics.getFontHeight(Graphics.FONT_MEDIUM) + 17;
+
+        // Get Move bar status
+        var barLevel = ActivityMonitor.getInfo().moveBarLevel;
+
+        // Draw bars based on bar level
+        if (barLevel >= 1) {
+            dc.setColor(BLUE_COLOR, Graphics.COLOR_TRANSPARENT);
+            dc.fillRectangle(barX, barY, 27, moveBarHeight);
+            barX += 30;
+        }
+        if (barLevel >= 2){
+            dc.setColor(FULL_COLOR, Graphics.COLOR_TRANSPARENT);
+            dc.fillRectangle(barX, barY, 9, moveBarHeight);
+            barX += 12;
+        }
+        if (barLevel >= 3){
+            dc.setColor(MOST_COLOR, Graphics.COLOR_TRANSPARENT);
+            dc.fillRectangle(barX, barY, 9, moveBarHeight);
+            barX += 12;
+        }
+        if (barLevel >= 4){
+            dc.setColor(SOME_COLOR, Graphics.COLOR_TRANSPARENT);
+            dc.fillRectangle(barX, barY, 9, moveBarHeight);
+            barX += 12;
+        }
+        if (barLevel >= 5){
+            dc.setColor(LOW_COLOR, Graphics.COLOR_TRANSPARENT);
+            dc.fillRectangle(barX, barY, 9, moveBarHeight);
+        }
+    }
     
     // Draw icon onto given dc
     private function setBluetoothIcon(dc){
@@ -169,7 +212,7 @@ class KozzerWatchView extends WatchUi.WatchFace
             
             // Get location of points for icon location
             var iconX = dc.getWidth() / 2 - 12;
-            var iconY = Graphics.getFontHeight(Graphics.FONT_MEDIUM) + 20;
+            var iconY = Graphics.getFontHeight(Graphics.FONT_MEDIUM) + 24;
             var iconPoints = [ [iconX, iconY], [iconX+24, iconY], [iconX+24, iconY+24], [iconX, iconY+24] ];
         
             // Update the cliping rectangle to the location of the icon
@@ -307,7 +350,7 @@ class KozzerWatchView extends WatchUi.WatchFace
         setDrawingClip(dc, secondHandPoints);
 
         // Draw the second hand to the screen
-        dc.setColor(Graphics.COLOR_RED, Graphics.COLOR_TRANSPARENT);
+        dc.setColor(RED_COLOR, Graphics.COLOR_TRANSPARENT);
         dc.fillPolygon(secondHandPoints);
 
         // Clear the clip

@@ -1,11 +1,6 @@
 <resources>
-    <bitmap id="LauncherIcon" filename="images/icon.png" />
-    <bitmap id="BluetoothLightIcon" filename="images/bluetooth_light.png">
-        <palette>
-            <color>EFEFEF</color>
-        </palette>
-    </bitmap>
-    <bitmap id="BluetoothDarkIcon" filename="images/bluetooth_blue.png">
+    <bitmap id="LauncherIcon" filename="images/kozzer_icon.png" />
+    <bitmap id="BluetoothIcon" filename="images/bluetooth_blue.png">
         <palette>
             <color>2546E9</color>
         </palette>
