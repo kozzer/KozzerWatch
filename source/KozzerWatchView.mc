@@ -25,7 +25,7 @@ class KozzerWatchView extends WatchUi.WatchFace
     const batteryWidth  = 32;
     const batteryHeight = 16;
     const batteryRadius = 3;
-    const moveBarHeight = 3;
+    const moveBarHeight = 4;
 
     // UI colors
     const BACKGROUND_COLOR  = 0xDEDEDE;     // Light gray 
@@ -33,8 +33,8 @@ class KozzerWatchView extends WatchUi.WatchFace
     const RED_COLOR         = 0xFF0000;     // Red
 
     const BLUE_COLOR        = 0x0055FF;     // Blue
-    const FULL_COLOR        = 0x00BB00;     // Green
-    const MOST_COLOR        = 0xCCCC00;     // Yellow
+    const FULL_COLOR        = 0x009900;     // Green
+    const MOST_COLOR        = 0x999900;     // Dark Yellow
     const SOME_COLOR        = 0xFF9900;     // Orange
     const LOW_COLOR         = 0xFF0000;     // Red
 
@@ -172,7 +172,7 @@ class KozzerWatchView extends WatchUi.WatchFace
     private function drawMoveBar(dc){
         // Get location of the blue bar
         var barX = dc.getWidth() / 2 - 39;      // Total 78px wide, so 39px left of center
-        var barY = Graphics.getFontHeight(Graphics.FONT_MEDIUM) + 17;
+        var barY = Graphics.getFontHeight(Graphics.FONT_MEDIUM) + 15;
 
         // Get Move bar status
         var barLevel = ActivityMonitor.getInfo().moveBarLevel;
