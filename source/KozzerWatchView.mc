@@ -109,7 +109,6 @@ class KozzerWatchView extends WatchUi.WatchFace
         writeBufferToDisplay(screenDc, screenBuffer);
 
         // Check bluetooth status and write icon appropriately
-        bluetoothIsActive = System.getDeviceSettings().phoneConnected;
         setBluetoothIcon(screenDc);
 
         // Draw the clock - ticks around edge, hour hand, minute hand, center of clock (second hand handled below)
