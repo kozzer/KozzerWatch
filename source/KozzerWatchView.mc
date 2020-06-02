@@ -15,7 +15,6 @@ class KozzerWatchView extends WatchUi.WatchFace
     // General class-level fields
     var isAwake;                            // Flag indicating whether watch is awake or in sleep mode
     var bluetoothIcon;                      // Reference to bluetooth icon png
-    var bluetoothIsActive;                  // Flag indicating whether the phone is connected
     var screenBuffer;                       // Buffer for the entire screen
     var curClip;                            // Clip for partial updates, so only pixels where second hand is will actually be changed
     var screenCenterPoint;                  // Center x,y point of screen
@@ -50,8 +49,6 @@ class KozzerWatchView extends WatchUi.WatchFace
 
         // Initialize bluetooth icon
         bluetoothIcon = WatchUi.loadResource(Rez.Drawables.BluetoothIcon);
-        // Set whether bluetooth is active
-        bluetoothIsActive = System.getDeviceSettings().phoneConnected;
 
         // Set up buffer for whole screen
         screenBuffer = new Graphics.BufferedBitmap({ 
@@ -141,17 +138,8 @@ class KozzerWatchView extends WatchUi.WatchFace
             // Re-write buffer to display 
             writeBufferToDisplay(dc, screenBuffer);
 
-            // If bluetooth setting changed, update our flag and change which buffer we're using
-            if (bluetoothIsActive != System.getDeviceSettings().phoneConnected)
-            {
-                //Set flag to current value
-                bluetoothIsActive = System.getDeviceSettings().phoneConnected;
-
-                // If active, draw icon
-                if (bluetoothIsActive){
-                    setBluetoothIcon(dc);
-                } 
-            }
+            // If active, draw icon
+            setBluetoothIcon(dc);
 
             // Now draw clock over the top of any bt icon (uses clipping)
             drawClock(dc);        
@@ -159,7 +147,6 @@ class KozzerWatchView extends WatchUi.WatchFace
 
         // Draw second hand and bluetooth icon if connected
         drawSecondHand(dc);
-
     }
    
     // Draw the date string into the provided buffer at the specified location
@@ -208,7 +195,7 @@ class KozzerWatchView extends WatchUi.WatchFace
     private function setBluetoothIcon(dc){
 
         // Only do anything if bluetooth is active
-        if (bluetoothIsActive) {  
+        if (System.getDeviceSettings().phoneConnected) {  
             
             // Get location of points for icon location
             var iconX = dc.getWidth() / 2 - 12;
