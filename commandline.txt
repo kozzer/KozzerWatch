@@ -5,7 +5,7 @@ set PATH=%PATH%;C:\Users\David\ConnectIQ\bin
 
 CD [if not already there]:
 --------------------------
-CD C:\Users\David\ConnectIQ\kozzer\KozzerLight
+CD C:\Users\David\ConnectIQ\kozzer\KozzerWatch
 
 
 Load Simulator:
@@ -15,12 +15,12 @@ connectiq
 
 Build:
 -------
-C:\Users\David\ConnectIQ\bin\monkeyc -d fr645m -f .\monkey.jungle -o .\kozzerLight.prg -y C:\Users\David\ConnectIQ\developer_key.der
+C:\Users\David\ConnectIQ\bin\monkeyc -d fr645m -f .\monkey.jungle -o .\kozzerWatch.prg -y C:\Users\David\ConnectIQ\developer_key.der
 
 
 Run App:
 ---------
-monkeydo .\kozzerLight.prg fr645m
+monkeydo .\kozzerWatch.prg fr645m
 
 
 Prune Local Copies of Deleted Branches:
