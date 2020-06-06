@@ -256,24 +256,27 @@ class KozzerWatchView extends WatchUi.WatchFace
     }
     
     private function setStepsDisplayLevelColor(dc, perc){
-        if (System.getClockTime().hour < 14) {
-            // Only show step value colors if >= 2pm
-            resetColorsForRendering(dc);
-        } else if (perc > 100) {
+       if (perc > 100) {
             // Step goal!
             dc.setColor(FULL_COLOR, Graphics.COLOR_TRANSPARENT);
-        } else if (perc > 60) {
-            // 60+% of step goal
-            dc.setColor(MOST_COLOR, Graphics.COLOR_TRANSPARENT);
-        } else if (perc > 30) {
-            // 30-59% step goal
-            dc.setColor(SOME_COLOR, Graphics.COLOR_TRANSPARENT);
-        } else if (perc > 0) {
-            // 1-29% step goal
-            dc.setColor(LOW_COLOR,  Graphics.COLOR_TRANSPARENT);
         } else {
-            // 0% - Default to normal font color for 0 steps
-            resetColorsForRendering(dc);
+            // Only bother with non-green color if past 2pm
+            if (System.getClockTime().hour < 14) {
+                // Not yet 2pm, so use font color
+                resetColorsForRendering(dc);
+            } else if (perc > 60) {
+                // 60+% of step goal
+                dc.setColor(MOST_COLOR, Graphics.COLOR_TRANSPARENT);
+            } else if (perc > 30) {
+                // 30-59% step goal
+                dc.setColor(SOME_COLOR, Graphics.COLOR_TRANSPARENT);
+            } else if (perc > 0) {
+                // 1-29% step goal
+                dc.setColor(LOW_COLOR,  Graphics.COLOR_TRANSPARENT);
+            } else {
+                // 0% - Default to normal font color for 0 steps
+                resetColorsForRendering(dc);
+            }
         }
     }
 

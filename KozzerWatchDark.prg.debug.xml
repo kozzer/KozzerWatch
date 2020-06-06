@@ -75,15 +75,15 @@
 <entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerWatch\\source\\KozzerWatchView.mc" id="16" lineNum="143" pc="268437121" symbol="onPartialUpdate"/>
 <entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerWatch\\source\\KozzerWatchView.mc" id="16" lineNum="146" pc="268437135" symbol="onPartialUpdate"/>
 <entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerWatch\\source\\KozzerWatchView.mc" id="16" lineNum="150" pc="268437152" symbol="onPartialUpdate"/>
-<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerWatch\\source\\KozzerWatchView.mc" id="35" lineNum="460" pc="268441078" symbol="onEnterSleep"/>
-<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerWatch\\source\\KozzerWatchView.mc" id="35" lineNum="461" pc="268441082" symbol="onEnterSleep"/>
-<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerWatch\\source\\KozzerWatchView.mc" id="35" lineNum="462" pc="268441092" symbol="onEnterSleep"/>
-<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerWatch\\source\\KozzerWatchView.mc" id="36" lineNum="466" pc="268441109" symbol="onExitSleep"/>
-<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerWatch\\source\\KozzerWatchView.mc" id="36" lineNum="467" pc="268441113" symbol="onExitSleep"/>
-<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerWatch\\source\\KozzerWatchView.mc" id="38" lineNum="475" pc="268441124" symbol="onPowerBudgetExceeded"/>
-<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerWatch\\source\\KozzerWatchView.mc" id="38" lineNum="476" pc="268441128" symbol="onPowerBudgetExceeded"/>
-<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerWatch\\source\\KozzerWatchView.mc" id="38" lineNum="477" pc="268441158" symbol="onPowerBudgetExceeded"/>
-<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerWatch\\source\\KozzerWatchView.mc" id="38" lineNum="478" pc="268441188" symbol="onPowerBudgetExceeded"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerWatch\\source\\KozzerWatchView.mc" id="35" lineNum="463" pc="268441078" symbol="onEnterSleep"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerWatch\\source\\KozzerWatchView.mc" id="35" lineNum="464" pc="268441082" symbol="onEnterSleep"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerWatch\\source\\KozzerWatchView.mc" id="35" lineNum="465" pc="268441092" symbol="onEnterSleep"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerWatch\\source\\KozzerWatchView.mc" id="36" lineNum="469" pc="268441109" symbol="onExitSleep"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerWatch\\source\\KozzerWatchView.mc" id="36" lineNum="470" pc="268441113" symbol="onExitSleep"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerWatch\\source\\KozzerWatchView.mc" id="38" lineNum="478" pc="268441124" symbol="onPowerBudgetExceeded"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerWatch\\source\\KozzerWatchView.mc" id="38" lineNum="479" pc="268441128" symbol="onPowerBudgetExceeded"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerWatch\\source\\KozzerWatchView.mc" id="38" lineNum="480" pc="268441158" symbol="onPowerBudgetExceeded"/>
+<entry filename="C:\\Users\\David\\ConnectIQ\\kozzer\\KozzerWatch\\source\\KozzerWatchView.mc" id="38" lineNum="481" pc="268441188" symbol="onPowerBudgetExceeded"/>
 </pcToLineNum>
 <symbolTable>
 <entry id="8388644" module="true" symbol="System"/>
