@@ -29,6 +29,7 @@ class KozzerWatchView extends WatchUi.WatchFace
     // UI colors
     const BACKGROUND_COLOR  = 0x111111;     // Very dark gray 
     const FONT_COLOR        = 0xDEDEDE;     // Very light gray 
+    const CLOCK_HAND_LINE   = 0x777777;     // Gray
 
     const RED_COLOR         = 0xFF0000;     // Red
     const BLUE_COLOR        = 0x1166FF;     // Blue
@@ -311,7 +312,7 @@ class KozzerWatchView extends WatchUi.WatchFace
         dc.fillPolygon(hourHandPoints);
 
         // Draw line in hour hand
-        dc.setColor(Graphics.COLOR_GRAY, Graphics.COLOR_TRANSPARENT);
+        dc.setColor(CLOCK_HAND_LINE, Graphics.COLOR_TRANSPARENT);
         hourHandPoints = generateHandCoordinates(screenCenterPoint, hourHandAngle, 68, 12, 3);
         dc.fillPolygon(hourHandPoints);
 
@@ -333,7 +334,7 @@ class KozzerWatchView extends WatchUi.WatchFace
         dc.fillPolygon(minuteHandPoints);
 
         // Draw line in minute hand
-        dc.setColor(Graphics.COLOR_GRAY, Graphics.COLOR_TRANSPARENT);
+        dc.setColor(CLOCK_HAND_LINE, Graphics.COLOR_TRANSPARENT);
         minuteHandPoints = generateHandCoordinates(screenCenterPoint, minuteHandAngle, 98, 18, 2);
         dc.fillPolygon(minuteHandPoints);
 
