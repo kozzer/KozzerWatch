@@ -29,7 +29,7 @@ class KozzerWatchView extends WatchUi.WatchFace
     // UI colors
     const BACKGROUND_COLOR  = 0x111111;     // Very dark gray 
     const FONT_COLOR        = 0xDEDEDE;     // Very light gray 
-    const CLOCK_HAND_LINE   = 0x777777;     // Gray
+    const CLOCK_HAND_LINE   = 0x808080;     // Gray
 
     const RED_COLOR         = 0xFF0000;     // Red
     const BLUE_COLOR        = 0x1166FF;     // Blue
@@ -200,7 +200,7 @@ class KozzerWatchView extends WatchUi.WatchFace
             
             // Get location of points for icon location
             var iconX = dc.getWidth() / 2 - 12;
-            var iconY = Graphics.getFontHeight(Graphics.FONT_MEDIUM) + 24;
+            var iconY = Graphics.getFontHeight(Graphics.FONT_MEDIUM) + 25;
             var iconPoints = [ [iconX, iconY], [iconX+24, iconY], [iconX+24, iconY+24], [iconX, iconY+24] ];
         
             // Update the cliping rectangle to the location of the icon
