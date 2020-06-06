@@ -15,12 +15,12 @@ connectiq
 
 Build:
 -------
-C:\Users\David\ConnectIQ\bin\monkeyc -d fr645m -f .\monkey.jungle -o .\KozzerWatch.prg -y C:\Users\David\ConnectIQ\developer_key.der
+C:\Users\David\ConnectIQ\bin\monkeyc -d fr645m -f .\monkey.jungle -o .\KozzerWatchDark.prg -y C:\Users\David\ConnectIQ\developer_key.der
 
 
 Run App:
 ---------
-monkeydo .\KozzerWatch.prg fr645m
+monkeydo .\KozzerWatchDark.prg fr645m
 
 
 Prune Local Copies of Deleted Branches:
