@@ -24,18 +24,20 @@ class KozzerWatchView extends WatchUi.WatchFace
     const batteryWidth  = 32;
     const batteryHeight = 16;
     const batteryRadius = 3;
-    const moveBarHeight = 4;
+    const moveBarHeight = 5;
 
     // UI colors
     const BACKGROUND_COLOR  = 0xDEDEDE;     // Light gray 
     const FONT_COLOR        = 0x111111;     // Very dark gray 
-    const RED_COLOR         = 0xFF0000;     // Red
+    const CLOCK_HAND_LINE   = 0x222222;     // mid-dark gray
 
+    const RED_COLOR         = 0xFF0000;     // Red
     const BLUE_COLOR        = 0x0055FF;     // Blue
-    const FULL_COLOR        = 0x009900;     // Green
-    const MOST_COLOR        = 0x999900;     // Dark Yellow
-    const SOME_COLOR        = 0xFF9900;     // Orange
-    const LOW_COLOR         = 0xFF0000;     // Red
+
+    const FULL_COLOR        = 0x00AA00;     // Green
+    const MOST_COLOR        = 0xBBBB00;     // Dark Yellow
+    const SOME_COLOR        = 0xFF7700;     // Orange
+    const LOW_COLOR         = 0xAA0000;     // Dark Red
 
     // Initialize variables for this view
     function initialize() {
@@ -198,7 +200,7 @@ class KozzerWatchView extends WatchUi.WatchFace
             
             // Get location of points for icon location
             var iconX = dc.getWidth() / 2 - 12;
-            var iconY = Graphics.getFontHeight(Graphics.FONT_MEDIUM) + 24;
+            var iconY = Graphics.getFontHeight(Graphics.FONT_MEDIUM) + 25;
             var iconPoints = [ [iconX, iconY], [iconX+24, iconY], [iconX+24, iconY+24], [iconX, iconY+24] ];
         
             // Update the cliping rectangle to the location of the icon
@@ -254,24 +256,27 @@ class KozzerWatchView extends WatchUi.WatchFace
     }
     
     private function setStepsDisplayLevelColor(dc, perc){
-        if (System.getClockTime().hour < 14) {
-            // Only show step value colors if >= 2pm
-            resetColorsForRendering(dc);
-        } else if (perc > 100) {
+        if (perc > 100) {
             // Step goal!
             dc.setColor(FULL_COLOR, Graphics.COLOR_TRANSPARENT);
-        } else if (perc > 60) {
-            // 60+% of step goal
-            dc.setColor(MOST_COLOR, Graphics.COLOR_TRANSPARENT);
-        } else if (perc > 30) {
-            // 30-59% step goal
-            dc.setColor(SOME_COLOR, Graphics.COLOR_TRANSPARENT);
-        } else if (perc > 0) {
-            // 1-29% step goal
-            dc.setColor(LOW_COLOR,  Graphics.COLOR_TRANSPARENT);
         } else {
-            // 0% - Default to normal font color for 0 steps
-            resetColorsForRendering(dc);
+            // Only bother with non-green color if past 2pm
+            if (System.getClockTime().hour < 14) {
+                // Not yet 2pm, so use font color
+                resetColorsForRendering(dc);
+            } else if (perc > 60) {
+                // 60+% of step goal
+                dc.setColor(MOST_COLOR, Graphics.COLOR_TRANSPARENT);
+            } else if (perc > 30) {
+                // 30-59% step goal
+                dc.setColor(SOME_COLOR, Graphics.COLOR_TRANSPARENT);
+            } else if (perc > 0) {
+                // 1-29% step goal
+                dc.setColor(LOW_COLOR,  Graphics.COLOR_TRANSPARENT);
+            } else {
+                // 0% - Default to normal font color for 0 steps
+                resetColorsForRendering(dc);
+            }
         }
     }
 
@@ -310,7 +315,7 @@ class KozzerWatchView extends WatchUi.WatchFace
         dc.fillPolygon(hourHandPoints);
 
         // Draw line in hour hand
-        dc.setColor(Graphics.COLOR_DK_GRAY, Graphics.COLOR_TRANSPARENT);
+        dc.setColor(CLOCK_HAND_LINE, Graphics.COLOR_TRANSPARENT);
         hourHandPoints = generateHandCoordinates(screenCenterPoint, hourHandAngle, 70, 14, 3);
         dc.fillPolygon(hourHandPoints);
 
@@ -332,7 +337,7 @@ class KozzerWatchView extends WatchUi.WatchFace
         dc.fillPolygon(minuteHandPoints);
 
         // Draw line in minute hand
-        dc.setColor(Graphics.COLOR_DK_GRAY, Graphics.COLOR_TRANSPARENT);
+        dc.setColor(CLOCK_HAND_LINE, Graphics.COLOR_TRANSPARENT);
         minuteHandPoints = generateHandCoordinates(screenCenterPoint, minuteHandAngle, 100, 20, 2);
         dc.fillPolygon(minuteHandPoints);
 
