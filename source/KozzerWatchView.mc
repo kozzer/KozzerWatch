@@ -27,13 +27,14 @@ class KozzerWatchView extends WatchUi.WatchFace
     const moveBarHeight = 4;
 
     // UI colors
-    const BACKGROUND_COLOR  = 0xDEDEDE;     // Light gray 
-    const FONT_COLOR        = 0x111111;     // Very dark gray 
-    const RED_COLOR         = 0xFF0000;     // Red
+    const BACKGROUND_COLOR  = 0x111111;     // Very dark gray 
+    const FONT_COLOR        = 0xDEDEDE;     // Very light gray 
 
-    const BLUE_COLOR        = 0x0055FF;     // Blue
-    const FULL_COLOR        = 0x009900;     // Green
-    const MOST_COLOR        = 0x999900;     // Dark Yellow
+    const RED_COLOR         = 0xFF0000;     // Red
+    const BLUE_COLOR        = 0x1166FF;     // Blue
+
+    const FULL_COLOR        = 0x00FF00;     // Green
+    const MOST_COLOR        = 0xFFFF00;     // Yellow
     const SOME_COLOR        = 0xFF9900;     // Orange
     const LOW_COLOR         = 0xFF0000;     // Red
 
@@ -310,8 +311,8 @@ class KozzerWatchView extends WatchUi.WatchFace
         dc.fillPolygon(hourHandPoints);
 
         // Draw line in hour hand
-        dc.setColor(Graphics.COLOR_DK_GRAY, Graphics.COLOR_TRANSPARENT);
-        hourHandPoints = generateHandCoordinates(screenCenterPoint, hourHandAngle, 70, 14, 3);
+        dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_TRANSPARENT);
+        hourHandPoints = generateHandCoordinates(screenCenterPoint, hourHandAngle, 68, 12, 3);
         dc.fillPolygon(hourHandPoints);
 
         // Clear the clip
@@ -332,8 +333,8 @@ class KozzerWatchView extends WatchUi.WatchFace
         dc.fillPolygon(minuteHandPoints);
 
         // Draw line in minute hand
-        dc.setColor(Graphics.COLOR_DK_GRAY, Graphics.COLOR_TRANSPARENT);
-        minuteHandPoints = generateHandCoordinates(screenCenterPoint, minuteHandAngle, 70, 14, 2);
+        dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_TRANSPARENT);
+        minuteHandPoints = generateHandCoordinates(screenCenterPoint, minuteHandAngle, 98, 18, 2);
         dc.fillPolygon(minuteHandPoints);
 
         // Clear the clip
