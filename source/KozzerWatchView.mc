@@ -309,8 +309,16 @@ class KozzerWatchView extends WatchUi.WatchFace
         // Draw hour hand
         dc.fillPolygon(hourHandPoints);
 
+        // Draw line in hour hand
+        dc.setColor(Graphics.COLOR_DK_GRAY, Graphics.COLOR_TRANSPARENT);
+        hourHandPoints = generateHandCoordinates(screenCenterPoint, hourHandAngle, 70, 14, 3);
+        dc.fillPolygon(hourHandPoints);
+
         // Clear the clip
         clearDrawingClip(dc);
+
+        //Reset colors
+        resetColorsForRendering(dc);
     }
 
     private function drawMinuteHand(dc, clockTime) {
@@ -321,6 +329,11 @@ class KozzerWatchView extends WatchUi.WatchFace
         setDrawingClip(dc, minuteHandPoints);
 
         // Draw hour hand
+        dc.fillPolygon(minuteHandPoints);
+
+        // Draw line in minute hand
+        dc.setColor(Graphics.COLOR_DK_GRAY, Graphics.COLOR_TRANSPARENT);
+        minuteHandPoints = generateHandCoordinates(screenCenterPoint, minuteHandAngle, 100, 20, 2);
         dc.fillPolygon(minuteHandPoints);
 
         // Clear the clip
