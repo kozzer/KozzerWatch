@@ -168,27 +168,27 @@ class KozzerWatchView extends WatchUi.WatchFace
         // Draw bars based on bar level
         if (barLevel >= 1) {
             dc.setColor(BLUE_COLOR, Graphics.COLOR_TRANSPARENT);
-            dc.fillRectangle(barX, barY, 27, moveBarHeight);
-            barX += 30;
+            dc.fillRectangle(barX, barY, 26, moveBarHeight);
+            barX += 29;
         }
         if (barLevel >= 2){
             dc.setColor(FULL_COLOR, Graphics.COLOR_TRANSPARENT);
-            dc.fillRectangle(barX, barY, 9, moveBarHeight);
-            barX += 12;
+            dc.fillRectangle(barX, barY, 10, moveBarHeight);
+            barX += 13;
         }
         if (barLevel >= 3){
             dc.setColor(MOST_COLOR, Graphics.COLOR_TRANSPARENT);
-            dc.fillRectangle(barX, barY, 9, moveBarHeight);
-            barX += 12;
+            dc.fillRectangle(barX, barY, 10, moveBarHeight);
+            barX += 13;
         }
         if (barLevel >= 4){
             dc.setColor(SOME_COLOR, Graphics.COLOR_TRANSPARENT);
-            dc.fillRectangle(barX, barY, 9, moveBarHeight);
-            barX += 12;
+            dc.fillRectangle(barX, barY, 10, moveBarHeight);
+            barX += 13;
         }
         if (barLevel >= 5){
             dc.setColor(LOW_COLOR, Graphics.COLOR_TRANSPARENT);
-            dc.fillRectangle(barX, barY, 9, moveBarHeight);
+            dc.fillRectangle(barX, barY, 10, moveBarHeight);
         }
     }
     
