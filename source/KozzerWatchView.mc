@@ -33,8 +33,8 @@ class KozzerWatchView extends WatchUi.WatchFace
 
     const BLUE_COLOR        = 0x0055FF;     // Blue
     const FULL_COLOR        = 0x009900;     // Green
-    const MOST_COLOR        = 0x999900;     // Dark Yellow
-    const SOME_COLOR        = 0xFF9900;     // Orange
+    const MOST_COLOR        = 0x775500;     // Dark Yellow
+    const SOME_COLOR        = 0xFF4400;     // Orange
     const LOW_COLOR         = 0xFF0000;     // Red
 
     // Initialize variables for this view
@@ -276,11 +276,11 @@ class KozzerWatchView extends WatchUi.WatchFace
     }
 
     private function setBatteryDisplayLevelColor(dc, perc){
-        if (perc > 60) {
+        if (perc > 40) {
             dc.setColor(FULL_COLOR, Graphics.COLOR_TRANSPARENT);
-        } else if (perc > 40) {
+        } else if (perc > 30) {
             dc.setColor(MOST_COLOR, Graphics.COLOR_TRANSPARENT);
-        } else if (perc > 25) {
+        } else if (perc > 20) {
             dc.setColor(SOME_COLOR, Graphics.COLOR_TRANSPARENT);
         } else { 
             dc.setColor(LOW_COLOR,  Graphics.COLOR_TRANSPARENT);
