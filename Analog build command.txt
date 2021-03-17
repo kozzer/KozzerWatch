@@ -1,0 +1,26 @@
+Set Path:
+---------
+set PATH=%PATH%;C:\Users\David\Desktop\ConnectIQ_SDK\bin
+
+CD:
+----
+CD C:\Users\David\ConnectIQ\kozzer\KozzerLight
+
+
+Build:
+-------
+C:\Users\David\ConnectIQ\bin\monkeyc -d fr645m -f .\monkey.jungle -o .\analog.prg -y C:\Users\David\Desktop\ConnectIQ_SDK\bin\developer_key.der
+
+
+Load Simulator:
+----------------
+C:\Users\David\Desktop\ConnectIQ_SDK\samples\Analog> connectiq 
+
+
+Run App:
+---------
+C:\Users\David\Desktop\ConnectIQ_SDK\samples\Analog> monkeydo .\analog.prg fr645m
+
+
+Doc here:
+file:///C:/Users/David/Desktop/ConnectIQ_SDK/ProgrammersGuide.html
