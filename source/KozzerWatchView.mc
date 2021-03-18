@@ -35,7 +35,7 @@ class KozzerWatchView extends WatchUi.WatchFace
     const BLUE_COLOR        = 0x0055FF;     // Blue
 
     const FULL_COLOR        = 0x00AA00;     // Green
-    const MOST_COLOR        = 0xBBBB00;     // Dark Yellow
+    const MOST_COLOR        = 0x83A500;     // "Stale" green
     const SOME_COLOR        = 0xFF7700;     // Orange
     const LOW_COLOR         = 0xAA0000;     // Dark Red
 
@@ -217,9 +217,9 @@ class KozzerWatchView extends WatchUi.WatchFace
     // Draw battery icon with % indicated
     private function drawBatteryStatus(dc) {   
     
-        // Get battery % from system
+        // Get battery % from system 
         var batteryPerc = (System.getSystemStats().battery + 0.5).toNumber();
-        
+
         // dc dimensions
         var width  = dc.getWidth();
         var height = dc.getHeight();
@@ -239,6 +239,13 @@ class KozzerWatchView extends WatchUi.WatchFace
 
         // Change to color-coded fill
         setBatteryDisplayLevelColor(dc, batteryPerc);
+
+        // Increase battery perc by 10% to make easier to see
+        if (batteryPerc >= 90){
+            batteryPerc = 100;
+        } else {
+            batteryPerc += 10;
+        }        
         
         // Draw filled (only fill based on %)
         dc.fillRoundedRectangle(batteryX + 2, batteryY + 2, ((batteryWidth * batteryPerc) / 100) - 4, batteryHeight - 4, batteryRadius - 1);
@@ -281,9 +288,9 @@ class KozzerWatchView extends WatchUi.WatchFace
     }
 
     private function setBatteryDisplayLevelColor(dc, perc){
-        if (perc > 60) {
+        if (perc > 40) {
             dc.setColor(FULL_COLOR, Graphics.COLOR_TRANSPARENT);
-        } else if (perc > 40) {
+        } else if (perc > 30) {
             dc.setColor(MOST_COLOR, Graphics.COLOR_TRANSPARENT);
         } else if (perc > 25) {
             dc.setColor(SOME_COLOR, Graphics.COLOR_TRANSPARENT);
