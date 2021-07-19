@@ -3,6 +3,7 @@
     <iq:application entry="KozzerWatch" id="f1001cd4713d45f4b47899efbf6d9abf" launcherIcon="@Drawables.LauncherIcon" minSdkVersion="1.2.0" name="@Strings.AppName" type="watchface">
         <iq:products>
             <iq:product id="fr645m"/>
+            <iq:product id="fr945"/>
         </iq:products>
         <iq:permissions>
             <iq:uses-permission id="Background"/>
