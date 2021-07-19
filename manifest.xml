@@ -4,7 +4,6 @@
         <iq:products>
             <iq:product id="fr645m"/>
             <iq:product id="fr945"/>
-            <iq:product id="fr945lte"/>
         </iq:products>
         <iq:permissions>
             <iq:uses-permission id="Background"/>
