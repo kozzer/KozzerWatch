@@ -58,31 +58,31 @@ class KozzerWatchView extends WatchUi.WatchFace
     }
 
     function setTheme(){
+
+        // Colors common to both themes
+        CLOCK_HAND_LINE = 0x808080;     // Gray
+        RED_COLOR       = 0xFF0000;     // Red
+        LOW_COLOR       = RED_COLOR;
+
         if (useLightTheme){
 
             // Light theme (default)
             BACKGROUND_COLOR  = 0xDEDEDE;     // Light gray 
             FONT_COLOR        = 0x111111;     // Very dark gray 
-            CLOCK_HAND_LINE   = 0x808080;     // Gray
-            RED_COLOR         = 0xFF0000;     // Red
             BLUE_COLOR        = 0x0055FF;     // Blue
             FULL_COLOR        = 0x009900;     // Green
             MOST_COLOR        = 0x775500;     // Dark Yellow
             SOME_COLOR        = 0xFF4400;     // Orange
-            LOW_COLOR         = 0xFF0000;     // Red
 
         } else {
 
             // Dark theme
             BACKGROUND_COLOR  = 0x111111;     // Very dark gray 
             FONT_COLOR        = 0xDEDEDE;     // Very light gray 
-            CLOCK_HAND_LINE   = 0x808080;     // Gray
-            RED_COLOR         = 0xFF0000;     // Red
             BLUE_COLOR        = 0x1166FF;     // Blue
             FULL_COLOR        = 0x00FF00;     // Green
             MOST_COLOR        = 0xFFFF00;     // Yellow
             SOME_COLOR        = 0xFF9900;     // Orange
-            LOW_COLOR         = 0xFF0000;     // Red
         }
     }
 
