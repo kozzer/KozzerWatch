@@ -101,9 +101,13 @@ class KozzerWatchView extends WatchUi.WatchFace
         bufferDc.drawText(14, screenHeight / 2 - Graphics.getFontHeight(Graphics.FONT_XTINY) / 2, Graphics.FONT_XTINY, dataString, Graphics.TEXT_JUSTIFY_LEFT);
         resetColorsForRendering(bufferDc);
 
+        // Commenting this out to be replaced by beers earned
         // Daily Miles 
-        dataString = (info.distance.toFloat() / 160934).format("%3.1f") + "m";  // 160,934 cm per mile
-        bufferDc.drawText(screenWidth - 14, screenHeight / 2 - Graphics.getFontHeight(Graphics.FONT_XTINY) / 2, Graphics.FONT_XTINY, dataString, Graphics.TEXT_JUSTIFY_RIGHT);
+        //dataString = (info.distance.toFloat() / 160934).format("%3.1f") + "m";  // 160,934 cm per mile
+        //bufferDc.drawText(screenWidth - 14, screenHeight / 2 - Graphics.getFontHeight(Graphics.FONT_XTINY) / 2, Graphics.FONT_XTINY, dataString, Graphics.TEXT_JUSTIFY_RIGHT);
+
+        // Draw beers earned + mug
+        drawBeerMug(bufferDc);
 
         // Always output the offscreen buffer to the main display in onUpdate() - once per minute
         writeBufferToDisplay(screenDc, screenBuffer);
@@ -240,6 +244,49 @@ class KozzerWatchView extends WatchUi.WatchFace
         
         // Draw filled (only fill based on %)
         dc.fillRoundedRectangle(batteryX + 2, batteryY + 2, ((batteryWidth * batteryPerc) / 100) - 4, batteryHeight - 4, batteryRadius - 1);
+    }
+
+    // Draw beer mug, with right level of beer
+    private function drawBeerMug(dc){
+
+        // Figure how full beer should be (1.5 miles per beer)
+        var centimeters = 160934 * 1.5;     // 160,934 cm per mile
+        var beersEarned = Math.floor(info.distance.toFloat() / centimeters).format("%d");  // Whole beers already earned
+        var mugLevel = ((info.distance.toFloat() % centimeters) * 100) / centimeters;
+
+        // dc dimensions
+        var width  = dc.getWidth();
+        var height = dc.getHeight();
+
+        // Put it center right
+        var mugX = width - 18;
+        var mugY = (height / 2) + 18;
+
+        // Use battery size as basis for mug size (X / Y flipped)
+        var mugWidth = batteryHeight;
+        var mugHeight = batteryWidth;
+
+        // Reset colors to font / background
+        resetColorsForRendering(dc);
+
+        // Draw Num Beers earned, to go under the mug
+        dc.drawText(mugX, mugY + mugHeight - Graphics.getFontHeight(Graphics.FONT_XTINY) / 2, Graphics.FONT_XTINY, beersEarned, Graphics.TEXT_JUSTIFY_RIGHT);
+
+        // Drag main part of mug
+        dc.drawRoundedRectangle(mugX, mugY, mugWidth, mugHeight, batteryRadius);
+
+        // Drag handle on left side
+        var handleX = mugX - 6;
+        var handleY = mugY + 6;
+        dc.drawRoundedRectangle(handleX, handleY, 6, 12, batteryRadius);
+
+        // Draw beer inside mug, proper amount for how much of next beer earned
+        var beerX = mugX + 2;
+        var beerHeight = (12 * (mugLevel / 100)) - 2;
+        var beerY = mugY + 2 + beerHeight;
+        dc.setColor(COLOR_MOST, COLOR_MOST);
+        dc.fillRoundedRectangle(beerX, beerY, mugWidth - 4, beerHeight, batteryRadius - 1);
+        dc.resetColorsForRendering();
     }
 
 
