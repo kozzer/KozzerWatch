@@ -12,6 +12,10 @@ var partialUpdatesAllowed = false;          // Outside class so the Delegate cla
 
 class KozzerWatchView extends WatchUi.WatchFace
 {
+    // Application properties
+    var useLightTheme      = true;
+    var notifyOnBeerEarned = false;
+
     // General class-level fields
     var isAwake;                            // Flag indicating whether watch is awake or in sleep mode
     var bluetoothIcon;                      // Reference to bluetooth icon png
@@ -26,22 +30,60 @@ class KozzerWatchView extends WatchUi.WatchFace
     const batteryRadius = 3;
     const moveBarHeight = 4;
 
-    // UI colors
-    const BACKGROUND_COLOR  = 0xDEDEDE;     // Light gray 
-    const FONT_COLOR        = 0x111111;     // Very dark gray 
-    const RED_COLOR         = 0xFF0000;     // Red
-
-    const BLUE_COLOR        = 0x0055FF;     // Blue
-    const FULL_COLOR        = 0x009900;     // Green
-    const MOST_COLOR        = 0x775500;     // Dark Yellow
-    const SOME_COLOR        = 0xFF4400;     // Orange
-    const LOW_COLOR         = 0xFF0000;     // Red
+    // UI colors -- default to light theme
+    var BACKGROUND_COLOR  = 0xDEDEDE;     // Light gray 
+    var FONT_COLOR        = 0x111111;     // Very dark gray 
+    var RED_COLOR         = 0xFF0000;     // Red
+    var CLOCK_HAND_LINE   = 0x808080;
+    var BLUE_COLOR        = 0x0055FF;     // Blue
+    var FULL_COLOR        = 0x009900;     // Green
+    var MOST_COLOR        = 0x775500;     // Dark Yellow
+    var SOME_COLOR        = 0xFF4400;     // Orange
+    var LOW_COLOR         = 0xFF0000;     // Red
 
     // Initialize variables for this view
     function initialize() {
         WatchFace.initialize();
         fullScreenRefresh     = true;
         partialUpdatesAllowed = ( Toybox.WatchUi.WatchFace has :onPartialUpdate ); // Will be set to true until KozzerWatchViewDelegate.onPowerBudgetExceeded() is fired
+    
+        // Get settings - then set theme 
+        populateAppSettings();
+        setTheme();
+    }
+
+    function populateAppSettings(){
+        useLightTheme      = Properties.getValue("LightThemeActive");
+        notifyOnBeerEarned = Properties.getValue("NotifyOnBeerEarned");
+    }
+
+    function setTheme(){
+        if (useLightTheme){
+
+            // Light theme (default)
+            BACKGROUND_COLOR  = 0xDEDEDE;     // Light gray 
+            FONT_COLOR        = 0x111111;     // Very dark gray 
+            CLOCK_HAND_LINE   = 0x808080;     // Gray
+            RED_COLOR         = 0xFF0000;     // Red
+            BLUE_COLOR        = 0x0055FF;     // Blue
+            FULL_COLOR        = 0x009900;     // Green
+            MOST_COLOR        = 0x775500;     // Dark Yellow
+            SOME_COLOR        = 0xFF4400;     // Orange
+            LOW_COLOR         = 0xFF0000;     // Red
+
+        } else {
+
+            // Dark theme
+            BACKGROUND_COLOR  = 0x111111;     // Very dark gray 
+            FONT_COLOR        = 0xDEDEDE;     // Very light gray 
+            CLOCK_HAND_LINE   = 0x808080;     // Gray
+            RED_COLOR         = 0xFF0000;     // Red
+            BLUE_COLOR        = 0x1166FF;     // Blue
+            FULL_COLOR        = 0x00FF00;     // Green
+            MOST_COLOR        = 0xFFFF00;     // Yellow
+            SOME_COLOR        = 0xFF9900;     // Orange
+            LOW_COLOR         = 0xFF0000;     // Red
+        }
     }
 
     // Configure the layout of the watchface for this device

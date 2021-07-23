@@ -26,4 +26,9 @@ class KozzerWatch extends Application.AppBase
     function getGoalView(goal) {
         return [new KozzerGoalView(goal)];
     }
+
+    // Settings screen
+    function getSettingsView() {
+        return [new KozzerSettingsView(), new KozzerSettingsDelegate()];
+    }
 }
