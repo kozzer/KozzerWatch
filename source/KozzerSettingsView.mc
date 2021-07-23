@@ -70,7 +70,11 @@ class KozzerSettingsDelegate extends WatchUi.InputDelegate {
     function onKey(keyEvent) {
         System.println(keyEvent.getKey());         // e.g. KEY_MENU = 7
 
+        // ********************************************************
+        //
         // Figure out what to do here to navigate and apply changes 
+        //
+        // ********************************************************
 
         return true;
     }

@@ -149,7 +149,7 @@ class KozzerWatchView extends WatchUi.WatchFace
         //bufferDc.drawText(screenWidth - 14, screenHeight / 2 - Graphics.getFontHeight(Graphics.FONT_XTINY) / 2, Graphics.FONT_XTINY, dataString, Graphics.TEXT_JUSTIFY_RIGHT);
 
         // Draw beers earned + mug
-        drawBeerMug(bufferDc);
+        drawBeersEarned(bufferDc);
 
         // Always output the offscreen buffer to the main display in onUpdate() - once per minute
         writeBufferToDisplay(screenDc, screenBuffer);
@@ -289,12 +289,12 @@ class KozzerWatchView extends WatchUi.WatchFace
     }
 
     // Draw beer mug, with right level of beer
-    private function drawBeerMug(dc){
+    private function drawBeersEarned(dc){
 
-        // Figure how full beer should be (1.5 miles per beer)
-        var centimeters = 160934 * 1.5;     // 160,934 cm per mile
-        var beersEarned = Math.floor(info.distance.toFloat() / centimeters).format("%d");  // Whole beers already earned
-        var mugLevel = ((info.distance.toFloat() % centimeters) * 100) / centimeters;
+        // Get beers earned status
+        var beerDistance = 160934 * 1.5;                                                        // 160,934 cm per mile, 1.5 miles per beer
+        var beersEarned  = Math.floor(info.distance.toFloat() / beerDistance).format("%d");     // Whole beers already earned
+        var mugLevel     = ((info.distance.toFloat() % beerDistance) * 100) / beerDistance;     // 0-100 percent
 
         // dc dimensions
         var width  = dc.getWidth();
@@ -305,7 +305,7 @@ class KozzerWatchView extends WatchUi.WatchFace
         var mugY = (height / 2) + 18;
 
         // Use battery size as basis for mug size (X / Y flipped)
-        var mugWidth = batteryHeight;
+        var mugWidth  = batteryHeight;
         var mugHeight = batteryWidth;
 
         // Reset colors to font / background
