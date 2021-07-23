@@ -284,7 +284,7 @@ class KozzerWatchView extends WatchUi.WatchFace
         var beerX = mugX + 2;
         var beerHeight = (12 * (mugLevel / 100)) - 2;
         var beerY = mugY + 2 + beerHeight;
-        dc.setColor(COLOR_MOST, COLOR_MOST);
+        dc.setColor(MOST_COLOR, MOST_COLOR);
         dc.fillRoundedRectangle(beerX, beerY, mugWidth - 4, beerHeight, batteryRadius - 1);
         dc.resetColorsForRendering();
     }
