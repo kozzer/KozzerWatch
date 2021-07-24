@@ -41,7 +41,7 @@ class KozzerWatchView extends WatchUi.WatchFace
     var MOST_COLOR        = 0x775500;     // Dark Yellow
     var SOME_COLOR        = 0xFF4400;     // Orange
     var LOW_COLOR         = 0xFF0000;     // Red
-    var BEER_COLOR        = 0x995000;     // Amber
+    var BEER_COLOR        = 0x996600;     // Amber
 
     // Initialize variables for this view
     function initialize() {
@@ -77,7 +77,7 @@ class KozzerWatchView extends WatchUi.WatchFace
             FULL_COLOR        = 0x009900;     // Green
             MOST_COLOR        = 0x775500;     // Dark Yellow
             SOME_COLOR        = 0xFF4400;     // Orange
-            BEER_COLOR        = 0x995000;     // Amber
+            BEER_COLOR        = 0x996600;     // Amber
 
         } else {
 
@@ -345,11 +345,9 @@ class KozzerWatchView extends WatchUi.WatchFace
     }
 
     private function getQualifyingSteps(info){
+        // The first 10,000 steps don't count -- don't be lazy!
         var qualifyingSteps = info.steps - 10000;
-        if (qualifyingSteps < 0){
-            qualifyingSteps = 0;
-        }
-        return qualifyingSteps;
+        return qualifyingSteps >= 0 ? qualifyingSteps : 0;
     }
 
     // Draw the watch face background onto the given draw context
