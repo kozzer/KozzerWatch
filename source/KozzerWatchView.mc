@@ -41,7 +41,7 @@ class KozzerWatchView extends WatchUi.WatchFace
     var MOST_COLOR        = 0x775500;     // Dark Yellow
     var SOME_COLOR        = 0xFF4400;     // Orange
     var LOW_COLOR         = 0xFF0000;     // Red
-    var BEER_COLOR        = 0x996600;     // Amber
+    var BEER_COLOR        = 0xFF9328;     // Amber
 
     // Initialize variables for this view
     function initialize() {
@@ -77,7 +77,7 @@ class KozzerWatchView extends WatchUi.WatchFace
             FULL_COLOR        = 0x009900;     // Green
             MOST_COLOR        = 0x775500;     // Dark Yellow
             SOME_COLOR        = 0xFF4400;     // Orange
-            BEER_COLOR        = 0x996600;     // Amber
+            BEER_COLOR        = 0xFF9328;     // Amber
 
         } else {
 
@@ -322,7 +322,8 @@ class KozzerWatchView extends WatchUi.WatchFace
         dc.drawText(mugX + 8, mugY + mugHeight, Graphics.FONT_XTINY, beersEarned, Graphics.TEXT_JUSTIFY_CENTER);
 
         // Drag main part of mug
-        dc.drawRoundedRectangle(mugX, mugY, mugWidth, mugHeight, batteryRadius);
+        dc.drawRoundedRectangle(mugX,     mugY, mugWidth,     mugHeight,     batteryRadius);
+        dc.drawRoundedRectangle(mugX - 1, mugY, mugWidth + 2, mugHeight + 1, batteryRadius);
 
         // Drag handle on left side
         var handleX = mugX - 5;
@@ -331,10 +332,10 @@ class KozzerWatchView extends WatchUi.WatchFace
         dc.drawRoundedRectangle(handleX-1, handleY-1, 7, 14, batteryRadius);
 
         // Draw beer inside mug, proper amount for how much of next beer earned
-        var beerHeight = (12 * (mugLevel.toFloat() / 100)) * 1.5;
+        var beerHeight = (mugHeight * (mugLevel.toFloat() / 100));
         var beerX = mugX + 1;
         var beerY = mugY + mugHeight - beerHeight;
-        dc.setColor(SOME_COLOR, SOME_COLOR);
+        dc.setColor(BEER_COLOR, BEER_COLOR);
 
         //System.println("mugLevel = " + mugLevel + "%, beerX = " + beerX + ", beerY = " + beerY + ", beerHeight = " + beerHeight);
 
@@ -417,9 +418,9 @@ class KozzerWatchView extends WatchUi.WatchFace
         dc.fillPolygon(hourHandPoints);
 
         // Draw line in hour hand
-        dc.setColor(Graphics.COLOR_DK_GRAY, Graphics.COLOR_TRANSPARENT);
-        hourHandPoints = generateHandCoordinates(screenCenterPoint, hourHandAngle, 70, 14, 3);
-        dc.fillPolygon(hourHandPoints);
+        //dc.setColor(Graphics.COLOR_DK_GRAY, Graphics.COLOR_TRANSPARENT);
+        //hourHandPoints = generateHandCoordinates(screenCenterPoint, hourHandAngle, 70, 14, 3);
+        //dc.fillPolygon(hourHandPoints);
 
         // Clear the clip
         clearDrawingClip(dc);
