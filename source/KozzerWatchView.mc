@@ -41,6 +41,7 @@ class KozzerWatchView extends WatchUi.WatchFace
     var MOST_COLOR        = 0x775500;     // Dark Yellow
     var SOME_COLOR        = 0xFF4400;     // Orange
     var LOW_COLOR         = 0xFF0000;     // Red
+    var BEER_COLOR        = 0x995000;     // Amber
 
     // Initialize variables for this view
     function initialize() {
@@ -54,8 +55,10 @@ class KozzerWatchView extends WatchUi.WatchFace
     }
 
     function populateAppSettings(){
-        useLightTheme      = Storage.getValue("LightThemeActive");
-        notifyOnBeerEarned = Storage.getValue("NotifyOnBeerEarned");
+        useLightTheme      = true; //Storage.getValue("LightThemeActive");
+        notifyOnBeerEarned = false; //Storage.getValue("NotifyOnBeerEarned");
+
+        System.println("light: " + useLightTheme + ", nofify: " + notifyOnBeerEarned);
     }
 
     function setTheme(){
@@ -74,6 +77,7 @@ class KozzerWatchView extends WatchUi.WatchFace
             FULL_COLOR        = 0x009900;     // Green
             MOST_COLOR        = 0x775500;     // Dark Yellow
             SOME_COLOR        = 0xFF4400;     // Orange
+            BEER_COLOR        = 0x995000;     // Amber
 
         } else {
 
@@ -84,6 +88,7 @@ class KozzerWatchView extends WatchUi.WatchFace
             FULL_COLOR        = 0x00FF00;     // Green
             MOST_COLOR        = 0xFFFF00;     // Yellow
             SOME_COLOR        = 0xFF9900;     // Orange
+            BEER_COLOR        = SOME_COLOR;
         }
     }
 
@@ -292,10 +297,11 @@ class KozzerWatchView extends WatchUi.WatchFace
     // Draw beer mug, with right level of beer
     private function drawBeersEarned(dc, info){
 
-        // Get beers earned status
-        var beerDistance = 160934 * 1.5;                                              // 160,934 cm per mile, 1.5 miles per beer
-        var beersEarned  = Math.floor(info.distance / beerDistance).format("%d");     // Whole beers already earned
-        var mugLevel     = ((info.distance % beerDistance.toLong()) * 100) / beerDistance.toLong();     // 0-100 percent
+        // Get beers earned status via steps
+        var qualifyingSteps = getQualifyingSteps(info);
+        var stepsPerBeer    = 2500;
+        var beersEarned     = Math.floor(qualifyingSteps / stepsPerBeer).format("%d");     // Whole beers already earned
+        var mugLevel        = ((qualifyingSteps % stepsPerBeer) * 100) / stepsPerBeer;     // 0-100 percent
 
         // dc dimensions
         var width  = dc.getWidth();
@@ -338,6 +344,13 @@ class KozzerWatchView extends WatchUi.WatchFace
         resetColorsForRendering(dc);
     }
 
+    private function getQualifyingSteps(info){
+        var qualifyingSteps = info.steps - 10000;
+        if (qualifyingSteps < 0){
+            qualifyingSteps = 0;
+        }
+        return qualifyingSteps;
+    }
 
     // Draw the watch face background onto the given draw context
     private function writeBufferToDisplay(screenDc, screenBuffer) { 
