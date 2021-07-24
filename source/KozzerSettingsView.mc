@@ -1,3 +1,4 @@
+using Toybox;
 using Toybox.Application;
 using Toybox.Graphics;
 using Toybox.Lang;
@@ -6,7 +7,7 @@ using Toybox.Time;
 using Toybox.Time.Gregorian;
 using Toybox.WatchUi;
 
-class KozzerSettingsView extends WatchUI.View {
+class KozzerSettingsView extends WatchUi.View {
 
     // App settings
     var useLightTheme;
@@ -31,7 +32,7 @@ class KozzerSettingsView extends WatchUI.View {
         dc.clearClip();
 
         // Add checkbox options (both settings are boolean)
-        var menu = new WatchUI.CheckboxMenu({:title=>"Kozzer Watch Settings"});
+        var menu = new WatchUi.CheckboxMenu({:title=>"Kozzer Watch Settings"});
         var delegate;
         menu.addItem(new CheckboxMenuItem(
             "Theme",
@@ -48,7 +49,7 @@ class KozzerSettingsView extends WatchUI.View {
             { }
         ));
         delegate = new KozzerSettingsDelegate();
-        WatchUI.pushView(menu, delegate, WatchUI.SLIDE_BLINK);
+        WatchUi.pushView(menu, delegate, WatchUi.SLIDE_BLINK);
         return true;
     }
 

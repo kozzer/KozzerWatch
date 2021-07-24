@@ -332,6 +332,7 @@ class KozzerWatchView extends WatchUi.WatchFace
 
         //System.println("mugLevel = " + mugLevel + "%, beerX = " + beerX + ", beerY = " + beerY + ", beerHeight = " + beerHeight);
 
+        // Bulk of beer via rounded rectangle, but I want the top to be flat not rounded, so the line takes care of that
         dc.fillRoundedRectangle(beerX, beerY, mugWidth - 2, beerHeight, batteryRadius - 1);
         dc.drawLine(beerX, beerY, beerX + (mugWidth - 2), beerY);
         resetColorsForRendering(dc);
