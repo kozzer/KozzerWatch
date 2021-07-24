@@ -7,6 +7,7 @@ using Toybox.System;
 using Toybox.Time;
 using Toybox.Time.Gregorian;
 using Toybox.WatchUi;
+using Toybox.Application.Storage as Storage;
 
 var partialUpdatesAllowed = false;          // Outside class so the Delegate class below can access the value    
 
@@ -53,8 +54,8 @@ class KozzerWatchView extends WatchUi.WatchFace
     }
 
     function populateAppSettings(){
-        useLightTheme      = Properties.getValue("LightThemeActive");
-        notifyOnBeerEarned = Properties.getValue("NotifyOnBeerEarned");
+        useLightTheme      = Storage.getValue("LightThemeActive");
+        notifyOnBeerEarned = Storage.getValue("NotifyOnBeerEarned");
     }
 
     function setTheme(){
@@ -149,7 +150,7 @@ class KozzerWatchView extends WatchUi.WatchFace
         //bufferDc.drawText(screenWidth - 14, screenHeight / 2 - Graphics.getFontHeight(Graphics.FONT_XTINY) / 2, Graphics.FONT_XTINY, dataString, Graphics.TEXT_JUSTIFY_RIGHT);
 
         // Draw beers earned + mug
-        drawBeersEarned(bufferDc);
+        drawBeersEarned(bufferDc, info);
 
         // Always output the offscreen buffer to the main display in onUpdate() - once per minute
         writeBufferToDisplay(screenDc, screenBuffer);
@@ -289,46 +290,51 @@ class KozzerWatchView extends WatchUi.WatchFace
     }
 
     // Draw beer mug, with right level of beer
-    private function drawBeersEarned(dc){
+    private function drawBeersEarned(dc, info){
 
         // Get beers earned status
-        var beerDistance = 160934 * 1.5;                                                        // 160,934 cm per mile, 1.5 miles per beer
-        var beersEarned  = Math.floor(info.distance.toFloat() / beerDistance).format("%d");     // Whole beers already earned
-        var mugLevel     = ((info.distance.toFloat() % beerDistance) * 100) / beerDistance;     // 0-100 percent
+        var beerDistance = 160934 * 1.5;                                              // 160,934 cm per mile, 1.5 miles per beer
+        var beersEarned  = Math.floor(info.distance / beerDistance).format("%d");     // Whole beers already earned
+        var mugLevel     = ((info.distance % beerDistance.toLong()) * 100) / beerDistance.toLong();     // 0-100 percent
 
         // dc dimensions
         var width  = dc.getWidth();
         var height = dc.getHeight();
 
         // Put it center right
-        var mugX = width - 18;
-        var mugY = (height / 2) + 18;
+        var mugX = width - 32;
+        var mugY = (height / 2) - 20;
 
         // Use battery size as basis for mug size (X / Y flipped)
         var mugWidth  = batteryHeight;
-        var mugHeight = batteryWidth;
+        var mugHeight = batteryWidth - 6;
 
         // Reset colors to font / background
         resetColorsForRendering(dc);
 
         // Draw Num Beers earned, to go under the mug
-        dc.drawText(mugX, mugY + mugHeight - Graphics.getFontHeight(Graphics.FONT_XTINY) / 2, Graphics.FONT_XTINY, beersEarned, Graphics.TEXT_JUSTIFY_RIGHT);
+        dc.drawText(mugX + 8, mugY + mugHeight, Graphics.FONT_XTINY, beersEarned, Graphics.TEXT_JUSTIFY_CENTER);
 
         // Drag main part of mug
         dc.drawRoundedRectangle(mugX, mugY, mugWidth, mugHeight, batteryRadius);
 
         // Drag handle on left side
-        var handleX = mugX - 6;
-        var handleY = mugY + 6;
-        dc.drawRoundedRectangle(handleX, handleY, 6, 12, batteryRadius);
+        var handleX = mugX - 5;
+        var handleY = mugY + 7;
+        dc.drawRoundedRectangle(handleX,   handleY,   6, 12, batteryRadius);
+        dc.drawRoundedRectangle(handleX-1, handleY-1, 7, 14, batteryRadius);
 
         // Draw beer inside mug, proper amount for how much of next beer earned
-        var beerX = mugX + 2;
-        var beerHeight = (12 * (mugLevel / 100)) - 2;
-        var beerY = mugY + 2 + beerHeight;
-        dc.setColor(MOST_COLOR, MOST_COLOR);
-        dc.fillRoundedRectangle(beerX, beerY, mugWidth - 4, beerHeight, batteryRadius - 1);
-        dc.resetColorsForRendering();
+        var beerHeight = (12 * (mugLevel.toFloat() / 100)) * 1.5;
+        var beerX = mugX + 1;
+        var beerY = mugY + mugHeight - beerHeight;
+        dc.setColor(SOME_COLOR, SOME_COLOR);
+
+        //System.println("mugLevel = " + mugLevel + "%, beerX = " + beerX + ", beerY = " + beerY + ", beerHeight = " + beerHeight);
+
+        dc.fillRoundedRectangle(beerX, beerY, mugWidth - 2, beerHeight, batteryRadius - 1);
+        dc.drawLine(beerX, beerY, beerX + (mugWidth - 2), beerY);
+        resetColorsForRendering(dc);
     }
 
 
