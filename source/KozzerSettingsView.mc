@@ -69,6 +69,7 @@ class KozzerSettingsDelegate extends WatchUi.InputDelegate {
 
     // onKey -- press and release of physical button
     function onKey(keyEvent) {
+        
         System.println(keyEvent.getKey());         // e.g. KEY_MENU = 7
 
         // ********************************************************
