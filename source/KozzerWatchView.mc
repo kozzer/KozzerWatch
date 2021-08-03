@@ -34,11 +34,12 @@ class KozzerWatchView extends WatchUi.WatchFace
     // UI colors -- default to light theme
     var BACKGROUND_COLOR  = 0xDEDEDE;     // Light gray 
     var FONT_COLOR        = 0x111111;     // Very dark gray 
+    var FADED_FONT_COLOR  = 0x777777;     // Medium gray
     var RED_COLOR         = 0xFF0000;     // Red
     var CLOCK_HAND_LINE   = 0x808080;
     var BLUE_COLOR        = 0x0055FF;     // Blue
     var FULL_COLOR        = 0x009900;     // Green
-    var MOST_COLOR        = 0x775500;     // Dark Yellow
+    var MOST_COLOR        = 0xB3E500;     // Yellow-Green
     var SOME_COLOR        = 0xFF4400;     // Orange
     var LOW_COLOR         = 0xFF0000;     // Red
     var BEER_COLOR        = 0xFF9328;     // Amber
@@ -64,9 +65,10 @@ class KozzerWatchView extends WatchUi.WatchFace
     function setTheme(){
 
         // Colors common to both themes
-        CLOCK_HAND_LINE = 0x808080;     // Gray
-        RED_COLOR       = 0xFF0000;     // Red
-        LOW_COLOR       = RED_COLOR;
+        FADED_FONT_COLOR = 0x999999;     // Medium gray
+        CLOCK_HAND_LINE  = 0x808080;     // Gray
+        RED_COLOR        = 0xFF0000;     // Red
+        LOW_COLOR        = RED_COLOR;
 
         if (useLightTheme){
 
@@ -307,20 +309,21 @@ class KozzerWatchView extends WatchUi.WatchFace
         var width  = dc.getWidth();
         var height = dc.getHeight();
 
-        // Put it center right
-        var mugX = width - 32;
-        var mugY = (height / 2) - 20;
-
         // Use battery size as basis for mug size (X / Y flipped)
         var mugWidth  = batteryHeight;
         var mugHeight = batteryWidth - 6;
 
-        // Reset colors to font / background
-        resetColorsForRendering(dc);
+        // Put it center right
+        var mugX = width - 32;
+        var mugY = (height / 2) - (mugHeight / 2);
 
-        // Draw Num Beers earned, to go under the mug
-        dc.drawText(mugX + 8, mugY + mugHeight, Graphics.FONT_XTINY, beersEarned, Graphics.TEXT_JUSTIFY_CENTER);
-
+        // Reset colors to font / background, or faded gray if not yet at 10,000 steps
+        if (info.steps > 10000){
+            resetColorsForRendering(dc);
+        } else {
+            dc.setColor(FADED_FONT_COLOR, COLOR_TRANSPARENT);
+        }
+        
         // Drag main part of mug
         dc.drawRoundedRectangle(mugX,     mugY, mugWidth,     mugHeight,     batteryRadius);
         dc.drawRoundedRectangle(mugX - 1, mugY, mugWidth + 2, mugHeight + 1, batteryRadius);
@@ -343,6 +346,9 @@ class KozzerWatchView extends WatchUi.WatchFace
         dc.fillRoundedRectangle(beerX, beerY, mugWidth - 2, beerHeight, batteryRadius - 1);
         dc.drawLine(beerX, beerY, beerX + (mugWidth - 2), beerY);
         resetColorsForRendering(dc);
+
+        // Last step Draw Num Beers earned, to go inside
+        dc.drawText(mugX + 8, mugY + 4, Graphics.FONT_XTINY, beersEarned, Graphics.TEXT_JUSTIFY_CENTER);
     }
 
     private function getQualifyingSteps(info){
