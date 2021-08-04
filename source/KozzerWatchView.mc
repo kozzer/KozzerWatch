@@ -318,11 +318,7 @@ class KozzerWatchView extends WatchUi.WatchFace
         var mugY = (height / 2) - (mugHeight / 2);
 
         // Reset colors to font / background, or faded gray if not yet at 10,000 steps
-        if (info.steps > 10000){
-            resetColorsForRendering(dc);
-        } else {
-            dc.setColor(FADED_FONT_COLOR, COLOR_TRANSPARENT);
-        }
+        setMugForeColor(dc, info);
         
         // Drag main part of mug
         dc.drawRoundedRectangle(mugX,     mugY, mugWidth,     mugHeight,     batteryRadius);
@@ -345,16 +341,29 @@ class KozzerWatchView extends WatchUi.WatchFace
         // Bulk of beer via rounded rectangle, but I want the top to be flat not rounded, so the line takes care of that
         dc.fillRoundedRectangle(beerX, beerY, mugWidth - 2, beerHeight, batteryRadius - 1);
         dc.drawLine(beerX, beerY, beerX + (mugWidth - 2), beerY);
-        resetColorsForRendering(dc);
+
+        // Reset colors to font / background, or faded gray if not yet at 10,000 steps
+        setMugForeColor(dc, info);
 
         // Last step Draw Num Beers earned, to go inside
-        dc.drawText(mugX + 8, mugY + 4, Graphics.FONT_XTINY, beersEarned, Graphics.TEXT_JUSTIFY_CENTER);
+        dc.drawText(mugX + 8, mugY, Graphics.FONT_XTINY, beersEarned, Graphics.TEXT_JUSTIFY_CENTER);
+
+        resetColorsForRendering(dc);
     }
 
     private function getQualifyingSteps(info){
         // The first 10,000 steps don't count -- don't be lazy!
         var qualifyingSteps = info.steps - 10000;
         return qualifyingSteps >= 0 ? qualifyingSteps : 0;
+    }
+
+    private function setMugForeColor(dc, info){
+        // Reset colors to font / background, or faded gray if not yet at 10,000 steps
+        if (info.steps > 10000){
+            resetColorsForRendering(dc);
+        } else {
+            dc.setColor(FADED_FONT_COLOR, Graphics.COLOR_TRANSPARENT);
+        }
     }
 
     // Draw the watch face background onto the given draw context
@@ -446,9 +455,9 @@ class KozzerWatchView extends WatchUi.WatchFace
         dc.fillPolygon(minuteHandPoints);
 
         // Draw line in minute hand
-        dc.setColor(Graphics.COLOR_DK_GRAY, Graphics.COLOR_TRANSPARENT);
-        minuteHandPoints = generateHandCoordinates(screenCenterPoint, minuteHandAngle, 100, 20, 2);
-        dc.fillPolygon(minuteHandPoints);
+        // dc.setColor(Graphics.COLOR_DK_GRAY, Graphics.COLOR_TRANSPARENT);
+        // minuteHandPoints = generateHandCoordinates(screenCenterPoint, minuteHandAngle, 100, 20, 2);
+        // dc.fillPolygon(minuteHandPoints);
 
         // Clear the clip
         clearDrawingClip(dc);
