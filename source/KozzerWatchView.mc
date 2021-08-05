@@ -34,7 +34,7 @@ class KozzerWatchView extends WatchUi.WatchFace
     // UI colors -- default to light theme
     var BACKGROUND_COLOR  = 0xDEDEDE;     // Light gray 
     var FONT_COLOR        = 0x111111;     // Very dark gray 
-    var FADED_FONT_COLOR  = 0x777777;     // Medium gray
+    var FADED_FONT_COLOR  = 0x999999;     // Medium gray
     var RED_COLOR         = 0xFF0000;     // Red
     var CLOCK_HAND_LINE   = 0x808080;
     var BLUE_COLOR        = 0x0055FF;     // Blue
@@ -144,12 +144,7 @@ class KozzerWatchView extends WatchUi.WatchFace
         drawBatteryStatus(bufferDc);
                
         // Daily Steps
-        var info       = ActivityMonitor.getInfo();
-        var dataString = info.steps.toString();
-        var stepPerc   = ((info.steps * 100) / info.stepGoal).toNumber();
-        setStepsDisplayLevelColor(bufferDc, stepPerc);
-        bufferDc.drawText(14, screenHeight / 2 - Graphics.getFontHeight(Graphics.FONT_XTINY) / 2, Graphics.FONT_XTINY, dataString, Graphics.TEXT_JUSTIFY_LEFT);
-        resetColorsForRendering(bufferDc);
+        drawNumberOfStepsText(bufferDc, info);
 
         // Commenting this out to be replaced by beers earned
         // Daily Miles 
@@ -204,8 +199,8 @@ class KozzerWatchView extends WatchUi.WatchFace
    
     // Draw the date string into the provided buffer at the specified location
     private function drawDateString(dc, x, y) {
-        var info = Gregorian.info(Time.now(), Time.FORMAT_MEDIUM);
-        var dateStr = Lang.format("$1$ $2$", [info.month, info.day]);
+        var greg    = Gregorian.info(Time.now(), Time.FORMAT_MEDIUM);       // Greg is 16th century new hotness, Julian is old and busted
+        var dateStr = Lang.format("$1$ $2$", [greg.month, greg.day]);
         dc.drawText(x, y, Graphics.FONT_MEDIUM, dateStr, Graphics.TEXT_JUSTIFY_CENTER);
     }
 
@@ -264,6 +259,16 @@ class KozzerWatchView extends WatchUi.WatchFace
             // Clear the clip
             clearDrawingClip(dc);
         }
+    }
+
+    private function drawNumberOfStepsText(dc, info)
+    {
+        var dataString = info.steps.toString();
+        var stepPerc   = ((info.steps * 100) / info.stepGoal).toNumber();
+
+        setStepsDisplayLevelColor(bufferDc, stepPerc);
+        dc.drawText(14, screenHeight / 2 - Graphics.getFontHeight(Graphics.FONT_XTINY) / 2, Graphics.FONT_XTINY, dataString, Graphics.TEXT_JUSTIFY_LEFT);
+        resetColorsForRendering(bufferDc);
     }
     
     // Draw battery icon with % indicated
