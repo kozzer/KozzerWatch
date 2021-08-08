@@ -66,7 +66,7 @@ class KozzerWatchView extends WatchUi.WatchFace
     function setTheme(){
 
         // Colors common to both themes
-        MUG_COLOR        = 0x3A3730;     // Amberish-gray
+        MUG_COLOR        = 0x353225;     // Amberish-gray
         FADED_MUG_COLOR  = 0x999999;     // Medium gray
         CLOCK_HAND_LINE  = 0x808080;     // Gray
         RED_COLOR        = 0xFF0000;     // Red
