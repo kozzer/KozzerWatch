@@ -34,7 +34,8 @@ class KozzerWatchView extends WatchUi.WatchFace
     // UI colors -- default to light theme
     var BACKGROUND_COLOR  = 0xDEDEDE;     // Light gray 
     var FONT_COLOR        = 0x111111;     // Very dark gray 
-    var FADED_FONT_COLOR  = 0x999999;     // Medium gray
+    var MUG_COLOR         = 0xAA9977;     // Amberish-gray
+    var FADED_MUG_COLOR   = 0x999999;     // Medium gray
     var RED_COLOR         = 0xFF0000;     // Red
     var CLOCK_HAND_LINE   = 0x808080;
     var BLUE_COLOR        = 0x0055FF;     // Blue
@@ -65,7 +66,8 @@ class KozzerWatchView extends WatchUi.WatchFace
     function setTheme(){
 
         // Colors common to both themes
-        FADED_FONT_COLOR = 0x999999;     // Medium gray
+        MUG_COLOR        = 0x3A3730;     // Amberish-gray
+        FADED_MUG_COLOR  = 0x999999;     // Medium gray
         CLOCK_HAND_LINE  = 0x808080;     // Gray
         RED_COLOR        = 0xFF0000;     // Red
         LOW_COLOR        = RED_COLOR;
@@ -76,8 +78,8 @@ class KozzerWatchView extends WatchUi.WatchFace
             BACKGROUND_COLOR  = 0xDEDEDE;     // Light gray 
             FONT_COLOR        = 0x111111;     // Very dark gray 
             BLUE_COLOR        = 0x0055FF;     // Blue
-            FULL_COLOR        = 0x009900;     // Green
-            MOST_COLOR        = 0x775500;     // Dark Yellow
+            FULL_COLOR        = 0x00AA99;     // Green
+            MOST_COLOR        = 0x99CC00;     // Dark Yellow
             SOME_COLOR        = 0xFF4400;     // Orange
             BEER_COLOR        = 0xFF9328;     // Amber
 
@@ -142,9 +144,12 @@ class KozzerWatchView extends WatchUi.WatchFace
 
         // Battery - Draw the battery status
         drawBatteryStatus(bufferDc);
+
+        // Get activity monitor info for steps data
+        var stepsInfo = ActivityMonitor.getInfo();
                
-        // Daily Steps
-        drawNumberOfStepsText(bufferDc, info);
+        // Daily Steps 
+        drawNumberOfStepsText(bufferDc, stepsInfo, screenHeight);
 
         // Commenting this out to be replaced by beers earned
         // Daily Miles 
@@ -152,7 +157,7 @@ class KozzerWatchView extends WatchUi.WatchFace
         //bufferDc.drawText(screenWidth - 14, screenHeight / 2 - Graphics.getFontHeight(Graphics.FONT_XTINY) / 2, Graphics.FONT_XTINY, dataString, Graphics.TEXT_JUSTIFY_RIGHT);
 
         // Draw beers earned + mug
-        drawBeersEarned(bufferDc, info);
+        drawBeersEarned(bufferDc, stepsInfo);
 
         // Always output the offscreen buffer to the main display in onUpdate() - once per minute
         writeBufferToDisplay(screenDc, screenBuffer);
@@ -261,14 +266,14 @@ class KozzerWatchView extends WatchUi.WatchFace
         }
     }
 
-    private function drawNumberOfStepsText(dc, info)
+    private function drawNumberOfStepsText(dc, info, screenHeight)
     {
         var dataString = info.steps.toString();
         var stepPerc   = ((info.steps * 100) / info.stepGoal).toNumber();
 
-        setStepsDisplayLevelColor(bufferDc, stepPerc);
+        setStepsDisplayLevelColor(dc, stepPerc);
         dc.drawText(14, screenHeight / 2 - Graphics.getFontHeight(Graphics.FONT_XTINY) / 2, Graphics.FONT_XTINY, dataString, Graphics.TEXT_JUSTIFY_LEFT);
-        resetColorsForRendering(bufferDc);
+        resetColorsForRendering(dc);
     }
     
     // Draw battery icon with % indicated
@@ -315,7 +320,7 @@ class KozzerWatchView extends WatchUi.WatchFace
         var height = dc.getHeight();
 
         // Use battery size as basis for mug size (X / Y flipped)
-        var mugWidth  = batteryHeight;
+        var mugWidth  = batteryHeight + 1;
         var mugHeight = batteryWidth - 6;
 
         // Put it center right
@@ -338,7 +343,7 @@ class KozzerWatchView extends WatchUi.WatchFace
         // Draw beer inside mug, proper amount for how much of next beer earned
         var beerHeight = (mugHeight * (mugLevel.toFloat() / 100));
         var beerX = mugX + 1;
-        var beerY = mugY + mugHeight - beerHeight;
+        var beerY = mugY + mugHeight - beerHeight - 1;
         dc.setColor(BEER_COLOR, BEER_COLOR);
 
         //System.println("mugLevel = " + mugLevel + "%, beerX = " + beerX + ", beerY = " + beerY + ", beerHeight = " + beerHeight);
@@ -350,8 +355,14 @@ class KozzerWatchView extends WatchUi.WatchFace
         // Reset colors to font / background, or faded gray if not yet at 10,000 steps
         setMugForeColor(dc, info);
 
+        // Draw another line at the bottom of the mug for a base
+        var baseY = mugY + mugHeight - 2;
+        dc.drawLine(mugX, baseY, mugX + mugWidth, baseY);
+        baseY = baseY + 1;
+        dc.drawLine(mugX, baseY, mugX + mugWidth, baseY);
+
         // Last step Draw Num Beers earned, to go inside
-        dc.drawText(mugX + 8, mugY, Graphics.FONT_XTINY, beersEarned, Graphics.TEXT_JUSTIFY_CENTER);
+        dc.drawText(mugX + 8, mugY - 1, Graphics.FONT_XTINY, beersEarned, Graphics.TEXT_JUSTIFY_CENTER);
 
         resetColorsForRendering(dc);
     }
@@ -365,9 +376,9 @@ class KozzerWatchView extends WatchUi.WatchFace
     private function setMugForeColor(dc, info){
         // Reset colors to font / background, or faded gray if not yet at 10,000 steps
         if (info.steps > 10000){
-            resetColorsForRendering(dc);
+            dc.setColor(MUG_COLOR, Graphics.COLOR_TRANSPARENT);
         } else {
-            dc.setColor(FADED_FONT_COLOR, Graphics.COLOR_TRANSPARENT);
+            dc.setColor(FADED_MUG_COLOR, Graphics.COLOR_TRANSPARENT);
         }
     }
 
