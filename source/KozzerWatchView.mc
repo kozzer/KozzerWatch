@@ -67,7 +67,7 @@ class KozzerWatchView extends WatchUi.WatchFace
 
         // Colors common to both themes
         MUG_COLOR        = 0x353225;     // Amberish-gray
-        FADED_MUG_COLOR  = 0x999999;     // Medium gray
+        FADED_MUG_COLOR  = 0x777777;     // Medium gray
         CLOCK_HAND_LINE  = 0x808080;     // Gray
         RED_COLOR        = 0xFF0000;     // Red
         LOW_COLOR        = RED_COLOR;
