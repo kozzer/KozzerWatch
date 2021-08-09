@@ -151,11 +151,10 @@ class KozzerWatchView extends WatchUi.WatchFace
         // Daily Steps 
         drawNumberOfStepsText(bufferDc, stepsInfo, screenHeight);
 
-        // Commenting this out to be replaced by beers earned
         // Daily Miles 
-        //dataString = (info.distance.toFloat() / 160934).format("%3.1f") + "m";  // 160,934 cm per mile
-        //bufferDc.drawText(screenWidth - 14, screenHeight / 2 - Graphics.getFontHeight(Graphics.FONT_XTINY) / 2, Graphics.FONT_XTINY, dataString, Graphics.TEXT_JUSTIFY_RIGHT);
-
+        // Commented this out to be replaced by beers earned
+        // drawStepMilesTotal(bufferDc, info);
+ 
         // Draw beers earned + mug
         drawBeersEarned(bufferDc, stepsInfo);
 
@@ -274,6 +273,13 @@ class KozzerWatchView extends WatchUi.WatchFace
         setStepsDisplayLevelColor(dc, stepPerc);
         dc.drawText(14, screenHeight / 2 - Graphics.getFontHeight(Graphics.FONT_XTINY) / 2, Graphics.FONT_XTINY, dataString, Graphics.TEXT_JUSTIFY_LEFT);
         resetColorsForRendering(dc);
+    }
+
+    private function drawStepMilesTotal(dc, info)
+    {
+        // Daily miles walked based on centimeters traveled
+        var milesWalked = (info.distance.toFloat() / 160934).format("%3.1f") + "m";  // 160,934 cm per mile
+        dc.drawText(screenWidth - 14, screenHeight / 2 - Graphics.getFontHeight(Graphics.FONT_XTINY) / 2, Graphics.FONT_XTINY, milesWalked, Graphics.TEXT_JUSTIFY_RIGHT);
     }
     
     // Draw battery icon with % indicated
@@ -448,11 +454,6 @@ class KozzerWatchView extends WatchUi.WatchFace
         // Draw hour hand
         dc.fillPolygon(hourHandPoints);
 
-        // Draw line in hour hand
-        //dc.setColor(Graphics.COLOR_DK_GRAY, Graphics.COLOR_TRANSPARENT);
-        //hourHandPoints = generateHandCoordinates(screenCenterPoint, hourHandAngle, 70, 14, 3);
-        //dc.fillPolygon(hourHandPoints);
-
         // Clear the clip
         clearDrawingClip(dc);
 
@@ -469,11 +470,6 @@ class KozzerWatchView extends WatchUi.WatchFace
 
         // Draw hour hand
         dc.fillPolygon(minuteHandPoints);
-
-        // Draw line in minute hand
-        // dc.setColor(Graphics.COLOR_DK_GRAY, Graphics.COLOR_TRANSPARENT);
-        // minuteHandPoints = generateHandCoordinates(screenCenterPoint, minuteHandAngle, 100, 20, 2);
-        // dc.fillPolygon(minuteHandPoints);
 
         // Clear the clip
         clearDrawingClip(dc);
