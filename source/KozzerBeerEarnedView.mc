@@ -17,7 +17,7 @@ class KozzerBeerEarnedView extends WatchUi.View {
     function onLayout(dc) {
         //Clear any clip that may currently be set by the partial update
         dc.clearClip();
-        setLayout(Rez.Layouts.MainLayout(dc));
+        //setLayout(Rez.Layouts.MainLayout(dc));
     }
 
     // onShow() is called when this View is brought to the foreground
