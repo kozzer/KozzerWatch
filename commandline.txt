@@ -33,6 +33,10 @@ P_INFO="<path_to_sdk>/connectiq-sdk-mac-2.2.4/bin/projectInfo.xml"
 
 pkill simulator
 
+// Build
+monkeyc -y $KEYS/developer_key.der -o $APP_NAME.prg -m manifest.xml -z resources/resources.xml -z resources/settings/* -z resources/strings/strings.xml source/* -w -p $P_INFO -g -d $@
+
+// Release
 monkeyc -y $KEYS/developer_key.der -o $APP_NAME.iq -m manifest.xml -z resources/resources.xml -z resources/settings/* -z resources/strings/strings.xml source/* -w -p $P_INFO -g -e -r
 
 
