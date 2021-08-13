@@ -602,6 +602,11 @@ class KozzerWatchView extends WatchUi.WatchFace
 }
 
 class KozzerWatchDelegate extends WatchUi.WatchFaceDelegate {
+
+    function initialize(){
+        WatchFaceDelegate.initialize();
+    }
+
     // The onPowerBudgetExceeded callback is called by the system if the
     // onPartialUpdate method exceeds the allowed power budget. If this occurs,
     // the system will stop invoking onPartialUpdate each second

@@ -1,6 +1,6 @@
 <resources>
-    <bitmap id="LauncherIcon" filename="images/kozzer_icon.png" />
-    <bitmap id="BluetoothIcon" filename="images/bluetooth_blue.png">
+    <!-- <bitmap id="LauncherIcon" filename="drawables/kozzer_icon.png" /> -->
+    <bitmap id="BluetoothIcon" filename="drawables/bluetooth_blue.png">
         <palette>
             <color>2546E9</color>
         </palette>
