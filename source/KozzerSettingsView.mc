@@ -34,7 +34,7 @@ class KozzerSettingsView extends WatchUi.View {
         // Add checkbox options (both settings are boolean)
         var menu = new WatchUi.CheckboxMenu({:title=>"Kozzer Watch Settings"});
         var delegate;
-        var check = new CheckboxMenuItem(
+        var check = new WatchUi.CheckboxMenuItem(
             "Theme",
             "Use light theme",
             "chkLightTheme",
@@ -42,7 +42,7 @@ class KozzerSettingsView extends WatchUi.View {
             { }
         );
         menu.addItem(check);
-        menu.addItem(new CheckboxMenuItem(
+        menu.addItem(new WatchUi.CheckboxMenuItem(
             "Beer Notification",
             "Nofity when beer earned",
             "chkBeerNotify",
