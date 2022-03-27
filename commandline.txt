@@ -14,12 +14,11 @@ connectiq
 
 
 Build:
--------
 -- Forerunner 645M
 C:\Users\David\ConnectIQ\bin\monkeyc -d fr645m -f .\monkey.jungle -o .\KozzerWatch.prg -y C:\Users\David\ConnectIQ\developer_key.der
 
--- Forerunner 945
-C:\Users\David\ConnectIQ\bin\monkeyc -d fr945 -f .\monkey.jungle -o .\KozzerWatch.prg -y C:\Users\David\ConnectIQ\developer_key.der
+-- Forerunner 935
+C:\Users\David\ConnectIQ\bin\monkeyc -d fr935 -f .\monkey.jungle -o .\KozzerWatch.prg -y C:\Users\David\ConnectIQ\developer_key.der
 
 
 Run App:
