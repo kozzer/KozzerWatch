@@ -1,7 +1,7 @@
 <settings>
 
     <setting propertyKey="@Properties.LightThemeActive" title="@Strings.LightThemeActive">
-        <settingConfig type="boolean" readonly="true" />
+        <settingConfig type="boolean" readonly="false" />
     </setting>
 
     <setting propertyKey="@Properties.NotifyOnBeerEarned" title="@Strings.NotifyOnBeerEarned">

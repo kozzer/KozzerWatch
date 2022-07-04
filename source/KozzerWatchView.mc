@@ -14,6 +14,7 @@ var partialUpdatesAllowed = false;          // Outside class so the Delegate cla
 class KozzerWatchView extends WatchUi.WatchFace
 {
     // Application properties
+    var app                = Application.getApp();
     var useLightTheme      = true;
     var notifyOnBeerEarned = false;
 
@@ -57,7 +58,8 @@ class KozzerWatchView extends WatchUi.WatchFace
     }
 
     function populateAppSettings(){
-        // useLightTheme      = Storage.getValue("LightThemeActive");
+        useLightTheme      = app.getProperty("LightThemeActive");
+        //app.setProperty("LightThemeActive", useLightTheme);
         // notifyOnBeerEarned = Storage.getValue("NotifyOnBeerEarned");
         System.println("light: " + useLightTheme + ", nofify: " + notifyOnBeerEarned);
     }
