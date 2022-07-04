@@ -39,8 +39,8 @@ class KozzerWatchView extends WatchUi.WatchFace
     var RED_COLOR         = 0xFF0000;     // Red
     var CLOCK_HAND_LINE   = 0x808080;
     var BLUE_COLOR        = 0x0055FF;     // Blue
-    var FULL_COLOR        = 0x009900;     // Green
-    var MOST_COLOR        = 0xB3E500;     // Yellow-Green
+    var FULL_COLOR        = 0x007700;     // Green
+    var MOST_COLOR        = 0x779900;     // Dark Yellow-Green
     var SOME_COLOR        = 0xFF4400;     // Orange
     var LOW_COLOR         = 0xFF0000;     // Red
     var BEER_COLOR        = 0xFF9328;     // Amber
@@ -77,14 +77,14 @@ class KozzerWatchView extends WatchUi.WatchFace
             BACKGROUND_COLOR  = 0xDEDEDE;     // Light gray 
             FONT_COLOR        = 0x111111;     // Very dark gray 
             BLUE_COLOR        = 0x0055FF;     // Blue
-            FULL_COLOR        = 0x00AA99;     // Green
-            MOST_COLOR        = 0x99CC00;     // Dark Yellow
+            FULL_COLOR        = 0x007700;     // Green
+            MOST_COLOR        = 0x779900;     // Dark Yellow
             SOME_COLOR        = 0xFF4400;     // Orange
             BEER_COLOR        = 0xFF9328;     // Amber
 
         } else {
 
-            // Dark theme
+            // Dark themeS
             BACKGROUND_COLOR  = 0x111111;     // Very dark gray 
             FONT_COLOR        = 0xDEDEDE;     // Very light gray 
             BLUE_COLOR        = 0x1166FF;     // Blue
