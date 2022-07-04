@@ -13,10 +13,8 @@ var partialUpdatesAllowed = false;          // Outside class so the Delegate cla
 
 class KozzerWatchView extends WatchUi.WatchFace
 {
-    // Application properties
-    var app                = Application.getApp();
-    var useLightTheme      = true;
-    var notifyOnBeerEarned = false;
+    var useLightTheme;
+    var notifyOnBeerEarned;
 
     // General class-level fields
     var isAwake;                            // Flag indicating whether watch is awake or in sleep mode
@@ -47,8 +45,12 @@ class KozzerWatchView extends WatchUi.WatchFace
     var BEER_COLOR        = 0xFF9328;     // Amber
 
     // Initialize variables for this view
-    function initialize() {
+    function initialize(lightTheme, notify) {
         WatchFace.initialize();
+
+        useLightTheme = lightTheme;
+        notifyOnBeerEarned = notify;
+
         fullScreenRefresh     = true;
         partialUpdatesAllowed = ( Toybox.WatchUi.WatchFace has :onPartialUpdate ); // Will be set to true until KozzerWatchViewDelegate.onPowerBudgetExceeded() is fired
     
@@ -58,10 +60,10 @@ class KozzerWatchView extends WatchUi.WatchFace
     }
 
     function populateAppSettings(){
-        useLightTheme      = app.getProperty("LightThemeActive");
+        //useLightTheme      = AppBase.getProperty("LightThemeActive");
         //app.setProperty("LightThemeActive", useLightTheme);
         // notifyOnBeerEarned = Storage.getValue("NotifyOnBeerEarned");
-        System.println("light: " + useLightTheme + ", nofify: " + notifyOnBeerEarned);
+        System.println("Face: light: " + useLightTheme + ", nofify: " + notifyOnBeerEarned);
     }
 
     function setTheme(){
