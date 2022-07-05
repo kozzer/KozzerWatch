@@ -20,6 +20,9 @@ C:\Users\David\ConnectIQ\bin\monkeyc -d fr645m -f .\monkey.jungle -o .\KozzerWat
 -- Forerunner 935
 C:\Users\David\ConnectIQ\bin\monkeyc -d fr935 -f .\monkey.jungle -o .\KozzerWatch.prg -y C:\Users\David\ConnectIQ\developer_key.der
 
+-- Forerunner 955
+C:\Users\David\ConnectIQ\bin\monkeyc -d fr955 -f .\monkey.jungle -o .\KozzerWatch.prg -y C:\Users\David\ConnectIQ\developer_key.der
+
 
 Run App:
 ---------
