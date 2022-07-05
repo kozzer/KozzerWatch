@@ -57,6 +57,11 @@ class KozzerWatchView extends WatchUi.WatchFace
     }
 
     function populateAppSettings(){
+
+        // Clear cached property values
+        Application.getApp().clearProperties();
+
+        // Re-read properties from XML file
         useLightTheme      = Application.getApp().Properties.getValue("LightThemeActive");
         notifyOnBeerEarned = Application.getApp().Properties.getValue("NotifyOnBeerEarned");
         System.println("Properties: light: " + useLightTheme + ", nofify: " + notifyOnBeerEarned);
