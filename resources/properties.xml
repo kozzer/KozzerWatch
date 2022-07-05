@@ -1,4 +1,4 @@
 <properties>
-    <property id="LightThemeActive"   type="boolean">true</property>
+    <property id="LightThemeActive"   type="boolean">false</property>
     <property id="NotifyOnBeerEarned" type="boolean">true</property>
 </properties>
