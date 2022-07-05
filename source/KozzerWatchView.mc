@@ -45,11 +45,8 @@ class KozzerWatchView extends WatchUi.WatchFace
     var BEER_COLOR        = 0xFF9328;     // Amber
 
     // Initialize variables for this view
-    function initialize(lightTheme, notify) {
+    function initialize() {
         WatchFace.initialize();
-
-        useLightTheme = lightTheme;
-        notifyOnBeerEarned = notify;
 
         fullScreenRefresh     = true;
         partialUpdatesAllowed = ( Toybox.WatchUi.WatchFace has :onPartialUpdate ); // Will be set to true until KozzerWatchViewDelegate.onPowerBudgetExceeded() is fired
@@ -60,10 +57,9 @@ class KozzerWatchView extends WatchUi.WatchFace
     }
 
     function populateAppSettings(){
-        //useLightTheme      = AppBase.getProperty("LightThemeActive");
-        //app.setProperty("LightThemeActive", useLightTheme);
-        // notifyOnBeerEarned = Storage.getValue("NotifyOnBeerEarned");
-        System.println("Face: light: " + useLightTheme + ", nofify: " + notifyOnBeerEarned);
+        useLightTheme      = Application.getApp().Properties.getValue("LightThemeActive");
+        notifyOnBeerEarned = Application.getApp().Properties.getValue("NotifyOnBeerEarned");
+        System.println("Properties: light: " + useLightTheme + ", nofify: " + notifyOnBeerEarned);
     }
 
     function setTheme(){
