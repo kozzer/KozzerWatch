@@ -82,7 +82,7 @@ class KozzerWatchView extends WatchUi.WatchFace
             BACKGROUND_COLOR  = 0xDEDEDE;     // Light gray 
             FONT_COLOR        = 0x111111;     // Very dark gray 
             BLUE_COLOR        = 0x0055FF;     // Blue
-            FULL_COLOR        = 0x33EE00;     // Green
+            FULL_COLOR        = 0x00EE00;     // Green
             MOST_COLOR        = 0x779900;     // Dark Yellow
             SOME_COLOR        = 0xFF4400;     // Orange
             BEER_COLOR        = 0xFF9328;     // Amber
