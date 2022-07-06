@@ -30,19 +30,19 @@ class KozzerWatchView extends WatchUi.WatchFace
     const batteryRadius = 3;
     const moveBarHeight = 4;
 
-    // UI colors -- default to light theme
-    var BACKGROUND_COLOR  = 0xDEDEDE;     // Light gray 
-    var FONT_COLOR        = 0x111111;     // Very dark gray 
-    var MUG_COLOR         = 0xAA9977;     // Amberish-gray
-    var FADED_MUG_COLOR   = 0x999999;     // Medium gray
-    var RED_COLOR         = 0xFF0000;     // Red
-    var CLOCK_HAND_LINE   = 0x808080;
-    var BLUE_COLOR        = 0x0055FF;     // Blue
-    var FULL_COLOR        = 0x007700;     // Green
-    var MOST_COLOR        = 0x779900;     // Dark Yellow-Green
-    var SOME_COLOR        = 0xFF4400;     // Orange
-    var LOW_COLOR         = 0xFF0000;     // Red
-    var BEER_COLOR        = 0xFF9328;     // Amber
+    // UI color palette
+    var BACKGROUND_COLOR;  
+    var FONT_COLOR;        
+    var MUG_COLOR;         
+    var FADED_MUG_COLOR;   
+    var RED_COLOR;         
+    var CLOCK_HAND_LINE;   
+    var BLUE_COLOR;        
+    var FULL_COLOR;        
+    var MOST_COLOR;        
+    var SOME_COLOR;        
+    var LOW_COLOR;         
+    var BEER_COLOR;        
 
     // Initialize variables for this view
     function initialize() {
@@ -82,7 +82,7 @@ class KozzerWatchView extends WatchUi.WatchFace
             BACKGROUND_COLOR  = 0xDEDEDE;     // Light gray 
             FONT_COLOR        = 0x111111;     // Very dark gray 
             BLUE_COLOR        = 0x0055FF;     // Blue
-            FULL_COLOR        = 0x007700;     // Green
+            FULL_COLOR        = 0x33AA00;     // Green
             MOST_COLOR        = 0x779900;     // Dark Yellow
             SOME_COLOR        = 0xFF4400;     // Orange
             BEER_COLOR        = 0xFF9328;     // Amber
