@@ -388,7 +388,7 @@ class KozzerWatchView extends WatchUi.WatchFace
 
     private function getQualifyingSteps(info){
         // The first 10,000 steps don't count -- don't be lazy!
-        var qualifyingSteps = info.steps - info.stepsGoal;
+        var qualifyingSteps = info.steps - info.stepGoal;
         return qualifyingSteps >= 0 ? qualifyingSteps : 0;
     }
 
