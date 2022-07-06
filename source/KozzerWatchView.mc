@@ -106,10 +106,17 @@ class KozzerWatchView extends WatchUi.WatchFace
         // Initialize bluetooth icon
         bluetoothIcon = WatchUi.loadResource(Rez.Drawables.BluetoothIcon);
 
-        // Set up buffer for whole screen
-        screenBuffer = new Graphics.BufferedBitmap({ 
-            :width   => dc.getWidth(), 
-            :height  => dc.getHeight() });
+        // Set up buffer for whole screen 
+        if (Graphics has :createBufferedBitmap){
+            var bufferRef = Graphics.createBufferedBitmap({ 
+                :width   => dc.getWidth(), 
+                :height  => dc.getHeight() });
+            screenBuffer = bufferRef.get();
+        } else {
+            screenBuffer = new Graphics.BufferedBitmap({ 
+                :width   => dc.getWidth(), 
+                :height  => dc.getHeight() });
+        }
 
         // Clear any clip
         clearDrawingClip(dc);
@@ -121,14 +128,14 @@ class KozzerWatchView extends WatchUi.WatchFace
     // Handle the full screen refresh/update event, called once per minute or upon request
     function onUpdate(dc) {
 
+        // We always want to refresh the full screen when we get a regular onUpdate call.
+        fullScreenRefresh = true;
+
         // Set an alias for the passed-in screen dc for clarity
         var screenDc     = dc;
         var screenWidth  = screenDc.getWidth();
         var screenHeight = screenDc.getHeight();
     
-        // We always want to refresh the full screen when we get a regular onUpdate call.
-        fullScreenRefresh = true;
-
         // Clear the clip
         clearDrawingClip(screenDc);
         
