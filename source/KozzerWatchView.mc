@@ -82,7 +82,7 @@ class KozzerWatchView extends WatchUi.WatchFace
             BACKGROUND_COLOR  = 0xDEDEDE;     // Light gray 
             FONT_COLOR        = 0x111111;     // Very dark gray 
             BLUE_COLOR        = 0x0055FF;     // Blue
-            FULL_COLOR        = 0x33AA00;     // Green
+            FULL_COLOR        = 0x33EE00;     // Green
             MOST_COLOR        = 0x779900;     // Dark Yellow
             SOME_COLOR        = 0xFF4400;     // Orange
             BEER_COLOR        = 0xFF9328;     // Amber
@@ -282,8 +282,8 @@ class KozzerWatchView extends WatchUi.WatchFace
         var stepPerc   = ((info.steps * 100) / info.stepGoal).toNumber();
 
         setStepsDisplayLevelColor(dc, stepPerc);
-        //dc.drawText(14, screenHeight / 2 - Graphics.getFontHeight(Graphics.FONT_XTINY) / 2, Graphics.FONT_XTINY, dataString, Graphics.TEXT_JUSTIFY_LEFT);
-        dc.drawText(14, screenHeight / 2 - Graphics.getFontHeight(Graphics.FONT_TINY) / 2, Graphics.FONT_TINY, dataString, Graphics.TEXT_JUSTIFY_LEFT);
+        dc.drawText(14, screenHeight / 2 - Graphics.getFontHeight(getTinyFont(dc)) / 2, getTinyFont(dc), dataString, Graphics.TEXT_JUSTIFY_LEFT);
+
         resetColorsForRendering(dc);
     }
 
@@ -291,7 +291,8 @@ class KozzerWatchView extends WatchUi.WatchFace
     {
         // Daily miles walked based on centimeters traveled
         var milesWalked = (info.distance.toFloat() / 160934).format("%3.1f") + "m";  // 160,934 cm per mile
-        dc.drawText(screenWidth - 14, screenHeight / 2 - Graphics.getFontHeight(Graphics.FONT_XTINY) / 2, Graphics.FONT_XTINY, milesWalked, Graphics.TEXT_JUSTIFY_RIGHT);
+        var font = getTinyFont(dc);
+        dc.drawText(screenWidth - 14, screenHeight / 2 - Graphics.getFontHeight(font) / 2, font, milesWalked, Graphics.TEXT_JUSTIFY_RIGHT);
     }
     
     // Draw battery icon with % indicated
@@ -380,10 +381,18 @@ class KozzerWatchView extends WatchUi.WatchFace
         dc.drawLine(mugX, baseY, mugX + mugWidth, baseY);
 
         // Last step Draw Num Beers earned, to go inside
-        //dc.drawText(mugX + 8, mugY - 1, Graphics.FONT_XTINY, beersEarned, Graphics.TEXT_JUSTIFY_CENTER);
-        dc.drawText(mugX + 8, mugY - 1, Graphics.FONT_TINY, beersEarned, Graphics.TEXT_JUSTIFY_CENTER);
+        dc.drawText(mugX + 8, mugY - 1, getTinyFont(dc), beersEarned, Graphics.TEXT_JUSTIFY_CENTER);
 
         resetColorsForRendering(dc);
+    }
+
+    private function getTinyFont(dc){
+        var width = dc.getWidth();
+        if (width <= 250){
+            return Graphics.FONT_XTINY;
+        } else {
+            return Graphics.FONT_TINY;
+        }
     }
 
     private function getQualifyingSteps(info){
