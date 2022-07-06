@@ -282,7 +282,8 @@ class KozzerWatchView extends WatchUi.WatchFace
         var stepPerc   = ((info.steps * 100) / info.stepGoal).toNumber();
 
         setStepsDisplayLevelColor(dc, stepPerc);
-        dc.drawText(14, screenHeight / 2 - Graphics.getFontHeight(Graphics.FONT_XTINY) / 2, Graphics.FONT_XTINY, dataString, Graphics.TEXT_JUSTIFY_LEFT);
+        //dc.drawText(14, screenHeight / 2 - Graphics.getFontHeight(Graphics.FONT_XTINY) / 2, Graphics.FONT_XTINY, dataString, Graphics.TEXT_JUSTIFY_LEFT);
+        dc.drawText(14, screenHeight / 2 - Graphics.getFontHeight(Graphics.FONT_TINY) / 2, Graphics.FONT_TINY, dataString, Graphics.TEXT_JUSTIFY_LEFT);
         resetColorsForRendering(dc);
     }
 
@@ -379,20 +380,21 @@ class KozzerWatchView extends WatchUi.WatchFace
         dc.drawLine(mugX, baseY, mugX + mugWidth, baseY);
 
         // Last step Draw Num Beers earned, to go inside
-        dc.drawText(mugX + 8, mugY - 1, Graphics.FONT_XTINY, beersEarned, Graphics.TEXT_JUSTIFY_CENTER);
+        //dc.drawText(mugX + 8, mugY - 1, Graphics.FONT_XTINY, beersEarned, Graphics.TEXT_JUSTIFY_CENTER);
+        dc.drawText(mugX + 8, mugY - 1, Graphics.FONT_TINY, beersEarned, Graphics.TEXT_JUSTIFY_CENTER);
 
         resetColorsForRendering(dc);
     }
 
     private function getQualifyingSteps(info){
         // The first 10,000 steps don't count -- don't be lazy!
-        var qualifyingSteps = info.steps - 10000;
+        var qualifyingSteps = info.steps - info.stepsGoal;
         return qualifyingSteps >= 0 ? qualifyingSteps : 0;
     }
 
     private function setMugForeColor(dc, info){
         // Reset colors to font / background, or faded gray if not yet at 10,000 steps
-        if (info.steps > 10000){
+        if (info.steps > info.stepGoal){
             dc.setColor(MUG_COLOR, Graphics.COLOR_TRANSPARENT);
         } else {
             dc.setColor(FADED_MUG_COLOR, Graphics.COLOR_TRANSPARENT);
