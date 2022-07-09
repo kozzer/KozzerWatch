@@ -5,7 +5,7 @@
     </setting>
 
     <setting propertyKey="@Properties.NotifyOnBeerEarned" title="@Strings.NotifyOnBeerEarned">
-        <settingConfig type="boolean" readonly="false" />
+        <settingConfig type="boolean" readonly="true" />
     </setting>
 
 </settings>

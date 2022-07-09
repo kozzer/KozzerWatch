@@ -81,10 +81,10 @@ class KozzerWatchView extends WatchUi.WatchFace
             // Light theme (default)
             BACKGROUND_COLOR  = 0xDEDEDE;     // Light gray 
             FONT_COLOR        = 0x111111;     // Very dark gray 
-            BLUE_COLOR        = 0x0055FF;     // Blue
-            FULL_COLOR        = 0x00EE00;     // Green
-            MOST_COLOR        = 0x779900;     // Dark Yellow
-            SOME_COLOR        = 0xFF4400;     // Orange
+            BLUE_COLOR        = 0x0026FF;     // Blue
+            FULL_COLOR        = 0x00C44E;     // Green
+            MOST_COLOR        = 0xDBCC00;     // Dark Yellow
+            SOME_COLOR        = 0xFF6A00;     // Orange
             BEER_COLOR        = 0xFF9328;     // Amber
 
         } else {
@@ -381,14 +381,27 @@ class KozzerWatchView extends WatchUi.WatchFace
         dc.drawLine(mugX, baseY, mugX + mugWidth, baseY);
 
         // Last step Draw Num Beers earned, to go inside
-        dc.drawText(mugX + 8, mugY - 1, getTinyFont(dc), beersEarned, Graphics.TEXT_JUSTIFY_CENTER);
+        dc.drawText(mugX + 8, adjustMugY(dc, mugY), getTinyFont(dc), beersEarned, Graphics.TEXT_JUSTIFY_CENTER);
 
         resetColorsForRendering(dc);
     }
 
+    private function adjustMugY(dc, mugY){
+        var width = dc.getWidth();
+        if (width < 220){
+            return mugY + 3;
+        } else if (width >= 280) {
+            return mugY - 4;
+        } else if (width >= 260) {
+            return mugY - 2;
+        } else {
+            return mugY - 1;
+        }
+    }
+
     private function getTinyFont(dc){
         var width = dc.getWidth();
-        if (width <= 250){
+        if (width < 240){
             return Graphics.FONT_XTINY;
         } else {
             return Graphics.FONT_TINY;
