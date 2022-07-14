@@ -454,14 +454,8 @@ class KozzerWatchView extends WatchUi.WatchFace
                
         // Put it above battery status
         var sunDiameter = 16;
-        var sunRadius = sunDiameter / 2;
         var sunX = (width / 2);
         var sunY = (height - 56) - (sunDiameter / 2);
-
-        // set colors
-        var rayColor = 0xA9AA33;
-        var discColor = 0xDBCC00;
-        var levelColor = 0xFF0000;
 
         // Draw sun
         dc.drawBitmap(sunX - 16, sunY - 15, sunIcon);
