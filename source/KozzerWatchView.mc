@@ -14,20 +14,23 @@ var partialUpdatesAllowed = false;          // Outside class so the Delegate cla
 class KozzerWatchView extends WatchUi.WatchFace
 {
     var useLightTheme;
-    var notifyOnBeerEarned;
+    var showSolarIntensity;
 
     // General class-level fields
     var isAwake;                            // Flag indicating whether watch is awake or in sleep mode
     var bluetoothIcon;                      // Reference to bluetooth icon png
+    var sunIcon;                            // Reference to solar intensity sun icon
     var screenBuffer;                       // Buffer for the entire screen
     var curClip;                            // Clip for partial updates, so only pixels where second hand is will actually be changed
     var screenCenterPoint;                  // Center x,y point of screen
     var fullScreenRefresh;                  // Flag used in onUpdate() & onPartialUpdate()
     
-    // Battery icon dimensions - hard-coded
+    // Graphic Dimensions - hard-coded
+    // Battery
     const batteryWidth  = 32;
     const batteryHeight = 16;
     const batteryRadius = 3;
+    // Move Bar
     const moveBarHeight = 4;
 
     // UI color palette
@@ -63,8 +66,8 @@ class KozzerWatchView extends WatchUi.WatchFace
 
         // Re-read properties from XML file
         useLightTheme      = Application.getApp().Properties.getValue("LightThemeActive");
-        notifyOnBeerEarned = Application.getApp().Properties.getValue("NotifyOnBeerEarned");
-        System.println("Properties: light: " + useLightTheme + ", nofify: " + notifyOnBeerEarned);
+        showSolarIntensity = Application.getApp().Properties.getValue("ShowSolarIntensity");
+        System.println("Properties: light: " + useLightTheme + ", solar: " + showSolarIntensity);
     }
 
     function setTheme(){
@@ -105,6 +108,11 @@ class KozzerWatchView extends WatchUi.WatchFace
 
         // Initialize bluetooth icon
         bluetoothIcon = WatchUi.loadResource(Rez.Drawables.BluetoothIcon);
+
+        // Initialize sun icon if available and active
+        if (Toybox.System.Stats has :solarIntensity && showSolarIntensity){
+            sunIcon = WatchUi.loadResource(Rez.Drawables.SunIcon);
+        }
 
         // Set up buffer for whole screen 
         if (Graphics has :createBufferedBitmap){
@@ -168,6 +176,11 @@ class KozzerWatchView extends WatchUi.WatchFace
  
         // Draw beers earned + mug
         drawBeersEarned(bufferDc, stepsInfo);
+
+        // Draw solar info if available and enabled
+        if (Toybox.System.Stats has :solarIntensity && showSolarIntensity) { 
+            drawSolarIntensity(bufferDc);
+        }
 
         // Always output the offscreen buffer to the main display in onUpdate() - once per minute
         writeBufferToDisplay(screenDc, screenBuffer);
@@ -422,6 +435,44 @@ class KozzerWatchView extends WatchUi.WatchFace
             dc.setColor(FADED_MUG_COLOR, Graphics.COLOR_TRANSPARENT);
         }
     }
+
+
+    private function drawSolarIntensity(dc)
+    {  
+        // Get system stats object
+        var stats = Toybox.System.getSystemStats();
+        var solar = stats.solarIntensity;
+
+        // If solar is 0, just return
+        if (solar == 0) {
+            return;
+        }
+        
+        // dc dimensions
+        var width  = dc.getWidth();
+        var height = dc.getHeight();
+               
+        // Put it above battery status
+        var sunDiameter = 16;
+        var sunRadius = sunDiameter / 2;
+        var sunX = (width / 2);
+        var sunY = (height - 56) - (sunDiameter / 2);
+
+        // set colors
+        var rayColor = 0xA9AA33;
+        var discColor = 0xDBCC00;
+        var levelColor = 0xFF0000;
+
+        // Draw sun
+        dc.drawBitmap(sunX - 16, sunY - 15, sunIcon);
+
+        // Draw power level
+        dc.setColor(LOW_COLOR, Graphics.COLOR_TRANSPARENT);
+        dc.drawText(sunX, sunY - 9, Graphics.FONT_XTINY, solar, Graphics.TEXT_JUSTIFY_CENTER);
+
+        resetColorsForRendering(dc);
+    }
+
 
     // Draw the watch face background onto the given draw context
     private function writeBufferToDisplay(screenDc, screenBuffer) { 

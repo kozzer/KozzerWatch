@@ -4,8 +4,8 @@
         <settingConfig type="boolean" readonly="false" />
     </setting>
 
-    <setting propertyKey="@Properties.NotifyOnBeerEarned" title="@Strings.NotifyOnBeerEarned">
-        <settingConfig type="boolean" readonly="true" />
+    <setting propertyKey="@Properties.ShowSolarIntensity" title="@Strings.ShowSolarIntensity">
+        <settingConfig type="boolean" readonly="false" />
     </setting>
 
 </settings>

@@ -1,5 +1,5 @@
 <resources>
     <string id="AppName">KozzerWatch</string>
     <string id="LightThemeActive">Light theme active?</string>
-    <string id="NotifyOnBeerEarned">Notify when beer is earned?</string>
+    <string id="ShowSolarIntensity">Display solar intensity (if available)?</string>
 </resources>

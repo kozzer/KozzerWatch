@@ -5,4 +5,7 @@
             <color>2546E9</color>
         </palette>
     </bitmap>
+    
+    <bitmap id="SunIcon" filename="drawables/sun.png">
+    </bitmap>
 </resources>

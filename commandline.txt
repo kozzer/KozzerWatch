@@ -56,3 +56,10 @@ C:\Users\David\ConnectIQ\bin\monkeyc -y C:\Users\David\ConnectIQ\developer_key.d
 Prune Local Copies of Deleted Branches:
 ----------------------------------------
 git fetch -p
+
+
+
+SDK
+========
+Interesting code snippet about adding a menu option in comment: 
+https://forums.garmin.com/developer/connect-iq/f/discussion/238950/an-app-for-sdk-3-2-and-3-1/1135528
