@@ -1,5 +1,6 @@
 <resources>
     <string id="AppName">KozzerWatch</string>
     <string id="LightThemeActive">Light theme active?</string>
-    <string id="ShowSolarIntensity">Display solar intensity (if available)?</string>
+    <string id="ShowSolarIntensity">Display solar intensity?</string>
+    <string id="ShowSolarIntensityPrompt">Only works if your device has a solar feature</string>
 </resources>

@@ -4,7 +4,7 @@
         <settingConfig type="boolean" readonly="false" />
     </setting>
 
-    <setting propertyKey="@Properties.ShowSolarIntensity" title="@Strings.ShowSolarIntensity">
+    <setting propertyKey="@Properties.ShowSolarIntensity" title="@Strings.ShowSolarIntensity" prompt="@Strings.ShowSolarIntensityPrompt">
         <settingConfig type="boolean" readonly="false" />
     </setting>
 
