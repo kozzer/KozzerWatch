@@ -19,14 +19,18 @@ class KozzerWatchView extends WatchUi.WatchFace
 
     // General class-level fields
     var isAwake;                            // Flag indicating whether watch is awake or in sleep mode
+    var fullScreenRefresh;                  // Flag used in onUpdate() & onPartialUpdate()   
+
+    // UI Components
     var bluetoothIcon;                      // Reference to BluetoothIcon object
     var moveBar;                            // Reference to MoveBar object
     var batteryStatus;                      // Reference to BatteryStatus object
+    var beerMug;                            // Reference to BeerMug object
+
     var sunIcon;                            // Reference to solar intensity sun icon
+
     var screenBuffer;                       // Buffer for the entire screen
     var screenCenterPoint;                  // Center x,y point of screen
-    var fullScreenRefresh;                  // Flag used in onUpdate() & onPartialUpdate()
-    
 
 
     // Initialize variables for this view
@@ -65,23 +69,14 @@ class KozzerWatchView extends WatchUi.WatchFace
         bluetoothIcon = new BluetoothIcon();
         moveBar       = new MoveBar();
         batteryStatus = new BatteryStatus();
+        beerMug       = new BeerMug();
 
         // Initialize sun icon if available and active
         if (Toybox.System.Stats has :solarIntensity && showSolarIntensity){
             sunIcon = WatchUi.loadResource(Rez.Drawables.SunIcon);
         }
 
-        // Set up buffer for whole screen 
-        if (Graphics has :createBufferedBitmap){
-            var bufferRef = Graphics.createBufferedBitmap({ 
-                :width   => dc.getWidth(), 
-                :height  => dc.getHeight() });
-            screenBuffer = bufferRef.get();
-        } else {
-            screenBuffer = new Graphics.BufferedBitmap({ 
-                :width   => dc.getWidth(), 
-                :height  => dc.getHeight() });
-        }
+        createScreenBuffer(dc);
 
         // Clear any clip
         CommonMethods.clearDrawingClip(dc);
@@ -132,7 +127,7 @@ class KozzerWatchView extends WatchUi.WatchFace
         // drawStepMilesTotal(bufferDc, info);
  
         // Draw beers earned + mug
-        drawBeersEarned(bufferDc, stepsInfo);
+        beerMug.drawOnScreen(bufferDc, stepsInfo);
 
         // Draw solar info if available and enabled
         if (Toybox.System.Stats has :solarIntensity && showSolarIntensity) { 
@@ -181,6 +176,20 @@ class KozzerWatchView extends WatchUi.WatchFace
         // Draw second hand and bluetooth icon if connected
         drawSecondHand(dc);
     }
+
+    private function createScreenBuffer(dc){
+        // Set up buffer for whole screen 
+        if (Graphics has :createBufferedBitmap){
+            var bufferRef = Graphics.createBufferedBitmap({ 
+                :width   => dc.getWidth(), 
+                :height  => dc.getHeight() });
+            screenBuffer = bufferRef.get();
+        } else {
+            screenBuffer = new Graphics.BufferedBitmap({ 
+                :width   => dc.getWidth(), 
+                :height  => dc.getHeight() });
+        }
+    }
    
     // Draw the date string into the provided buffer at the specified location
     private function drawDateString(dc, x, y) {
@@ -210,98 +219,7 @@ class KozzerWatchView extends WatchUi.WatchFace
         var font = CommonMethods.getTinyFont(dc);
         dc.drawText(screenWidth - 14, screenHeight / 2 - Graphics.getFontHeight(font) / 2, font, milesWalked, Graphics.TEXT_JUSTIFY_RIGHT);
     }
-    
-    // Draw beer mug, with right level of beer
-    private function drawBeersEarned(dc, info){
-
-        // Get beers earned status via steps
-        var qualifyingSteps = getQualifyingSteps(info);
-        var stepsPerBeer    = 2500;
-        var beersEarned     = Math.floor(qualifyingSteps / stepsPerBeer).format("%d");     // Whole beers already earned
-        var mugLevel        = ((qualifyingSteps % stepsPerBeer) * 100) / stepsPerBeer;     // 0-100 percent
-
-        // dc dimensions
-        var width  = dc.getWidth();
-        var height = dc.getHeight();
-
-        // Use battery size as basis for mug size (X / Y flipped)
-        var mugWidth  = 17;
-        var mugHeight = 26;
-        var cornerRadius = 3;
-
-        // Put it center right
-        var mugX = width - 32;
-        var mugY = (height / 2) - (mugHeight / 2);
-
-        // Reset colors to font / background, or faded gray if not yet at 10,000 steps
-        setMugForeColor(dc, info);
-        
-        // Drag main part of mug
-        dc.drawRoundedRectangle(mugX,     mugY, mugWidth,     mugHeight,     cornerRadius);
-        dc.drawRoundedRectangle(mugX - 1, mugY, mugWidth + 2, mugHeight + 1, cornerRadius);
-
-        // Drag handle on left side
-        var handleX = mugX - 5;
-        var handleY = mugY + 7;
-        dc.drawRoundedRectangle(handleX,   handleY,   6, 12, cornerRadius);
-        dc.drawRoundedRectangle(handleX-1, handleY-1, 7, 14, cornerRadius);
-
-        // Draw beer inside mug, proper amount for how much of next beer earned
-        var beerHeight = (mugHeight * (mugLevel.toFloat() / 100));
-        var beerX = mugX + 1;
-        var beerY = mugY + mugHeight - beerHeight - 1;
-        Theme.setBothColors(dc, ThemeController.BEER_COLOR);
-
-        //System.println("mugLevel = " + mugLevel + "%, beerX = " + beerX + ", beerY = " + beerY + ", beerHeight = " + beerHeight);
-
-        // Bulk of beer via rounded rectangle, but I want the top to be flat not rounded, so the line takes care of that
-        dc.fillRoundedRectangle(beerX, beerY, mugWidth - 2, beerHeight, cornerRadius - 1);
-        dc.drawLine(beerX, beerY, beerX + (mugWidth - 2), beerY);
-
-        // Reset colors to font / background, or faded gray if not yet at 10,000 steps
-        setMugForeColor(dc, info);
-
-        // Draw another line at the bottom of the mug for a base
-        var baseY = mugY + mugHeight - 2;
-        dc.drawLine(mugX, baseY, mugX + mugWidth, baseY);
-        baseY = baseY + 1;
-        dc.drawLine(mugX, baseY, mugX + mugWidth, baseY);
-
-        // Last step Draw Num Beers earned, to go inside
-        dc.drawText(mugX + 8, adjustMugY(dc, mugY), CommonMethods.getTinyFont(dc), beersEarned, Graphics.TEXT_JUSTIFY_CENTER);
-
-        Theme.resetColors(dc);
-    }
-
-    private function adjustMugY(dc, mugY){
-        var width = dc.getWidth();
-        if (width < 220){
-            return mugY + 3;
-        } else if (width >= 280) {
-            return mugY - 4;
-        } else if (width >= 260) {
-            return mugY - 2;
-        } else {
-            return mugY - 1;
-        }
-    }
-
-
-    private function getQualifyingSteps(info){
-        // The first 10,000 steps don't count -- don't be lazy!
-        var qualifyingSteps = info.steps - info.stepGoal;
-        return qualifyingSteps >= 0 ? qualifyingSteps : 0;
-    }
-
-    private function setMugForeColor(dc, info){
-        // Reset colors to font / background, or faded gray if not yet at 10,000 steps
-        if (info.steps > info.stepGoal){
-            Theme.setColor(dc, Theme.MUG_COLOR);
-        } else {
-            Theme.setColor(dc, Theme.FADED_MUG_COLOR);
-        }
-    }
-
+ 
 
     private function drawSolarIntensity(dc)
     {  
