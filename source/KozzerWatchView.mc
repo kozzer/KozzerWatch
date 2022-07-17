@@ -21,16 +21,12 @@ class KozzerWatchView extends WatchUi.WatchFace
     var isAwake;                            // Flag indicating whether watch is awake or in sleep mode
     var bluetoothIcon;                      // Reference to BluetoothIcon object
     var moveBar;                            // Reference to MoveBar object
+    var batteryStatus;                      // Reference to BatteryStatus object
     var sunIcon;                            // Reference to solar intensity sun icon
     var screenBuffer;                       // Buffer for the entire screen
     var screenCenterPoint;                  // Center x,y point of screen
     var fullScreenRefresh;                  // Flag used in onUpdate() & onPartialUpdate()
     
-    // Graphic Dimensions - hard-coded
-    // Battery
-    const batteryWidth  = 32;
-    const batteryHeight = 16;
-    const batteryRadius = 3;
 
 
     // Initialize variables for this view
@@ -67,7 +63,8 @@ class KozzerWatchView extends WatchUi.WatchFace
 
         // Initialize UI components
         bluetoothIcon = new BluetoothIcon();
-        moveBar = new MoveBar();
+        moveBar       = new MoveBar();
+        batteryStatus = new BatteryStatus();
 
         // Initialize sun icon if available and active
         if (Toybox.System.Stats has :solarIntensity && showSolarIntensity){
@@ -122,7 +119,7 @@ class KozzerWatchView extends WatchUi.WatchFace
         moveBar.drawOnScreen(bufferDc);
 
         // Battery - Draw the battery status
-        drawBatteryStatus(bufferDc);
+        batteryStatus.drawOnScreen(bufferDc);
 
         // Get activity monitor info for steps data
         var stepsInfo = ActivityMonitor.getInfo();
@@ -214,36 +211,6 @@ class KozzerWatchView extends WatchUi.WatchFace
         dc.drawText(screenWidth - 14, screenHeight / 2 - Graphics.getFontHeight(font) / 2, font, milesWalked, Graphics.TEXT_JUSTIFY_RIGHT);
     }
     
-    // Draw battery icon with % indicated
-    private function drawBatteryStatus(dc) {   
-    
-        // Get battery % from system
-        var batteryPerc = (System.getSystemStats().battery + 0.5).toNumber();
-        
-        // dc dimensions
-        var width  = dc.getWidth();
-        var height = dc.getHeight();
-               
-        // Put it bottom center
-        var batteryX = ((width / 2)  - (batteryWidth / 2)) - (batteryHeight / 12);
-        var batteryY = (height - 28) - (batteryHeight / 2);
-
-        // Reset colors to font / background
-        Theme.resetColors(dc);
-        
-        // Draw outline
-        dc.drawRoundedRectangle(batteryX, batteryY, batteryWidth, batteryHeight, batteryRadius);
-
-        // Draw positive-end nub (on right)
-        dc.fillRectangle((batteryX + batteryWidth), (batteryY + (batteryHeight / 4)), (batteryHeight / 6), (batteryHeight / 2)); 
-
-        // Change to color-coded fill
-        setBatteryDisplayLevelColor(dc, batteryPerc);
-        
-        // Draw filled (only fill based on %)
-        dc.fillRoundedRectangle(batteryX + 2, batteryY + 2, ((batteryWidth * batteryPerc) / 100) - 4, batteryHeight - 4, batteryRadius - 1);
-    }
-
     // Draw beer mug, with right level of beer
     private function drawBeersEarned(dc, info){
 
@@ -258,8 +225,9 @@ class KozzerWatchView extends WatchUi.WatchFace
         var height = dc.getHeight();
 
         // Use battery size as basis for mug size (X / Y flipped)
-        var mugWidth  = batteryHeight + 1;
-        var mugHeight = batteryWidth - 6;
+        var mugWidth  = 17;
+        var mugHeight = 26;
+        var cornerRadius = 3;
 
         // Put it center right
         var mugX = width - 32;
@@ -269,14 +237,14 @@ class KozzerWatchView extends WatchUi.WatchFace
         setMugForeColor(dc, info);
         
         // Drag main part of mug
-        dc.drawRoundedRectangle(mugX,     mugY, mugWidth,     mugHeight,     batteryRadius);
-        dc.drawRoundedRectangle(mugX - 1, mugY, mugWidth + 2, mugHeight + 1, batteryRadius);
+        dc.drawRoundedRectangle(mugX,     mugY, mugWidth,     mugHeight,     cornerRadius);
+        dc.drawRoundedRectangle(mugX - 1, mugY, mugWidth + 2, mugHeight + 1, cornerRadius);
 
         // Drag handle on left side
         var handleX = mugX - 5;
         var handleY = mugY + 7;
-        dc.drawRoundedRectangle(handleX,   handleY,   6, 12, batteryRadius);
-        dc.drawRoundedRectangle(handleX-1, handleY-1, 7, 14, batteryRadius);
+        dc.drawRoundedRectangle(handleX,   handleY,   6, 12, cornerRadius);
+        dc.drawRoundedRectangle(handleX-1, handleY-1, 7, 14, cornerRadius);
 
         // Draw beer inside mug, proper amount for how much of next beer earned
         var beerHeight = (mugHeight * (mugLevel.toFloat() / 100));
@@ -287,7 +255,7 @@ class KozzerWatchView extends WatchUi.WatchFace
         //System.println("mugLevel = " + mugLevel + "%, beerX = " + beerX + ", beerY = " + beerY + ", beerHeight = " + beerHeight);
 
         // Bulk of beer via rounded rectangle, but I want the top to be flat not rounded, so the line takes care of that
-        dc.fillRoundedRectangle(beerX, beerY, mugWidth - 2, beerHeight, batteryRadius - 1);
+        dc.fillRoundedRectangle(beerX, beerY, mugWidth - 2, beerHeight, cornerRadius - 1);
         dc.drawLine(beerX, beerY, beerX + (mugWidth - 2), beerY);
 
         // Reset colors to font / background, or faded gray if not yet at 10,000 steps
@@ -389,17 +357,6 @@ class KozzerWatchView extends WatchUi.WatchFace
         }
     }
 
-    private function setBatteryDisplayLevelColor(dc, perc){
-        if (perc > 40) {
-            Theme.setColor(dc, Theme.FULL_COLOR);
-        } else if (perc > 30) {
-            Theme.setColor(dc, Theme.MOST_COLOR);
-        } else if (perc > 20) {
-            Theme.setColor(dc, Theme.SOME_COLOR);
-        } else { 
-            Theme.setColor(dc, Theme.LOW_COLOR);
-        } 
-    }
 
     private function drawClock(dc){
         Theme.resetColors(dc);
