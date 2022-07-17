@@ -15,6 +15,7 @@ var partialUpdatesAllowed = false;          // Outside class so the Delegate cla
 
 class KozzerWatchView extends WatchUi.WatchFace
 {
+    // Flag indicating whether solar status should be displayed
     var showSolarIntensity;
 
     // General class-level fields
@@ -24,10 +25,11 @@ class KozzerWatchView extends WatchUi.WatchFace
     // UI Components
     var bluetoothIcon;                      // Reference to BluetoothIcon object
     var moveBar;                            // Reference to MoveBar object
+    var stepsCount;                         // Reference to StepsCount object
     var batteryStatus;                      // Reference to BatteryStatus object
     var beerMug;                            // Reference to BeerMug object
+    var solarStatus;                        // Reference to SolarStatus object
 
-    var sunIcon;                            // Reference to solar intensity sun icon
 
     var screenBuffer;                       // Buffer for the entire screen
     var screenCenterPoint;                  // Center x,y point of screen
@@ -51,9 +53,9 @@ class KozzerWatchView extends WatchUi.WatchFace
         // Clear cached property values
         Application.getApp().clearProperties();
 
-        // Re-read properties from XML file
+        // Re-read properties from XML file (only set solar to true if device supports and setting is true)
         var useLightTheme  = Application.getApp().Properties.getValue("LightThemeActive");
-        showSolarIntensity = Application.getApp().Properties.getValue("ShowSolarIntensity");
+        showSolarIntensity = Toybox.System.Stats has :solarIntensity && Application.getApp().Properties.getValue("ShowSolarIntensity");
 
         Theme.setTheme(useLightTheme);
 
@@ -68,12 +70,13 @@ class KozzerWatchView extends WatchUi.WatchFace
         // Initialize UI components
         bluetoothIcon = new BluetoothIcon();
         moveBar       = new MoveBar();
+        stepsCount    = new StepsCount(dc.getHeight());
         batteryStatus = new BatteryStatus();
         beerMug       = new BeerMug();
 
-        // Initialize sun icon if available and active
-        if (Toybox.System.Stats has :solarIntensity && showSolarIntensity){
-            sunIcon = WatchUi.loadResource(Rez.Drawables.SunIcon);
+        // Only initialize Solar Status if flag is true
+        if (showSolarIntensity){
+            solarStatus = new SolarStatus();
         }
 
         createScreenBuffer(dc);
@@ -120,18 +123,14 @@ class KozzerWatchView extends WatchUi.WatchFace
         var stepsInfo = ActivityMonitor.getInfo();
                
         // Daily Steps 
-        drawNumberOfStepsText(bufferDc, stepsInfo, screenHeight);
-
-        // Daily Miles 
-        // Commented this out to be replaced by beers earned
-        // drawStepMilesTotal(bufferDc, info);
+        stepsCount.drawOnScreen(bufferDc, stepsInfo);
  
         // Draw beers earned + mug
         beerMug.drawOnScreen(bufferDc, stepsInfo);
 
         // Draw solar info if available and enabled
-        if (Toybox.System.Stats has :solarIntensity && showSolarIntensity) { 
-            drawSolarIntensity(bufferDc);
+        if (showSolarIntensity) { 
+            solarStatus.drawOnScreen(bufferDc);
         }
 
         // Always output the offscreen buffer to the main display in onUpdate() - once per minute
@@ -199,83 +198,6 @@ class KozzerWatchView extends WatchUi.WatchFace
     }
 
   
-
-    private function drawNumberOfStepsText(dc, info, screenHeight)
-    {
-        var dataString = info.steps.toString();
-        var stepPerc   = ((info.steps * 100) / info.stepGoal).toNumber();
-
-        setStepsDisplayLevelColor(dc, stepPerc);
-        var tinyFont = CommonMethods.getTinyFont(dc);
-        dc.drawText(14, screenHeight / 2 - Graphics.getFontHeight(tinyFont) / 2, tinyFont, dataString, Graphics.TEXT_JUSTIFY_LEFT);
-
-        Theme.resetColors(dc);
-    }
-
-    private function drawStepMilesTotal(dc, info)
-    {
-        // Daily miles walked based on centimeters traveled
-        var milesWalked = (info.distance.toFloat() / 160934).format("%3.1f") + "m";  // 160,934 cm per mile
-        var font = CommonMethods.getTinyFont(dc);
-        dc.drawText(screenWidth - 14, screenHeight / 2 - Graphics.getFontHeight(font) / 2, font, milesWalked, Graphics.TEXT_JUSTIFY_RIGHT);
-    }
- 
-
-    private function drawSolarIntensity(dc)
-    {  
-        // Get system stats object
-        var stats = Toybox.System.getSystemStats();
-        var solar = stats.solarIntensity;
-
-        // If solar is 0, just return
-        if (solar == 0) {
-            return;
-        }
-        
-        // dc dimensions
-        var width  = dc.getWidth();
-        var height = dc.getHeight();
-               
-        // Put it above battery status
-        var sunDiameter = 16;
-        var sunX = width / 2;
-        var sunY = height - 60;
-
-        // Draw sun
-        dc.drawBitmap(sunX - 16, sunY - 15, sunIcon);
-
-        // Draw power level
-        Theme.setColor(dc, ThemeController.LOW_COLOR);
-        dc.drawText(sunX, sunY - 9, Graphics.FONT_XTINY, solar, Graphics.TEXT_JUSTIFY_CENTER);
-
-        Theme.resetColors(dc);
-    }
-
-
-    
-    private function setStepsDisplayLevelColor(dc, perc){
-        if (System.getClockTime().hour < 14) {
-            // Only show step value colors if >= 2pm
-            Theme.resetColors(dc);
-        } else if (perc > 100) {
-            // Step goal!
-            Theme.setColor(dc, Theme.FULL_COLOR);
-        } else if (perc > 60) {
-            // 60+% of step goal
-            Theme.setColor(dc, Theme.MOST_COLOR);
-        } else if (perc > 30) {
-            // 30-59% step goal
-            Theme.setColor(dc, Theme.SOME_COLOR);
-        } else if (perc > 0) {
-            // 1-29% step goal
-            Theme.setColor(dc, Theme.LOW_COLOR);
-        } else {
-            // 0% - Default to normal font color for 0 steps
-            Theme.resetColors(dc);
-        }
-    }
-
-
     private function drawClock(dc){
         Theme.resetColors(dc);
         var clockTime = System.getClockTime();
