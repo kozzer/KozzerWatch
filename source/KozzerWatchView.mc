@@ -18,10 +18,9 @@ class KozzerWatchView extends WatchUi.WatchFace
 
     // General class-level fields
     var isAwake;                            // Flag indicating whether watch is awake or in sleep mode
-    var bluetoothIcon;                      // Reference to bluetooth icon png
+    var bluetoothIcon;                      // Reference to BluetoothIcon object
     var sunIcon;                            // Reference to solar intensity sun icon
     var screenBuffer;                       // Buffer for the entire screen
-    var curClip;                            // Clip for partial updates, so only pixels where second hand is will actually be changed
     var screenCenterPoint;                  // Center x,y point of screen
     var fullScreenRefresh;                  // Flag used in onUpdate() & onPartialUpdate()
     
@@ -107,7 +106,7 @@ class KozzerWatchView extends WatchUi.WatchFace
     function onLayout(dc) {
 
         // Initialize bluetooth icon
-        bluetoothIcon = WatchUi.loadResource(Rez.Drawables.BluetoothIcon);
+        bluetoothIcon = new BluetoothIcon();
 
         // Initialize sun icon if available and active
         if (Toybox.System.Stats has :solarIntensity && showSolarIntensity){
@@ -127,7 +126,7 @@ class KozzerWatchView extends WatchUi.WatchFace
         }
 
         // Clear any clip
-        clearDrawingClip(dc);
+        CommonMethods.clearDrawingClip(dc);
 
         // Set center point of watchface
         screenCenterPoint = [dc.getWidth()/2, dc.getHeight()/2];
@@ -145,7 +144,7 @@ class KozzerWatchView extends WatchUi.WatchFace
         var screenHeight = screenDc.getHeight();
     
         // Clear the clip
-        clearDrawingClip(screenDc);
+        CommonMethods.clearDrawingClip(screenDc);
         
         // Draw background color to screen buffer
         var bufferDc = screenBuffer.getDc();
@@ -183,10 +182,10 @@ class KozzerWatchView extends WatchUi.WatchFace
         }
 
         // Always output the offscreen buffer to the main display in onUpdate() - once per minute
-        writeBufferToDisplay(screenDc, screenBuffer);
+        CommonMethods.writeBufferToDisplay(screenDc, screenBuffer);
 
         // Check bluetooth status and write icon appropriately
-        setBluetoothIcon(screenDc);
+        bluetoothIcon.drawOnScreen(screenDc);
 
         // Draw the clock - ticks around edge, hour hand, minute hand, center of clock (second hand handled below)
         drawClock(screenDc);
@@ -212,10 +211,10 @@ class KozzerWatchView extends WatchUi.WatchFace
         if(!fullScreenRefresh) {
 
             // Re-write buffer to display 
-            writeBufferToDisplay(dc, screenBuffer);
+            CommonMethods.writeBufferToDisplay(dc, screenBuffer);
 
             // If active, draw icon
-            setBluetoothIcon(dc);
+            bluetoothIcon.drawOnScreen(dc);
 
             // Now draw clock over the top of any bt icon (uses clipping)
             drawClock(dc);        
@@ -279,13 +278,13 @@ class KozzerWatchView extends WatchUi.WatchFace
             var iconPoints = [ [iconX, iconY], [iconX+24, iconY], [iconX+24, iconY+24], [iconX, iconY+24] ];
         
             // Update the cliping rectangle to the location of the icon
-            setDrawingClip(dc, iconPoints);
+            CommonMethods.setDrawingClip(dc, iconPoints);
             
             // Actually write the icon to the dc
             dc.drawBitmap(iconX, iconY, bluetoothIcon);
 
             // Clear the clip
-            clearDrawingClip(dc);
+            CommonMethods.clearDrawingClip(dc);
         }
     }
 
@@ -295,7 +294,8 @@ class KozzerWatchView extends WatchUi.WatchFace
         var stepPerc   = ((info.steps * 100) / info.stepGoal).toNumber();
 
         setStepsDisplayLevelColor(dc, stepPerc);
-        dc.drawText(14, screenHeight / 2 - Graphics.getFontHeight(getTinyFont(dc)) / 2, getTinyFont(dc), dataString, Graphics.TEXT_JUSTIFY_LEFT);
+        var tinyFont = CommonMethods.getTinyFont(dc);
+        dc.drawText(14, screenHeight / 2 - Graphics.getFontHeight(tinyFont) / 2, tinyFont, dataString, Graphics.TEXT_JUSTIFY_LEFT);
 
         resetColorsForRendering(dc);
     }
@@ -304,7 +304,7 @@ class KozzerWatchView extends WatchUi.WatchFace
     {
         // Daily miles walked based on centimeters traveled
         var milesWalked = (info.distance.toFloat() / 160934).format("%3.1f") + "m";  // 160,934 cm per mile
-        var font = getTinyFont(dc);
+        var font = CommonMethods.getTinyFont(dc);
         dc.drawText(screenWidth - 14, screenHeight / 2 - Graphics.getFontHeight(font) / 2, font, milesWalked, Graphics.TEXT_JUSTIFY_RIGHT);
     }
     
@@ -394,7 +394,7 @@ class KozzerWatchView extends WatchUi.WatchFace
         dc.drawLine(mugX, baseY, mugX + mugWidth, baseY);
 
         // Last step Draw Num Beers earned, to go inside
-        dc.drawText(mugX + 8, adjustMugY(dc, mugY), getTinyFont(dc), beersEarned, Graphics.TEXT_JUSTIFY_CENTER);
+        dc.drawText(mugX + 8, adjustMugY(dc, mugY), CommonMethods.getTinyFont(dc), beersEarned, Graphics.TEXT_JUSTIFY_CENTER);
 
         resetColorsForRendering(dc);
     }
@@ -412,14 +412,6 @@ class KozzerWatchView extends WatchUi.WatchFace
         }
     }
 
-    private function getTinyFont(dc){
-        var width = dc.getWidth();
-        if (width < 240){
-            return Graphics.FONT_XTINY;
-        } else {
-            return Graphics.FONT_TINY;
-        }
-    }
 
     private function getQualifyingSteps(info){
         // The first 10,000 steps don't count -- don't be lazy!
@@ -467,12 +459,6 @@ class KozzerWatchView extends WatchUi.WatchFace
         resetColorsForRendering(dc);
     }
 
-
-    // Draw the watch face background onto the given draw context
-    private function writeBufferToDisplay(screenDc, screenBuffer) { 
-        // Write the entire display buffer to the display
-        screenDc.drawBitmap(0, 0, screenBuffer);    
-    }
 
     private function resetColorsForRendering(dc) {
         dc.setColor(FONT_COLOR, Graphics.COLOR_TRANSPARENT);
@@ -529,13 +515,13 @@ class KozzerWatchView extends WatchUi.WatchFace
         var hourHandPoints = generateHandCoordinates(screenCenterPoint, hourHandAngle, 70, 14, 7);
 
         // Update the cliping rectangle to the new location of the hour hand
-        setDrawingClip(dc, hourHandPoints);
+        CommonMethods.setDrawingClip(dc, hourHandPoints);
 
         // Draw hour hand
         dc.fillPolygon(hourHandPoints);
 
         // Clear the clip
-        clearDrawingClip(dc);
+        CommonMethods.clearDrawingClip(dc);
 
         //Reset colors
         resetColorsForRendering(dc);
@@ -546,13 +532,13 @@ class KozzerWatchView extends WatchUi.WatchFace
         var minuteHandPoints = generateHandCoordinates(screenCenterPoint, minuteHandAngle, 100, 20, 5);
 
         // Update the cliping rectangle to the new location of the minute hand
-        setDrawingClip(dc, minuteHandPoints);
+        CommonMethods.setDrawingClip(dc, minuteHandPoints);
 
         // Draw hour hand
         dc.fillPolygon(minuteHandPoints);
 
         // Clear the clip
-        clearDrawingClip(dc);
+        CommonMethods.clearDrawingClip(dc);
     }
     
     private function drawSecondHand(dc) {
@@ -561,14 +547,14 @@ class KozzerWatchView extends WatchUi.WatchFace
         var secondHandPoints = generateHandCoordinates(screenCenterPoint, secondHand, 100, 20, 2);
         
         // Update the cliping rectangle to the new location of the second hand
-        setDrawingClip(dc, secondHandPoints);
+        CommonMethods.setDrawingClip(dc, secondHandPoints);
 
         // Draw the second hand to the screen
         dc.setColor(RED_COLOR, Graphics.COLOR_TRANSPARENT);
         dc.fillPolygon(secondHandPoints);
 
         // Clear the clip
-        clearDrawingClip(dc);
+        CommonMethods.clearDrawingClip(dc);
     }
 
     private function drawClockCenter(dc, width, height) {
@@ -622,52 +608,6 @@ class KozzerWatchView extends WatchUi.WatchFace
         }
     }
     
-    // Clear drawing clip
-    private function clearDrawingClip(dc) {
-        dc.clearClip();
-        curClip = null;
-    }
-    
-    // Set the clip based on the passed-in set of coordinates
-    private function setDrawingClip(dc, rectanglePoints) {
-        // Clear existing clip
-        dc.clearClip();
-    
-        // Update the cliping rectangle to polygon
-        curClip        = getBoundingBox(rectanglePoints);
-        var bboxWidth  = curClip[1][0] - curClip[0][0] + 1;
-        var bboxHeight = curClip[1][1] - curClip[0][1] + 1;
-        
-        // Set new clip with new coordinates
-        dc.setClip(curClip[0][0], curClip[0][1], bboxWidth, bboxHeight);        
-    }
-    
-
-    // Compute a bounding box from the passed in points
-    private function getBoundingBox(points) {
-        var min = [9999,9999];
-        var max = [0,0];
-
-        for (var i = 0; i < points.size(); ++i) {
-            if(points[i][0] < min[0]) {
-                min[0] = points[i][0];
-            }
-
-            if(points[i][1] < min[1]) {
-                min[1] = points[i][1];
-            }
-
-            if(points[i][0] > max[0]) {
-                max[0] = points[i][0];
-            }
-
-            if(points[i][1] > max[1]) {
-                max[1] = points[i][1];
-            }
-        }
-
-        return [min, max];
-    }
 
     // This method is called when the device re-enters sleep mode.
     function onEnterSleep() {
