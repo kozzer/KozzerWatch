@@ -172,8 +172,6 @@ class KozzerWatchView extends WatchUi.WatchFace
         }
     }
    
-
-
     // This method is called when the device re-enters sleep mode.
     function onEnterSleep() {
         isAwake = false;

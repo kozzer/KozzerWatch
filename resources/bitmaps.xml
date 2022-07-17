@@ -1,11 +1,13 @@
 <resources>
-    <!-- <bitmap id="LauncherIcon" filename="drawables/kozzer_icon.png" /> -->
+
+    <bitmap id="LauncherIcon" filename="drawables/kozzer_icon_40x40.png" />
+
     <bitmap id="BluetoothIcon" filename="drawables/bluetooth_blue.png">
         <palette>
             <color>2546E9</color>
         </palette>
     </bitmap>
     
-    <bitmap id="SunIcon" filename="drawables/sun.png">
-    </bitmap>
+    <bitmap id="SunIcon" filename="drawables/sun.png" />
+
 </resources>
