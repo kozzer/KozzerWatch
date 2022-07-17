@@ -2,7 +2,8 @@ using Toybox.Graphics;
 
 module CommonMethods {
 
-    var curClip;                            // Clip for partial updates, so only pixels where second hand is will actually be changed
+    // Clip for partial updates, so only pixels where second hand is will actually be changed
+    private var curClip;                            
 
     // Draw the watch face background onto the given draw context
     function writeBufferToDisplay(screenDc, screenBuffer) { 

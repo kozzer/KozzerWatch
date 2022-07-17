@@ -3,11 +3,12 @@ using Toybox.WatchUi;
 
 class BluetoothIcon {
 
-    var bluetoothIcon;                      // Reference to bluetooth icon png
+    // Reference to bluetooth icon png
+    var iconBitmap;                      
 
     function initialize(){
         // Initialize bluetooth icon
-        bluetoothIcon = WatchUi.loadResource(Rez.Drawables.BluetoothIcon);
+        iconBitmap = WatchUi.loadResource(Rez.Drawables.BluetoothIcon);
     }
 
     // Draw icon onto given dc
@@ -25,7 +26,7 @@ class BluetoothIcon {
             CommonMethods.setDrawingClip(dc, iconPoints);
             
             // Actually write the icon to the dc
-            dc.drawBitmap(iconX, iconY, bluetoothIcon);
+            dc.drawBitmap(iconX, iconY, iconBitmap);
 
             // Clear the clip
             CommonMethods.clearDrawingClip(dc);

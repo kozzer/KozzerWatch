@@ -9,11 +9,12 @@ using Toybox.Time.Gregorian;
 using Toybox.WatchUi;
 using Toybox.Application.Storage as Storage;
 
+using ThemeController as Theme;
+
 var partialUpdatesAllowed = false;          // Outside class so the Delegate class below can access the value    
 
 class KozzerWatchView extends WatchUi.WatchFace
 {
-    var useLightTheme;
     var showSolarIntensity;
 
     // General class-level fields
@@ -32,75 +33,34 @@ class KozzerWatchView extends WatchUi.WatchFace
     // Move Bar
     const moveBarHeight = 4;
 
-    // UI color palette
-    var BACKGROUND_COLOR;  
-    var FONT_COLOR;        
-    var MUG_COLOR;         
-    var FADED_MUG_COLOR;   
-    var RED_COLOR;         
-    var CLOCK_HAND_LINE;   
-    var BLUE_COLOR;        
-    var FULL_COLOR;        
-    var MOST_COLOR;        
-    var SOME_COLOR;        
-    var LOW_COLOR;         
-    var BEER_COLOR;        
-
     // Initialize variables for this view
     function initialize() {
+
+        // Call base class constructor
         WatchFace.initialize();
+
+        // Get and apply app settings 
+        populateAndApplyAppSettings();
 
         fullScreenRefresh     = true;
         partialUpdatesAllowed = ( Toybox.WatchUi.WatchFace has :onPartialUpdate ); // Will be set to true until KozzerWatchViewDelegate.onPowerBudgetExceeded() is fired
-    
-        // Get settings - then set theme 
-        populateAppSettings();
-        setTheme();
     }
 
-    function populateAppSettings(){
+    function populateAndApplyAppSettings(){
 
         // Clear cached property values
         Application.getApp().clearProperties();
 
         // Re-read properties from XML file
-        useLightTheme      = Application.getApp().Properties.getValue("LightThemeActive");
+        var useLightTheme  = Application.getApp().Properties.getValue("LightThemeActive");
         showSolarIntensity = Application.getApp().Properties.getValue("ShowSolarIntensity");
+
+        Theme.setTheme(useLightTheme);
+
         System.println("Properties: light: " + useLightTheme + ", solar: " + showSolarIntensity);
     }
 
-    function setTheme(){
-
-        // Colors common to both themes
-        MUG_COLOR        = 0x353225;     // Amberish-gray
-        FADED_MUG_COLOR  = 0x777777;     // Medium gray
-        CLOCK_HAND_LINE  = 0x808080;     // Gray
-        RED_COLOR        = 0xFF0000;     // Red
-        LOW_COLOR        = RED_COLOR;
-
-        if (useLightTheme){
-
-            // Light theme (default)
-            BACKGROUND_COLOR  = 0xDEDEDE;     // Light gray 
-            FONT_COLOR        = 0x111111;     // Very dark gray 
-            BLUE_COLOR        = 0x0026FF;     // Blue
-            FULL_COLOR        = 0x00C44E;     // Green
-            MOST_COLOR        = 0xDBCC00;     // Dark Yellow
-            SOME_COLOR        = 0xFF6A00;     // Orange
-            BEER_COLOR        = 0xFF9328;     // Amber
-
-        } else {
-
-            // Dark themeS
-            BACKGROUND_COLOR  = 0x111111;     // Very dark gray 
-            FONT_COLOR        = 0xDEDEDE;     // Very light gray 
-            BLUE_COLOR        = 0x1166FF;     // Blue
-            FULL_COLOR        = 0x00FF00;     // Green
-            MOST_COLOR        = 0xFFFF00;     // Yellow
-            SOME_COLOR        = 0xFF9900;     // Orange
-            BEER_COLOR        = SOME_COLOR;
-        }
-    }
+ 
 
     // Configure the layout of the watchface for this device
     function onLayout(dc) {
@@ -148,11 +108,11 @@ class KozzerWatchView extends WatchUi.WatchFace
         
         // Draw background color to screen buffer
         var bufferDc = screenBuffer.getDc();
-        bufferDc.setColor(BACKGROUND_COLOR, BACKGROUND_COLOR);
+        Theme.setBothColors(bufferDc, Theme.BACKGROUND_COLOR);
         bufferDc.fillRectangle(0, 0, bufferDc.getWidth(), bufferDc.getHeight());
 
         // Reset colors for rendering our info items (font, background)
-        resetColorsForRendering(bufferDc);
+        Theme.resetColors(bufferDc);
         
         // Draw the date on the top
         drawDateString(bufferDc, screenWidth / 2, 14);
@@ -241,27 +201,27 @@ class KozzerWatchView extends WatchUi.WatchFace
 
         // Draw bars based on bar level
         if (barLevel >= 1) {
-            dc.setColor(BLUE_COLOR, Graphics.COLOR_TRANSPARENT);
+            Theme.setColor(dc, Theme.BLUE_COLOR);
             dc.fillRectangle(barX, barY, 27, moveBarHeight);
             barX += 30;
         }
         if (barLevel >= 2){
-            dc.setColor(FULL_COLOR, Graphics.COLOR_TRANSPARENT);
+            Theme.setColor(dc, Theme.FULL_COLOR);
             dc.fillRectangle(barX, barY, 9, moveBarHeight);
             barX += 12;
         }
         if (barLevel >= 3){
-            dc.setColor(MOST_COLOR, Graphics.COLOR_TRANSPARENT);
+            Theme.setColor(dc, Theme.MOST_COLOR);
             dc.fillRectangle(barX, barY, 9, moveBarHeight);
             barX += 12;
         }
         if (barLevel >= 4){
-            dc.setColor(SOME_COLOR, Graphics.COLOR_TRANSPARENT);
+            Theme.setColor(dc, Theme.SOME_COLOR);
             dc.fillRectangle(barX, barY, 9, moveBarHeight);
             barX += 12;
         }
         if (barLevel >= 5){
-            dc.setColor(LOW_COLOR, Graphics.COLOR_TRANSPARENT);
+            Theme.setColor(dc, Theme.LOW_COLOR);
             dc.fillRectangle(barX, barY, 9, moveBarHeight);
         }
     }
@@ -297,7 +257,7 @@ class KozzerWatchView extends WatchUi.WatchFace
         var tinyFont = CommonMethods.getTinyFont(dc);
         dc.drawText(14, screenHeight / 2 - Graphics.getFontHeight(tinyFont) / 2, tinyFont, dataString, Graphics.TEXT_JUSTIFY_LEFT);
 
-        resetColorsForRendering(dc);
+        Theme.resetColors(dc);
     }
 
     private function drawStepMilesTotal(dc, info)
@@ -323,7 +283,7 @@ class KozzerWatchView extends WatchUi.WatchFace
         var batteryY = (height - 28) - (batteryHeight / 2);
 
         // Reset colors to font / background
-        resetColorsForRendering(dc);
+        Theme.resetColors(dc);
         
         // Draw outline
         dc.drawRoundedRectangle(batteryX, batteryY, batteryWidth, batteryHeight, batteryRadius);
@@ -376,7 +336,7 @@ class KozzerWatchView extends WatchUi.WatchFace
         var beerHeight = (mugHeight * (mugLevel.toFloat() / 100));
         var beerX = mugX + 1;
         var beerY = mugY + mugHeight - beerHeight - 1;
-        dc.setColor(BEER_COLOR, BEER_COLOR);
+        Theme.setBothColors(dc, ThemeController.BEER_COLOR);
 
         //System.println("mugLevel = " + mugLevel + "%, beerX = " + beerX + ", beerY = " + beerY + ", beerHeight = " + beerHeight);
 
@@ -396,7 +356,7 @@ class KozzerWatchView extends WatchUi.WatchFace
         // Last step Draw Num Beers earned, to go inside
         dc.drawText(mugX + 8, adjustMugY(dc, mugY), CommonMethods.getTinyFont(dc), beersEarned, Graphics.TEXT_JUSTIFY_CENTER);
 
-        resetColorsForRendering(dc);
+        Theme.resetColors(dc);
     }
 
     private function adjustMugY(dc, mugY){
@@ -422,9 +382,9 @@ class KozzerWatchView extends WatchUi.WatchFace
     private function setMugForeColor(dc, info){
         // Reset colors to font / background, or faded gray if not yet at 10,000 steps
         if (info.steps > info.stepGoal){
-            dc.setColor(MUG_COLOR, Graphics.COLOR_TRANSPARENT);
+            Theme.setColor(dc, Theme.MUG_COLOR);
         } else {
-            dc.setColor(FADED_MUG_COLOR, Graphics.COLOR_TRANSPARENT);
+            Theme.setColor(dc, Theme.FADED_MUG_COLOR);
         }
     }
 
@@ -453,53 +413,50 @@ class KozzerWatchView extends WatchUi.WatchFace
         dc.drawBitmap(sunX - 16, sunY - 15, sunIcon);
 
         // Draw power level
-        dc.setColor(LOW_COLOR, Graphics.COLOR_TRANSPARENT);
+        Theme.setColor(dc, ThemeController.LOW_COLOR);
         dc.drawText(sunX, sunY - 9, Graphics.FONT_XTINY, solar, Graphics.TEXT_JUSTIFY_CENTER);
 
-        resetColorsForRendering(dc);
+        Theme.resetColors(dc);
     }
 
 
-    private function resetColorsForRendering(dc) {
-        dc.setColor(FONT_COLOR, Graphics.COLOR_TRANSPARENT);
-    }
     
     private function setStepsDisplayLevelColor(dc, perc){
         if (System.getClockTime().hour < 14) {
             // Only show step value colors if >= 2pm
-            resetColorsForRendering(dc);
+            Theme.resetColors(dc);
         } else if (perc > 100) {
             // Step goal!
-            dc.setColor(FULL_COLOR, Graphics.COLOR_TRANSPARENT);
+            Theme.setColor(dc, Theme.FULL_COLOR);
         } else if (perc > 60) {
             // 60+% of step goal
-            dc.setColor(MOST_COLOR, Graphics.COLOR_TRANSPARENT);
+            Theme.setColor(dc, Theme.MOST_COLOR);
         } else if (perc > 30) {
             // 30-59% step goal
-            dc.setColor(SOME_COLOR, Graphics.COLOR_TRANSPARENT);
+            Theme.setColor(dc, Theme.SOME_COLOR);
         } else if (perc > 0) {
             // 1-29% step goal
-            dc.setColor(LOW_COLOR,  Graphics.COLOR_TRANSPARENT);
+            Theme.setColor(dc, Theme.LOW_COLOR);
         } else {
             // 0% - Default to normal font color for 0 steps
-            resetColorsForRendering(dc);
+            Theme.resetColors(dc);
         }
     }
 
     private function setBatteryDisplayLevelColor(dc, perc){
         if (perc > 40) {
-            dc.setColor(FULL_COLOR, Graphics.COLOR_TRANSPARENT);
+            Theme.setColor(dc, Theme.FULL_COLOR);
         } else if (perc > 30) {
-            dc.setColor(MOST_COLOR, Graphics.COLOR_TRANSPARENT);
+            Theme.setColor(dc, Theme.MOST_COLOR);
         } else if (perc > 20) {
-            dc.setColor(SOME_COLOR, Graphics.COLOR_TRANSPARENT);
+            Theme.setColor(dc, Theme.SOME_COLOR);
         } else { 
-            dc.setColor(LOW_COLOR,  Graphics.COLOR_TRANSPARENT);
+            Theme.setColor(dc, Theme.LOW_COLOR);
         } 
     }
 
     private function drawClock(dc){
-        resetColorsForRendering(dc);
+        Theme.resetColors(dc);
         var clockTime = System.getClockTime();
         drawHashMarks(dc);
         drawHourHand(dc, clockTime);
@@ -524,7 +481,7 @@ class KozzerWatchView extends WatchUi.WatchFace
         CommonMethods.clearDrawingClip(dc);
 
         //Reset colors
-        resetColorsForRendering(dc);
+        Theme.resetColors(dc);
     }
 
     private function drawMinuteHand(dc, clockTime) {
@@ -550,7 +507,7 @@ class KozzerWatchView extends WatchUi.WatchFace
         CommonMethods.setDrawingClip(dc, secondHandPoints);
 
         // Draw the second hand to the screen
-        dc.setColor(RED_COLOR, Graphics.COLOR_TRANSPARENT);
+        Theme.setColor(dc, ThemeController.RED_COLOR);
         dc.fillPolygon(secondHandPoints);
 
         // Clear the clip
@@ -565,7 +522,7 @@ class KozzerWatchView extends WatchUi.WatchFace
         dc.drawCircle(width / 2, height / 2, 7);
 
         // Reset colors
-        dc.setColor(FONT_COLOR, Graphics.COLOR_TRANSPARENT);
+        Theme.resetColors(dc);
     }
 
     // Get 4-element array of 2-element ints that indicate the x,y points of clock hand polygon
