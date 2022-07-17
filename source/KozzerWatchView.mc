@@ -20,6 +20,7 @@ class KozzerWatchView extends WatchUi.WatchFace
     // General class-level fields
     var isAwake;                            // Flag indicating whether watch is awake or in sleep mode
     var bluetoothIcon;                      // Reference to BluetoothIcon object
+    var moveBar;                            // Reference to MoveBar object
     var sunIcon;                            // Reference to solar intensity sun icon
     var screenBuffer;                       // Buffer for the entire screen
     var screenCenterPoint;                  // Center x,y point of screen
@@ -30,8 +31,7 @@ class KozzerWatchView extends WatchUi.WatchFace
     const batteryWidth  = 32;
     const batteryHeight = 16;
     const batteryRadius = 3;
-    // Move Bar
-    const moveBarHeight = 4;
+
 
     // Initialize variables for this view
     function initialize() {
@@ -65,8 +65,9 @@ class KozzerWatchView extends WatchUi.WatchFace
     // Configure the layout of the watchface for this device
     function onLayout(dc) {
 
-        // Initialize bluetooth icon
+        // Initialize UI components
         bluetoothIcon = new BluetoothIcon();
+        moveBar = new MoveBar();
 
         // Initialize sun icon if available and active
         if (Toybox.System.Stats has :solarIntensity && showSolarIntensity){
@@ -118,7 +119,7 @@ class KozzerWatchView extends WatchUi.WatchFace
         drawDateString(bufferDc, screenWidth / 2, 14);
 
         // Draw move bar under date string
-        drawMoveBar(bufferDc);
+        moveBar.drawOnScreen(bufferDc);
 
         // Battery - Draw the battery status
         drawBatteryStatus(bufferDc);
@@ -191,62 +192,7 @@ class KozzerWatchView extends WatchUi.WatchFace
         dc.drawText(x, y, Graphics.FONT_MEDIUM, dateStr, Graphics.TEXT_JUSTIFY_CENTER);
     }
 
-    private function drawMoveBar(dc){
-        // Get location of the blue bar
-        var barX = dc.getWidth() / 2 - 39;      // Total 78px wide, so 39px left of center
-        var barY = Graphics.getFontHeight(Graphics.FONT_MEDIUM) + 15;
-
-        // Get Move bar status
-        var barLevel = ActivityMonitor.getInfo().moveBarLevel;
-
-        // Draw bars based on bar level
-        if (barLevel >= 1) {
-            Theme.setColor(dc, Theme.BLUE_COLOR);
-            dc.fillRectangle(barX, barY, 27, moveBarHeight);
-            barX += 30;
-        }
-        if (barLevel >= 2){
-            Theme.setColor(dc, Theme.FULL_COLOR);
-            dc.fillRectangle(barX, barY, 9, moveBarHeight);
-            barX += 12;
-        }
-        if (barLevel >= 3){
-            Theme.setColor(dc, Theme.MOST_COLOR);
-            dc.fillRectangle(barX, barY, 9, moveBarHeight);
-            barX += 12;
-        }
-        if (barLevel >= 4){
-            Theme.setColor(dc, Theme.SOME_COLOR);
-            dc.fillRectangle(barX, barY, 9, moveBarHeight);
-            barX += 12;
-        }
-        if (barLevel >= 5){
-            Theme.setColor(dc, Theme.LOW_COLOR);
-            dc.fillRectangle(barX, barY, 9, moveBarHeight);
-        }
-    }
-    
-    // Draw icon onto given dc
-    private function setBluetoothIcon(dc){
-
-        // Only do anything if bluetooth is active
-        if (System.getDeviceSettings().phoneConnected) {  
-            
-            // Get location of points for icon location
-            var iconX = dc.getWidth() / 2 - 12;
-            var iconY = Graphics.getFontHeight(Graphics.FONT_MEDIUM) + 24;
-            var iconPoints = [ [iconX, iconY], [iconX+24, iconY], [iconX+24, iconY+24], [iconX, iconY+24] ];
-        
-            // Update the cliping rectangle to the location of the icon
-            CommonMethods.setDrawingClip(dc, iconPoints);
-            
-            // Actually write the icon to the dc
-            dc.drawBitmap(iconX, iconY, bluetoothIcon);
-
-            // Clear the clip
-            CommonMethods.clearDrawingClip(dc);
-        }
-    }
+  
 
     private function drawNumberOfStepsText(dc, info, screenHeight)
     {
