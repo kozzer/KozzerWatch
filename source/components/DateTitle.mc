@@ -1,6 +1,8 @@
 using Toybox.System;
 using Toybox.WatchUi;
 using Toybox.Graphics as Graphics;
+using Toybox.Time;
+using Toybox.Time.Gregorian;
 
 using ThemeController as Theme;
 

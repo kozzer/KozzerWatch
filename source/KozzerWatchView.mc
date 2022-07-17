@@ -4,8 +4,7 @@ using Toybox.Graphics;
 using Toybox.Lang;
 using Toybox.Math;
 using Toybox.System;
-using Toybox.Time;
-using Toybox.Time.Gregorian;
+
 using Toybox.WatchUi;
 using Toybox.Application.Storage as Storage;
 
