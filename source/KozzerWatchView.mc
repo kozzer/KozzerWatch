@@ -21,19 +21,17 @@ class KozzerWatchView extends WatchUi.WatchFace
     // General class-level fields
     var isAwake;                            // Flag indicating whether watch is awake or in sleep mode
     var fullScreenRefresh;                  // Flag used in onUpdate() & onPartialUpdate()   
+    var screenBuffer;                       // Buffer for the entire screen
 
     // UI Components
+    var mainClock;                          // Reference to Watchface's main analog clock
+    var dateTitle;                          // Reference to DateTitle object
     var bluetoothIcon;                      // Reference to BluetoothIcon object
     var moveBar;                            // Reference to MoveBar object
     var stepsCount;                         // Reference to StepsCount object
     var batteryStatus;                      // Reference to BatteryStatus object
     var beerMug;                            // Reference to BeerMug object
     var solarStatus;                        // Reference to SolarStatus object
-
-
-    var screenBuffer;                       // Buffer for the entire screen
-    var screenCenterPoint;                  // Center x,y point of screen
-
 
     // Initialize variables for this view
     function initialize() {
@@ -44,6 +42,7 @@ class KozzerWatchView extends WatchUi.WatchFace
         // Get and apply app settings 
         populateAndApplyAppSettings();
 
+        // Set class-level flags
         fullScreenRefresh     = true;
         partialUpdatesAllowed = ( Toybox.WatchUi.WatchFace has :onPartialUpdate ); // Will be set to true until KozzerWatchViewDelegate.onPowerBudgetExceeded() is fired
     }
@@ -58,16 +57,14 @@ class KozzerWatchView extends WatchUi.WatchFace
         showSolarIntensity = Toybox.System.Stats has :solarIntensity && Application.getApp().Properties.getValue("ShowSolarIntensity");
 
         Theme.setTheme(useLightTheme);
-
-        System.println("Properties: light: " + useLightTheme + ", solar: " + showSolarIntensity);
-    }
-
- 
+    } 
 
     // Configure the layout of the watchface for this device
     function onLayout(dc) {
 
         // Initialize UI components
+        mainClock     = new MainClock(dc);
+        dateTitle     = new DateTitle();
         bluetoothIcon = new BluetoothIcon();
         moveBar       = new MoveBar();
         stepsCount    = new StepsCount(dc.getHeight());
@@ -79,13 +76,11 @@ class KozzerWatchView extends WatchUi.WatchFace
             solarStatus = new SolarStatus();
         }
 
+        // Create screen buffer object
         createScreenBuffer(dc);
 
         // Clear any clip
         CommonMethods.clearDrawingClip(dc);
-
-        // Set center point of watchface
-        screenCenterPoint = [dc.getWidth()/2, dc.getHeight()/2];
     }
 
     // Handle the full screen refresh/update event, called once per minute or upon request
@@ -110,37 +105,25 @@ class KozzerWatchView extends WatchUi.WatchFace
         // Reset colors for rendering our info items (font, background)
         Theme.resetColors(bufferDc);
         
-        // Draw the date on the top
-        drawDateString(bufferDc, screenWidth / 2, 14);
-
-        // Draw move bar under date string
+        // Draw UI elements to buffer
+        dateTitle.drawOnScreen(bufferDc, screenWidth / 2, 14);
         moveBar.drawOnScreen(bufferDc);
-
-        // Battery - Draw the battery status
         batteryStatus.drawOnScreen(bufferDc);
-
-        // Get activity monitor info for steps data
         var stepsInfo = ActivityMonitor.getInfo();
-               
-        // Daily Steps 
         stepsCount.drawOnScreen(bufferDc, stepsInfo);
- 
-        // Draw beers earned + mug
         beerMug.drawOnScreen(bufferDc, stepsInfo);
 
-        // Draw solar info if available and enabled
+        // Draw solar info to buffer if available and enabled
         if (showSolarIntensity) { 
             solarStatus.drawOnScreen(bufferDc);
         }
 
-        // Always output the offscreen buffer to the main display in onUpdate() - once per minute
+        // Always write buffer to display in onUpdate() - once per minute
         CommonMethods.writeBufferToDisplay(screenDc, screenBuffer);
 
-        // Check bluetooth status and write icon appropriately
+        // Check bluetooth status & clock 
         bluetoothIcon.drawOnScreen(screenDc);
-
-        // Draw the clock - ticks around edge, hour hand, minute hand, center of clock (second hand handled below)
-        drawClock(screenDc);
+        mainClock.drawClock(screenDc);
 
         // Only draw the second hand if partial updates are currently allowed, OR if the watch is awake
         if (partialUpdatesAllowed) {
@@ -148,7 +131,7 @@ class KozzerWatchView extends WatchUi.WatchFace
             onPartialUpdate(screenDc);
         } else if (isAwake) {
             // If awake & partial updates not allowed draw second hand 
-            drawSecondHand(screenDc);
+            mainClock.drawSecondHand(screenDc);
         }
 
         fullScreenRefresh = false;
@@ -169,11 +152,11 @@ class KozzerWatchView extends WatchUi.WatchFace
             bluetoothIcon.drawOnScreen(dc);
 
             // Now draw clock over the top of any bt icon (uses clipping)
-            drawClock(dc);        
+            mainClock.drawClock(dc);        
         }
 
         // Draw second hand and bluetooth icon if connected
-        drawSecondHand(dc);
+        mainClock.drawSecondHand(dc);
     }
 
     private function createScreenBuffer(dc){
@@ -190,124 +173,7 @@ class KozzerWatchView extends WatchUi.WatchFace
         }
     }
    
-    // Draw the date string into the provided buffer at the specified location
-    private function drawDateString(dc, x, y) {
-        var greg    = Gregorian.info(Time.now(), Time.FORMAT_MEDIUM);       // Greg is 16th century new hotness, Julian is old and busted
-        var dateStr = Lang.format("$1$ $2$", [greg.month, greg.day]);
-        dc.drawText(x, y, Graphics.FONT_MEDIUM, dateStr, Graphics.TEXT_JUSTIFY_CENTER);
-    }
 
-  
-    private function drawClock(dc){
-        Theme.resetColors(dc);
-        var clockTime = System.getClockTime();
-        drawHashMarks(dc);
-        drawHourHand(dc, clockTime);
-        drawMinuteHand(dc, clockTime);
-        drawClockCenter(dc, dc.getWidth(), dc.getHeight());
-    }
-
-    private function drawHourHand(dc, clockTime){
-        // Draw the hour hand - convert it to minutes and compute the angle
-        var hourHandAngle  = (((clockTime.hour % 12) * 60) + clockTime.min);
-        hourHandAngle      = hourHandAngle / (12 * 60.0);
-        hourHandAngle      = hourHandAngle * Math.PI * 2;
-        var hourHandPoints = generateHandCoordinates(screenCenterPoint, hourHandAngle, 70, 14, 7);
-
-        // Update the cliping rectangle to the new location of the hour hand
-        CommonMethods.setDrawingClip(dc, hourHandPoints);
-
-        // Draw hour hand
-        dc.fillPolygon(hourHandPoints);
-
-        // Clear the clip
-        CommonMethods.clearDrawingClip(dc);
-
-        //Reset colors
-        Theme.resetColors(dc);
-    }
-
-    private function drawMinuteHand(dc, clockTime) {
-        var minuteHandAngle  = (clockTime.min / 60.0) * Math.PI * 2;
-        var minuteHandPoints = generateHandCoordinates(screenCenterPoint, minuteHandAngle, 100, 20, 5);
-
-        // Update the cliping rectangle to the new location of the minute hand
-        CommonMethods.setDrawingClip(dc, minuteHandPoints);
-
-        // Draw hour hand
-        dc.fillPolygon(minuteHandPoints);
-
-        // Clear the clip
-        CommonMethods.clearDrawingClip(dc);
-    }
-    
-    private function drawSecondHand(dc) {
-        var clockTime        = System.getClockTime();
-        var secondHand       = (clockTime.sec / 60.0) * Math.PI * 2;
-        var secondHandPoints = generateHandCoordinates(screenCenterPoint, secondHand, 100, 20, 2);
-        
-        // Update the cliping rectangle to the new location of the second hand
-        CommonMethods.setDrawingClip(dc, secondHandPoints);
-
-        // Draw the second hand to the screen
-        Theme.setColor(dc, ThemeController.RED_COLOR);
-        dc.fillPolygon(secondHandPoints);
-
-        // Clear the clip
-        CommonMethods.clearDrawingClip(dc);
-    }
-
-    private function drawClockCenter(dc, width, height) {
-        // Draw the circle in the middle
-        dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_BLACK);
-        dc.fillCircle(width / 2, height / 2, 7);
-        dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_BLACK);
-        dc.drawCircle(width / 2, height / 2, 7);
-
-        // Reset colors
-        Theme.resetColors(dc);
-    }
-
-    // Get 4-element array of 2-element ints that indicate the x,y points of clock hand polygon
-    private function generateHandCoordinates(centerPoint, angle, handLength, tailLength, width) {
-        // Map out the coordinates of the watch hand
-        var coords = [[-(width / 2), tailLength], [-(width / 2), -handLength], [width / 2, -handLength], [width / 2, tailLength]];
-        var result = new [4];
-        var cos = Math.cos(angle);
-        var sin = Math.sin(angle);
-
-        // Transform the coordinates
-        for (var i = 0; i < 4; i += 1) {
-            var x = (coords[i][0] * cos) - (coords[i][1] * sin) + 0.5;
-            var y = (coords[i][0] * sin) + (coords[i][1] * cos) + 0.5;
-
-            result[i] = [centerPoint[0] + x, centerPoint[1] + y];
-        }
-
-        return result;
-    }
-
-    // Draws the clock tick marks around the outside edges of the screen
-    private function drawHashMarks(dc) {
-        var width  = dc.getWidth();
-        var height = dc.getHeight();
-
-        // Forerunner 645 Music has a round face
-        var sX, sY;
-        var eX, eY;
-        var outerRad = width / 2;
-        var innerRad = outerRad - 10;
-
-        // draw tick marks around circumference
-        for (var i = Math.PI / 6; i <= 12 * Math.PI / 6; i += (Math.PI / 6)) {
-            sY = outerRad + innerRad * Math.sin(i);
-            eY = outerRad + outerRad * Math.sin(i);
-            sX = outerRad + innerRad * Math.cos(i);
-            eX = outerRad + outerRad * Math.cos(i);
-            dc.drawLine(sX, sY, eX, eY);
-        }
-    }
-    
 
     // This method is called when the device re-enters sleep mode.
     function onEnterSleep() {
