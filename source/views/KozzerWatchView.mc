@@ -53,7 +53,9 @@ class KozzerWatchView extends WatchUi.WatchFace
 
         // Re-read properties from XML file (only set solar to true if device supports and setting is true)
         var useLightTheme  = Application.getApp().Properties.getValue("LightThemeActive");
-        showSolarIntensity = Toybox.System.Stats has :solarIntensity && Application.getApp().Properties.getValue("ShowSolarIntensity");
+        showSolarIntensity = Toybox.System.Stats has :solarIntensity 
+                                && Toybox.System.getSystemStats().solarIntensity != null 
+                                && Application.getApp().Properties.getValue("ShowSolarIntensity");
 
         Theme.setTheme(useLightTheme);
     } 
@@ -62,18 +64,7 @@ class KozzerWatchView extends WatchUi.WatchFace
     function onLayout(dc) {
 
         // Initialize UI components
-        mainClock     = new MainClock(dc);
-        dateTitle     = new DateTitle();
-        bluetoothIcon = new BluetoothIcon();
-        moveBar       = new MoveBar();
-        stepsCount    = new StepsCount(dc.getHeight());
-        batteryStatus = new BatteryStatus();
-        beerMug       = new BeerMug();
-
-        // Only initialize Solar Status if flag is true
-        if (showSolarIntensity){
-            solarStatus = new SolarStatus();
-        }
+        initializeUIComponents(dc);
 
         // Create screen buffer object
         createScreenBuffer(dc);
@@ -89,9 +80,7 @@ class KozzerWatchView extends WatchUi.WatchFace
         fullScreenRefresh = true;
 
         // Set an alias for the passed-in screen dc for clarity
-        var screenDc     = dc;
-        var screenWidth  = screenDc.getWidth();
-        var screenHeight = screenDc.getHeight();
+        var screenDc = dc;
     
         // Clear the clip
         CommonMethods.clearDrawingClip(screenDc);
@@ -105,17 +94,7 @@ class KozzerWatchView extends WatchUi.WatchFace
         Theme.resetColors(bufferDc);
         
         // Draw UI elements to buffer
-        dateTitle.drawOnScreen(bufferDc, screenWidth / 2, 14);
-        moveBar.drawOnScreen(bufferDc);
-        batteryStatus.drawOnScreen(bufferDc);
-        var stepsInfo = ActivityMonitor.getInfo();
-        stepsCount.drawOnScreen(bufferDc, stepsInfo);
-        beerMug.drawOnScreen(bufferDc, stepsInfo);
-
-        // Draw solar info to buffer if available and enabled
-        if (showSolarIntensity) { 
-            solarStatus.drawOnScreen(bufferDc);
-        }
+        drawUIComponents(bufferDc);
 
         // Always write buffer to display in onUpdate() - once per minute
         CommonMethods.writeBufferToDisplay(screenDc, screenBuffer);
@@ -181,6 +160,39 @@ class KozzerWatchView extends WatchUi.WatchFace
     // This method is called when the device exits sleep mode.
     function onExitSleep() {
         isAwake = true;
+    }
+
+    function initializeUIComponents(dc){
+        // Created instance of each UI component
+        mainClock     = new MainClock(dc);
+        dateTitle     = new DateTitle();
+        bluetoothIcon = new BluetoothIcon();
+        moveBar       = new MoveBar();
+        stepsCount    = new StepsCount(dc.getHeight());
+        batteryStatus = new BatteryStatus();
+        beerMug       = new BeerMug();
+
+        // Only initialize Solar Status if flag is true
+        if (showSolarIntensity){
+            solarStatus = new SolarStatus();
+        }
+    }
+
+    function drawUIComponents(dc) {
+        // Get steps info
+        var stepsInfo = ActivityMonitor.getInfo();
+
+        // Draw UI components onto the passed-in DC (buffer)
+        dateTitle.drawOnScreen(dc, dc.getWidth() / 2, 14);
+        moveBar.drawOnScreen(dc);
+        batteryStatus.drawOnScreen(dc);
+        stepsCount.drawOnScreen(dc, stepsInfo);
+        beerMug.drawOnScreen(dc, stepsInfo);
+
+        // Draw solar info to buffer if available and enabled
+        if (showSolarIntensity) { 
+            solarStatus.drawOnScreen(dc);
+        }
     }
 }
 
