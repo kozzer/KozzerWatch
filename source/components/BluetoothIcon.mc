@@ -18,7 +18,12 @@ class BluetoothIcon {
         // Get location of points for icon location
         iconX      = dc.getWidth() / 2 - 12;
         iconY      = Graphics.getFontHeight(Graphics.FONT_MEDIUM) + 24;
-        iconPoints = [ [iconX, iconY], [iconX+24, iconY], [iconX+24, iconY+24], [iconX, iconY+24] ];
+        iconPoints = [ 
+                        [iconX, iconY], 
+                        [iconX + 24, iconY], 
+                        [iconX + 24, iconY + 24], 
+                        [iconX, iconY + 24] 
+                     ];
     }
 
     // Draw icon onto given dc
