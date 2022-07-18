@@ -11,8 +11,23 @@ class BatteryStatus {
     private const batteryHeight = 16;
     private const batteryRadius = 3;
 
-    function initialize(){
-        // Nothing here
+    // Battery screen location
+    private var batteryX;
+    private var batteryY;
+
+    private var batteryPoints;
+
+    function initialize(dc){
+        // Put it bottom center
+        batteryX = ((dc.getWidth() / 2)  - (batteryWidth / 2)) - (batteryHeight / 12);
+        batteryY = (dc.getHeight() - 28) - (batteryHeight / 2);
+
+        batteryPoints = [
+                            [batteryX, batteryY],
+                            [batteryX + batteryWidth + 2, batteryY],
+                            [batteryX + batteryWidth + 2, batteryY + batteryHeight],
+                            [batteryX, batteryY + batteryHeight]
+                        ];
     }
 
     // Draw battery icon with % indicated
@@ -20,17 +35,11 @@ class BatteryStatus {
     
         // Get battery % from system
         var batteryPerc = (System.getSystemStats().battery + 0.5).toNumber();
-        
-        // dc dimensions
-        var width  = dc.getWidth();
-        var height = dc.getHeight();
-               
-        // Put it bottom center
-        var batteryX = ((width / 2)  - (batteryWidth / 2)) - (batteryHeight / 12);
-        var batteryY = (height - 28) - (batteryHeight / 2);
 
         // Reset colors to font / background
         Theme.resetColors(dc);
+
+        CommonMethods.setDrawingClip(dc, batteryPoints);
         
         // Draw outline
         dc.drawRoundedRectangle(batteryX, batteryY, batteryWidth, batteryHeight, batteryRadius);
@@ -43,6 +52,8 @@ class BatteryStatus {
         
         // Draw filled (only fill based on %)
         dc.fillRoundedRectangle(batteryX + 2, batteryY + 2, ((batteryWidth * batteryPerc) / 100) - 4, batteryHeight - 4, batteryRadius - 1);
+ 
+        CommonMethods.clearDrawingClip(dc);
     }
 
     private function setBatteryDisplayLevelColor(dc, perc){

@@ -7,9 +7,27 @@ using ThemeController as Theme;
 class StepsCount {
 
     private var screenHeight;
+    private var tinyFont;
+    private var fontHeight;
 
-    function initialize(viewHeight) {
-        screenHeight = viewHeight;
+    private var stepsX;
+    private var stepsY;
+
+    private var stepsPoints;
+
+    function initialize(dc) {
+        screenHeight = dc.getHeight();
+        tinyFont = CommonMethods.getTinyFont(dc);
+        fontHeight = Graphics.getFontHeight(tinyFont);
+
+        stepsX = 14;
+        stepsY = (screenHeight / 2) - (fontHeight / 2);
+        stepsPoints = [
+                        [stepsX, stepsY],
+                        [stepsX + 100, stepsY],
+                        [stepsX + 100, stepsY + fontHeight],
+                        [stepsX, stepsY + fontHeight]
+                     ];
     }
 
     function drawOnScreen(dc, info)
@@ -18,20 +36,15 @@ class StepsCount {
         var stepPerc   = ((info.steps * 100) / info.stepGoal).toNumber();
 
         setStepsDisplayLevelColor(dc, stepPerc);
-        var tinyFont = CommonMethods.getTinyFont(dc);
-        dc.drawText(14, screenHeight / 2 - Graphics.getFontHeight(tinyFont) / 2, tinyFont, dataString, Graphics.TEXT_JUSTIFY_LEFT);
+
+        CommonMethods.setDrawingClip(dc, stepsPoints);
+
+        dc.drawText(stepsX, stepsY, tinyFont, dataString, Graphics.TEXT_JUSTIFY_LEFT);
+
+        CommonMethods.clearDrawingClip(dc);
 
         Theme.resetColors(dc);
     }
-
-    private function drawStepMilesTotal(dc, info)
-    {
-        // Daily miles walked based on centimeters traveled
-        var milesWalked = (info.distance.toFloat() / 160934).format("%3.1f") + "m";  // 160,934 cm per mile
-        var font = CommonMethods.getTinyFont(dc);
-        dc.drawText(screenWidth - 14, screenHeight / 2 - Graphics.getFontHeight(font) / 2, font, milesWalked, Graphics.TEXT_JUSTIFY_RIGHT);
-    }
- 
     
     private function setStepsDisplayLevelColor(dc, perc){
         if (System.getClockTime().hour < 14) {

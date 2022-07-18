@@ -97,11 +97,7 @@ class KozzerWatchView extends WatchUi.WatchFace
         drawUIComponents(bufferDc);
 
         // Always write buffer to display in onUpdate() - once per minute
-        CommonMethods.writeBufferToDisplay(screenDc, screenBuffer);
-
-        // Check bluetooth status & clock 
-        bluetoothIcon.drawOnScreen(screenDc);
-        mainClock.drawClock(screenDc);
+        writeBufferThenDrawForPartialUpdate(screenDc, screenBuffer);
 
         // Only draw the second hand if partial updates are currently allowed, OR if the watch is awake
         if (partialUpdatesAllowed) {
@@ -116,21 +112,13 @@ class KozzerWatchView extends WatchUi.WatchFace
     }
 
 
-    // Handle the partial update event - 1/second, write to buffer not screen
-    //  This method only really does the second hand using clipping
+    // Handle the partial update event - 1/second
     function onPartialUpdate(dc) {
 
         // Only write buffer if not coming from onUpdate(), since writeBufferToDisplay() is already called there
         if(!fullScreenRefresh) {
-
-            // Re-write buffer to display 
-            CommonMethods.writeBufferToDisplay(dc, screenBuffer);
-
-            // If active, draw icon
-            bluetoothIcon.drawOnScreen(dc);
-
-            // Now draw clock over the top of any bt icon (uses clipping)
-            mainClock.drawClock(dc);        
+            // Writes buffer, then draws bluetooth and clock
+            writeBufferThenDrawForPartialUpdate(dc, screenBuffer);
         }
 
         // Draw second hand and bluetooth icon if connected
@@ -165,16 +153,16 @@ class KozzerWatchView extends WatchUi.WatchFace
     function initializeUIComponents(dc){
         // Created instance of each UI component
         mainClock     = new MainClock(dc);
-        dateTitle     = new DateTitle();
-        bluetoothIcon = new BluetoothIcon();
-        moveBar       = new MoveBar();
-        stepsCount    = new StepsCount(dc.getHeight());
-        batteryStatus = new BatteryStatus();
-        beerMug       = new BeerMug();
+        dateTitle     = new DateTitle(dc);
+        bluetoothIcon = new BluetoothIcon(dc);
+        moveBar       = new MoveBar(dc);
+        stepsCount    = new StepsCount(dc);
+        batteryStatus = new BatteryStatus(dc);
+        beerMug       = new BeerMug(dc);
 
         // Only initialize Solar Status if flag is true
         if (showSolarIntensity){
-            solarStatus = new SolarStatus();
+            solarStatus = new SolarStatus(dc);
         }
     }
 
@@ -183,16 +171,28 @@ class KozzerWatchView extends WatchUi.WatchFace
         var stepsInfo = ActivityMonitor.getInfo();
 
         // Draw UI components onto the passed-in DC (buffer)
-        dateTitle.drawOnScreen(dc, dc.getWidth() / 2, 14);
+        dateTitle.drawOnScreen(dc);
         moveBar.drawOnScreen(dc);
         batteryStatus.drawOnScreen(dc);
         stepsCount.drawOnScreen(dc, stepsInfo);
         beerMug.drawOnScreen(dc, stepsInfo);
+    }
+
+    function writeBufferThenDrawForPartialUpdate(dc, buffer){
+
+        // (Re-)write buffer to display, then set the more changeable stuff
+        CommonMethods.writeBufferToDisplay(dc, buffer);
+
+        // If active, draw icon
+        bluetoothIcon.drawOnScreen(dc);
 
         // Draw solar info to buffer if available and enabled
         if (showSolarIntensity) { 
             solarStatus.drawOnScreen(dc);
         }
+
+        // Now draw clock over the top of any bt icon (uses clipping to save battery)
+        mainClock.drawClock(dc); 
     }
 }
 

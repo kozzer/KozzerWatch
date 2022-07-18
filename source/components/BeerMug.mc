@@ -11,8 +11,22 @@ class BeerMug {
     private const MUG_HEIGHT     = 26;
     private const CORNER_RADIUS  = 3;
 
-    function initialize(){
-        // Nothing here
+    private var mugX;
+    private var mugY;
+
+    private var mugPoints;
+
+    function initialize(dc){
+        // Put it center right
+        mugX = dc.getWidth() - 32;
+        mugY = (dc.getHeight() / 2) - (MUG_HEIGHT / 2);
+
+        mugPoints = [
+                        [mugX - 7, mugY],
+                        [mugX + MUG_WIDTH, mugY],
+                        [mugX + MUG_WIDTH, mugY + MUG_HEIGHT],
+                        [mugX - 7, mugY + MUG_HEIGHT]
+                    ];
     }
 
     function drawOnScreen(dc, info){
@@ -22,13 +36,7 @@ class BeerMug {
         var beersEarned     = Math.floor(qualifyingSteps / STEPS_PER_BEER).format("%d");     // Whole beers already earned
         var mugLevel        = ((qualifyingSteps % STEPS_PER_BEER) * 100) / STEPS_PER_BEER;     // 0-100 percent
 
-        // dc dimensions
-        var width  = dc.getWidth();
-        var height = dc.getHeight();
-
-        // Put it center right
-        var mugX = width - 32;
-        var mugY = (height / 2) - (MUG_HEIGHT / 2);
+        CommonMethods.setDrawingClip(dc, mugPoints);
 
         // Reset colors to font / background, or faded gray if not yet at 10,000 steps
         setMugForeColor(dc, info);
@@ -68,6 +76,8 @@ class BeerMug {
         dc.drawText(mugX + 8, adjustMugY(dc, mugY), CommonMethods.getTinyFont(dc), beersEarned, Graphics.TEXT_JUSTIFY_CENTER);
 
         Theme.resetColors(dc);
+
+        CommonMethods.clearDrawingClip(dc);
     }
 
     private function adjustMugY(dc, mugY){
