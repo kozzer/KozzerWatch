@@ -39,7 +39,7 @@ class KozzerSettingsView extends WatchUi.View {
             "Use light theme",
             "chkLightTheme",
             _useLightTheme,
-            { }
+            null
         );
         menu.addItem(check);
         menu.addItem(new WatchUi.CheckboxMenuItem(
@@ -47,7 +47,7 @@ class KozzerSettingsView extends WatchUi.View {
             "Show Solar Intensity?",
             "chkShowSolarIntensity",
             _showSolarIntensity,
-            { }
+            null
         ));
         var delegate = new KozzerSettingsDelegate();
         WatchUi.pushView(menu, delegate, WatchUi.SLIDE_BLINK);
@@ -93,6 +93,13 @@ class KozzerSettingsDelegate extends WatchUi.InputDelegate {
 
     function onSwipe(swipeEvent) {
         System.println(swipeEvent.getDirection()); // e.g. SWIPE_DOWN = 2
+        return true;
+    }
+
+    function onSelect(selectEvent){
+        var id = selectEvent.mIdentifier;
+        var chk = selectEvent.getInstance();
+        System.println(selectEvent.identifier + " - " + selectEvent.isChecked);
         return true;
     }
 }
