@@ -6,6 +6,8 @@ using Toybox.Communications;
 // Entry point
 class KozzerWatch extends Application.AppBase
 {
+    private var _mainWatchFaceView;
+
     function initialize() {
         AppBase.initialize();       
     }
@@ -17,10 +19,12 @@ class KozzerWatch extends Application.AppBase
     // Main watch face 
     function getInitialView() {
 
+        _mainWatchFaceView = new KozzerWatchView();
+
         if( Toybox.WatchUi has :WatchFaceDelegate ) {
-            return [new KozzerWatchView(), new KozzerWatchDelegate()];
+            return [_mainWatchFaceView, new KozzerWatchDelegate()];
         } else {
-            return [new KozzerWatchView()];
+            return [_mainWatchFaceView];
         }
     }
 
@@ -31,6 +35,15 @@ class KozzerWatch extends Application.AppBase
 
     // Settings screen
     function getSettingsView() {
-        return [new KozzerSettingsView(), new KozzerSettingsDelegate()];
+        if ( AppBase has :getSettingsView){
+            return [new KozzerSettingsView(), new KozzerSettingsDelegate()];
+        } else {
+            return null;
+        }       
+    }
+
+    function onSettingsChanged() {
+        _mainWatchFaceView.populateAndApplyAppSettings();
+        WatchUi.requestUpdate();
     }
 }

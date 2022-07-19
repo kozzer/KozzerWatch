@@ -46,6 +46,8 @@ class KozzerWatchView extends WatchUi.WatchFace
         partialUpdatesAllowed = ( Toybox.WatchUi.WatchFace has :onPartialUpdate ); // Will be set to true until KozzerWatchViewDelegate.onPowerBudgetExceeded() is fired
     }
 
+
+    // Called in constructor, and also from App class when settings change
     function populateAndApplyAppSettings(){
 
         // Clear cached property values

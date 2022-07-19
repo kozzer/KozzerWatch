@@ -23,8 +23,9 @@ class KozzerSettingsView extends WatchUi.View {
     }
 
     function populateAppSettings(){
-        _useLightTheme      = Properties.getValue("LightThemeActive");
-        _showSolarIntensity = Properties.getValue("ShowSolarIntensity");
+        var app = Application.getApp();
+        _useLightTheme      = app.Properties.getValue("LightThemeActive");
+        _showSolarIntensity = app.Properties.getValue("ShowSolarIntensity");
     }
 
     function onLayout(dc) {
@@ -32,8 +33,7 @@ class KozzerSettingsView extends WatchUi.View {
         dc.clearClip();
 
         // Add checkbox options (both settings are boolean)
-        var menu = new WatchUi.CheckboxMenu({:title=>"Kozzer Watch Settings"});
-        var delegate;
+        var menu = new WatchUi.CheckboxMenu({:title=>"BeersEarned Settings"});
         var check = new WatchUi.CheckboxMenuItem(
             "Theme",
             "Use light theme",
@@ -43,13 +43,13 @@ class KozzerSettingsView extends WatchUi.View {
         );
         menu.addItem(check);
         menu.addItem(new WatchUi.CheckboxMenuItem(
-            "Beer Notification",
-            "Nofity when beer earned",
-            "chkBeerNotify",
+            "Show Solar",
+            "Show Solar Intensity?",
+            "chkShowSolarIntensity",
             _showSolarIntensity,
             { }
         ));
-        delegate = new KozzerSettingsDelegate();
+        var delegate = new KozzerSettingsDelegate();
         WatchUi.pushView(menu, delegate, WatchUi.SLIDE_BLINK);
         return true;
     }
@@ -83,6 +83,16 @@ class KozzerSettingsDelegate extends WatchUi.InputDelegate {
         //
         // ********************************************************
 
+        return true;
+    }
+
+    function onTap(clickEvent) {
+        System.println(clickEvent.getType());      // e.g. CLICK_TYPE_TAP = 0
+        return true;
+    }
+
+    function onSwipe(swipeEvent) {
+        System.println(swipeEvent.getDirection()); // e.g. SWIPE_DOWN = 2
         return true;
     }
 }
