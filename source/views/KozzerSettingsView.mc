@@ -10,8 +10,8 @@ using Toybox.WatchUi;
 class KozzerSettingsView extends WatchUi.View {
 
     // App settings
-    var useLightTheme;
-    var notifyOnBeerEarned;
+    var _useLightTheme;
+    var _showSolarIntensity;
 
     // UI colors
     const BACKGROUND_COLOR  = 0x111111;     // Very dark gray 
@@ -23,8 +23,8 @@ class KozzerSettingsView extends WatchUi.View {
     }
 
     function populateAppSettings(){
-        useLightTheme      = Properties.getValue("LightThemeActive");
-        notifyOnBeerEarned = Properties.getValue("NotifyOnBeerEarned");
+        _useLightTheme      = Properties.getValue("LightThemeActive");
+        _showSolarIntensity = Properties.getValue("ShowSolarIntensity");
     }
 
     function onLayout(dc) {
@@ -38,7 +38,7 @@ class KozzerSettingsView extends WatchUi.View {
             "Theme",
             "Use light theme",
             "chkLightTheme",
-            useLightTheme,
+            _useLightTheme,
             { }
         );
         menu.addItem(check);
@@ -46,7 +46,7 @@ class KozzerSettingsView extends WatchUi.View {
             "Beer Notification",
             "Nofity when beer earned",
             "chkBeerNotify",
-            notifyOnBeerEarned,
+            _showSolarIntensity,
             { }
         ));
         delegate = new KozzerSettingsDelegate();

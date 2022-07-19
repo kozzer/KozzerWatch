@@ -4,7 +4,7 @@ using Toybox.WatchUi;
 module ThemeController {
 
     // Boolean flag indicating which theme
-    var useLightTheme;
+    var _useLightTheme;
 
     // UI color palette
     var BACKGROUND_COLOR;  
@@ -23,7 +23,7 @@ module ThemeController {
     function setTheme(lightTheme){
         
         // Save new value
-        useLightTheme = lightTheme;
+        _useLightTheme = lightTheme;
 
         // Colors common to both themes
         MUG_COLOR        = 0x353225;     // Amberish-gray
@@ -32,7 +32,7 @@ module ThemeController {
         RED_COLOR        = 0xFF0000;     // Red
         LOW_COLOR        = RED_COLOR;
 
-        if (useLightTheme){
+        if (_useLightTheme){
 
             // Light theme (default)
             BACKGROUND_COLOR  = 0xDEDEDE;     // Light gray 

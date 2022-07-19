@@ -6,27 +6,27 @@ using ThemeController as Theme;
 
 class StepsCount {
 
-    private var screenHeight;
-    private var tinyFont;
-    private var fontHeight;
+    private var _screenHeight;
+    private var _tinyFont;
+    private var _fontHeight;
 
-    private var stepsX;
-    private var stepsY;
+    private var _stepsX;
+    private var _stepsY;
 
-    private var stepsPoints;
+    private var _stepsPoints;
 
     function initialize(dc) {
-        screenHeight = dc.getHeight();
-        tinyFont = CommonMethods.getTinyFont(dc);
-        fontHeight = Graphics.getFontHeight(tinyFont);
+        _screenHeight = dc.getHeight();
+        _tinyFont     = CommonMethods.getTinyFont(dc);
+        _fontHeight   = Graphics.getFontHeight(_tinyFont);
 
-        stepsX = 14;
-        stepsY = (screenHeight / 2) - (fontHeight / 2);
-        stepsPoints = [
-                        [stepsX, stepsY],
-                        [stepsX + 100, stepsY],
-                        [stepsX + 100, stepsY + fontHeight],
-                        [stepsX, stepsY + fontHeight]
+        _stepsX = 14;
+        _stepsY = (_screenHeight / 2) - (_fontHeight / 2);
+        _stepsPoints = [
+                        [_stepsX, _stepsY],
+                        [_stepsX + 100, _stepsY],
+                        [_stepsX + 100, _stepsY + _fontHeight],
+                        [_stepsX, _stepsY + _fontHeight]
                      ];
     }
 
@@ -37,9 +37,9 @@ class StepsCount {
 
         setStepsDisplayLevelColor(dc, stepPerc);
 
-        CommonMethods.setDrawingClip(dc, stepsPoints);
+        CommonMethods.setDrawingClip(dc, _stepsPoints);
 
-        dc.drawText(stepsX, stepsY, tinyFont, dataString, Graphics.TEXT_JUSTIFY_LEFT);
+        dc.drawText(_stepsX, _stepsY, _tinyFont, dataString, Graphics.TEXT_JUSTIFY_LEFT);
 
         CommonMethods.clearDrawingClip(dc);
 

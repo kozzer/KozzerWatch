@@ -7,11 +7,11 @@ using ThemeController as Theme;
 class MainClock {
 
     // Center x,y point of screen
-    var screenCenterPoint;                 
+    private var _screenCenterPoint;                 
 
     function initialize(dc) {
         // Set center point of watchface
-        screenCenterPoint = [dc.getWidth()/2, dc.getHeight()/2];
+        _screenCenterPoint = [dc.getWidth()/2, dc.getHeight()/2];
     }
 
     function drawClock(dc){
@@ -28,7 +28,7 @@ class MainClock {
         var hourHandAngle  = (((clockTime.hour % 12) * 60) + clockTime.min);
         hourHandAngle      = hourHandAngle / (12 * 60.0);
         hourHandAngle      = hourHandAngle * Math.PI * 2;
-        var hourHandPoints = generateHandCoordinates(screenCenterPoint, hourHandAngle, 70, 14, 7);
+        var hourHandPoints = generateHandCoordinates(_screenCenterPoint, hourHandAngle, 70, 14, 7);
 
         // Update the cliping rectangle to the new location of the hour hand
         CommonMethods.setDrawingClip(dc, hourHandPoints);
@@ -45,7 +45,7 @@ class MainClock {
 
     private function drawMinuteHand(dc, clockTime) {
         var minuteHandAngle  = (clockTime.min / 60.0) * Math.PI * 2;
-        var minuteHandPoints = generateHandCoordinates(screenCenterPoint, minuteHandAngle, 100, 20, 5);
+        var minuteHandPoints = generateHandCoordinates(_screenCenterPoint, minuteHandAngle, 100, 20, 5);
 
         // Update the cliping rectangle to the new location of the minute hand
         CommonMethods.setDrawingClip(dc, minuteHandPoints);
@@ -61,7 +61,7 @@ class MainClock {
     function drawSecondHand(dc) {
         var clockTime        = System.getClockTime();
         var secondHand       = (clockTime.sec / 60.0) * Math.PI * 2;
-        var secondHandPoints = generateHandCoordinates(screenCenterPoint, secondHand, 100, 20, 2);
+        var secondHandPoints = generateHandCoordinates(_screenCenterPoint, secondHand, 100, 20, 2);
         
         // Update the cliping rectangle to the new location of the second hand
         CommonMethods.setDrawingClip(dc, secondHandPoints);

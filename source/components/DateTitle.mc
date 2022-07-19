@@ -8,23 +8,23 @@ using ThemeController as Theme;
 
 class DateTitle {
 
-    private const dateFont = Graphics.FONT_MEDIUM;
-    private var dateX;
-    private var dateY;
+    private const _dateFont = Graphics.FONT_MEDIUM;
+    private var _dateX;
+    private var _dateY;
 
-    private var datePoints;
+    private var _datePoints;
 
     function initialize(dc) {
-        dateX = dc.getWidth() / 2;
-        dateY = 14;
+        _dateX = dc.getWidth() / 2;
+        _dateY = 14;
 
-        var dateHeight = Graphics.getFontHeight(dateFont) + 1;
+        var dateHeight = Graphics.getFontHeight(_dateFont) + 1;
 
-        datePoints = [
-                        [dateX - 50, dateY],
-                        [dateX + 50, dateY],
-                        [dateX + 50, dateY + dateHeight],
-                        [dateX - 50, dateY + dateHeight]
+        _datePoints = [
+                        [_dateX - 50, _dateY],
+                        [_dateX + 50, _dateY],
+                        [_dateX + 50, _dateY + dateHeight],
+                        [_dateX - 50, _dateY + dateHeight]
                     ];
     }
 
@@ -33,9 +33,9 @@ class DateTitle {
         var greg    = Gregorian.info(Time.now(), Time.FORMAT_MEDIUM);       // Greg is 16th century new hotness, Julian is old and busted
         var dateStr = Lang.format("$1$ $2$", [greg.month, greg.day]);
 
-        CommonMethods.setDrawingClip(dc, datePoints);
+        CommonMethods.setDrawingClip(dc, _datePoints);
 
-        dc.drawText(dateX, dateY, dateFont, dateStr, Graphics.TEXT_JUSTIFY_CENTER);
+        dc.drawText(_dateX, _dateY, _dateFont, dateStr, Graphics.TEXT_JUSTIFY_CENTER);
 
         CommonMethods.clearDrawingClip(dc);
     }

@@ -7,23 +7,23 @@ using ThemeController as Theme;
 class MoveBar {
 
     // Move Bar
-    private const moveBarHeight = 4;
-    private const moveBarWidth = 78;
-    private var   barX;
-    private var   barY;
+    private const _moveBarHeight = 4;
+    private const _moveBarWidth = 78;
+    private var   _barX;
+    private var   _barY;
 
-    private var barPoints;
+    private var _barPoints;
 
     function initialize(dc){
         // Get location of the blue bar
-        barX = ((dc.getWidth() / 2) - (moveBarWidth / 2));      // Total 78px wide, so 39px left of center
-        barY = Graphics.getFontHeight(Graphics.FONT_MEDIUM) + 15;
+        _barX = ((dc.getWidth() / 2) - (_moveBarWidth / 2));      // Total 78px wide, so 39px left of center
+        _barY = Graphics.getFontHeight(Graphics.FONT_MEDIUM) + 15;
 
-        barPoints = [
-                        [barX, barY], 
-                        [barX + moveBarWidth, barY], 
-                        [barX + moveBarWidth, barY + moveBarHeight], 
-                        [barX, barY + moveBarHeight]
+        _barPoints = [
+                        [_barX, _barY], 
+                        [_barX + _moveBarWidth, _barY], 
+                        [_barX + _moveBarWidth, _barY + _moveBarHeight], 
+                        [_barX, _barY + _moveBarHeight]
                     ];
     }
 
@@ -32,34 +32,34 @@ class MoveBar {
         // Get Move bar status
         var barLevel = ActivityMonitor.getInfo().moveBarLevel;
 
-        var drawBarX = barX;
+        var drawBarX = _barX;
 
-        CommonMethods.setDrawingClip(dc, barPoints);
+        CommonMethods.setDrawingClip(dc, _barPoints);
 
         // Draw bars based on bar level
         if (barLevel >= 1) {
             Theme.setColor(dc, Theme.BLUE_COLOR);
-            dc.fillRectangle(drawBarX, barY, 27, moveBarHeight);
+            dc.fillRectangle(drawBarX, _barY, 27, _moveBarHeight);
             drawBarX += 30;
         }
         if (barLevel >= 2){
             Theme.setColor(dc, Theme.FULL_COLOR);
-            dc.fillRectangle(drawBarX, barY, 9, moveBarHeight);
+            dc.fillRectangle(drawBarX, _barY, 9, _moveBarHeight);
             drawBarX += 12;
         }
         if (barLevel >= 3){
             Theme.setColor(dc, Theme.MOST_COLOR);
-            dc.fillRectangle(drawBarX, barY, 9, moveBarHeight);
+            dc.fillRectangle(drawBarX, _barY, 9, _moveBarHeight);
             drawBarX += 12;
         }
         if (barLevel >= 4){
             Theme.setColor(dc, Theme.SOME_COLOR);
-            dc.fillRectangle(drawBarX, barY, 9, moveBarHeight);
+            dc.fillRectangle(drawBarX, _barY, 9, _moveBarHeight);
             drawBarX += 12;
         }
         if (barLevel >= 5){
             Theme.setColor(dc, Theme.LOW_COLOR);
-            dc.fillRectangle(drawBarX, barY, 9, moveBarHeight);
+            dc.fillRectangle(drawBarX, _barY, 9, _moveBarHeight);
         }
 
         CommonMethods.clearDrawingClip(dc);

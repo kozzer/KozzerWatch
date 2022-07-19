@@ -7,7 +7,7 @@ using Toybox.Time.Gregorian;
 using Toybox.WatchUi;
 
 class KozzerGoalView extends WatchUi.View {
-    var goalString;
+    private var _goalString;
 
     // UI colors
     const BACKGROUND_COLOR  = 0x111111;     // Very dark gray 
@@ -17,16 +17,16 @@ class KozzerGoalView extends WatchUi.View {
     function initialize(goal) {
         View.initialize();
 
-        goalString = "GOAL!";
+        _goalString = "GOAL!";
 
         if(goal == Application.GOAL_TYPE_STEPS) {
-            goalString = "STEPS " + goalString;
+            _goalString = "STEPS " + _goalString;
         }
         else if(goal == Application.GOAL_TYPE_FLOORS_CLIMBED) {
-            goalString = "STAIRS " + goalString;
+            _goalString = "STAIRS " + _goalString;
         }
         else if(goal == Application.GOAL_TYPE_ACTIVE_MINUTES) {
-            goalString = "ACTIVE " + goalString;
+            _goalString = "ACTIVE " + _goalString;
         }
     }
 
@@ -49,7 +49,7 @@ class KozzerGoalView extends WatchUi.View {
 
         // Draw text
         dc.drawText(width / 2, (height / 4) + 12, Graphics.FONT_SMALL, "You did a good job!", Graphics.TEXT_JUSTIFY_CENTER);
-        dc.drawText(width / 2, (height / 2) - 7, Graphics.FONT_LARGE, goalString, Graphics.TEXT_JUSTIFY_CENTER);
+        dc.drawText(width / 2, (height / 2) - 7, Graphics.FONT_LARGE, _goalString, Graphics.TEXT_JUSTIFY_CENTER);
         dc.drawText(width / 2, (height * 0.62) + 12, Graphics.FONT_SMALL, "Keep it up!", Graphics.TEXT_JUSTIFY_CENTER);
     }
 }

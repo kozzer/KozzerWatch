@@ -4,25 +4,25 @@ using Toybox.WatchUi;
 class BluetoothIcon {
 
     // Reference to bluetooth icon png
-    var iconBitmap;  
+    private var _iconBitmap;  
 
     // Icon location and bounding rectangle
-    var iconX;     
-    var iconY;     
-    var iconPoints;                    
+    private var _iconX;     
+    private var _iconY;     
+    private var _iconPoints;                    
 
     function initialize(dc){
         // Initialize bluetooth icon
-        iconBitmap = WatchUi.loadResource(Rez.Drawables.BluetoothIcon);
+        _iconBitmap = WatchUi.loadResource(Rez.Drawables.BluetoothIcon);
 
         // Get location of points for icon location
-        iconX      = dc.getWidth() / 2 - 12;
-        iconY      = Graphics.getFontHeight(Graphics.FONT_MEDIUM) + 24;
-        iconPoints = [ 
-                        [iconX, iconY], 
-                        [iconX + 24, iconY], 
-                        [iconX + 24, iconY + 24], 
-                        [iconX, iconY + 24] 
+        _iconX      = dc.getWidth() / 2 - 12;
+        _iconY      = Graphics.getFontHeight(Graphics.FONT_MEDIUM) + 24;
+        _iconPoints = [ 
+                        [_iconX, _iconY], 
+                        [_iconX + 24, _iconY], 
+                        [_iconX + 24, _iconY + 24], 
+                        [_iconX, _iconY + 24] 
                      ];
     }
 
@@ -33,10 +33,10 @@ class BluetoothIcon {
         if (System.getDeviceSettings().phoneConnected) {  
  
             // Update the cliping rectangle to the location of the icon
-            CommonMethods.setDrawingClip(dc, iconPoints);
+            CommonMethods.setDrawingClip(dc, _iconPoints);
             
             // Actually write the icon to the dc
-            dc.drawBitmap(iconX, iconY, iconBitmap);
+            dc.drawBitmap(_iconX, _iconY, _iconBitmap);
 
             // Clear the clip
             CommonMethods.clearDrawingClip(dc);

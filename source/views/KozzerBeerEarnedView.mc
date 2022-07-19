@@ -6,11 +6,11 @@ class KozzerBeerEarnedView extends WatchUi.View {
     const BACKGROUND_COLOR  = 0x111111;     // Very dark gray 
     const FONT_COLOR        = 0xDEDEDE;     // Light
 
-    var beersEarned = 0;
+    var _beersEarned = 0;
     
     function initialize(numBeersEarned) {
         View.initialize();
-        beersEarned = numBeersEarned;
+        _beersEarned = numBeersEarned;
     }
 
     // Resources are loaded here
@@ -39,8 +39,8 @@ class KozzerBeerEarnedView extends WatchUi.View {
         dc.setColor(FONT_COLOR, Graphics.COLOR_TRANSPARENT);
 
         // Draw text
-        var beer = beersEarned == 1 ? " beer" : " beers";
-        var beerString = "You can have " + beersEarned.toString() + beer + " today!";
+        var beer = _beersEarned == 1 ? " beer" : " beers";
+        var beerString = "You can have " + _beersEarned.toString() + beer + " today!";
         dc.drawText(width / 2, (height / 4) + 12, Graphics.FONT_SMALL, beerString, Graphics.TEXT_JUSTIFY_CENTER);
         dc.drawText(width / 2, (height / 2) - 7, Graphics.FONT_MEDIUM, "YOU'VE EARNED ANOTHER BEER", Graphics.TEXT_JUSTIFY_CENTER);
         dc.drawText(width / 2, (height * 0.62) + 12, Graphics.FONT_SMALL, "Enjoy!", Graphics.TEXT_JUSTIFY_CENTER);

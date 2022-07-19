@@ -7,48 +7,48 @@ using ThemeController as Theme;
 class SolarStatus {
 
     // Reference to solar intensity sun icon
-    private var sunIcon;   
+    private var _sunIcon;   
 
     // The screen dimensions
-    private var screenWidth;
-    private var screenHeight;      
+    private var _screenWidth;
+    private var _screenHeight;      
 
     // Sun's size & location
-    private var sunDiameter = 16;    
-    private var centerSunX;
-    private var centerSunY;  
+    private var _sunDiameter = 16;    
+    private var _center_sunX;
+    private var _center_sunY;  
 
-    private var sunX;
-    private var sunY;    
+    private var _sunX;
+    private var _sunY;    
 
     // Boundary for clipping
-    private var sunPoints;       
+    private var _sunPoints;       
 
 
     function initialize(dc) {
         // Load bitmap resource
-        sunIcon = WatchUi.loadResource(Rez.Drawables.SunIcon);
+        _sunIcon = WatchUi.loadResource(Rez.Drawables.SunIcon);
 
         // dc dimensions
-        var screenWidth  = dc.getWidth();
-        var screenHeight = dc.getHeight();
+        var _screenWidth  = dc.getWidth();
+        var _screenHeight = dc.getHeight();
 
         // set Sun's location
-        centerSunX = screenWidth / 2;
-        centerSunY = screenHeight - 60;
+        _center_sunX = _screenWidth / 2;
+        _center_sunY = _screenHeight - 60;
 
         // Get upper-left location for sun
-        sunX = centerSunX - 16;
-        sunY = centerSunY - 15;
+        _sunX = _center_sunX - 16;
+        _sunY = _center_sunY - 15;
 
         // set boundary for icon, for clipping
         var sunPixelSize = 32;
-        sunPoints = [ 
-                        [sunX, sunY], 
-                        [sunX + sunPixelSize, sunY], 
-                        [sunX + sunPixelSize, sunY + sunPixelSize], 
-                        [sunX, sunY + sunPixelSize] 
-                    ];
+        _sunPoints = [ 
+                        [_sunX, _sunY], 
+                        [_sunX + sunPixelSize, _sunY], 
+                        [_sunX + sunPixelSize, _sunY + sunPixelSize], 
+                        [_sunX, _sunY + sunPixelSize] 
+                     ];
 
     }
   
@@ -64,14 +64,14 @@ class SolarStatus {
         }
 
         // Update the cliping rectangle to the location of the icon
-        CommonMethods.setDrawingClip(dc, sunPoints);
+        CommonMethods.setDrawingClip(dc, _sunPoints);
 
         // Draw sun
-        dc.drawBitmap(sunX, sunY, sunIcon);
+        dc.drawBitmap(_sunX, _sunY, _sunIcon);
 
         // Draw power level
         Theme.setColor(dc, ThemeController.LOW_COLOR);
-        dc.drawText(centerSunX, centerSunY - 9, Graphics.FONT_XTINY, solar, Graphics.TEXT_JUSTIFY_CENTER);
+        dc.drawText(_center_sunX, _center_sunY - 9, Graphics.FONT_XTINY, solar, Graphics.TEXT_JUSTIFY_CENTER);
 
         // Clear the clip
         CommonMethods.clearDrawingClip(dc);

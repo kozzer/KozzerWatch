@@ -3,7 +3,7 @@ using Toybox.Graphics;
 module CommonMethods {
 
     // Clip for partial updates, so only pixels where second hand is will actually be changed
-    var curClip;                            
+    var _curClip;                            
 
     // Draw the watch face background onto the given draw context
     function writeBufferToDisplay(screenDc, screenBuffer) { 
@@ -30,18 +30,18 @@ module CommonMethods {
         dc.clearClip();
     
         // Update the cliping rectangle to polygon
-        curClip        = getBoundingBox(rectanglePoints);
-        var bboxWidth  = curClip[1][0] - curClip[0][0] + 1;
-        var bboxHeight = curClip[1][1] - curClip[0][1] + 1;
+        _curClip        = getBoundingBox(rectanglePoints);
+        var bboxWidth  = _curClip[1][0] - _curClip[0][0] + 1;
+        var bboxHeight = _curClip[1][1] - _curClip[0][1] + 1;
         
         // Set new clip with new coordinates
-        dc.setClip(curClip[0][0], curClip[0][1], bboxWidth, bboxHeight);        
+        dc.setClip(_curClip[0][0], _curClip[0][1], bboxWidth, bboxHeight);        
     }
 
     // Clear drawing clip
     function clearDrawingClip(dc) {
         dc.clearClip();
-        curClip = null;
+        _curClip = null;
     }
 
     // Compute a bounding box from the passed in points
