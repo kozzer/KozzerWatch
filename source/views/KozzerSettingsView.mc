@@ -9,23 +9,28 @@ using Toybox.WatchUi;
 
 class KozzerSettingsView extends WatchUi.View {
 
-    // App settings
-    var _useLightTheme;
-    var _showSolarIntensity;
-
     // UI colors
     const BACKGROUND_COLOR  = 0x111111;     // Very dark gray 
     const FONT_COLOR        = 0xDEDEDE;     // Light
 
+    const SETTING_ID_LIGHT_THEME = "LightThemeActive";
+    const SETTING_ID_SHOW_SOLAR  = "ShowSolarIntensity";
+
+    const CHECK_ID_LIGHT_THEME   = "chkLightTheme";
+    const CHECK_ID_SHOW_SOLAR    = "chkShowSolarIntensity";   
+
+    private var _delegate;
+
     function initialize() {
         View.initialize();
         populateAppSettings();
+        _delegate = new KozzerSettingsDelegate();
     }
 
     function populateAppSettings(){
         var app = Application.getApp();
-        _useLightTheme      = app.Properties.getValue("LightThemeActive");
-        _showSolarIntensity = app.Properties.getValue("ShowSolarIntensity");
+        CommonMethods.useLightTheme      = app.Properties.getValue(SETTING_ID_LIGHT_THEME) as Boolean;
+        CommonMethods.showSolarIntensity = app.Properties.getValue(SETTING_ID_SHOW_SOLAR) as Boolean;
     }
 
     function onLayout(dc) {
@@ -33,24 +38,23 @@ class KozzerSettingsView extends WatchUi.View {
         dc.clearClip();
 
         // Add checkbox options (both settings are boolean)
-        var menu = new WatchUi.CheckboxMenu({:title=>"BeersEarned Settings"});
+        var menu = new WatchUi.CheckboxMenu({:title=>"Settings"});
         var check = new WatchUi.CheckboxMenuItem(
             "Theme",
             "Use light theme",
-            "chkLightTheme",
-            _useLightTheme,
+            CHECK_ID_LIGHT_THEME,
+            CommonMethods.useLightTheme,
             null
         );
         menu.addItem(check);
         menu.addItem(new WatchUi.CheckboxMenuItem(
-            "Show Solar",
-            "Show Solar Intensity?",
-            "chkShowSolarIntensity",
-            _showSolarIntensity,
+            "Solar",
+            "Show Intensity?",
+            CHECK_ID_SHOW_SOLAR,
+            CommonMethods.showSolarIntensity,
             null
         ));
-        var delegate = new KozzerSettingsDelegate();
-        WatchUi.pushView(menu, delegate, WatchUi.SLIDE_BLINK);
+        WatchUi.pushView(menu, _delegate, WatchUi.SLIDE_BLINK);
         return true;
     }
 
@@ -65,14 +69,42 @@ class KozzerSettingsView extends WatchUi.View {
 
 }
 
-class KozzerSettingsDelegate extends WatchUi.InputDelegate {
+class KozzerSettingsDelegate extends WatchUi.BehaviorDelegate {
     // Handles user input and interaction
 
     function initialize(){
-        InputDelegate.initialize();
+        BehaviorDelegate.initialize();
     }
 
-    // onKey -- press and release of physical button
+     function onSelect(selectEvent){
+
+        var app = Application.getApp();
+        var chk = selectEvent as CheckboxMenuItem;
+        var checkBoxId = chk.getId();
+        var checkBoxChecked = chk.isChecked();
+
+        if (checkBoxId.equals("chkLightTheme")){
+            CommonMethods.useLightTheme = checkBoxChecked;
+            app.Properties.setValue("LightThemeActive", checkBoxChecked);           
+        } else if (checkBoxId.equals(CHECK_ID_SHOW_SOLAR)){
+            CommonMethods.showSolarIntensity = checkBoxChecked;
+            app.Properties.setValue(SETTING_ID_SHOW_SOLAR, checkBoxChecked);
+        }
+
+        System.println(checkBoxId + " - " + checkBoxChecked);
+        return true;
+    }
+
+    function onBack(){
+        return true;
+    }
+
+    function onSelectable(event) {
+        return true;
+    }
+
+
+       // onKey -- press and release of physical button
     function onKey(keyEvent) {
         
         System.println(keyEvent.getKey());         // e.g. KEY_MENU = 7
@@ -93,13 +125,6 @@ class KozzerSettingsDelegate extends WatchUi.InputDelegate {
 
     function onSwipe(swipeEvent) {
         System.println(swipeEvent.getDirection()); // e.g. SWIPE_DOWN = 2
-        return true;
-    }
-
-    function onSelect(selectEvent){
-        var id = selectEvent.mIdentifier;
-        var chk = selectEvent.getInstance();
-        System.println(selectEvent.identifier + " - " + selectEvent.isChecked);
         return true;
     }
 }

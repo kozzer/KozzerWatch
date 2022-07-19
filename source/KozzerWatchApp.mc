@@ -35,11 +35,7 @@ class KozzerWatch extends Application.AppBase
 
     // Settings screen
     function getSettingsView() {
-        if ( AppBase has :getSettingsView){
-            return [new KozzerSettingsView(), new KozzerSettingsDelegate()];
-        } else {
-            return null;
-        }       
+        return [new KozzerSettingsView()];   
     }
 
     function onSettingsChanged() {

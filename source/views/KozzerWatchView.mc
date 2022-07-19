@@ -14,9 +14,6 @@ var partialUpdatesAllowed = false;          // Outside class so the Delegate cla
 
 class KozzerWatchView extends WatchUi.WatchFace
 {
-    // Flag indicating whether solar status should be displayed
-    var _showSolarIntensity;
-
     // General class-level fields
     var _isAwake;                            // Flag indicating whether watch is awake or in sleep mode
     var _fullScreenRefresh;                  // Flag used in onUpdate() & onPartialUpdate()   
@@ -51,15 +48,15 @@ class KozzerWatchView extends WatchUi.WatchFace
     function populateAndApplyAppSettings(){
 
         // Clear cached property values
-        Application.getApp().clearProperties();
+        //Application.getApp().clearProperties();
 
         // Re-read properties from XML file (only set solar to true if device supports and setting is true)
-        var useLightTheme  = Application.getApp().Properties.getValue("LightThemeActive");
-        _showSolarIntensity = Toybox.System.Stats has :solarIntensity 
+        CommonMethods.useLightTheme = Application.getApp().Properties.getValue("LightThemeActive");
+        CommonMethods.showSolarIntensity = Toybox.System.Stats has :solarIntensity 
                                 && Toybox.System.getSystemStats().solarIntensity != null 
                                 && Application.getApp().Properties.getValue("ShowSolarIntensity");
 
-        Theme.setTheme(useLightTheme);
+        Theme.setTheme(CommonMethods.useLightTheme);
     } 
 
     // Configure the layout of the watchface for this device
@@ -163,7 +160,7 @@ class KozzerWatchView extends WatchUi.WatchFace
         _beerMug       = new BeerMug(dc);
 
         // Only initialize Solar Status if flag is true
-        if (_showSolarIntensity){
+        if (CommonMethods.showSolarIntensity){
             _solarStatus = new SolarStatus(dc);
         }
     }
@@ -189,7 +186,7 @@ class KozzerWatchView extends WatchUi.WatchFace
         _bluetoothIcon.drawOnScreen(dc);
 
         // Draw solar info to buffer if available and enabled
-        if (_showSolarIntensity) { 
+        if (CommonMethods.showSolarIntensity) { 
             _solarStatus.drawOnScreen(dc);
         }
 
