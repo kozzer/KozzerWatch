@@ -7,7 +7,7 @@ module CommonMethods {
     var showSolarIntensity;
 
     // Clip for partial updates, so only pixels where second hand is will actually be changed
-    private var _curClip;                            
+    var _curClip;                            
 
     // Draw the watch face background onto the given draw context
     function writeBufferToDisplay(screenDc, screenBuffer) { 
