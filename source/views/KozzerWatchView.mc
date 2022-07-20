@@ -35,29 +35,13 @@ class KozzerWatchView extends WatchUi.WatchFace
         // Call base class constructor
         WatchFace.initialize();
 
-        // Get and apply app settings 
-        populateAndApplyAppSettings();
-
         // Set class-level flags
         _fullScreenRefresh     = true;
         partialUpdatesAllowed = ( Toybox.WatchUi.WatchFace has :onPartialUpdate ); // Will be set to true until KozzerWatchViewDelegate.onPowerBudgetExceeded() is fired
     }
 
 
-    // Called in constructor, and also from App class when settings change
-    function populateAndApplyAppSettings(){
 
-        // Clear cached property values
-        //Application.getApp().clearProperties();
-
-        // Re-read properties from XML file (only set solar to true if device supports and setting is true)
-        CommonMethods.useLightTheme = Application.getApp().Properties.getValue("LightThemeActive");
-        CommonMethods.showSolarIntensity = Toybox.System.Stats has :solarIntensity 
-                                && Toybox.System.getSystemStats().solarIntensity != null 
-                                && Application.getApp().Properties.getValue("ShowSolarIntensity");
-
-        Theme.setTheme(CommonMethods.useLightTheme);
-    } 
 
     // Configure the layout of the watchface for this device
     function onLayout(dc) {

@@ -1,4 +1,7 @@
+using Toybox.Application;
 using Toybox.Graphics;
+
+using ThemeController as Theme;
 
 module CommonMethods {
 
@@ -7,7 +10,25 @@ module CommonMethods {
     var showSolarIntensity;
 
     // Clip for partial updates, so only pixels where second hand is will actually be changed
-    var _curClip;                            
+    var _curClip;    
+
+    // Called in app's constructor, and also when settings change
+    function populateAndApplyAppSettings(){
+
+        var app = Application.getApp();
+
+        // Re-read properties from XML file (only set solar to true if device supports and setting is true)
+        useLightTheme = app.Properties.getValue("LightThemeActive");
+
+        showSolarIntensity = Toybox.System.Stats has :solarIntensity 
+                                && Toybox.System.getSystemStats().solarIntensity != null 
+                                && app.Properties.getValue("ShowSolarIntensity");
+
+        // Set theme to current value
+        Theme.setTheme(useLightTheme);
+
+        Toybox.System.println("\nSettings:\n\tLight Theme:\t" + useLightTheme + "\n\tShow Solar:\t" + showSolarIntensity + "\n");
+    }                         
 
     // Draw the watch face background onto the given draw context
     function writeBufferToDisplay(screenDc, screenBuffer) { 

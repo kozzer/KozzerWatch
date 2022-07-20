@@ -9,7 +9,8 @@ class KozzerWatch extends Application.AppBase
     private var _mainWatchFaceView;
 
     function initialize() {
-        AppBase.initialize();       
+        AppBase.initialize(); 
+        CommonMethods.populateAndApplyAppSettings();      
     }
 
     function onStart(state) { }
@@ -39,7 +40,7 @@ class KozzerWatch extends Application.AppBase
     }
 
     function onSettingsChanged() {
-        _mainWatchFaceView.populateAndApplyAppSettings();
+        CommonMethods.populateAndApplyAppSettings();
         WatchUi.requestUpdate();
     }
 }
