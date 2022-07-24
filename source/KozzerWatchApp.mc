@@ -36,11 +36,18 @@ class KozzerWatch extends Application.AppBase
 
     // Settings screen
     function getSettingsView() {
-        return [new KozzerSettingsView()];   
+        return [new KozzerSettingsView(), new KozzerSettingsDelegate()];   
     }
 
     function onSettingsChanged() {
+
+        println("About to read new settings after change...");
         CommonMethods.populateAndApplyAppSettings();
+
+        print("New settings applied, now requesting UI update...");
+
         WatchUi.requestUpdate();
+
+        println("done");
     }
 }

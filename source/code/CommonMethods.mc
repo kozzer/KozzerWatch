@@ -9,6 +9,10 @@ module CommonMethods {
     var useLightTheme;
     var showSolarIntensity;
 
+    // Settings names
+    const SETTING_ID_LIGHT_THEME = "LightThemeActive";
+    const SETTING_ID_SHOW_SOLAR  = "ShowSolarIntensity";
+
     // Clip for partial updates, so only pixels where second hand is will actually be changed
     var _curClip;    
 
@@ -18,17 +22,22 @@ module CommonMethods {
         var app = Application.getApp();
 
         // Re-read properties from XML file (only set solar to true if device supports and setting is true)
-        useLightTheme = app.Properties.getValue("LightThemeActive");
+        useLightTheme = app.Properties.getValue(SETTING_ID_LIGHT_THEME);
 
         showSolarIntensity = Toybox.System.Stats has :solarIntensity 
                                 && Toybox.System.getSystemStats().solarIntensity != null 
-                                && app.Properties.getValue("ShowSolarIntensity");
+                                && app.Properties.getValue(SETTING_ID_SHOW_SOLAR);
 
         // Set theme to current value
         Theme.setTheme(useLightTheme);
 
         Toybox.System.println("\nSettings:\n\tLight Theme:\t" + useLightTheme + "\n\tShow Solar:\t" + showSolarIntensity + "\n");
-    }                         
+    }   
+
+    function setPropertyValue(key, value){
+        var app = Application.getApp();
+        app.Properties.setValue(key, value);
+    }                      
 
     // Draw the watch face background onto the given draw context
     function writeBufferToDisplay(screenDc, screenBuffer) { 
@@ -94,4 +103,5 @@ module CommonMethods {
 
         return [min, max];
     }
+
 }
