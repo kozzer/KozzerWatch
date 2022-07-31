@@ -4,7 +4,7 @@ using Toybox.Communications;
 
 
 // Entry point
-class KozzerWatch extends Application.AppBase
+class BeersEarned extends Application.AppBase
 {
     private var _mainWatchFaceView;
 
