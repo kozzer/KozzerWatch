@@ -34,7 +34,7 @@ class BatteryStatus {
     function drawOnScreen(dc) {   
     
         // Get battery % from system
-        var batteryPerc = (System.getSystemStats().battery + 0.5).toNumber();
+        var perc = System.getSystemStats().battery;
 
         // Reset colors to font / background
         Theme.resetColors(dc);
@@ -48,10 +48,15 @@ class BatteryStatus {
         dc.fillRectangle((_batteryX + _batteryWidth), (_batteryY + (_batteryHeight / 4)), (_batteryHeight / 6), (_batteryHeight / 2)); 
 
         // Change to color-coded fill
-        setBatteryDisplayLevelColor(dc, batteryPerc);
+        setBatteryDisplayLevelColor(dc, perc);
         
         // Draw filled (only fill based on %)
-        dc.fillRoundedRectangle(_batteryX + 2, _batteryY + 2, ((_batteryWidth * batteryPerc) / 100) - 4, _batteryHeight - 4, _batteryRadius - 1);
+        var dispPerc = (((_batteryWidth - 4) * perc) / 100);
+        if (dispPerc > _batteryWidth - 4) {
+            dispPerc = _batteryWidth - 4;
+        }
+
+        dc.fillRoundedRectangle(_batteryX + 2, _batteryY + 2, dispPerc, _batteryHeight - 4, _batteryRadius - 1);
  
         CommonMethods.clearDrawingClip(dc);
     }
