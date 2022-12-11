@@ -59,7 +59,7 @@ class SolarStatus {
         var solar = stats.solarIntensity;
 
         // If solar is 0, just return
-        if (solar == 0) {
+        if (solar <= 0) {
             return;
         }
 
