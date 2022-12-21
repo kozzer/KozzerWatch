@@ -1,3 +1,4 @@
+using Toybox.Application;
 using Toybox.Graphics;
 using Toybox.WatchUi;
 
@@ -53,6 +54,12 @@ module ThemeController {
             MOST_COLOR        = 0xFFFF00;     // Yellow
             SOME_COLOR        = 0xFF9900;     // Orange
             BEER_COLOR        = SOME_COLOR;
+        }
+
+        var app = Application.getApp();
+        var isInstinct2 = app.Properties.getValue("IsInstinct2");
+        if (isInstinct2){
+            BEER_COLOR = 0x000000;
         }
     }   
 

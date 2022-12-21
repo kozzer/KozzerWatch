@@ -15,9 +15,15 @@ class BluetoothIcon {
         // Initialize bluetooth icon
         _iconBitmap = WatchUi.loadResource(Rez.Drawables.BluetoothIcon);
 
+        var app = Application.getApp();
+        var isInstinct2 = app.Properties.getValue("IsInstinct2");
+        if (isInstinct2){
+            _iconY = 14;
+        } else {
+            _iconY = Graphics.getFontHeight(Graphics.FONT_MEDIUM) + 24;
+        }
         // Get location of points for icon location
-        _iconX      = dc.getWidth() / 2 - 12;
-        _iconY      = Graphics.getFontHeight(Graphics.FONT_MEDIUM) + 24;
+        _iconX = dc.getWidth() / 2 - 12;
         _iconPoints = [ 
                         [_iconX, _iconY], 
                         [_iconX + 24, _iconY], 

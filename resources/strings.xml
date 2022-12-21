@@ -3,4 +3,5 @@
     <string id="LightThemeActive">Light theme?</string>
     <string id="ShowSolarIntensity">Show intensity?</string>
     <string id="ShowSolarIntensityPrompt">Only works if your device has a solar feature</string>
+    <string id="IsInstinct2">false</string>
 </resources>

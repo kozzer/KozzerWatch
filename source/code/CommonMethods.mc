@@ -58,6 +58,21 @@ module CommonMethods {
         }
     }
 
+    function getBeersEarnedFont(dc){
+        var app = Application.getApp();
+        var isInstinct2 = app.Properties.getValue("IsInstinct2");
+        var width = dc.getWidth();
+
+        if (isInstinct2){
+            return Graphics.FONT_LARGE;
+        } else if (width < 240){
+            return Graphics.FONT_XTINY;
+        } else {
+            return Graphics.FONT_TINY;
+        }
+
+    }
+
     // Set the clip based on the passed-in set of coordinates
     function setDrawingClip(dc, rectanglePoints) {
         // Clear existing clip

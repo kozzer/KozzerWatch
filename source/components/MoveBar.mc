@@ -17,7 +17,7 @@ class MoveBar {
     function initialize(dc){
         // Get location of the blue bar
         _barX = ((dc.getWidth() / 2) - (_moveBarWidth / 2));      // Total 78px wide, so 39px left of center
-        _barY = Graphics.getFontHeight(Graphics.FONT_MEDIUM) + 15;
+        _barY = Graphics.getFontHeight(Graphics.FONT_MEDIUM) + 12;
 
         _barPoints = [
                         [_barX, _barY], 
@@ -35,6 +35,8 @@ class MoveBar {
         var drawBarX = _barX;
 
         CommonMethods.setDrawingClip(dc, _barPoints);
+        var app = Application.getApp();
+        var isInstinct2 = app.Properties.getValue("IsInstinct2");
 
         // Draw bars based on bar level
         if (barLevel >= 1) {
@@ -48,17 +50,29 @@ class MoveBar {
             drawBarX += 12;
         }
         if (barLevel >= 3){
-            Theme.setColor(dc, Theme.MOST_COLOR);
+            if (isInstinct2){
+                Theme.setColor(dc, Theme.FULL_COLOR);
+            } else {
+                Theme.setColor(dc, Theme.MOST_COLOR);
+            }
             dc.fillRectangle(drawBarX, _barY, 9, _moveBarHeight);
             drawBarX += 12;
         }
         if (barLevel >= 4){
-            Theme.setColor(dc, Theme.SOME_COLOR);
+            if (isInstinct2){
+                Theme.setColor(dc, Theme.FULL_COLOR);
+            } else {
+                Theme.setColor(dc, Theme.SOME_COLOR);
+            }
             dc.fillRectangle(drawBarX, _barY, 9, _moveBarHeight);
             drawBarX += 12;
         }
         if (barLevel >= 5){
-            Theme.setColor(dc, Theme.LOW_COLOR);
+            if (isInstinct2){
+                Theme.setColor(dc, Theme.FULL_COLOR);
+            } else {
+                Theme.setColor(dc, Theme.LOW_COLOR);
+            }
             dc.fillRectangle(drawBarX, _barY, 9, _moveBarHeight);
         }
 
