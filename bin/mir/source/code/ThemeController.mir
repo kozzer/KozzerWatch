@@ -1,0 +1,173 @@
+[ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\code\ThemeController.mc"; @line = 1; ]
+using Toybox.Application;
+[ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\code\ThemeController.mc"; @line = 2; ]
+using Toybox.Graphics;
+[ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\code\ThemeController.mc"; @line = 3; ]
+using Toybox.WatchUi;
+[ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\code\ThemeController.mc"; @line = 5; ]
+module ThemeController {
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\code\ThemeController.mc"; @line = 5; ]
+    <init> {
+    }
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\code\ThemeController.mc"; @line = 8; @position = 8; ]
+    var _useLightTheme;
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\code\ThemeController.mc"; @line = 11; @position = 8; ]
+    var BACKGROUND_COLOR;
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\code\ThemeController.mc"; @line = 12; @position = 8; ]
+    var FONT_COLOR;
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\code\ThemeController.mc"; @line = 13; @position = 8; ]
+    var MUG_COLOR;
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\code\ThemeController.mc"; @line = 14; @position = 8; ]
+    var FADED_MUG_COLOR;
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\code\ThemeController.mc"; @line = 15; @position = 8; ]
+    var RED_COLOR;
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\code\ThemeController.mc"; @line = 16; @position = 8; ]
+    var CLOCK_HAND_LINE;
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\code\ThemeController.mc"; @line = 17; @position = 8; ]
+    var BLUE_COLOR;
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\code\ThemeController.mc"; @line = 18; @position = 8; ]
+    var FULL_COLOR;
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\code\ThemeController.mc"; @line = 19; @position = 8; ]
+    var MOST_COLOR;
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\code\ThemeController.mc"; @line = 20; @position = 8; ]
+    var SOME_COLOR;
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\code\ThemeController.mc"; @line = 21; @position = 8; ]
+    var LOW_COLOR;
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\code\ThemeController.mc"; @line = 22; @position = 8; ]
+    var BEER_COLOR;
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\code\ThemeController.mc"; @line = 24; ]
+    function setTheme(lightTheme) {
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_code_ThemeController_mc_24_33_64_4_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\code\ThemeController.mc" 27 8 ]
+        %tmp.2 = lgetv %lightTheme;
+        putv self :_useLightTheme %tmp.2;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\code\ThemeController.mc" 30 8 ]
+        %tmp.3 = 0x353225;
+        putv self :MUG_COLOR %tmp.3;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\code\ThemeController.mc" 31 8 ]
+        %tmp.4 = 0x777777;
+        putv self :FADED_MUG_COLOR %tmp.4;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\code\ThemeController.mc" 32 8 ]
+        %tmp.5 = 0x808080;
+        putv self :CLOCK_HAND_LINE %tmp.5;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\code\ThemeController.mc" 33 8 ]
+        %tmp.6 = 0xFF0000;
+        putv self :RED_COLOR %tmp.6;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\code\ThemeController.mc" 34 8 ]
+        %tmp.8 = getv ? :RED_COLOR;
+        putv self :LOW_COLOR %tmp.8;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\code\ThemeController.mc" 36 8 ]
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_code_ThemeController_mc_36_8_57_8_if_stmt:
+        %tmp.10 = getv ? :_useLightTheme;
+        bf %tmp.10 @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_code_ThemeController_mc_36_8_57_8_if_false;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_code_ThemeController_mc_36_8_57_8_if_true:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_code_ThemeController_mc_36_27_47_8_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\code\ThemeController.mc" 39 12 ]
+        %tmp.11 = 0xDEDEDE;
+        putv self :BACKGROUND_COLOR %tmp.11;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\code\ThemeController.mc" 40 12 ]
+        %tmp.12 = 0x111111;
+        putv self :FONT_COLOR %tmp.12;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\code\ThemeController.mc" 41 12 ]
+        %tmp.13 = 0x0026FF;
+        putv self :BLUE_COLOR %tmp.13;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\code\ThemeController.mc" 42 12 ]
+        %tmp.14 = 0x00C44E;
+        putv self :FULL_COLOR %tmp.14;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\code\ThemeController.mc" 43 12 ]
+        %tmp.15 = 0xDBCC00;
+        putv self :MOST_COLOR %tmp.15;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\code\ThemeController.mc" 44 12 ]
+        %tmp.16 = 0xFF6A00;
+        putv self :SOME_COLOR %tmp.16;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\code\ThemeController.mc" 45 12 ]
+        %tmp.17 = 0xFF9328;
+        putv self :BEER_COLOR %tmp.17;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_code_ThemeController_mc_36_27_47_8_stop:
+        goto @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_code_ThemeController_mc_36_8_57_8_if_end;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_code_ThemeController_mc_36_8_57_8_if_false:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_code_ThemeController_mc_47_15_57_8_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\code\ThemeController.mc" 50 12 ]
+        %tmp.18 = 0x111111;
+        putv self :BACKGROUND_COLOR %tmp.18;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\code\ThemeController.mc" 51 12 ]
+        %tmp.19 = 0xDEDEDE;
+        putv self :FONT_COLOR %tmp.19;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\code\ThemeController.mc" 52 12 ]
+        %tmp.20 = 0x1166FF;
+        putv self :BLUE_COLOR %tmp.20;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\code\ThemeController.mc" 53 12 ]
+        %tmp.21 = 0x00FF00;
+        putv self :FULL_COLOR %tmp.21;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\code\ThemeController.mc" 54 12 ]
+        %tmp.22 = 0xFFFF00;
+        putv self :MOST_COLOR %tmp.22;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\code\ThemeController.mc" 55 12 ]
+        %tmp.23 = 0xFF9900;
+        putv self :SOME_COLOR %tmp.23;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\code\ThemeController.mc" 56 12 ]
+        %tmp.25 = getv ? :SOME_COLOR;
+        putv self :BEER_COLOR %tmp.25;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_code_ThemeController_mc_47_15_57_8_stop:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_code_ThemeController_mc_36_8_57_8_if_end:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\code\ThemeController.mc" 60 8 ]
+        [ "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_code_ThemeController_mc_24_33_64_4_start" "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_code_ThemeController_mc_24_33_64_4_stop" ]
+        %isInstinct2.1 = local;
+        %tmp.26 = getm $.Toybox.Application;
+        %tmp.27 = getv %tmp.26 :Properties;
+        %tmp.28 = getv function %tmp.27 :getValue;
+        %tmp.29 = "IsInstinct2";
+        %tmp.30 = invoke %tmp.27 %tmp.28(%tmp.29);
+        lputv %isInstinct2.1 %tmp.30;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\code\ThemeController.mc" 61 8 ]
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_code_ThemeController_mc_61_8_63_8_if_stmt:
+        %tmp.32 = lgetv %isInstinct2.1;
+        bf %tmp.32 @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_code_ThemeController_mc_61_8_63_8_if_end;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_code_ThemeController_mc_61_8_63_8_if_true:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_code_ThemeController_mc_61_24_63_8_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\code\ThemeController.mc" 62 12 ]
+        %tmp.33 = 0x000000;
+        putv self :BEER_COLOR %tmp.33;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_code_ThemeController_mc_61_24_63_8_stop:
+        goto @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_code_ThemeController_mc_61_8_63_8_if_end;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_code_ThemeController_mc_61_8_63_8_if_end:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_code_ThemeController_mc_24_33_64_4_stop:
+    }
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\code\ThemeController.mc"; @line = 67; ]
+    function setColor(dc, newColor) {
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_code_ThemeController_mc_67_36_69_4_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\code\ThemeController.mc" 68 8 ]
+        %tmp.1 = lgetv %dc;
+        %tmp.2 = getv function %tmp.1 :setColor;
+        %tmp.4 = lgetv %newColor;
+        %tmp.5 = getm $.Toybox.Graphics;
+        %tmp.6 = getv %tmp.5 :COLOR_TRANSPARENT;
+        invoke %tmp.1 %tmp.2(%tmp.4, %tmp.6);
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_code_ThemeController_mc_67_36_69_4_stop:
+    }
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\code\ThemeController.mc"; @line = 72; ]
+    function setBothColors(dc, newColor) {
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_code_ThemeController_mc_72_41_74_4_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\code\ThemeController.mc" 73 8 ]
+        %tmp.1 = lgetv %dc;
+        %tmp.2 = getv function %tmp.1 :setColor;
+        %tmp.4 = lgetv %newColor;
+        %tmp.6 = lgetv %newColor;
+        invoke %tmp.1 %tmp.2(%tmp.4, %tmp.6);
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_code_ThemeController_mc_72_41_74_4_stop:
+    }
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\code\ThemeController.mc"; @line = 77; ]
+    function resetColors(dc) {
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_code_ThemeController_mc_77_29_79_4_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\code\ThemeController.mc" 78 8 ]
+        %tmp.1 = self;
+        %tmp.2 = getv function %tmp.1 :setColor;
+        %tmp.4 = lgetv %dc;
+        %tmp.6 = getv ? :FONT_COLOR;
+        invoke %tmp.1 %tmp.2(%tmp.4, %tmp.6);
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_code_ThemeController_mc_77_29_79_4_stop:
+    }
+}
+[ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\code\ThemeController.mc"; @line = 1; ]
+<init> {
+}

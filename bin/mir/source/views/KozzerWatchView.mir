@@ -1,0 +1,479 @@
+[ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc"; @line = 1; ]
+using Toybox.ActivityMonitor;
+[ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc"; @line = 2; ]
+using Toybox.Application;
+[ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc"; @line = 3; ]
+using Toybox.Graphics;
+[ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc"; @line = 4; ]
+using Toybox.Lang;
+[ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc"; @line = 5; ]
+using Toybox.Math;
+[ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc"; @line = 6; ]
+using Toybox.System;
+[ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc"; @line = 8; ]
+using Toybox.WatchUi;
+[ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc"; @line = 9; ]
+using Toybox.Application.Storage as :Storage;
+[ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc"; @line = 11; ]
+using ThemeController as :Theme;
+[ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc"; @line = 13; @position = 4; ]
+var partialUpdatesAllowed = false;
+[ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc"; @line = 15; ]
+class KozzerWatchView extends WatchUi.WatchFace{
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc"; @line = 15; ]
+    <init> {
+    }
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc"; @line = 15; ]
+    static
+    <init> {
+    }
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc"; @line = 18; @position = 8; ]
+    var _isAwake;
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc"; @line = 19; @position = 8; ]
+    var _fullScreenRefresh;
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc"; @line = 20; @position = 8; ]
+    var _screenBuffer;
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc"; @line = 23; @position = 8; ]
+    var _mainClock;
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc"; @line = 24; @position = 8; ]
+    var _dateTitle;
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc"; @line = 25; @position = 8; ]
+    var _moveBar;
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc"; @line = 26; @position = 8; ]
+    var _weather;
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc"; @line = 27; @position = 8; ]
+    var _stepsCount;
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc"; @line = 28; @position = 8; ]
+    var _bluetoothIcon;
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc"; @line = 29; @position = 8; ]
+    var _batteryStatus;
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc"; @line = 30; @position = 8; ]
+    var _beerMug;
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc"; @line = 31; @position = 8; ]
+    var _solarStatus;
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc"; @line = 34; ]
+    function initialize() as Void {
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_34_26_42_4_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc" 37 8 ]
+        %tmp.2 = getv ? :WatchFace;
+        %tmp.3 = getv function %tmp.2 :initialize;
+        invoke %tmp.2 %tmp.3();
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc" 40 8 ]
+        %tmp.4 = true;
+        putv self :_fullScreenRefresh %tmp.4;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc" 41 8 ]
+        %tmp.5 = getm $.Toybox.WatchUi;
+        %tmp.6 = getv %tmp.5 :WatchFace;
+        %tmp.8 = const :onPartialUpdate;
+        %tmp.9 = canhazplz %tmp.6 %tmp.8;
+        putv self :partialUpdatesAllowed %tmp.9;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_34_26_42_4_stop:
+    }
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc"; @line = 48; ]
+    function onLayout(dc) {
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_48_26_58_4_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc" 51 8 ]
+        %tmp.1 = self;
+        %tmp.2 = getv function %tmp.1 :initializeUIComponents;
+        %tmp.4 = lgetv %dc;
+        invoke %tmp.1 %tmp.2(%tmp.4);
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc" 54 8 ]
+        %tmp.5 = self;
+        %tmp.6 = getv function %tmp.5 :createScreenBuffer;
+        %tmp.8 = lgetv %dc;
+        invoke %tmp.5 %tmp.6(%tmp.8);
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc" 57 8 ]
+        %tmp.10 = getv ? :CommonMethods;
+        %tmp.11 = getv function %tmp.10 :clearDrawingClip;
+        %tmp.13 = lgetv %dc;
+        invoke %tmp.10 %tmp.11(%tmp.13);
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_48_26_58_4_stop:
+    }
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc"; @line = 61; ]
+    function onUpdate(dc) {
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_61_26_96_4_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc" 64 8 ]
+        %tmp.1 = true;
+        putv self :_fullScreenRefresh %tmp.1;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc" 67 8 ]
+        [ "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_61_26_96_4_start" "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_61_26_96_4_stop" ]
+        %screenDc.1 = local;
+        %tmp.3 = lgetv %dc;
+        lputv %screenDc.1 %tmp.3;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc" 70 8 ]
+        %tmp.5 = getv ? :CommonMethods;
+        %tmp.6 = getv function %tmp.5 :clearDrawingClip;
+        %tmp.8 = lgetv %screenDc.1;
+        invoke %tmp.5 %tmp.6(%tmp.8);
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc" 73 8 ]
+        [ "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_61_26_96_4_start" "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_61_26_96_4_stop" ]
+        %bufferDc.2 = local;
+        %tmp.10 = getv ? :_screenBuffer;
+        %tmp.11 = getv function %tmp.10 :getDc;
+        %tmp.12 = invoke %tmp.10 %tmp.11();
+        lputv %bufferDc.2 %tmp.12;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc" 74 8 ]
+        %tmp.13 = getm $.ThemeController;
+        %tmp.14 = getv function %tmp.13 :setBothColors;
+        %tmp.16 = lgetv %bufferDc.2;
+        %tmp.17 = getm $.ThemeController;
+        %tmp.18 = getv %tmp.17 :BACKGROUND_COLOR;
+        invoke %tmp.13 %tmp.14(%tmp.16, %tmp.18);
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc" 75 8 ]
+        %tmp.19 = lgetv %bufferDc.2;
+        %tmp.20 = getv function %tmp.19 :fillRectangle;
+        %tmp.21 = 0;
+        %tmp.22 = 0;
+        %tmp.23 = lgetv %bufferDc.2;
+        %tmp.24 = getv function %tmp.23 :getWidth;
+        %tmp.25 = invoke %tmp.23 %tmp.24();
+        %tmp.26 = lgetv %bufferDc.2;
+        %tmp.27 = getv function %tmp.26 :getHeight;
+        %tmp.28 = invoke %tmp.26 %tmp.27();
+        invoke %tmp.19 %tmp.20(%tmp.21, %tmp.22, %tmp.25, %tmp.28);
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc" 78 8 ]
+        %tmp.29 = getm $.ThemeController;
+        %tmp.30 = getv function %tmp.29 :resetColors;
+        %tmp.32 = lgetv %bufferDc.2;
+        invoke %tmp.29 %tmp.30(%tmp.32);
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc" 81 8 ]
+        %tmp.33 = self;
+        %tmp.34 = getv function %tmp.33 :drawUIComponents;
+        %tmp.36 = lgetv %bufferDc.2;
+        invoke %tmp.33 %tmp.34(%tmp.36);
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc" 84 8 ]
+        %tmp.37 = self;
+        %tmp.38 = getv function %tmp.37 :writeBufferThenDrawForPartialUpdate;
+        %tmp.40 = lgetv %screenDc.1;
+        %tmp.42 = getv ? :_screenBuffer;
+        invoke %tmp.37 %tmp.38(%tmp.40, %tmp.42);
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc" 87 8 ]
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_87_8_93_8_if_stmt:
+        %tmp.44 = getv ? :partialUpdatesAllowed;
+        bf %tmp.44 @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_87_8_93_8_if_false;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_87_8_93_8_if_true:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_87_35_90_8_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc" 89 12 ]
+        %tmp.45 = self;
+        %tmp.46 = getv function %tmp.45 :onPartialUpdate;
+        %tmp.48 = lgetv %screenDc.1;
+        invoke %tmp.45 %tmp.46(%tmp.48);
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_87_35_90_8_stop:
+        goto @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_87_8_93_8_if_end;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_87_8_93_8_if_false:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc" 90 15 ]
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_90_15_93_8_if_stmt:
+        %tmp.50 = getv ? :_isAwake;
+        bf %tmp.50 @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_90_15_93_8_if_end;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_90_15_93_8_if_true:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_90_29_93_8_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc" 92 12 ]
+        %tmp.52 = getv ? :_mainClock;
+        %tmp.53 = getv function %tmp.52 :drawSecondHand;
+        %tmp.55 = lgetv %screenDc.1;
+        invoke %tmp.52 %tmp.53(%tmp.55);
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_90_29_93_8_stop:
+        goto @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_90_15_93_8_if_end;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_90_15_93_8_if_end:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_87_8_93_8_if_end:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc" 95 8 ]
+        %tmp.56 = false;
+        putv self :_fullScreenRefresh %tmp.56;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_61_26_96_4_stop:
+    }
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc"; @line = 100; ]
+    function onPartialUpdate(dc) {
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_100_33_110_4_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc" 103 8 ]
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_103_8_106_8_if_stmt:
+        %tmp.2 = getv ? :_fullScreenRefresh;
+        %tmp.3 = not %tmp.2;
+        bf %tmp.3 @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_103_8_106_8_if_end;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_103_8_106_8_if_true:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_103_32_106_8_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc" 105 12 ]
+        %tmp.4 = self;
+        %tmp.5 = getv function %tmp.4 :writeBufferThenDrawForPartialUpdate;
+        %tmp.7 = lgetv %dc;
+        %tmp.9 = getv ? :_screenBuffer;
+        invoke %tmp.4 %tmp.5(%tmp.7, %tmp.9);
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_103_32_106_8_stop:
+        goto @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_103_8_106_8_if_end;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_103_8_106_8_if_end:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc" 109 8 ]
+        %tmp.11 = getv ? :_mainClock;
+        %tmp.12 = getv function %tmp.11 :drawSecondHand;
+        %tmp.14 = lgetv %dc;
+        invoke %tmp.11 %tmp.12(%tmp.14);
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_100_33_110_4_stop:
+    }
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc"; @line = 112; ]
+    private
+    function createScreenBuffer(dc) {
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_112_43_124_4_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc" 114 8 ]
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_114_8_123_8_if_stmt:
+        %tmp.2 = getm $.Toybox.Graphics;
+        %tmp.4 = const :createBufferedBitmap;
+        %tmp.5 = canhazplz %tmp.2 %tmp.4;
+        bf %tmp.5 @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_114_8_123_8_if_false;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_114_8_123_8_if_true:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_114_47_119_8_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc" 115 12 ]
+        [ "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_114_47_119_8_start" "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_114_47_119_8_stop" ]
+        %bufferRef.1 = local;
+        %tmp.6 = getm $.Toybox.Graphics;
+        %tmp.7 = getv function %tmp.6 :createBufferedBitmap;
+        %tmp.8 = newd 2;
+        %tmp.10 = const :width;
+        %tmp.11 = lgetv %dc;
+        %tmp.12 = getv function %tmp.11 :getWidth;
+        %tmp.13 = invoke %tmp.11 %tmp.12();
+        %tmp.14 = dup %tmp.8;
+        %tmp.15 = aputv %tmp.14 %tmp.10 %tmp.13;
+        %tmp.17 = const :height;
+        %tmp.18 = lgetv %dc;
+        %tmp.19 = getv function %tmp.18 :getHeight;
+        %tmp.20 = invoke %tmp.18 %tmp.19();
+        %tmp.21 = dup %tmp.15;
+        %tmp.22 = aputv %tmp.21 %tmp.17 %tmp.20;
+        %tmp.23 = invoke %tmp.6 %tmp.7(%tmp.22);
+        lputv %bufferRef.1 %tmp.23;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc" 118 12 ]
+        %tmp.24 = lgetv %bufferRef.1;
+        %tmp.25 = getv function %tmp.24 :get;
+        %tmp.26 = invoke %tmp.24 %tmp.25();
+        putv self :_screenBuffer %tmp.26;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_114_47_119_8_stop:
+        goto @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_114_8_123_8_if_end;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_114_8_123_8_if_false:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_119_15_123_8_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc" 120 12 ]
+        %tmp.29 = getm $.Toybox.Graphics;
+        %tmp.30 = getv function ? %tmp.29 :BufferedBitmap;
+        %tmp.31 = newd 2;
+        %tmp.33 = const :width;
+        %tmp.34 = lgetv %dc;
+        %tmp.35 = getv function %tmp.34 :getWidth;
+        %tmp.36 = invoke %tmp.34 %tmp.35();
+        %tmp.37 = dup %tmp.31;
+        %tmp.38 = aputv %tmp.37 %tmp.33 %tmp.36;
+        %tmp.40 = const :height;
+        %tmp.41 = lgetv %dc;
+        %tmp.42 = getv function %tmp.41 :getHeight;
+        %tmp.43 = invoke %tmp.41 %tmp.42();
+        %tmp.44 = dup %tmp.38;
+        %tmp.45 = aputv %tmp.44 %tmp.40 %tmp.43;
+        %tmp.27 = newc %tmp.30 (%tmp.45);
+        putv self :_screenBuffer %tmp.27;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_119_15_123_8_stop:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_114_8_123_8_if_end:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_112_43_124_4_stop:
+    }
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc"; @line = 127; ]
+    function onEnterSleep() {
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_127_28_130_4_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc" 128 8 ]
+        %tmp.1 = false;
+        putv self :_isAwake %tmp.1;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc" 129 8 ]
+        %tmp.2 = getm $.Toybox.WatchUi;
+        %tmp.3 = getv function %tmp.2 :requestUpdate;
+        invoke %tmp.2 %tmp.3();
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_127_28_130_4_stop:
+    }
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc"; @line = 133; ]
+    function onExitSleep() {
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_133_27_135_4_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc" 134 8 ]
+        %tmp.1 = true;
+        putv self :_isAwake %tmp.1;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_133_27_135_4_stop:
+    }
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc"; @line = 137; ]
+    function initializeUIComponents(dc) {
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_137_39_152_4_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc" 139 8 ]
+        %tmp.4 = getv ? :MainClock;
+        %tmp.6 = lgetv %dc;
+        %tmp.1 = newc %tmp.4 (%tmp.6);
+        putv self :_mainClock %tmp.1;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc" 140 8 ]
+        %tmp.10 = getv ? :DateTitle;
+        %tmp.12 = lgetv %dc;
+        %tmp.7 = newc %tmp.10 (%tmp.12);
+        putv self :_dateTitle %tmp.7;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc" 141 8 ]
+        %tmp.16 = getv ? :MoveBar;
+        %tmp.18 = lgetv %dc;
+        %tmp.13 = newc %tmp.16 (%tmp.18);
+        putv self :_moveBar %tmp.13;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc" 142 8 ]
+        %tmp.22 = getv ? :Weather;
+        %tmp.24 = lgetv %dc;
+        %tmp.19 = newc %tmp.22 (%tmp.24);
+        putv self :_weather %tmp.19;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc" 143 8 ]
+        %tmp.28 = getv ? :StepsCount;
+        %tmp.30 = lgetv %dc;
+        %tmp.25 = newc %tmp.28 (%tmp.30);
+        putv self :_stepsCount %tmp.25;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc" 144 8 ]
+        %tmp.34 = getv ? :BluetoothIcon;
+        %tmp.36 = lgetv %dc;
+        %tmp.31 = newc %tmp.34 (%tmp.36);
+        putv self :_bluetoothIcon %tmp.31;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc" 145 8 ]
+        %tmp.40 = getv ? :BatteryStatus;
+        %tmp.42 = lgetv %dc;
+        %tmp.37 = newc %tmp.40 (%tmp.42);
+        putv self :_batteryStatus %tmp.37;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc" 146 8 ]
+        %tmp.46 = getv ? :BeerMug;
+        %tmp.48 = lgetv %dc;
+        %tmp.43 = newc %tmp.46 (%tmp.48);
+        putv self :_beerMug %tmp.43;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc" 149 8 ]
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_149_8_151_8_if_stmt:
+        %tmp.50 = getv ? :CommonMethods;
+        %tmp.51 = getv %tmp.50 :showSolarIntensity;
+        bf %tmp.51 @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_149_8_151_8_if_end;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_149_8_151_8_if_true:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_149_45_151_8_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc" 150 12 ]
+        %tmp.55 = getv ? :SolarStatus;
+        %tmp.57 = lgetv %dc;
+        %tmp.52 = newc %tmp.55 (%tmp.57);
+        putv self :_solarStatus %tmp.52;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_149_45_151_8_stop:
+        goto @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_149_8_151_8_if_end;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_149_8_151_8_if_end:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_137_39_152_4_stop:
+    }
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc"; @line = 154; ]
+    function drawUIComponents(dc) {
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_154_34_165_4_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc" 156 8 ]
+        [ "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_154_34_165_4_start" "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_154_34_165_4_stop" ]
+        %stepsInfo.1 = local;
+        %tmp.1 = getm $.Toybox.ActivityMonitor;
+        %tmp.2 = getv function %tmp.1 :getInfo;
+        %tmp.3 = invoke %tmp.1 %tmp.2();
+        lputv %stepsInfo.1 %tmp.3;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc" 159 8 ]
+        %tmp.5 = getv ? :_dateTitle;
+        %tmp.6 = getv function %tmp.5 :drawOnScreen;
+        %tmp.8 = lgetv %dc;
+        invoke %tmp.5 %tmp.6(%tmp.8);
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc" 160 8 ]
+        %tmp.10 = getv ? :_moveBar;
+        %tmp.11 = getv function %tmp.10 :drawOnScreen;
+        %tmp.13 = lgetv %dc;
+        invoke %tmp.10 %tmp.11(%tmp.13);
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc" 161 8 ]
+        %tmp.15 = getv ? :_weather;
+        %tmp.16 = getv function %tmp.15 :drawOnScreen;
+        %tmp.18 = lgetv %dc;
+        invoke %tmp.15 %tmp.16(%tmp.18);
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc" 162 8 ]
+        %tmp.20 = getv ? :_batteryStatus;
+        %tmp.21 = getv function %tmp.20 :drawOnScreen;
+        %tmp.23 = lgetv %dc;
+        invoke %tmp.20 %tmp.21(%tmp.23);
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc" 163 8 ]
+        %tmp.25 = getv ? :_stepsCount;
+        %tmp.26 = getv function %tmp.25 :drawOnScreen;
+        %tmp.28 = lgetv %dc;
+        %tmp.30 = lgetv %stepsInfo.1;
+        invoke %tmp.25 %tmp.26(%tmp.28, %tmp.30);
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc" 164 8 ]
+        %tmp.32 = getv ? :_beerMug;
+        %tmp.33 = getv function %tmp.32 :drawOnScreen;
+        %tmp.35 = lgetv %dc;
+        %tmp.37 = lgetv %stepsInfo.1;
+        invoke %tmp.32 %tmp.33(%tmp.35, %tmp.37);
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_154_34_165_4_stop:
+    }
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc"; @line = 167; ]
+    function writeBufferThenDrawForPartialUpdate(dc, buffer) {
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_167_60_182_4_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc" 170 8 ]
+        %tmp.2 = getv ? :CommonMethods;
+        %tmp.3 = getv function %tmp.2 :writeBufferToDisplay;
+        %tmp.5 = lgetv %dc;
+        %tmp.7 = lgetv %buffer;
+        invoke %tmp.2 %tmp.3(%tmp.5, %tmp.7);
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc" 173 8 ]
+        %tmp.9 = getv ? :_bluetoothIcon;
+        %tmp.10 = getv function %tmp.9 :drawOnScreen;
+        %tmp.12 = lgetv %dc;
+        invoke %tmp.9 %tmp.10(%tmp.12);
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc" 176 8 ]
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_176_8_178_8_if_stmt:
+        %tmp.14 = getv ? :CommonMethods;
+        %tmp.15 = getv %tmp.14 :showSolarIntensity;
+        bf %tmp.15 @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_176_8_178_8_if_end;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_176_8_178_8_if_true:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_176_46_178_8_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc" 177 12 ]
+        %tmp.17 = getv ? :_solarStatus;
+        %tmp.18 = getv function %tmp.17 :drawOnScreen;
+        %tmp.20 = lgetv %dc;
+        invoke %tmp.17 %tmp.18(%tmp.20);
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_176_46_178_8_stop:
+        goto @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_176_8_178_8_if_end;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_176_8_178_8_if_end:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc" 181 8 ]
+        %tmp.22 = getv ? :_mainClock;
+        %tmp.23 = getv function %tmp.22 :drawClock;
+        %tmp.25 = lgetv %dc;
+        invoke %tmp.22 %tmp.23(%tmp.25);
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_167_60_182_4_stop:
+    }
+}
+[ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc"; @line = 185; ]
+class KozzerWatchDelegate extends WatchUi.WatchFaceDelegate{
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc"; @line = 185; ]
+    <init> {
+    }
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc"; @line = 185; ]
+    static
+    <init> {
+    }
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc"; @line = 187; ]
+    function initialize() as Void {
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_187_25_189_4_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc" 188 8 ]
+        %tmp.2 = getv ? :WatchFaceDelegate;
+        %tmp.3 = getv function %tmp.2 :initialize;
+        invoke %tmp.2 %tmp.3();
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_187_25_189_4_stop:
+    }
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc"; @line = 194; ]
+    function onPowerBudgetExceeded(powerInfo) {
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_194_46_198_4_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc" 195 8 ]
+        %tmp.1 = getm $.Toybox.System;
+        %tmp.2 = getv function %tmp.1 :println;
+        %tmp.3 = "Average execution time: ";
+        %tmp.4 = lgetv %powerInfo;
+        %tmp.5 = getv %tmp.4 :executionTimeAverage;
+        %tmp.6 = add %tmp.3 %tmp.5;
+        invoke %tmp.1 %tmp.2(%tmp.6);
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc" 196 8 ]
+        %tmp.7 = getm $.Toybox.System;
+        %tmp.8 = getv function %tmp.7 :println;
+        %tmp.9 = "Allowed execution time: ";
+        %tmp.10 = lgetv %powerInfo;
+        %tmp.11 = getv %tmp.10 :executionTimeLimit;
+        %tmp.12 = add %tmp.9 %tmp.11;
+        invoke %tmp.7 %tmp.8(%tmp.12);
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc" 197 8 ]
+        %tmp.13 = false;
+        putv self :partialUpdatesAllowed %tmp.13;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerWatchView_mc_194_46_198_4_stop:
+    }
+}
+[ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerWatchView.mc"; @line = 1; ]
+<init> {
+}

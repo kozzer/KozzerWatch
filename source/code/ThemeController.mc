@@ -56,8 +56,8 @@ module ThemeController {
             BEER_COLOR        = SOME_COLOR;
         }
 
-        var app = Application.getApp();
-        var isInstinct2 = app.Properties.getValue("IsInstinct2");
+        //var app = Application.getApp();
+        var isInstinct2 = Application.Properties.getValue("IsInstinct2");
         if (isInstinct2){
             BEER_COLOR = 0x000000;
         }

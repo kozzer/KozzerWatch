@@ -1,0 +1,140 @@
+[ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\KozzerWatchApp.mc"; @line = 1; ]
+using Toybox.Application;
+[ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\KozzerWatchApp.mc"; @line = 2; ]
+using Toybox.Time;
+[ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\KozzerWatchApp.mc"; @line = 3; ]
+using Toybox.Communications;
+[ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\KozzerWatchApp.mc"; @line = 4; ]
+using Toybox.System;
+[ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\KozzerWatchApp.mc"; @line = 8; ]
+class BeersEarned extends Application.AppBase{
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\KozzerWatchApp.mc"; @line = 8; ]
+    <init> {
+    }
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\KozzerWatchApp.mc"; @line = 8; ]
+    static
+    <init> {
+    }
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\KozzerWatchApp.mc"; @line = 10; @position = 16; ]
+    private
+    var _mainWatchFaceView;
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\KozzerWatchApp.mc"; @line = 12; ]
+    function initialize() as Void {
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_KozzerWatchApp_mc_12_26_15_4_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\KozzerWatchApp.mc" 13 8 ]
+        %tmp.2 = getv ? :AppBase;
+        %tmp.3 = getv function %tmp.2 :initialize;
+        invoke %tmp.2 %tmp.3();
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\KozzerWatchApp.mc" 14 8 ]
+        %tmp.5 = getv ? :CommonMethods;
+        %tmp.6 = getv function %tmp.5 :populateAndApplyAppSettings;
+        invoke %tmp.5 %tmp.6();
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_KozzerWatchApp_mc_12_26_15_4_stop:
+    }
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\KozzerWatchApp.mc"; @line = 17; ]
+    function onStart(state) {
+    }
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\KozzerWatchApp.mc"; @line = 19; ]
+    function onStop(state) {
+    }
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\KozzerWatchApp.mc"; @line = 22; ]
+    function getInitialView() {
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_KozzerWatchApp_mc_22_30_31_4_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\KozzerWatchApp.mc" 24 8 ]
+        %tmp.4 = getv ? :KozzerWatchView;
+        %tmp.1 = newc %tmp.4 ();
+        putv self :_mainWatchFaceView %tmp.1;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\KozzerWatchApp.mc" 26 8 ]
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_KozzerWatchApp_mc_26_8_30_8_if_stmt:
+        %tmp.6 = getv ? :Toybox;
+        %tmp.7 = getv %tmp.6 :WatchUi;
+        %tmp.9 = const :WatchFaceDelegate;
+        %tmp.10 = canhazplz %tmp.7 %tmp.9;
+        bf %tmp.10 @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_KozzerWatchApp_mc_26_8_30_8_if_false;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_KozzerWatchApp_mc_26_8_30_8_if_true:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_KozzerWatchApp_mc_26_52_28_8_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\KozzerWatchApp.mc" 27 12 ]
+        %tmp.11 = newa 2;
+        %tmp.13 = getv ? :_mainWatchFaceView;
+        %tmp.14 = dup %tmp.11;
+        %tmp.15 = aputv %tmp.14 0 %tmp.13;
+        %tmp.19 = getv ? :KozzerWatchDelegate;
+        %tmp.16 = newc %tmp.19 ();
+        %tmp.20 = dup %tmp.15;
+        %tmp.21 = aputv %tmp.20 1 %tmp.16;
+        ret %tmp.21;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_KozzerWatchApp_mc_26_52_28_8_stop:
+        goto @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_KozzerWatchApp_mc_26_8_30_8_if_end;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_KozzerWatchApp_mc_26_8_30_8_if_false:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_KozzerWatchApp_mc_28_15_30_8_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\KozzerWatchApp.mc" 29 12 ]
+        %tmp.22 = newa 1;
+        %tmp.24 = getv ? :_mainWatchFaceView;
+        %tmp.25 = dup %tmp.22;
+        %tmp.26 = aputv %tmp.25 0 %tmp.24;
+        ret %tmp.26;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_KozzerWatchApp_mc_28_15_30_8_stop:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_KozzerWatchApp_mc_26_8_30_8_if_end:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_KozzerWatchApp_mc_22_30_31_4_stop:
+    }
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\KozzerWatchApp.mc"; @line = 34; ]
+    function getGoalView(goal) {
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_KozzerWatchApp_mc_34_31_36_4_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\KozzerWatchApp.mc" 35 8 ]
+        %tmp.1 = newa 1;
+        %tmp.5 = getv ? :KozzerGoalView;
+        %tmp.7 = lgetv %goal;
+        %tmp.2 = newc %tmp.5 (%tmp.7);
+        %tmp.8 = dup %tmp.1;
+        %tmp.9 = aputv %tmp.8 0 %tmp.2;
+        ret %tmp.9;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_KozzerWatchApp_mc_34_31_36_4_stop:
+    }
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\KozzerWatchApp.mc"; @line = 39; ]
+    function getSettingsView() {
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_KozzerWatchApp_mc_39_31_41_4_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\KozzerWatchApp.mc" 40 8 ]
+        %tmp.1 = newa 2;
+        %tmp.5 = getv ? :KozzerSettingsView;
+        %tmp.2 = newc %tmp.5 ();
+        %tmp.6 = dup %tmp.1;
+        %tmp.7 = aputv %tmp.6 0 %tmp.2;
+        %tmp.11 = getv ? :KozzerSettingsDelegate;
+        %tmp.8 = newc %tmp.11 ();
+        %tmp.12 = dup %tmp.7;
+        %tmp.13 = aputv %tmp.12 1 %tmp.8;
+        ret %tmp.13;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_KozzerWatchApp_mc_39_31_41_4_stop:
+    }
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\KozzerWatchApp.mc"; @line = 43; ]
+    function onSettingsChanged() {
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_KozzerWatchApp_mc_43_33_53_4_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\KozzerWatchApp.mc" 45 8 ]
+        %tmp.1 = getm $.Toybox.System;
+        %tmp.2 = getv function %tmp.1 :println;
+        %tmp.3 = "About to read new settings after change...";
+        invoke %tmp.1 %tmp.2(%tmp.3);
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\KozzerWatchApp.mc" 46 8 ]
+        %tmp.5 = getv ? :CommonMethods;
+        %tmp.6 = getv function %tmp.5 :populateAndApplyAppSettings;
+        invoke %tmp.5 %tmp.6();
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\KozzerWatchApp.mc" 48 8 ]
+        %tmp.7 = getm $.Toybox.System;
+        %tmp.8 = getv function %tmp.7 :println;
+        %tmp.9 = "New settings applied, now requesting UI update...";
+        invoke %tmp.7 %tmp.8(%tmp.9);
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\KozzerWatchApp.mc" 50 8 ]
+        %tmp.11 = getv ? :WatchUi;
+        %tmp.12 = getv function %tmp.11 :requestUpdate;
+        invoke %tmp.11 %tmp.12();
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\KozzerWatchApp.mc" 52 8 ]
+        %tmp.13 = getm $.Toybox.System;
+        %tmp.14 = getv function %tmp.13 :println;
+        %tmp.15 = "done";
+        invoke %tmp.13 %tmp.14(%tmp.15);
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_KozzerWatchApp_mc_43_33_53_4_stop:
+    }
+}
+[ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\KozzerWatchApp.mc"; @line = 1; ]
+<init> {
+}

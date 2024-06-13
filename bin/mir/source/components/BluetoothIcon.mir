@@ -1,0 +1,167 @@
+[ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BluetoothIcon.mc"; @line = 1; ]
+using Toybox.System;
+[ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BluetoothIcon.mc"; @line = 2; ]
+using Toybox.WatchUi;
+[ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BluetoothIcon.mc"; @line = 4; ]
+class BluetoothIcon{
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BluetoothIcon.mc"; @line = 4; ]
+    <init> {
+    }
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BluetoothIcon.mc"; @line = 4; ]
+    static
+    <init> {
+    }
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BluetoothIcon.mc"; @line = 7; @position = 16; ]
+    private
+    var _iconBitmap;
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BluetoothIcon.mc"; @line = 10; @position = 16; ]
+    private
+    var _iconX;
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BluetoothIcon.mc"; @line = 11; @position = 16; ]
+    private
+    var _iconY;
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BluetoothIcon.mc"; @line = 12; @position = 16; ]
+    private
+    var _iconPoints;
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BluetoothIcon.mc"; @line = 14; ]
+    function initialize(dc) as Void {
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BluetoothIcon_mc_14_27_33_4_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BluetoothIcon.mc" 16 8 ]
+        %tmp.1 = getm $.Toybox.WatchUi;
+        %tmp.2 = getv function %tmp.1 :loadResource;
+        %tmp.4 = getv ? :Rez;
+        %tmp.5 = getv %tmp.4 :Drawables;
+        %tmp.6 = getv %tmp.5 :BluetoothIcon;
+        %tmp.7 = invoke %tmp.1 %tmp.2(%tmp.6);
+        putv self :_iconBitmap %tmp.7;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BluetoothIcon.mc" 19 8 ]
+        [ "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BluetoothIcon_mc_14_27_33_4_start" "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BluetoothIcon_mc_14_27_33_4_stop" ]
+        %isInstinct2.1 = local;
+        %tmp.9 = getv ? :Application;
+        %tmp.10 = getv %tmp.9 :Properties;
+        %tmp.11 = getv function %tmp.10 :getValue;
+        %tmp.12 = "IsInstinct2";
+        %tmp.13 = invoke %tmp.10 %tmp.11(%tmp.12);
+        lputv %isInstinct2.1 %tmp.13;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BluetoothIcon.mc" 20 8 ]
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BluetoothIcon_mc_20_8_24_8_if_stmt:
+        %tmp.15 = lgetv %isInstinct2.1;
+        bf %tmp.15 @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BluetoothIcon_mc_20_8_24_8_if_false;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BluetoothIcon_mc_20_8_24_8_if_true:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BluetoothIcon_mc_20_24_22_8_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BluetoothIcon.mc" 21 12 ]
+        %tmp.16 = 14;
+        putv self :_iconY %tmp.16;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BluetoothIcon_mc_20_24_22_8_stop:
+        goto @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BluetoothIcon_mc_20_8_24_8_if_end;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BluetoothIcon_mc_20_8_24_8_if_false:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BluetoothIcon_mc_22_15_24_8_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BluetoothIcon.mc" 23 12 ]
+        %tmp.17 = lgetv %dc;
+        %tmp.18 = getv function %tmp.17 :getHeight;
+        %tmp.19 = invoke %tmp.17 %tmp.18();
+        %tmp.20 = 2;
+        %tmp.21 = div %tmp.19 %tmp.20;
+        %tmp.22 = 24;
+        %tmp.23 = add %tmp.21 %tmp.22;
+        putv self :_iconY %tmp.23;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BluetoothIcon_mc_22_15_24_8_stop:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BluetoothIcon_mc_20_8_24_8_if_end:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BluetoothIcon.mc" 26 8 ]
+        %tmp.24 = lgetv %dc;
+        %tmp.25 = getv function %tmp.24 :getWidth;
+        %tmp.26 = invoke %tmp.24 %tmp.25();
+        %tmp.27 = 2;
+        %tmp.28 = div %tmp.26 %tmp.27;
+        %tmp.29 = 12;
+        %tmp.30 = sub %tmp.28 %tmp.29;
+        putv self :_iconX %tmp.30;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BluetoothIcon.mc" 27 8 ]
+        %tmp.31 = newa 4;
+        %tmp.32 = newa 2;
+        %tmp.34 = getv ? :_iconX;
+        %tmp.35 = dup %tmp.32;
+        %tmp.36 = aputv %tmp.35 0 %tmp.34;
+        %tmp.38 = getv ? :_iconY;
+        %tmp.39 = dup %tmp.36;
+        %tmp.40 = aputv %tmp.39 1 %tmp.38;
+        %tmp.41 = dup %tmp.31;
+        %tmp.42 = aputv %tmp.41 0 %tmp.40;
+        %tmp.43 = newa 2;
+        %tmp.45 = getv ? :_iconX;
+        %tmp.46 = 24;
+        %tmp.47 = add %tmp.45 %tmp.46;
+        %tmp.48 = dup %tmp.43;
+        %tmp.49 = aputv %tmp.48 0 %tmp.47;
+        %tmp.51 = getv ? :_iconY;
+        %tmp.52 = dup %tmp.49;
+        %tmp.53 = aputv %tmp.52 1 %tmp.51;
+        %tmp.54 = dup %tmp.42;
+        %tmp.55 = aputv %tmp.54 1 %tmp.53;
+        %tmp.56 = newa 2;
+        %tmp.58 = getv ? :_iconX;
+        %tmp.59 = 24;
+        %tmp.60 = add %tmp.58 %tmp.59;
+        %tmp.61 = dup %tmp.56;
+        %tmp.62 = aputv %tmp.61 0 %tmp.60;
+        %tmp.64 = getv ? :_iconY;
+        %tmp.65 = 24;
+        %tmp.66 = add %tmp.64 %tmp.65;
+        %tmp.67 = dup %tmp.62;
+        %tmp.68 = aputv %tmp.67 1 %tmp.66;
+        %tmp.69 = dup %tmp.55;
+        %tmp.70 = aputv %tmp.69 2 %tmp.68;
+        %tmp.71 = newa 2;
+        %tmp.73 = getv ? :_iconX;
+        %tmp.74 = dup %tmp.71;
+        %tmp.75 = aputv %tmp.74 0 %tmp.73;
+        %tmp.77 = getv ? :_iconY;
+        %tmp.78 = 24;
+        %tmp.79 = add %tmp.77 %tmp.78;
+        %tmp.80 = dup %tmp.75;
+        %tmp.81 = aputv %tmp.80 1 %tmp.79;
+        %tmp.82 = dup %tmp.70;
+        %tmp.83 = aputv %tmp.82 3 %tmp.81;
+        putv self :_iconPoints %tmp.83;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BluetoothIcon_mc_14_27_33_4_stop:
+    }
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BluetoothIcon.mc"; @line = 36; ]
+    public
+    function drawOnScreen(dc) {
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BluetoothIcon_mc_36_36_50_4_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BluetoothIcon.mc" 39 8 ]
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BluetoothIcon_mc_39_8_49_8_if_stmt:
+        %tmp.1 = getm $.Toybox.System;
+        %tmp.2 = getv function %tmp.1 :getDeviceSettings;
+        %tmp.3 = invoke %tmp.1 %tmp.2();
+        %tmp.4 = getv %tmp.3 :phoneConnected;
+        bf %tmp.4 @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BluetoothIcon_mc_39_8_49_8_if_end;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BluetoothIcon_mc_39_8_49_8_if_true:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BluetoothIcon_mc_39_55_49_8_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BluetoothIcon.mc" 42 12 ]
+        %tmp.6 = getv ? :CommonMethods;
+        %tmp.7 = getv function %tmp.6 :setDrawingClip;
+        %tmp.9 = lgetv %dc;
+        %tmp.11 = getv ? :_iconPoints;
+        invoke %tmp.6 %tmp.7(%tmp.9, %tmp.11);
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BluetoothIcon.mc" 45 12 ]
+        %tmp.12 = lgetv %dc;
+        %tmp.13 = getv function %tmp.12 :drawBitmap;
+        %tmp.15 = getv ? :_iconX;
+        %tmp.17 = getv ? :_iconY;
+        %tmp.19 = getv ? :_iconBitmap;
+        invoke %tmp.12 %tmp.13(%tmp.15, %tmp.17, %tmp.19);
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BluetoothIcon.mc" 48 12 ]
+        %tmp.21 = getv ? :CommonMethods;
+        %tmp.22 = getv function %tmp.21 :clearDrawingClip;
+        %tmp.24 = lgetv %dc;
+        invoke %tmp.21 %tmp.22(%tmp.24);
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BluetoothIcon_mc_39_55_49_8_stop:
+        goto @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BluetoothIcon_mc_39_8_49_8_if_end;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BluetoothIcon_mc_39_8_49_8_if_end:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BluetoothIcon_mc_36_36_50_4_stop:
+    }
+}
+[ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BluetoothIcon.mc"; @line = 1; ]
+<init> {
+}

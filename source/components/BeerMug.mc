@@ -85,8 +85,8 @@ class BeerMug {
     }
 
     private function setLayoutBasedOnDevice(dc){
-        var app = Application.getApp();
-        _isInstinct2 = app.Properties.getValue("IsInstinct2");
+        //var app = Application.getApp();
+        _isInstinct2 = Application.Properties.getValue("IsInstinct2");
         if (_isInstinct2){
             _mugWidth   = 26;
             _mugHeight  = 39;

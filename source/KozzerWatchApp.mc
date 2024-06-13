@@ -1,6 +1,7 @@
 using Toybox.Application;
 using Toybox.Time;
 using Toybox.Communications;
+using Toybox.System;
 
 
 // Entry point
@@ -41,13 +42,13 @@ class BeersEarned extends Application.AppBase
 
     function onSettingsChanged() {
 
-        println("About to read new settings after change...");
+        Toybox.System.println("About to read new settings after change...");
         CommonMethods.populateAndApplyAppSettings();
 
-        print("New settings applied, now requesting UI update...");
+        Toybox.System.println("New settings applied, now requesting UI update...");
 
         WatchUi.requestUpdate();
 
-        println("done");
+        Toybox.System.println("done");
     }
 }

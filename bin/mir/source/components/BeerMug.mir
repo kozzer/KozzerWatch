@@ -1,0 +1,633 @@
+[ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc"; @line = 1; ]
+using Toybox.System;
+[ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc"; @line = 2; ]
+using Toybox.WatchUi;
+[ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc"; @line = 3; ]
+using Toybox.Graphics as :Graphics;
+[ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc"; @line = 5; ]
+using ThemeController as :Theme;
+[ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc"; @line = 7; ]
+class BeerMug{
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc"; @line = 7; ]
+    <init> {
+    }
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc"; @line = 7; ]
+    static
+    <init> {
+    }
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc"; @line = 9; @position = 18; ]
+    private
+    const STEPS_PER_BEER = 2500;
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc"; @line = 10; @position = 18; ]
+    private
+    const CORNER_RADIUS = 3;
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc"; @line = 12; @position = 16; ]
+    private
+    var _isInstinct2;
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc"; @line = 13; @position = 16; ]
+    private
+    var _mugWidth;
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc"; @line = 14; @position = 16; ]
+    private
+    var _mugHeight;
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc"; @line = 15; @position = 16; ]
+    private
+    var _mugX;
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc"; @line = 16; @position = 16; ]
+    private
+    var _mugY;
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc"; @line = 18; @position = 16; ]
+    private
+    var _mugPoints;
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc"; @line = 20; ]
+    function initialize(dc) as Void {
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_20_27_30_4_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc" 22 8 ]
+        %tmp.1 = self;
+        %tmp.2 = getv function %tmp.1 :setLayoutBasedOnDevice;
+        %tmp.4 = lgetv %dc;
+        invoke %tmp.1 %tmp.2(%tmp.4);
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc" 24 8 ]
+        %tmp.5 = newa 4;
+        %tmp.6 = newa 2;
+        %tmp.8 = getv ? :_mugX;
+        %tmp.9 = 7;
+        %tmp.10 = sub %tmp.8 %tmp.9;
+        %tmp.11 = dup %tmp.6;
+        %tmp.12 = aputv %tmp.11 0 %tmp.10;
+        %tmp.14 = getv ? :_mugY;
+        %tmp.15 = dup %tmp.12;
+        %tmp.16 = aputv %tmp.15 1 %tmp.14;
+        %tmp.17 = dup %tmp.5;
+        %tmp.18 = aputv %tmp.17 0 %tmp.16;
+        %tmp.19 = newa 2;
+        %tmp.21 = getv ? :_mugX;
+        %tmp.23 = getv ? :_mugWidth;
+        %tmp.24 = add %tmp.21 %tmp.23;
+        %tmp.25 = dup %tmp.19;
+        %tmp.26 = aputv %tmp.25 0 %tmp.24;
+        %tmp.28 = getv ? :_mugY;
+        %tmp.29 = dup %tmp.26;
+        %tmp.30 = aputv %tmp.29 1 %tmp.28;
+        %tmp.31 = dup %tmp.18;
+        %tmp.32 = aputv %tmp.31 1 %tmp.30;
+        %tmp.33 = newa 2;
+        %tmp.35 = getv ? :_mugX;
+        %tmp.37 = getv ? :_mugWidth;
+        %tmp.38 = add %tmp.35 %tmp.37;
+        %tmp.39 = dup %tmp.33;
+        %tmp.40 = aputv %tmp.39 0 %tmp.38;
+        %tmp.42 = getv ? :_mugY;
+        %tmp.44 = getv ? :_mugHeight;
+        %tmp.45 = add %tmp.42 %tmp.44;
+        %tmp.46 = dup %tmp.40;
+        %tmp.47 = aputv %tmp.46 1 %tmp.45;
+        %tmp.48 = dup %tmp.32;
+        %tmp.49 = aputv %tmp.48 2 %tmp.47;
+        %tmp.50 = newa 2;
+        %tmp.52 = getv ? :_mugX;
+        %tmp.53 = 7;
+        %tmp.54 = sub %tmp.52 %tmp.53;
+        %tmp.55 = dup %tmp.50;
+        %tmp.56 = aputv %tmp.55 0 %tmp.54;
+        %tmp.58 = getv ? :_mugY;
+        %tmp.60 = getv ? :_mugHeight;
+        %tmp.61 = add %tmp.58 %tmp.60;
+        %tmp.62 = dup %tmp.56;
+        %tmp.63 = aputv %tmp.62 1 %tmp.61;
+        %tmp.64 = dup %tmp.49;
+        %tmp.65 = aputv %tmp.64 3 %tmp.63;
+        putv self :_mugPoints %tmp.65;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_20_27_30_4_stop:
+    }
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc"; @line = 32; ]
+    function drawOnScreen(dc, info) {
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_32_35_85_4_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc" 35 8 ]
+        [ "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_32_35_85_4_start" "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_32_35_85_4_stop" ]
+        %qualifyingSteps.1 = local;
+        %tmp.1 = self;
+        %tmp.2 = getv function %tmp.1 :getQualifyingSteps;
+        %tmp.4 = lgetv %info;
+        %tmp.5 = invoke %tmp.1 %tmp.2(%tmp.4);
+        lputv %qualifyingSteps.1 %tmp.5;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc" 36 8 ]
+        [ "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_32_35_85_4_start" "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_32_35_85_4_stop" ]
+        %beersEarned.2 = local;
+        %tmp.7 = getv ? :Math;
+        %tmp.8 = getv function %tmp.7 :floor;
+        %tmp.10 = lgetv %qualifyingSteps.1;
+        %tmp.12 = getv ? :STEPS_PER_BEER;
+        %tmp.13 = div %tmp.10 %tmp.12;
+        %tmp.14 = invoke %tmp.7 %tmp.8(%tmp.13);
+        %tmp.15 = getv function %tmp.14 :format;
+        %tmp.16 = "%d";
+        %tmp.17 = invoke %tmp.14 %tmp.15(%tmp.16);
+        lputv %beersEarned.2 %tmp.17;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc" 37 8 ]
+        [ "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_32_35_85_4_start" "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_32_35_85_4_stop" ]
+        %mugLevel.3 = local;
+        %tmp.19 = lgetv %qualifyingSteps.1;
+        %tmp.21 = getv ? :STEPS_PER_BEER;
+        %tmp.22 = mod %tmp.19 %tmp.21;
+        %tmp.23 = 100;
+        %tmp.24 = mul %tmp.22 %tmp.23;
+        %tmp.26 = getv ? :STEPS_PER_BEER;
+        %tmp.27 = div %tmp.24 %tmp.26;
+        lputv %mugLevel.3 %tmp.27;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc" 39 8 ]
+        %tmp.29 = getv ? :CommonMethods;
+        %tmp.30 = getv function %tmp.29 :setDrawingClip;
+        %tmp.32 = lgetv %dc;
+        %tmp.34 = getv ? :_mugPoints;
+        invoke %tmp.29 %tmp.30(%tmp.32, %tmp.34);
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc" 42 8 ]
+        %tmp.35 = self;
+        %tmp.36 = getv function %tmp.35 :setMugForeColor;
+        %tmp.38 = lgetv %dc;
+        %tmp.40 = lgetv %info;
+        invoke %tmp.35 %tmp.36(%tmp.38, %tmp.40);
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc" 45 8 ]
+        %tmp.41 = lgetv %dc;
+        %tmp.42 = getv function %tmp.41 :drawRoundedRectangle;
+        %tmp.44 = getv ? :_mugX;
+        %tmp.46 = getv ? :_mugY;
+        %tmp.48 = getv ? :_mugWidth;
+        %tmp.50 = getv ? :_mugHeight;
+        %tmp.52 = getv ? :CORNER_RADIUS;
+        invoke %tmp.41 %tmp.42(%tmp.44, %tmp.46, %tmp.48, %tmp.50, %tmp.52);
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc" 46 8 ]
+        %tmp.53 = lgetv %dc;
+        %tmp.54 = getv function %tmp.53 :drawRoundedRectangle;
+        %tmp.56 = getv ? :_mugX;
+        %tmp.57 = 1;
+        %tmp.58 = sub %tmp.56 %tmp.57;
+        %tmp.60 = getv ? :_mugY;
+        %tmp.62 = getv ? :_mugWidth;
+        %tmp.63 = 2;
+        %tmp.64 = add %tmp.62 %tmp.63;
+        %tmp.66 = getv ? :_mugHeight;
+        %tmp.67 = 1;
+        %tmp.68 = add %tmp.66 %tmp.67;
+        %tmp.70 = getv ? :CORNER_RADIUS;
+        invoke %tmp.53 %tmp.54(%tmp.58, %tmp.60, %tmp.64, %tmp.68, %tmp.70);
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc" 49 8 ]
+        %tmp.71 = self;
+        %tmp.72 = getv function %tmp.71 :drawHandle;
+        %tmp.74 = lgetv %dc;
+        invoke %tmp.71 %tmp.72(%tmp.74);
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc" 52 8 ]
+        [ "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_32_35_85_4_start" "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_32_35_85_4_stop" ]
+        %beerHeight.4 = local;
+        %tmp.76 = getv ? :_mugHeight;
+        %tmp.77 = lgetv %mugLevel.3;
+        %tmp.78 = getv function %tmp.77 :toFloat;
+        %tmp.79 = invoke %tmp.77 %tmp.78();
+        %tmp.80 = 100;
+        %tmp.81 = div %tmp.79 %tmp.80;
+        %tmp.82 = mul %tmp.76 %tmp.81;
+        lputv %beerHeight.4 %tmp.82;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc" 53 8 ]
+        [ "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_32_35_85_4_start" "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_32_35_85_4_stop" ]
+        %beerX.5 = local;
+        %tmp.84 = getv ? :_mugX;
+        %tmp.85 = 1;
+        %tmp.86 = add %tmp.84 %tmp.85;
+        lputv %beerX.5 %tmp.86;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc" 54 8 ]
+        [ "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_32_35_85_4_start" "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_32_35_85_4_stop" ]
+        %beerY.6 = local;
+        %tmp.88 = getv ? :_mugY;
+        %tmp.90 = getv ? :_mugHeight;
+        %tmp.91 = add %tmp.88 %tmp.90;
+        %tmp.93 = lgetv %beerHeight.4;
+        %tmp.94 = sub %tmp.91 %tmp.93;
+        %tmp.95 = 1;
+        %tmp.96 = sub %tmp.94 %tmp.95;
+        lputv %beerY.6 %tmp.96;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc" 55 8 ]
+        %tmp.97 = getm $.ThemeController;
+        %tmp.98 = getv function %tmp.97 :setBothColors;
+        %tmp.100 = lgetv %dc;
+        %tmp.102 = getv ? :ThemeController;
+        %tmp.103 = getv %tmp.102 :BEER_COLOR;
+        invoke %tmp.97 %tmp.98(%tmp.100, %tmp.103);
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc" 60 8 ]
+        %tmp.104 = lgetv %dc;
+        %tmp.105 = getv function %tmp.104 :fillRoundedRectangle;
+        %tmp.107 = lgetv %beerX.5;
+        %tmp.109 = lgetv %beerY.6;
+        %tmp.111 = getv ? :_mugWidth;
+        %tmp.112 = 2;
+        %tmp.113 = sub %tmp.111 %tmp.112;
+        %tmp.115 = lgetv %beerHeight.4;
+        %tmp.117 = getv ? :CORNER_RADIUS;
+        %tmp.118 = 1;
+        %tmp.119 = sub %tmp.117 %tmp.118;
+        invoke %tmp.104 %tmp.105(%tmp.107, %tmp.109, %tmp.113, %tmp.115, %tmp.119);
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc" 61 8 ]
+        %tmp.120 = lgetv %dc;
+        %tmp.121 = getv function %tmp.120 :drawLine;
+        %tmp.123 = lgetv %beerX.5;
+        %tmp.125 = lgetv %beerY.6;
+        %tmp.127 = lgetv %beerX.5;
+        %tmp.129 = getv ? :_mugWidth;
+        %tmp.130 = 2;
+        %tmp.131 = sub %tmp.129 %tmp.130;
+        %tmp.132 = add %tmp.127 %tmp.131;
+        %tmp.134 = lgetv %beerY.6;
+        invoke %tmp.120 %tmp.121(%tmp.123, %tmp.125, %tmp.132, %tmp.134);
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc" 64 8 ]
+        %tmp.135 = self;
+        %tmp.136 = getv function %tmp.135 :setMugForeColor;
+        %tmp.138 = lgetv %dc;
+        %tmp.140 = lgetv %info;
+        invoke %tmp.135 %tmp.136(%tmp.138, %tmp.140);
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc" 67 8 ]
+        [ "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_32_35_85_4_start" "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_32_35_85_4_stop" ]
+        %baseY.7 = local;
+        %tmp.142 = getv ? :_mugY;
+        %tmp.144 = getv ? :_mugHeight;
+        %tmp.145 = add %tmp.142 %tmp.144;
+        %tmp.146 = 2;
+        %tmp.147 = sub %tmp.145 %tmp.146;
+        lputv %baseY.7 %tmp.147;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc" 68 8 ]
+        %tmp.148 = lgetv %dc;
+        %tmp.149 = getv function %tmp.148 :drawLine;
+        %tmp.151 = getv ? :_mugX;
+        %tmp.153 = lgetv %baseY.7;
+        %tmp.155 = getv ? :_mugX;
+        %tmp.157 = getv ? :_mugWidth;
+        %tmp.158 = add %tmp.155 %tmp.157;
+        %tmp.160 = lgetv %baseY.7;
+        invoke %tmp.148 %tmp.149(%tmp.151, %tmp.153, %tmp.158, %tmp.160);
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc" 69 8 ]
+        %tmp.162 = lgetv %baseY.7;
+        %tmp.163 = 1;
+        %tmp.164 = add %tmp.162 %tmp.163;
+        lputv %baseY.7 %tmp.164;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc" 70 8 ]
+        %tmp.165 = lgetv %dc;
+        %tmp.166 = getv function %tmp.165 :drawLine;
+        %tmp.168 = getv ? :_mugX;
+        %tmp.170 = lgetv %baseY.7;
+        %tmp.172 = getv ? :_mugX;
+        %tmp.174 = getv ? :_mugWidth;
+        %tmp.175 = add %tmp.172 %tmp.174;
+        %tmp.177 = lgetv %baseY.7;
+        invoke %tmp.165 %tmp.166(%tmp.168, %tmp.170, %tmp.175, %tmp.177);
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc" 73 8 ]
+        [ "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_32_35_85_4_start" "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_32_35_85_4_stop" ]
+        %beersEarnedNumX.8 = local;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc" 74 8 ]
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_74_8_78_8_if_stmt:
+        %tmp.179 = getv ? :_isInstinct2;
+        bf %tmp.179 @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_74_8_78_8_if_false;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_74_8_78_8_if_true:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_74_25_76_8_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc" 75 12 ]
+        %tmp.181 = getv ? :_mugX;
+        %tmp.182 = 12;
+        %tmp.183 = add %tmp.181 %tmp.182;
+        lputv %beersEarnedNumX.8 %tmp.183;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_74_25_76_8_stop:
+        goto @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_74_8_78_8_if_end;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_74_8_78_8_if_false:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_76_15_78_8_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc" 77 12 ]
+        %tmp.185 = getv ? :_mugX;
+        %tmp.186 = 8;
+        %tmp.187 = add %tmp.185 %tmp.186;
+        lputv %beersEarnedNumX.8 %tmp.187;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_76_15_78_8_stop:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_74_8_78_8_if_end:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc" 80 8 ]
+        %tmp.188 = lgetv %dc;
+        %tmp.189 = getv function %tmp.188 :drawText;
+        %tmp.191 = lgetv %beersEarnedNumX.8;
+        %tmp.192 = self;
+        %tmp.193 = getv function %tmp.192 :adjustYForText;
+        %tmp.195 = lgetv %dc;
+        %tmp.197 = getv ? :_mugY;
+        %tmp.198 = invoke %tmp.192 %tmp.193(%tmp.195, %tmp.197);
+        %tmp.200 = getv ? :CommonMethods;
+        %tmp.201 = getv function %tmp.200 :getBeersEarnedFont;
+        %tmp.203 = lgetv %dc;
+        %tmp.204 = invoke %tmp.200 %tmp.201(%tmp.203);
+        %tmp.206 = lgetv %beersEarned.2;
+        %tmp.207 = getm $.Toybox.Graphics;
+        %tmp.208 = getv %tmp.207 :TEXT_JUSTIFY_CENTER;
+        invoke %tmp.188 %tmp.189(%tmp.191, %tmp.198, %tmp.204, %tmp.206, %tmp.208);
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc" 82 8 ]
+        %tmp.209 = getm $.ThemeController;
+        %tmp.210 = getv function %tmp.209 :resetColors;
+        %tmp.212 = lgetv %dc;
+        invoke %tmp.209 %tmp.210(%tmp.212);
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc" 84 8 ]
+        %tmp.214 = getv ? :CommonMethods;
+        %tmp.215 = getv function %tmp.214 :clearDrawingClip;
+        %tmp.217 = lgetv %dc;
+        invoke %tmp.214 %tmp.215(%tmp.217);
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_32_35_85_4_stop:
+    }
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc"; @line = 87; ]
+    private
+    function setLayoutBasedOnDevice(dc) {
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_87_47_101_4_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc" 89 8 ]
+        %tmp.2 = getv ? :Application;
+        %tmp.3 = getv %tmp.2 :Properties;
+        %tmp.4 = getv function %tmp.3 :getValue;
+        %tmp.5 = "IsInstinct2";
+        %tmp.6 = invoke %tmp.3 %tmp.4(%tmp.5);
+        putv self :_isInstinct2 %tmp.6;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc" 90 8 ]
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_90_8_100_8_if_stmt:
+        %tmp.8 = getv ? :_isInstinct2;
+        bf %tmp.8 @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_90_8_100_8_if_false;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_90_8_100_8_if_true:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_90_25_95_8_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc" 91 12 ]
+        %tmp.9 = 26;
+        putv self :_mugWidth %tmp.9;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc" 92 12 ]
+        %tmp.10 = 39;
+        putv self :_mugHeight %tmp.10;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc" 93 12 ]
+        %tmp.11 = lgetv %dc;
+        %tmp.12 = getv function %tmp.11 :getWidth;
+        %tmp.13 = invoke %tmp.11 %tmp.12();
+        %tmp.14 = 44;
+        %tmp.15 = sub %tmp.13 %tmp.14;
+        putv self :_mugX %tmp.15;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc" 94 12 ]
+        %tmp.16 = 12;
+        putv self :_mugY %tmp.16;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_90_25_95_8_stop:
+        goto @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_90_8_100_8_if_end;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_90_8_100_8_if_false:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_95_15_100_8_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc" 96 12 ]
+        %tmp.17 = 17;
+        putv self :_mugWidth %tmp.17;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc" 97 12 ]
+        %tmp.18 = 26;
+        putv self :_mugHeight %tmp.18;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc" 98 12 ]
+        %tmp.19 = lgetv %dc;
+        %tmp.20 = getv function %tmp.19 :getWidth;
+        %tmp.21 = invoke %tmp.19 %tmp.20();
+        %tmp.22 = 32;
+        %tmp.23 = sub %tmp.21 %tmp.22;
+        putv self :_mugX %tmp.23;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc" 99 12 ]
+        %tmp.24 = lgetv %dc;
+        %tmp.25 = getv function %tmp.24 :getHeight;
+        %tmp.26 = invoke %tmp.24 %tmp.25();
+        %tmp.27 = 2;
+        %tmp.28 = div %tmp.26 %tmp.27;
+        %tmp.30 = getv ? :_mugHeight;
+        %tmp.31 = 2;
+        %tmp.32 = div %tmp.30 %tmp.31;
+        %tmp.33 = sub %tmp.28 %tmp.32;
+        putv self :_mugY %tmp.33;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_95_15_100_8_stop:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_90_8_100_8_if_end:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_87_47_101_4_stop:
+    }
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc"; @line = 103; ]
+    private
+    function drawHandle(dc) {
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_103_35_122_4_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc" 105 8 ]
+        [ "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_103_35_122_4_start" "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_103_35_122_4_stop" ]
+        %handleX.1 = local;
+        %tmp.2 = getv ? :_mugX;
+        %tmp.3 = 5;
+        %tmp.4 = sub %tmp.2 %tmp.3;
+        lputv %handleX.1 %tmp.4;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc" 106 8 ]
+        [ "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_103_35_122_4_start" "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_103_35_122_4_stop" ]
+        %handleY.2 = local;
+        %tmp.6 = getv ? :_mugY;
+        %tmp.7 = 7;
+        %tmp.8 = add %tmp.6 %tmp.7;
+        lputv %handleY.2 %tmp.8;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc" 108 8 ]
+        [ "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_103_35_122_4_start" "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_103_35_122_4_stop" ]
+        %handleWidth.3 = local;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc" 109 8 ]
+        [ "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_103_35_122_4_start" "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_103_35_122_4_stop" ]
+        %handleHeight.4 = local;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc" 111 8 ]
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_111_8_118_8_if_stmt:
+        %tmp.10 = getv ? :_isInstinct2;
+        bf %tmp.10 @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_111_8_118_8_if_false;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_111_8_118_8_if_true:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_111_24_115_8_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc" 112 12 ]
+        %tmp.11 = 6;
+        lputv %handleWidth.3 %tmp.11;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc" 113 12 ]
+        %tmp.12 = 25;
+        lputv %handleHeight.4 %tmp.12;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc" 114 12 ]
+        %tmp.13 = lgetv %dc;
+        %tmp.14 = getv function %tmp.13 :drawRoundedRectangle;
+        %tmp.16 = lgetv %handleX.1;
+        %tmp.17 = 2;
+        %tmp.18 = sub %tmp.16 %tmp.17;
+        %tmp.20 = lgetv %handleY.2;
+        %tmp.21 = 1;
+        %tmp.22 = sub %tmp.20 %tmp.21;
+        %tmp.24 = lgetv %handleWidth.3;
+        %tmp.25 = 1;
+        %tmp.26 = add %tmp.24 %tmp.25;
+        %tmp.28 = lgetv %handleHeight.4;
+        %tmp.29 = 1;
+        %tmp.30 = add %tmp.28 %tmp.29;
+        %tmp.32 = getv ? :CORNER_RADIUS;
+        invoke %tmp.13 %tmp.14(%tmp.18, %tmp.22, %tmp.26, %tmp.30, %tmp.32);
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_111_24_115_8_stop:
+        goto @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_111_8_118_8_if_end;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_111_8_118_8_if_false:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_115_15_118_8_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc" 116 12 ]
+        %tmp.33 = 6;
+        lputv %handleWidth.3 %tmp.33;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc" 117 12 ]
+        %tmp.34 = 12;
+        lputv %handleHeight.4 %tmp.34;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_115_15_118_8_stop:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_111_8_118_8_if_end:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc" 120 8 ]
+        %tmp.35 = lgetv %dc;
+        %tmp.36 = getv function %tmp.35 :drawRoundedRectangle;
+        %tmp.38 = lgetv %handleX.1;
+        %tmp.40 = lgetv %handleY.2;
+        %tmp.42 = lgetv %handleWidth.3;
+        %tmp.44 = lgetv %handleHeight.4;
+        %tmp.46 = getv ? :CORNER_RADIUS;
+        invoke %tmp.35 %tmp.36(%tmp.38, %tmp.40, %tmp.42, %tmp.44, %tmp.46);
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc" 121 8 ]
+        %tmp.47 = lgetv %dc;
+        %tmp.48 = getv function %tmp.47 :drawRoundedRectangle;
+        %tmp.50 = lgetv %handleX.1;
+        %tmp.51 = 1;
+        %tmp.52 = sub %tmp.50 %tmp.51;
+        %tmp.54 = lgetv %handleY.2;
+        %tmp.55 = 1;
+        %tmp.56 = sub %tmp.54 %tmp.55;
+        %tmp.58 = lgetv %handleWidth.3;
+        %tmp.59 = 1;
+        %tmp.60 = add %tmp.58 %tmp.59;
+        %tmp.62 = lgetv %handleHeight.4;
+        %tmp.63 = 1;
+        %tmp.64 = add %tmp.62 %tmp.63;
+        %tmp.66 = getv ? :CORNER_RADIUS;
+        invoke %tmp.47 %tmp.48(%tmp.52, %tmp.56, %tmp.60, %tmp.64, %tmp.66);
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_103_35_122_4_stop:
+    }
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc"; @line = 124; ]
+    private
+    function adjustYForText(dc, _mugY) {
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_124_46_135_4_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc" 125 8 ]
+        [ "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_124_46_135_4_start" "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_124_46_135_4_stop" ]
+        %width.1 = local;
+        %tmp.1 = lgetv %dc;
+        %tmp.2 = getv function %tmp.1 :getWidth;
+        %tmp.3 = invoke %tmp.1 %tmp.2();
+        lputv %width.1 %tmp.3;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc" 126 8 ]
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_126_8_134_8_if_stmt:
+        %tmp.5 = lgetv %width.1;
+        %tmp.6 = 220;
+        %tmp.7 = lt %tmp.5 %tmp.6;
+        bf %tmp.7 @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_126_8_134_8_if_false;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_126_8_134_8_if_true:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_126_24_128_8_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc" 127 12 ]
+        %tmp.9 = lgetv %_mugY;
+        %tmp.10 = 3;
+        %tmp.11 = add %tmp.9 %tmp.10;
+        ret %tmp.11;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_126_24_128_8_stop:
+        goto @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_126_8_134_8_if_end;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_126_8_134_8_if_false:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc" 128 15 ]
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_128_15_134_8_if_stmt:
+        %tmp.13 = lgetv %width.1;
+        %tmp.14 = 280;
+        %tmp.15 = gte %tmp.13 %tmp.14;
+        bf %tmp.15 @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_128_15_134_8_if_false;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_128_15_134_8_if_true:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_128_33_130_8_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc" 129 12 ]
+        %tmp.17 = lgetv %_mugY;
+        %tmp.18 = 4;
+        %tmp.19 = sub %tmp.17 %tmp.18;
+        ret %tmp.19;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_128_33_130_8_stop:
+        goto @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_128_15_134_8_if_end;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_128_15_134_8_if_false:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc" 130 15 ]
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_130_15_134_8_if_stmt:
+        %tmp.21 = lgetv %width.1;
+        %tmp.22 = 260;
+        %tmp.23 = gte %tmp.21 %tmp.22;
+        bf %tmp.23 @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_130_15_134_8_if_false;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_130_15_134_8_if_true:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_130_33_132_8_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc" 131 12 ]
+        %tmp.25 = lgetv %_mugY;
+        %tmp.26 = 2;
+        %tmp.27 = sub %tmp.25 %tmp.26;
+        ret %tmp.27;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_130_33_132_8_stop:
+        goto @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_130_15_134_8_if_end;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_130_15_134_8_if_false:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_132_15_134_8_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc" 133 12 ]
+        %tmp.29 = lgetv %_mugY;
+        %tmp.30 = 1;
+        %tmp.31 = sub %tmp.29 %tmp.30;
+        ret %tmp.31;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_132_15_134_8_stop:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_130_15_134_8_if_end:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_128_15_134_8_if_end:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_126_8_134_8_if_end:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_124_46_135_4_stop:
+    }
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc"; @line = 138; ]
+    private
+    function getQualifyingSteps(info) {
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_138_45_142_4_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc" 140 8 ]
+        [ "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_138_45_142_4_start" "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_138_45_142_4_stop" ]
+        %qualifyingSteps.1 = local;
+        %tmp.1 = lgetv %info;
+        %tmp.2 = getv %tmp.1 :steps;
+        %tmp.3 = lgetv %info;
+        %tmp.4 = getv %tmp.3 :stepGoal;
+        %tmp.5 = sub %tmp.2 %tmp.4;
+        lputv %qualifyingSteps.1 %tmp.5;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc" 141 8 ]
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_141_15_141_56_begin:
+        %tmp.7 = lgetv %qualifyingSteps.1;
+        %tmp.8 = 0;
+        %tmp.9 = gte %tmp.7 %tmp.8;
+        bf %tmp.9 @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_141_15_141_56_false;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_141_15_141_56_true:
+        %tmp.11 = lgetv %qualifyingSteps.1;
+        push %tmp.11;
+        goto @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_141_15_141_56_end;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_141_15_141_56_false:
+        %tmp.12 = 0;
+        push %tmp.12;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_141_15_141_56_end:
+        %tmp.13 = phi [%tmp.9 @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_141_15_141_56_begin] [%tmp.11 @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_141_15_141_56_true] [%tmp.12 @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_141_15_141_56_false] [%tmp.13 @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_141_15_141_56_end];
+        ret %tmp.13;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_138_45_142_4_stop:
+    }
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc"; @line = 144; ]
+    private
+    function setMugForeColor(dc, info) {
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_144_46_151_4_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc" 146 8 ]
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_146_8_150_8_if_stmt:
+        %tmp.1 = lgetv %info;
+        %tmp.2 = getv %tmp.1 :steps;
+        %tmp.3 = lgetv %info;
+        %tmp.4 = getv %tmp.3 :stepGoal;
+        %tmp.5 = gt %tmp.2 %tmp.4;
+        bf %tmp.5 @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_146_8_150_8_if_false;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_146_8_150_8_if_true:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_146_39_148_8_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc" 147 12 ]
+        %tmp.6 = getm $.ThemeController;
+        %tmp.7 = getv function %tmp.6 :setColor;
+        %tmp.9 = lgetv %dc;
+        %tmp.10 = getm $.ThemeController;
+        %tmp.11 = getv %tmp.10 :MUG_COLOR;
+        invoke %tmp.6 %tmp.7(%tmp.9, %tmp.11);
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_146_39_148_8_stop:
+        goto @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_146_8_150_8_if_end;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_146_8_150_8_if_false:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_148_15_150_8_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc" 149 12 ]
+        %tmp.12 = getm $.ThemeController;
+        %tmp.13 = getv function %tmp.12 :setColor;
+        %tmp.15 = lgetv %dc;
+        %tmp.16 = getm $.ThemeController;
+        %tmp.17 = getv %tmp.16 :FADED_MUG_COLOR;
+        invoke %tmp.12 %tmp.13(%tmp.15, %tmp.17);
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_148_15_150_8_stop:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_146_8_150_8_if_end:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_BeerMug_mc_144_46_151_4_stop:
+    }
+}
+[ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\BeerMug.mc"; @line = 1; ]
+<init> {
+}

@@ -35,8 +35,8 @@ class MoveBar {
         var drawBarX = _barX;
 
         CommonMethods.setDrawingClip(dc, _barPoints);
-        var app = Application.getApp();
-        var isInstinct2 = app.Properties.getValue("IsInstinct2");
+        //var app = Application.getApp();
+        var isInstinct2 = Application.Properties.getValue("IsInstinct2");
 
         // Draw bars based on bar level
         if (barLevel >= 1) {

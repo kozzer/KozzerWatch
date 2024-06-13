@@ -22,9 +22,10 @@ class KozzerWatchView extends WatchUi.WatchFace
     // UI Components
     var _mainClock;                          // Reference to Watchface's main analog clock
     var _dateTitle;                          // Reference to DateTitle object
-    var _bluetoothIcon;                      // Reference to BluetoothIcon object
     var _moveBar;                            // Reference to MoveBar object
+    var _weather;                            // Reference to Weather object
     var _stepsCount;                         // Reference to StepsCount object
+    var _bluetoothIcon;                      // Reference to BluetoothIcon object
     var _batteryStatus;                      // Reference to BatteryStatus object
     var _beerMug;                            // Reference to BeerMug object
     var _solarStatus;                        // Reference to SolarStatus object
@@ -137,9 +138,10 @@ class KozzerWatchView extends WatchUi.WatchFace
         // Created instance of each UI component
         _mainClock     = new MainClock(dc);
         _dateTitle     = new DateTitle(dc);
-        _bluetoothIcon = new BluetoothIcon(dc);
         _moveBar       = new MoveBar(dc);
+        _weather       = new Weather(dc);
         _stepsCount    = new StepsCount(dc);
+        _bluetoothIcon = new BluetoothIcon(dc);
         _batteryStatus = new BatteryStatus(dc);
         _beerMug       = new BeerMug(dc);
 
@@ -156,6 +158,7 @@ class KozzerWatchView extends WatchUi.WatchFace
         // Draw UI components onto the passed-in DC (buffer)
         _dateTitle.drawOnScreen(dc);
         _moveBar.drawOnScreen(dc);
+        _weather.drawOnScreen(dc);
         _batteryStatus.drawOnScreen(dc);
         _stepsCount.drawOnScreen(dc, stepsInfo);
         _beerMug.drawOnScreen(dc, stepsInfo);

@@ -1,0 +1,46 @@
+import Toybox.Lang;
+using Toybox.WatchUi;
+using Toybox.WatchUi as Ui;
+using Toybox.Graphics;
+using Toybox.Graphics as Gfx;
+
+module Rez {
+    module Drawables {
+        (:initialized) var BluetoothIcon as ResourceId;
+        (:initialized) var SunIcon as ResourceId;
+        (:initialized) var sunny_32 as ResourceId;
+        (:initialized) var cloudy_32 as ResourceId;
+        (:initialized) var partly_cloudy_32 as ResourceId;
+        (:initialized) var rain_32 as ResourceId;
+        (:initialized) var snow_32 as ResourceId;
+        (:initialized) var windy_32 as ResourceId;
+        (:initialized) var thunderstorm_32 as ResourceId;
+        (:initialized) var wintry_mix_32 as ResourceId;
+        (:initialized) var fog_32 as ResourceId;
+        (:initialized) var haze_32 as ResourceId;
+        (:initialized) var hail_32 as ResourceId;
+        (:initialized) var light_rain_32 as ResourceId;
+        (:initialized) var heavy_rain_32 as ResourceId;
+        (:initialized) var scattered_thunderstorms_32 as ResourceId;
+        (:initialized) var light_snow_32 as ResourceId;
+        (:initialized) var heavy_snow_32 as ResourceId;
+        (:initialized) var sleet_32 as ResourceId;
+        (:initialized) var mostly_cloudy_32 as ResourceId;
+        (:initialized) var rain_cloud_32 as ResourceId;
+        (:initialized) var dust_32 as ResourceId;
+        (:initialized) var tornado_32 as ResourceId;
+        (:initialized) var drizzle_32 as ResourceId;
+        (:initialized) var night_clear_32 as ResourceId;
+        (:initialized) var night_partly_cloudy_32 as ResourceId;
+        (:initialized) var night_cloudy_32 as ResourceId;
+        (:initialized) var LauncherIcon as ResourceId;
+    } // Drawables
+
+    module Strings {
+        (:initialized) var ShowSolarIntensityPrompt as ResourceId;
+        (:initialized) var LightThemeActive as ResourceId;
+        (:initialized) var ShowSolarIntensity as ResourceId;
+        (:initialized) var AppName as ResourceId;
+        (:initialized) var IsInstinct2 as ResourceId;
+    } // Strings
+} // Rez

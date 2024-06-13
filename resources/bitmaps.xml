@@ -10,4 +10,183 @@
     
     <bitmap id="SunIcon" filename="drawables/sun.png" />
 
+    <!-- Weather Icons -->
+
+    <bitmap id="sunny_32" filename="drawables/weather/sunny_32.png">
+        <palette>
+            <color>FEDB29</color>
+            <color>FEAE42</color>
+        </palette>
+    </bitmap>
+
+    <bitmap id="cloudy_32" filename="drawables/weather/cloudy_32.png">
+        <palette>
+            <color>2DAEFD</color>
+        </palette>
+    </bitmap>
+
+    <bitmap id="partly_cloudy_32" filename="drawables/weather/partly_cloudy_32.png">
+        <palette>
+            <color>2DAEFD</color>
+            <color>FFA62E</color>
+            <color>FEDB29</color>
+        </palette>
+    </bitmap>
+
+    <bitmap id="rain_32" filename="drawables/weather/rain_32.png">
+        <palette>
+            <color>2DAEFD</color>
+            <color>36C8F6</color>
+        </palette>
+    </bitmap>
+
+    <bitmap id="snow_32" filename="drawables/weather/snow_32.png">
+        <palette>
+            <color>2DAEFD</color>
+            <color>DFFFFF</color>
+        </palette>
+    </bitmap>
+
+    <bitmap id="windy_32" filename="drawables/weather/windy_32.png">
+        <palette>
+            <color>36C8F6</color>
+            <color>2DAEFD</color>
+        </palette>
+    </bitmap>
+
+    <bitmap id="thunderstorm_32" filename="drawables/weather/thunderstorm_32.png">
+        <palette>
+            <color>FFA62E</color>
+            <color>2DAEFD</color>
+        </palette>
+    </bitmap>
+
+    <bitmap id="wintry_mix_32" filename="drawables/weather/wintry_mix_32.png">
+        <palette>
+            <color>36C8F6</color>
+            <color>2DAEFD</color>
+            <color>A5E6FB</color>
+        </palette>
+    </bitmap>
+
+    <bitmap id="fog_32" filename="drawables/weather/fog_32.png">
+        <palette>
+            <color>36C8F6</color>
+            <color>2DAEFD</color>
+        </palette>
+    </bitmap>
+
+    <bitmap id="haze_32" filename="drawables/weather/haze_32.png">
+        <palette>
+            <color>36C8F6</color>
+            <color>FFA62E</color>
+            <color>FEDB29</color>
+        </palette>
+    </bitmap>
+
+    <bitmap id="hail_32" filename="drawables/weather/hail_32.png">
+        <palette>
+            <color>36C8F6</color>
+            <color>2DAEFD</color>
+        </palette>
+    </bitmap>
+
+    <bitmap id="light_rain_32" filename="drawables/weather/light_rain_32.png">
+        <palette>
+            <color>36C8F6</color>
+            <color>2DAEFD</color>
+        </palette>
+    </bitmap>
+
+    <bitmap id="heavy_rain_32" filename="drawables/weather/heavy_rain_32.png">
+        <palette>
+            <color>36C8F6</color>
+            <color>2DAEFD</color>
+        </palette>
+    </bitmap>
+
+    <bitmap id="scattered_thunderstorms_32" filename="drawables/weather/scattered_thunderstorms_32.png">
+        <palette>
+            <color>2DADFC</color>
+            <color>36C8F6</color>
+            <color>FFA62E</color>
+        </palette>
+    </bitmap>
+
+    <bitmap id="light_snow_32" filename="drawables/weather/light_snow_32.png">
+        <palette>
+            <color>36C8F6</color>
+            <color>2DAEFD</color>
+        </palette>
+    </bitmap>
+
+    <bitmap id="heavy_snow_32" filename="drawables/weather/heavy_snow_32.png">
+        <palette>
+            <color>36C8F6</color>
+        </palette>
+    </bitmap>
+
+    <bitmap id="sleet_32" filename="drawables/weather/sleet_32.png">
+        <palette>
+            <color>36C8F6</color>
+            <color>2DAEFD</color>
+        </palette>
+    </bitmap>
+
+    <bitmap id="mostly_cloudy_32" filename="drawables/weather/mostly_cloudy_32.png">
+        <palette>
+            <color>FFA62E</color>
+            <color>2DAEFD</color>
+        </palette>
+    </bitmap>
+
+    <bitmap id="rain_cloud_32" filename="drawables/weather/rain_cloud_32.png">
+        <palette>
+            <color>36C8F6</color>
+            <color>2DAEFD</color>
+        </palette>
+    </bitmap>
+
+    <bitmap id="dust_32" filename="drawables/weather/dust_32.png">
+        <palette>
+            <color>FFA62E</color>
+            <color>F28211</color>
+        </palette>
+    </bitmap>
+
+    <bitmap id="tornado_32" filename="drawables/weather/tornado_32.png">
+        <palette>
+            <color>2583EF</color>
+            <color>36C8F6</color>
+        </palette>
+    </bitmap>
+
+    <bitmap id="drizzle_32" filename="drawables/weather/drizzle_32.png">
+        <palette>
+            <color>2583EF</color>
+            <color>A2E4F4</color>
+        </palette>
+    </bitmap>
+
+    <bitmap id="night_clear_32" filename="drawables/weather/night_clear_32.png">
+        <palette>
+            <color>BB9CFF</color>
+            <color>8852FF</color>
+        </palette>
+    </bitmap>
+
+    <bitmap id="night_partly_cloudy_32" filename="drawables/weather/night_partly_cloudy_32.png">
+        <palette>
+            <color>BB9CFF</color>
+            <color>8852FF</color>
+            <color>6A2EFF</color>
+        </palette>
+    </bitmap>
+
+    <bitmap id="night_cloudy_32" filename="drawables/weather/night_cloudy_32.png">
+        <palette>
+            <color>6A2EFF</color>
+        </palette>
+    </bitmap>
+
 </resources>

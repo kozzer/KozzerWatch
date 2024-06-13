@@ -1,0 +1,353 @@
+[ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\MoveBar.mc"; @line = 1; ]
+using Toybox.System;
+[ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\MoveBar.mc"; @line = 2; ]
+using Toybox.WatchUi;
+[ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\MoveBar.mc"; @line = 3; ]
+using Toybox.Graphics as :Graphics;
+[ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\MoveBar.mc"; @line = 5; ]
+using ThemeController as :Theme;
+[ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\MoveBar.mc"; @line = 7; ]
+class MoveBar{
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\MoveBar.mc"; @line = 7; ]
+    <init> {
+    }
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\MoveBar.mc"; @line = 7; ]
+    static
+    <init> {
+    }
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\MoveBar.mc"; @line = 10; @position = 18; ]
+    private
+    const _moveBarHeight = 4;
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\MoveBar.mc"; @line = 11; @position = 18; ]
+    private
+    const _moveBarWidth = 78;
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\MoveBar.mc"; @line = 12; @position = 18; ]
+    private
+    var _barX;
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\MoveBar.mc"; @line = 13; @position = 18; ]
+    private
+    var _barY;
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\MoveBar.mc"; @line = 15; @position = 16; ]
+    private
+    var _barPoints;
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\MoveBar.mc"; @line = 17; ]
+    function initialize(dc) as Void {
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_17_27_28_4_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\MoveBar.mc" 19 8 ]
+        %tmp.1 = lgetv %dc;
+        %tmp.2 = getv function %tmp.1 :getWidth;
+        %tmp.3 = invoke %tmp.1 %tmp.2();
+        %tmp.4 = 2;
+        %tmp.5 = div %tmp.3 %tmp.4;
+        %tmp.7 = getv ? :_moveBarWidth;
+        %tmp.8 = 2;
+        %tmp.9 = div %tmp.7 %tmp.8;
+        %tmp.10 = sub %tmp.5 %tmp.9;
+        putv self :_barX %tmp.10;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\MoveBar.mc" 20 8 ]
+        %tmp.11 = getm $.Toybox.Graphics;
+        %tmp.12 = getv function %tmp.11 :getFontHeight;
+        %tmp.13 = getm $.Toybox.Graphics;
+        %tmp.14 = getv %tmp.13 :FONT_MEDIUM;
+        %tmp.15 = invoke %tmp.11 %tmp.12(%tmp.14);
+        %tmp.16 = 12;
+        %tmp.17 = add %tmp.15 %tmp.16;
+        putv self :_barY %tmp.17;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\MoveBar.mc" 22 8 ]
+        %tmp.18 = newa 4;
+        %tmp.19 = newa 2;
+        %tmp.21 = getv ? :_barX;
+        %tmp.22 = dup %tmp.19;
+        %tmp.23 = aputv %tmp.22 0 %tmp.21;
+        %tmp.25 = getv ? :_barY;
+        %tmp.26 = dup %tmp.23;
+        %tmp.27 = aputv %tmp.26 1 %tmp.25;
+        %tmp.28 = dup %tmp.18;
+        %tmp.29 = aputv %tmp.28 0 %tmp.27;
+        %tmp.30 = newa 2;
+        %tmp.32 = getv ? :_barX;
+        %tmp.34 = getv ? :_moveBarWidth;
+        %tmp.35 = add %tmp.32 %tmp.34;
+        %tmp.36 = dup %tmp.30;
+        %tmp.37 = aputv %tmp.36 0 %tmp.35;
+        %tmp.39 = getv ? :_barY;
+        %tmp.40 = dup %tmp.37;
+        %tmp.41 = aputv %tmp.40 1 %tmp.39;
+        %tmp.42 = dup %tmp.29;
+        %tmp.43 = aputv %tmp.42 1 %tmp.41;
+        %tmp.44 = newa 2;
+        %tmp.46 = getv ? :_barX;
+        %tmp.48 = getv ? :_moveBarWidth;
+        %tmp.49 = add %tmp.46 %tmp.48;
+        %tmp.50 = dup %tmp.44;
+        %tmp.51 = aputv %tmp.50 0 %tmp.49;
+        %tmp.53 = getv ? :_barY;
+        %tmp.55 = getv ? :_moveBarHeight;
+        %tmp.56 = add %tmp.53 %tmp.55;
+        %tmp.57 = dup %tmp.51;
+        %tmp.58 = aputv %tmp.57 1 %tmp.56;
+        %tmp.59 = dup %tmp.43;
+        %tmp.60 = aputv %tmp.59 2 %tmp.58;
+        %tmp.61 = newa 2;
+        %tmp.63 = getv ? :_barX;
+        %tmp.64 = dup %tmp.61;
+        %tmp.65 = aputv %tmp.64 0 %tmp.63;
+        %tmp.67 = getv ? :_barY;
+        %tmp.69 = getv ? :_moveBarHeight;
+        %tmp.70 = add %tmp.67 %tmp.69;
+        %tmp.71 = dup %tmp.65;
+        %tmp.72 = aputv %tmp.71 1 %tmp.70;
+        %tmp.73 = dup %tmp.60;
+        %tmp.74 = aputv %tmp.73 3 %tmp.72;
+        putv self :_barPoints %tmp.74;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_17_27_28_4_stop:
+    }
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\MoveBar.mc"; @line = 30; ]
+    function drawOnScreen(dc) {
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_30_30_80_4_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\MoveBar.mc" 33 8 ]
+        [ "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_30_30_80_4_start" "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_30_30_80_4_stop" ]
+        %barLevel.1 = local;
+        %tmp.2 = getv ? :ActivityMonitor;
+        %tmp.3 = getv function %tmp.2 :getInfo;
+        %tmp.4 = invoke %tmp.2 %tmp.3();
+        %tmp.5 = getv %tmp.4 :moveBarLevel;
+        lputv %barLevel.1 %tmp.5;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\MoveBar.mc" 35 8 ]
+        [ "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_30_30_80_4_start" "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_30_30_80_4_stop" ]
+        %drawBarX.2 = local;
+        %tmp.7 = getv ? :_barX;
+        lputv %drawBarX.2 %tmp.7;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\MoveBar.mc" 37 8 ]
+        %tmp.9 = getv ? :CommonMethods;
+        %tmp.10 = getv function %tmp.9 :setDrawingClip;
+        %tmp.12 = lgetv %dc;
+        %tmp.14 = getv ? :_barPoints;
+        invoke %tmp.9 %tmp.10(%tmp.12, %tmp.14);
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\MoveBar.mc" 39 8 ]
+        [ "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_30_30_80_4_start" "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_30_30_80_4_stop" ]
+        %isInstinct2.3 = local;
+        %tmp.16 = getv ? :Application;
+        %tmp.17 = getv %tmp.16 :Properties;
+        %tmp.18 = getv function %tmp.17 :getValue;
+        %tmp.19 = "IsInstinct2";
+        %tmp.20 = invoke %tmp.17 %tmp.18(%tmp.19);
+        lputv %isInstinct2.3 %tmp.20;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\MoveBar.mc" 42 8 ]
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_42_8_46_8_if_stmt:
+        %tmp.22 = lgetv %barLevel.1;
+        %tmp.23 = 1;
+        %tmp.24 = gte %tmp.22 %tmp.23;
+        bf %tmp.24 @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_42_8_46_8_if_end;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_42_8_46_8_if_true:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_42_27_46_8_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\MoveBar.mc" 43 12 ]
+        %tmp.25 = getm $.ThemeController;
+        %tmp.26 = getv function %tmp.25 :setColor;
+        %tmp.28 = lgetv %dc;
+        %tmp.29 = getm $.ThemeController;
+        %tmp.30 = getv %tmp.29 :BLUE_COLOR;
+        invoke %tmp.25 %tmp.26(%tmp.28, %tmp.30);
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\MoveBar.mc" 44 12 ]
+        %tmp.31 = lgetv %dc;
+        %tmp.32 = getv function %tmp.31 :fillRectangle;
+        %tmp.34 = lgetv %drawBarX.2;
+        %tmp.36 = getv ? :_barY;
+        %tmp.37 = 27;
+        %tmp.39 = getv ? :_moveBarHeight;
+        invoke %tmp.31 %tmp.32(%tmp.34, %tmp.36, %tmp.37, %tmp.39);
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\MoveBar.mc" 45 12 ]
+        %tmp.40 = lgetv %drawBarX.2;
+        %tmp.41 = 30;
+        %tmp.42 = add %tmp.40 %tmp.41;
+        lputv %drawBarX.2 %tmp.42;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_42_27_46_8_stop:
+        goto @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_42_8_46_8_if_end;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_42_8_46_8_if_end:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\MoveBar.mc" 47 8 ]
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_47_8_51_8_if_stmt:
+        %tmp.44 = lgetv %barLevel.1;
+        %tmp.45 = 2;
+        %tmp.46 = gte %tmp.44 %tmp.45;
+        bf %tmp.46 @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_47_8_51_8_if_end;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_47_8_51_8_if_true:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_47_26_51_8_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\MoveBar.mc" 48 12 ]
+        %tmp.47 = getm $.ThemeController;
+        %tmp.48 = getv function %tmp.47 :setColor;
+        %tmp.50 = lgetv %dc;
+        %tmp.51 = getm $.ThemeController;
+        %tmp.52 = getv %tmp.51 :FULL_COLOR;
+        invoke %tmp.47 %tmp.48(%tmp.50, %tmp.52);
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\MoveBar.mc" 49 12 ]
+        %tmp.53 = lgetv %dc;
+        %tmp.54 = getv function %tmp.53 :fillRectangle;
+        %tmp.56 = lgetv %drawBarX.2;
+        %tmp.58 = getv ? :_barY;
+        %tmp.59 = 9;
+        %tmp.61 = getv ? :_moveBarHeight;
+        invoke %tmp.53 %tmp.54(%tmp.56, %tmp.58, %tmp.59, %tmp.61);
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\MoveBar.mc" 50 12 ]
+        %tmp.62 = lgetv %drawBarX.2;
+        %tmp.63 = 12;
+        %tmp.64 = add %tmp.62 %tmp.63;
+        lputv %drawBarX.2 %tmp.64;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_47_26_51_8_stop:
+        goto @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_47_8_51_8_if_end;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_47_8_51_8_if_end:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\MoveBar.mc" 52 8 ]
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_52_8_60_8_if_stmt:
+        %tmp.66 = lgetv %barLevel.1;
+        %tmp.67 = 3;
+        %tmp.68 = gte %tmp.66 %tmp.67;
+        bf %tmp.68 @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_52_8_60_8_if_end;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_52_8_60_8_if_true:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_52_26_60_8_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\MoveBar.mc" 53 12 ]
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_53_12_57_12_if_stmt:
+        %tmp.70 = lgetv %isInstinct2.3;
+        bf %tmp.70 @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_53_12_57_12_if_false;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_53_12_57_12_if_true:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_53_28_55_12_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\MoveBar.mc" 54 16 ]
+        %tmp.71 = getm $.ThemeController;
+        %tmp.72 = getv function %tmp.71 :setColor;
+        %tmp.74 = lgetv %dc;
+        %tmp.75 = getm $.ThemeController;
+        %tmp.76 = getv %tmp.75 :FULL_COLOR;
+        invoke %tmp.71 %tmp.72(%tmp.74, %tmp.76);
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_53_28_55_12_stop:
+        goto @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_53_12_57_12_if_end;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_53_12_57_12_if_false:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_55_19_57_12_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\MoveBar.mc" 56 16 ]
+        %tmp.77 = getm $.ThemeController;
+        %tmp.78 = getv function %tmp.77 :setColor;
+        %tmp.80 = lgetv %dc;
+        %tmp.81 = getm $.ThemeController;
+        %tmp.82 = getv %tmp.81 :MOST_COLOR;
+        invoke %tmp.77 %tmp.78(%tmp.80, %tmp.82);
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_55_19_57_12_stop:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_53_12_57_12_if_end:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\MoveBar.mc" 58 12 ]
+        %tmp.83 = lgetv %dc;
+        %tmp.84 = getv function %tmp.83 :fillRectangle;
+        %tmp.86 = lgetv %drawBarX.2;
+        %tmp.88 = getv ? :_barY;
+        %tmp.89 = 9;
+        %tmp.91 = getv ? :_moveBarHeight;
+        invoke %tmp.83 %tmp.84(%tmp.86, %tmp.88, %tmp.89, %tmp.91);
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\MoveBar.mc" 59 12 ]
+        %tmp.92 = lgetv %drawBarX.2;
+        %tmp.93 = 12;
+        %tmp.94 = add %tmp.92 %tmp.93;
+        lputv %drawBarX.2 %tmp.94;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_52_26_60_8_stop:
+        goto @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_52_8_60_8_if_end;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_52_8_60_8_if_end:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\MoveBar.mc" 61 8 ]
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_61_8_69_8_if_stmt:
+        %tmp.96 = lgetv %barLevel.1;
+        %tmp.97 = 4;
+        %tmp.98 = gte %tmp.96 %tmp.97;
+        bf %tmp.98 @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_61_8_69_8_if_end;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_61_8_69_8_if_true:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_61_26_69_8_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\MoveBar.mc" 62 12 ]
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_62_12_66_12_if_stmt:
+        %tmp.100 = lgetv %isInstinct2.3;
+        bf %tmp.100 @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_62_12_66_12_if_false;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_62_12_66_12_if_true:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_62_28_64_12_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\MoveBar.mc" 63 16 ]
+        %tmp.101 = getm $.ThemeController;
+        %tmp.102 = getv function %tmp.101 :setColor;
+        %tmp.104 = lgetv %dc;
+        %tmp.105 = getm $.ThemeController;
+        %tmp.106 = getv %tmp.105 :FULL_COLOR;
+        invoke %tmp.101 %tmp.102(%tmp.104, %tmp.106);
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_62_28_64_12_stop:
+        goto @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_62_12_66_12_if_end;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_62_12_66_12_if_false:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_64_19_66_12_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\MoveBar.mc" 65 16 ]
+        %tmp.107 = getm $.ThemeController;
+        %tmp.108 = getv function %tmp.107 :setColor;
+        %tmp.110 = lgetv %dc;
+        %tmp.111 = getm $.ThemeController;
+        %tmp.112 = getv %tmp.111 :SOME_COLOR;
+        invoke %tmp.107 %tmp.108(%tmp.110, %tmp.112);
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_64_19_66_12_stop:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_62_12_66_12_if_end:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\MoveBar.mc" 67 12 ]
+        %tmp.113 = lgetv %dc;
+        %tmp.114 = getv function %tmp.113 :fillRectangle;
+        %tmp.116 = lgetv %drawBarX.2;
+        %tmp.118 = getv ? :_barY;
+        %tmp.119 = 9;
+        %tmp.121 = getv ? :_moveBarHeight;
+        invoke %tmp.113 %tmp.114(%tmp.116, %tmp.118, %tmp.119, %tmp.121);
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\MoveBar.mc" 68 12 ]
+        %tmp.122 = lgetv %drawBarX.2;
+        %tmp.123 = 12;
+        %tmp.124 = add %tmp.122 %tmp.123;
+        lputv %drawBarX.2 %tmp.124;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_61_26_69_8_stop:
+        goto @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_61_8_69_8_if_end;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_61_8_69_8_if_end:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\MoveBar.mc" 70 8 ]
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_70_8_77_8_if_stmt:
+        %tmp.126 = lgetv %barLevel.1;
+        %tmp.127 = 5;
+        %tmp.128 = gte %tmp.126 %tmp.127;
+        bf %tmp.128 @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_70_8_77_8_if_end;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_70_8_77_8_if_true:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_70_26_77_8_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\MoveBar.mc" 71 12 ]
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_71_12_75_12_if_stmt:
+        %tmp.130 = lgetv %isInstinct2.3;
+        bf %tmp.130 @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_71_12_75_12_if_false;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_71_12_75_12_if_true:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_71_28_73_12_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\MoveBar.mc" 72 16 ]
+        %tmp.131 = getm $.ThemeController;
+        %tmp.132 = getv function %tmp.131 :setColor;
+        %tmp.134 = lgetv %dc;
+        %tmp.135 = getm $.ThemeController;
+        %tmp.136 = getv %tmp.135 :FULL_COLOR;
+        invoke %tmp.131 %tmp.132(%tmp.134, %tmp.136);
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_71_28_73_12_stop:
+        goto @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_71_12_75_12_if_end;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_71_12_75_12_if_false:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_73_19_75_12_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\MoveBar.mc" 74 16 ]
+        %tmp.137 = getm $.ThemeController;
+        %tmp.138 = getv function %tmp.137 :setColor;
+        %tmp.140 = lgetv %dc;
+        %tmp.141 = getm $.ThemeController;
+        %tmp.142 = getv %tmp.141 :LOW_COLOR;
+        invoke %tmp.137 %tmp.138(%tmp.140, %tmp.142);
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_73_19_75_12_stop:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_71_12_75_12_if_end:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\MoveBar.mc" 76 12 ]
+        %tmp.143 = lgetv %dc;
+        %tmp.144 = getv function %tmp.143 :fillRectangle;
+        %tmp.146 = lgetv %drawBarX.2;
+        %tmp.148 = getv ? :_barY;
+        %tmp.149 = 9;
+        %tmp.151 = getv ? :_moveBarHeight;
+        invoke %tmp.143 %tmp.144(%tmp.146, %tmp.148, %tmp.149, %tmp.151);
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_70_26_77_8_stop:
+        goto @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_70_8_77_8_if_end;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_70_8_77_8_if_end:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\MoveBar.mc" 79 8 ]
+        %tmp.153 = getv ? :CommonMethods;
+        %tmp.154 = getv function %tmp.153 :clearDrawingClip;
+        %tmp.156 = lgetv %dc;
+        invoke %tmp.153 %tmp.154(%tmp.156);
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_30_30_80_4_stop:
+    }
+}
+[ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\MoveBar.mc"; @line = 1; ]
+<init> {
+}

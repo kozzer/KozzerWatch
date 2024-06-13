@@ -18,8 +18,8 @@ class DateTitle {
         _dateX = dc.getWidth() / 2;
         _dateY = 14;
 
-        var app = Application.getApp();
-        var isInstinct2 = app.Properties.getValue("IsInstinct2");
+        //var app = Application.getApp();
+        var isInstinct2 = Application.Properties.getValue("IsInstinct2");
         if (isInstinct2){
             _dateX = dc.getWidth() - 40;
             _dateY = (dc.getHeight() / 2) - 14;

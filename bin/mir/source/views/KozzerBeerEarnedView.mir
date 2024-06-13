@@ -1,0 +1,175 @@
+[ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerBeerEarnedView.mc"; @line = 1; ]
+using Toybox.WatchUi;
+[ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerBeerEarnedView.mc"; @line = 3; ]
+class KozzerBeerEarnedView extends WatchUi.View{
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerBeerEarnedView.mc"; @line = 3; ]
+    <init> {
+    }
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerBeerEarnedView.mc"; @line = 3; ]
+    static
+    <init> {
+    }
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerBeerEarnedView.mc"; @line = 6; @position = 10; ]
+    const BACKGROUND_COLOR = 0x111111;
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerBeerEarnedView.mc"; @line = 7; @position = 10; ]
+    const FONT_COLOR = 0xDEDEDE;
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerBeerEarnedView.mc"; @line = 9; @position = 8; ]
+    var _beersEarned = 0;
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerBeerEarnedView.mc"; @line = 11; ]
+    function initialize(numBeersEarned) as Void {
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerBeerEarnedView_mc_11_40_14_4_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerBeerEarnedView.mc" 12 8 ]
+        %tmp.2 = getv ? :View;
+        %tmp.3 = getv function %tmp.2 :initialize;
+        invoke %tmp.2 %tmp.3();
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerBeerEarnedView.mc" 13 8 ]
+        %tmp.5 = lgetv %numBeersEarned;
+        putv self :_beersEarned %tmp.5;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerBeerEarnedView_mc_11_40_14_4_stop:
+    }
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerBeerEarnedView.mc"; @line = 17; ]
+    function onLayout(dc) {
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerBeerEarnedView_mc_17_26_21_4_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerBeerEarnedView.mc" 19 8 ]
+        %tmp.1 = lgetv %dc;
+        %tmp.2 = getv function %tmp.1 :clearClip;
+        invoke %tmp.1 %tmp.2();
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerBeerEarnedView_mc_17_26_21_4_stop:
+    }
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerBeerEarnedView.mc"; @line = 24; ]
+    function onShow() {
+    }
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerBeerEarnedView.mc"; @line = 28; ]
+    function onUpdate(dc) {
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerBeerEarnedView_mc_28_26_47_4_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerBeerEarnedView.mc" 29 8 ]
+        %tmp.2 = getv ? :View;
+        %tmp.3 = getv function %tmp.2 :onUpdate;
+        %tmp.5 = lgetv %dc;
+        invoke %tmp.2 %tmp.3(%tmp.5);
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerBeerEarnedView.mc" 31 8 ]
+        [ "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerBeerEarnedView_mc_28_26_47_4_start" "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerBeerEarnedView_mc_28_26_47_4_stop" ]
+        %width.1 = local;
+        %tmp.6 = lgetv %dc;
+        %tmp.7 = getv function %tmp.6 :getWidth;
+        %tmp.8 = invoke %tmp.6 %tmp.7();
+        lputv %width.1 %tmp.8;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerBeerEarnedView.mc" 32 8 ]
+        [ "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerBeerEarnedView_mc_28_26_47_4_start" "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerBeerEarnedView_mc_28_26_47_4_stop" ]
+        %height.2 = local;
+        %tmp.9 = lgetv %dc;
+        %tmp.10 = getv function %tmp.9 :getHeight;
+        %tmp.11 = invoke %tmp.9 %tmp.10();
+        lputv %height.2 %tmp.11;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerBeerEarnedView.mc" 35 8 ]
+        %tmp.12 = lgetv %dc;
+        %tmp.13 = getv function %tmp.12 :setColor;
+        %tmp.15 = getv ? :BACKGROUND_COLOR;
+        %tmp.17 = getv ? :BACKGROUND_COLOR;
+        invoke %tmp.12 %tmp.13(%tmp.15, %tmp.17);
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerBeerEarnedView.mc" 36 8 ]
+        %tmp.18 = lgetv %dc;
+        %tmp.19 = getv function %tmp.18 :fillRectangle;
+        %tmp.20 = 0;
+        %tmp.21 = 0;
+        %tmp.23 = lgetv %width.1;
+        %tmp.25 = lgetv %height.2;
+        invoke %tmp.18 %tmp.19(%tmp.20, %tmp.21, %tmp.23, %tmp.25);
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerBeerEarnedView.mc" 39 8 ]
+        %tmp.26 = lgetv %dc;
+        %tmp.27 = getv function %tmp.26 :setColor;
+        %tmp.29 = getv ? :FONT_COLOR;
+        %tmp.31 = getv ? :Graphics;
+        %tmp.32 = getv %tmp.31 :COLOR_TRANSPARENT;
+        invoke %tmp.26 %tmp.27(%tmp.29, %tmp.32);
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerBeerEarnedView.mc" 42 8 ]
+        [ "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerBeerEarnedView_mc_28_26_47_4_start" "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerBeerEarnedView_mc_28_26_47_4_stop" ]
+        %beer.3 = local;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerBeerEarnedView_mc_42_19_42_49_begin:
+        %tmp.34 = getv ? :_beersEarned;
+        %tmp.35 = 1;
+        %tmp.36 = eq %tmp.34 %tmp.35;
+        bf %tmp.36 @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerBeerEarnedView_mc_42_19_42_49_false;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerBeerEarnedView_mc_42_19_42_49_true:
+        %tmp.37 = " beer";
+        push %tmp.37;
+        goto @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerBeerEarnedView_mc_42_19_42_49_end;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerBeerEarnedView_mc_42_19_42_49_false:
+        %tmp.38 = " beers";
+        push %tmp.38;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerBeerEarnedView_mc_42_19_42_49_end:
+        %tmp.39 = phi [%tmp.36 @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerBeerEarnedView_mc_42_19_42_49_begin] [%tmp.37 @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerBeerEarnedView_mc_42_19_42_49_true] [%tmp.38 @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerBeerEarnedView_mc_42_19_42_49_false] [%tmp.39 @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerBeerEarnedView_mc_42_19_42_49_end];
+        lputv %beer.3 %tmp.39;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerBeerEarnedView.mc" 43 8 ]
+        [ "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerBeerEarnedView_mc_28_26_47_4_start" "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerBeerEarnedView_mc_28_26_47_4_stop" ]
+        %beerString.4 = local;
+        %tmp.40 = "You can have ";
+        %tmp.42 = getv ? :_beersEarned;
+        %tmp.43 = getv function %tmp.42 :toString;
+        %tmp.44 = invoke %tmp.42 %tmp.43();
+        %tmp.45 = add %tmp.40 %tmp.44;
+        %tmp.47 = lgetv %beer.3;
+        %tmp.48 = add %tmp.45 %tmp.47;
+        %tmp.49 = " today!";
+        %tmp.50 = add %tmp.48 %tmp.49;
+        lputv %beerString.4 %tmp.50;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerBeerEarnedView.mc" 44 8 ]
+        %tmp.51 = lgetv %dc;
+        %tmp.52 = getv function %tmp.51 :drawText;
+        %tmp.54 = lgetv %width.1;
+        %tmp.55 = 2;
+        %tmp.56 = div %tmp.54 %tmp.55;
+        %tmp.58 = lgetv %height.2;
+        %tmp.59 = 4;
+        %tmp.60 = div %tmp.58 %tmp.59;
+        %tmp.61 = 12;
+        %tmp.62 = add %tmp.60 %tmp.61;
+        %tmp.64 = getv ? :Graphics;
+        %tmp.65 = getv %tmp.64 :FONT_SMALL;
+        %tmp.67 = lgetv %beerString.4;
+        %tmp.69 = getv ? :Graphics;
+        %tmp.70 = getv %tmp.69 :TEXT_JUSTIFY_CENTER;
+        invoke %tmp.51 %tmp.52(%tmp.56, %tmp.62, %tmp.65, %tmp.67, %tmp.70);
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerBeerEarnedView.mc" 45 8 ]
+        %tmp.71 = lgetv %dc;
+        %tmp.72 = getv function %tmp.71 :drawText;
+        %tmp.74 = lgetv %width.1;
+        %tmp.75 = 2;
+        %tmp.76 = div %tmp.74 %tmp.75;
+        %tmp.78 = lgetv %height.2;
+        %tmp.79 = 2;
+        %tmp.80 = div %tmp.78 %tmp.79;
+        %tmp.81 = 7;
+        %tmp.82 = sub %tmp.80 %tmp.81;
+        %tmp.84 = getv ? :Graphics;
+        %tmp.85 = getv %tmp.84 :FONT_MEDIUM;
+        %tmp.86 = "YOU'VE EARNED ANOTHER BEER";
+        %tmp.88 = getv ? :Graphics;
+        %tmp.89 = getv %tmp.88 :TEXT_JUSTIFY_CENTER;
+        invoke %tmp.71 %tmp.72(%tmp.76, %tmp.82, %tmp.85, %tmp.86, %tmp.89);
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerBeerEarnedView.mc" 46 8 ]
+        %tmp.90 = lgetv %dc;
+        %tmp.91 = getv function %tmp.90 :drawText;
+        %tmp.93 = lgetv %width.1;
+        %tmp.94 = 2;
+        %tmp.95 = div %tmp.93 %tmp.94;
+        %tmp.97 = lgetv %height.2;
+        %tmp.98 = 0.62;
+        %tmp.99 = mul %tmp.97 %tmp.98;
+        %tmp.100 = 12;
+        %tmp.101 = add %tmp.99 %tmp.100;
+        %tmp.103 = getv ? :Graphics;
+        %tmp.104 = getv %tmp.103 :FONT_SMALL;
+        %tmp.105 = "Enjoy!";
+        %tmp.107 = getv ? :Graphics;
+        %tmp.108 = getv %tmp.107 :TEXT_JUSTIFY_CENTER;
+        invoke %tmp.90 %tmp.91(%tmp.95, %tmp.101, %tmp.104, %tmp.105, %tmp.108);
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerBeerEarnedView_mc_28_26_47_4_stop:
+    }
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerBeerEarnedView.mc"; @line = 50; ]
+    function onHide() {
+    }
+}
+[ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerBeerEarnedView.mc"; @line = 1; ]
+<init> {
+}

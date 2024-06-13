@@ -52,7 +52,7 @@ class KozzerSettingsDelegate extends WatchUi.Menu2InputDelegate {
     function onBack(){
         WatchUi.popView(WatchUi.SLIDE_IMMEDIATE);
         CommonMethods.populateAndApplyAppSettings();
-        return false;
+        //return false;
     }
 
 }

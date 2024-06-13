@@ -19,14 +19,14 @@ module CommonMethods {
     // Called in app's constructor, and also when settings change
     function populateAndApplyAppSettings(){
 
-        var app = Application.getApp();
+        //var app = Application.getApp();
 
         // Re-read properties from XML file (only set solar to true if device supports and setting is true)
-        useLightTheme = app.Properties.getValue(SETTING_ID_LIGHT_THEME);
+        useLightTheme = Application.Properties.getValue(SETTING_ID_LIGHT_THEME);
 
         showSolarIntensity = Toybox.System.Stats has :solarIntensity 
                                 && Toybox.System.getSystemStats().solarIntensity != null 
-                                && app.Properties.getValue(SETTING_ID_SHOW_SOLAR);
+                                && Application.Properties.getValue(SETTING_ID_SHOW_SOLAR);
 
         // Set theme to current value
         Theme.setTheme(useLightTheme);
@@ -35,8 +35,8 @@ module CommonMethods {
     }   
 
     function setPropertyValue(key, value){
-        var app = Application.getApp();
-        app.Properties.setValue(key, value);
+        //var app = Application.getApp();
+        Application.Properties.setValue(key, value);
     }                      
 
     // Draw the watch face background onto the given draw context
@@ -46,7 +46,7 @@ module CommonMethods {
     }
 
     function resetColorsForRendering(dc) {
-        dc.setColor(FONT_COLOR, Graphics.COLOR_TRANSPARENT);
+        dc.setColor(ThemeController.FONT_COLOR, Graphics.COLOR_TRANSPARENT);
     }
 
     function getTinyFont(dc){
@@ -59,8 +59,8 @@ module CommonMethods {
     }
 
     function getBeersEarnedFont(dc){
-        var app = Application.getApp();
-        var isInstinct2 = app.Properties.getValue("IsInstinct2");
+        //var app = Application.getApp();
+        var isInstinct2 = Application.Properties.getValue("IsInstinct2");
         var width = dc.getWidth();
 
         if (isInstinct2){
@@ -118,5 +118,70 @@ module CommonMethods {
 
         return [min, max];
     }
+
+    public function drawLabelAndRecangle(dc, x, y, label, color){
+
+        var rectanglePoints = [
+                [x - 60, y],
+                [x + 60, y],
+                [x + 60, y + 69],
+                [x - 60, y + 69]
+        ];
+
+        CommonMethods.setDrawingClip(dc, rectanglePoints);
+
+        // Colored outline rect
+        Theme.setColor(dc, color);
+        dc.fillRoundedRectangle(x - 60, y, 120, 40, 4);
+
+        // Black "fill" inside rect
+        Theme.setColor(dc, 0x000000);
+        dc.fillRoundedRectangle(x - 58, y + 2, 116, 36, 4);
+
+        // Colored label text
+        Theme.setColor(dc, color);
+        dc.drawText(x, y + 38, Graphics.FONT_XTINY, label, Graphics.TEXT_JUSTIFY_CENTER);
+
+        Theme.resetColors(dc);
+        CommonMethods.clearDrawingClip(dc);
+    }
+
+    function convertToFahrenheit(degreesCelcius){
+
+        var temp = (degreesCelcius * 9) / 5 + 32;
+        var str = temp.toString() as Toybox.Lang.String;
+        var formattedString = "";
+
+        for (var i = 0; i < str.length(); i++){
+            var curChar = str.substring(i, i + 1);
+            if (curChar.equals(".")){
+                break;
+            }
+            formattedString = formattedString + curChar;
+        }
+        return formattedString;
+    }
+
+
+    public function getFormattedStringForNumber(num){
+
+        var numString = num.toString() as Toybox.Lang.String;
+        var stringLength = numString.length();
+        var formattedString = "";
+
+        var maxIndex = stringLength - 1;
+        for (var i = maxIndex; i >= 0; i--) {
+
+            if (((stringLength - i) % 3 == 1) && i < maxIndex){
+                formattedString = "," + formattedString;
+            }
+
+            var curChar = numString.substring(i, i + 1);
+            formattedString = curChar + formattedString;
+        }
+
+        return formattedString;
+    }
+
 
 }

@@ -1,0 +1,97 @@
+[ @file = "c:\Users\David\ConnectIQ\kozzer\KozzerWatch\bin\gen\006-B4024-00\source\Rez.mcgen"; @line = 1; ]
+import Toybox.Lang;
+[ @file = "c:\Users\David\ConnectIQ\kozzer\KozzerWatch\bin\gen\006-B4024-00\source\Rez.mcgen"; @line = 2; ]
+using Toybox.WatchUi;
+[ @file = "c:\Users\David\ConnectIQ\kozzer\KozzerWatch\bin\gen\006-B4024-00\source\Rez.mcgen"; @line = 3; ]
+using Toybox.WatchUi as :Ui;
+[ @file = "c:\Users\David\ConnectIQ\kozzer\KozzerWatch\bin\gen\006-B4024-00\source\Rez.mcgen"; @line = 4; ]
+using Toybox.Graphics;
+[ @file = "c:\Users\David\ConnectIQ\kozzer\KozzerWatch\bin\gen\006-B4024-00\source\Rez.mcgen"; @line = 5; ]
+using Toybox.Graphics as :Gfx;
+[ @file = "c:\Users\David\ConnectIQ\kozzer\KozzerWatch\bin\gen\006-B4024-00\source\Rez.mcgen"; @line = 7; ]
+module Rez {
+    [ @file = "c:\Users\David\ConnectIQ\kozzer\KozzerWatch\bin\gen\006-B4024-00\source\Rez.mcgen"; @line = 7; ]
+    <init> {
+    }
+    [ @file = "c:\Users\David\ConnectIQ\kozzer\KozzerWatch\bin\gen\006-B4024-00\source\Rez.mcgen"; @line = 8; ]
+    module Drawables {
+        [ @file = "c:\Users\David\ConnectIQ\kozzer\KozzerWatch\bin\gen\006-B4024-00\source\Rez.mcgen"; @line = 8; ]
+        <init> {
+        }
+        [ @file = "c:\Users\David\ConnectIQ\kozzer\KozzerWatch\bin\gen\006-B4024-00\source\Rez.mcgen"; @line = 9; @position = 27; initialized = true; ]
+        var BluetoothIcon as ResourceId;
+        [ @file = "c:\Users\David\ConnectIQ\kozzer\KozzerWatch\bin\gen\006-B4024-00\source\Rez.mcgen"; @line = 10; @position = 27; initialized = true; ]
+        var SunIcon as ResourceId;
+        [ @file = "c:\Users\David\ConnectIQ\kozzer\KozzerWatch\bin\gen\006-B4024-00\source\Rez.mcgen"; @line = 11; @position = 27; initialized = true; ]
+        var sunny_32 as ResourceId;
+        [ @file = "c:\Users\David\ConnectIQ\kozzer\KozzerWatch\bin\gen\006-B4024-00\source\Rez.mcgen"; @line = 12; @position = 27; initialized = true; ]
+        var cloudy_32 as ResourceId;
+        [ @file = "c:\Users\David\ConnectIQ\kozzer\KozzerWatch\bin\gen\006-B4024-00\source\Rez.mcgen"; @line = 13; @position = 27; initialized = true; ]
+        var partly_cloudy_32 as ResourceId;
+        [ @file = "c:\Users\David\ConnectIQ\kozzer\KozzerWatch\bin\gen\006-B4024-00\source\Rez.mcgen"; @line = 14; @position = 27; initialized = true; ]
+        var rain_32 as ResourceId;
+        [ @file = "c:\Users\David\ConnectIQ\kozzer\KozzerWatch\bin\gen\006-B4024-00\source\Rez.mcgen"; @line = 15; @position = 27; initialized = true; ]
+        var snow_32 as ResourceId;
+        [ @file = "c:\Users\David\ConnectIQ\kozzer\KozzerWatch\bin\gen\006-B4024-00\source\Rez.mcgen"; @line = 16; @position = 27; initialized = true; ]
+        var windy_32 as ResourceId;
+        [ @file = "c:\Users\David\ConnectIQ\kozzer\KozzerWatch\bin\gen\006-B4024-00\source\Rez.mcgen"; @line = 17; @position = 27; initialized = true; ]
+        var thunderstorm_32 as ResourceId;
+        [ @file = "c:\Users\David\ConnectIQ\kozzer\KozzerWatch\bin\gen\006-B4024-00\source\Rez.mcgen"; @line = 18; @position = 27; initialized = true; ]
+        var wintry_mix_32 as ResourceId;
+        [ @file = "c:\Users\David\ConnectIQ\kozzer\KozzerWatch\bin\gen\006-B4024-00\source\Rez.mcgen"; @line = 19; @position = 27; initialized = true; ]
+        var fog_32 as ResourceId;
+        [ @file = "c:\Users\David\ConnectIQ\kozzer\KozzerWatch\bin\gen\006-B4024-00\source\Rez.mcgen"; @line = 20; @position = 27; initialized = true; ]
+        var haze_32 as ResourceId;
+        [ @file = "c:\Users\David\ConnectIQ\kozzer\KozzerWatch\bin\gen\006-B4024-00\source\Rez.mcgen"; @line = 21; @position = 27; initialized = true; ]
+        var hail_32 as ResourceId;
+        [ @file = "c:\Users\David\ConnectIQ\kozzer\KozzerWatch\bin\gen\006-B4024-00\source\Rez.mcgen"; @line = 22; @position = 27; initialized = true; ]
+        var light_rain_32 as ResourceId;
+        [ @file = "c:\Users\David\ConnectIQ\kozzer\KozzerWatch\bin\gen\006-B4024-00\source\Rez.mcgen"; @line = 23; @position = 27; initialized = true; ]
+        var heavy_rain_32 as ResourceId;
+        [ @file = "c:\Users\David\ConnectIQ\kozzer\KozzerWatch\bin\gen\006-B4024-00\source\Rez.mcgen"; @line = 24; @position = 27; initialized = true; ]
+        var scattered_thunderstorms_32 as ResourceId;
+        [ @file = "c:\Users\David\ConnectIQ\kozzer\KozzerWatch\bin\gen\006-B4024-00\source\Rez.mcgen"; @line = 25; @position = 27; initialized = true; ]
+        var light_snow_32 as ResourceId;
+        [ @file = "c:\Users\David\ConnectIQ\kozzer\KozzerWatch\bin\gen\006-B4024-00\source\Rez.mcgen"; @line = 26; @position = 27; initialized = true; ]
+        var heavy_snow_32 as ResourceId;
+        [ @file = "c:\Users\David\ConnectIQ\kozzer\KozzerWatch\bin\gen\006-B4024-00\source\Rez.mcgen"; @line = 27; @position = 27; initialized = true; ]
+        var sleet_32 as ResourceId;
+        [ @file = "c:\Users\David\ConnectIQ\kozzer\KozzerWatch\bin\gen\006-B4024-00\source\Rez.mcgen"; @line = 28; @position = 27; initialized = true; ]
+        var mostly_cloudy_32 as ResourceId;
+        [ @file = "c:\Users\David\ConnectIQ\kozzer\KozzerWatch\bin\gen\006-B4024-00\source\Rez.mcgen"; @line = 29; @position = 27; initialized = true; ]
+        var rain_cloud_32 as ResourceId;
+        [ @file = "c:\Users\David\ConnectIQ\kozzer\KozzerWatch\bin\gen\006-B4024-00\source\Rez.mcgen"; @line = 30; @position = 27; initialized = true; ]
+        var dust_32 as ResourceId;
+        [ @file = "c:\Users\David\ConnectIQ\kozzer\KozzerWatch\bin\gen\006-B4024-00\source\Rez.mcgen"; @line = 31; @position = 27; initialized = true; ]
+        var tornado_32 as ResourceId;
+        [ @file = "c:\Users\David\ConnectIQ\kozzer\KozzerWatch\bin\gen\006-B4024-00\source\Rez.mcgen"; @line = 32; @position = 27; initialized = true; ]
+        var drizzle_32 as ResourceId;
+        [ @file = "c:\Users\David\ConnectIQ\kozzer\KozzerWatch\bin\gen\006-B4024-00\source\Rez.mcgen"; @line = 33; @position = 27; initialized = true; ]
+        var night_clear_32 as ResourceId;
+        [ @file = "c:\Users\David\ConnectIQ\kozzer\KozzerWatch\bin\gen\006-B4024-00\source\Rez.mcgen"; @line = 34; @position = 27; initialized = true; ]
+        var night_partly_cloudy_32 as ResourceId;
+        [ @file = "c:\Users\David\ConnectIQ\kozzer\KozzerWatch\bin\gen\006-B4024-00\source\Rez.mcgen"; @line = 35; @position = 27; initialized = true; ]
+        var night_cloudy_32 as ResourceId;
+        [ @file = "c:\Users\David\ConnectIQ\kozzer\KozzerWatch\bin\gen\006-B4024-00\source\Rez.mcgen"; @line = 36; @position = 27; initialized = true; ]
+        var LauncherIcon as ResourceId;
+    }
+    [ @file = "c:\Users\David\ConnectIQ\kozzer\KozzerWatch\bin\gen\006-B4024-00\source\Rez.mcgen"; @line = 39; ]
+    module Strings {
+        [ @file = "c:\Users\David\ConnectIQ\kozzer\KozzerWatch\bin\gen\006-B4024-00\source\Rez.mcgen"; @line = 39; ]
+        <init> {
+        }
+        [ @file = "c:\Users\David\ConnectIQ\kozzer\KozzerWatch\bin\gen\006-B4024-00\source\Rez.mcgen"; @line = 40; @position = 27; initialized = true; ]
+        var ShowSolarIntensityPrompt as ResourceId;
+        [ @file = "c:\Users\David\ConnectIQ\kozzer\KozzerWatch\bin\gen\006-B4024-00\source\Rez.mcgen"; @line = 41; @position = 27; initialized = true; ]
+        var LightThemeActive as ResourceId;
+        [ @file = "c:\Users\David\ConnectIQ\kozzer\KozzerWatch\bin\gen\006-B4024-00\source\Rez.mcgen"; @line = 42; @position = 27; initialized = true; ]
+        var ShowSolarIntensity as ResourceId;
+        [ @file = "c:\Users\David\ConnectIQ\kozzer\KozzerWatch\bin\gen\006-B4024-00\source\Rez.mcgen"; @line = 43; @position = 27; initialized = true; ]
+        var AppName as ResourceId;
+        [ @file = "c:\Users\David\ConnectIQ\kozzer\KozzerWatch\bin\gen\006-B4024-00\source\Rez.mcgen"; @line = 44; @position = 27; initialized = true; ]
+        var IsInstinct2 as ResourceId;
+    }
+}
+[ @file = "c:\Users\David\ConnectIQ\kozzer\KozzerWatch\bin\gen\006-B4024-00\source\Rez.mcgen"; @line = 1; ]
+<init> {
+}

@@ -1,0 +1,199 @@
+[ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerGoalView.mc"; @line = 1; ]
+using Toybox.Application;
+[ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerGoalView.mc"; @line = 2; ]
+using Toybox.Graphics;
+[ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerGoalView.mc"; @line = 3; ]
+using Toybox.Lang;
+[ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerGoalView.mc"; @line = 4; ]
+using Toybox.System;
+[ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerGoalView.mc"; @line = 5; ]
+using Toybox.Time;
+[ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerGoalView.mc"; @line = 6; ]
+using Toybox.Time.Gregorian;
+[ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerGoalView.mc"; @line = 7; ]
+using Toybox.WatchUi;
+[ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerGoalView.mc"; @line = 9; ]
+class KozzerGoalView extends WatchUi.View{
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerGoalView.mc"; @line = 9; ]
+    <init> {
+    }
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerGoalView.mc"; @line = 9; ]
+    static
+    <init> {
+    }
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerGoalView.mc"; @line = 10; @position = 16; ]
+    private
+    var _goalString;
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerGoalView.mc"; @line = 13; @position = 10; ]
+    const BACKGROUND_COLOR = 0x111111;
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerGoalView.mc"; @line = 14; @position = 10; ]
+    const FONT_COLOR = 0xDEDEDE;
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerGoalView.mc"; @line = 17; ]
+    function initialize(goal) as Void {
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerGoalView_mc_17_30_31_4_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerGoalView.mc" 18 8 ]
+        %tmp.2 = getv ? :View;
+        %tmp.3 = getv function %tmp.2 :initialize;
+        invoke %tmp.2 %tmp.3();
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerGoalView.mc" 20 8 ]
+        %tmp.4 = "GOAL!";
+        putv self :_goalString %tmp.4;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerGoalView.mc" 22 8 ]
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerGoalView_mc_22_8_30_8_if_stmt:
+        %tmp.6 = lgetv %goal;
+        %tmp.7 = getm $.Toybox.Application;
+        %tmp.8 = getv %tmp.7 :GOAL_TYPE_STEPS;
+        %tmp.9 = eq %tmp.6 %tmp.8;
+        bf %tmp.9 @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerGoalView_mc_22_8_30_8_if_false;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerGoalView_mc_22_8_30_8_if_true:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerGoalView_mc_22_48_24_8_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerGoalView.mc" 23 12 ]
+        %tmp.10 = "STEPS ";
+        %tmp.12 = getv ? :_goalString;
+        %tmp.13 = add %tmp.10 %tmp.12;
+        putv self :_goalString %tmp.13;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerGoalView_mc_22_48_24_8_stop:
+        goto @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerGoalView_mc_22_8_30_8_if_end;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerGoalView_mc_22_8_30_8_if_false:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerGoalView.mc" 25 13 ]
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerGoalView_mc_25_13_30_8_if_stmt:
+        %tmp.15 = lgetv %goal;
+        %tmp.16 = getm $.Toybox.Application;
+        %tmp.17 = getv %tmp.16 :GOAL_TYPE_FLOORS_CLIMBED;
+        %tmp.18 = eq %tmp.15 %tmp.17;
+        bf %tmp.18 @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerGoalView_mc_25_13_30_8_if_false;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerGoalView_mc_25_13_30_8_if_true:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerGoalView_mc_25_62_27_8_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerGoalView.mc" 26 12 ]
+        %tmp.19 = "STAIRS ";
+        %tmp.21 = getv ? :_goalString;
+        %tmp.22 = add %tmp.19 %tmp.21;
+        putv self :_goalString %tmp.22;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerGoalView_mc_25_62_27_8_stop:
+        goto @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerGoalView_mc_25_13_30_8_if_end;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerGoalView_mc_25_13_30_8_if_false:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerGoalView.mc" 28 13 ]
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerGoalView_mc_28_13_30_8_if_stmt:
+        %tmp.24 = lgetv %goal;
+        %tmp.25 = getm $.Toybox.Application;
+        %tmp.26 = getv %tmp.25 :GOAL_TYPE_ACTIVE_MINUTES;
+        %tmp.27 = eq %tmp.24 %tmp.26;
+        bf %tmp.27 @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerGoalView_mc_28_13_30_8_if_end;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerGoalView_mc_28_13_30_8_if_true:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerGoalView_mc_28_62_30_8_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerGoalView.mc" 29 12 ]
+        %tmp.28 = "ACTIVE ";
+        %tmp.30 = getv ? :_goalString;
+        %tmp.31 = add %tmp.28 %tmp.30;
+        putv self :_goalString %tmp.31;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerGoalView_mc_28_62_30_8_stop:
+        goto @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerGoalView_mc_28_13_30_8_if_end;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerGoalView_mc_28_13_30_8_if_end:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerGoalView_mc_25_13_30_8_if_end:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerGoalView_mc_22_8_30_8_if_end:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerGoalView_mc_17_30_31_4_stop:
+    }
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerGoalView.mc"; @line = 33; ]
+    function onLayout(dc) {
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerGoalView_mc_33_26_36_4_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerGoalView.mc" 35 8 ]
+        %tmp.1 = lgetv %dc;
+        %tmp.2 = getv function %tmp.1 :clearClip;
+        invoke %tmp.1 %tmp.2();
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerGoalView_mc_33_26_36_4_stop:
+    }
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerGoalView.mc"; @line = 39; ]
+    function onUpdate(dc) {
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerGoalView_mc_39_26_54_4_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerGoalView.mc" 40 8 ]
+        [ "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerGoalView_mc_39_26_54_4_start" "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerGoalView_mc_39_26_54_4_stop" ]
+        %width.1 = local;
+        %tmp.1 = lgetv %dc;
+        %tmp.2 = getv function %tmp.1 :getWidth;
+        %tmp.3 = invoke %tmp.1 %tmp.2();
+        lputv %width.1 %tmp.3;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerGoalView.mc" 41 8 ]
+        [ "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerGoalView_mc_39_26_54_4_start" "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerGoalView_mc_39_26_54_4_stop" ]
+        %height.2 = local;
+        %tmp.4 = lgetv %dc;
+        %tmp.5 = getv function %tmp.4 :getHeight;
+        %tmp.6 = invoke %tmp.4 %tmp.5();
+        lputv %height.2 %tmp.6;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerGoalView.mc" 44 8 ]
+        %tmp.7 = lgetv %dc;
+        %tmp.8 = getv function %tmp.7 :setColor;
+        %tmp.10 = getv ? :BACKGROUND_COLOR;
+        %tmp.12 = getv ? :BACKGROUND_COLOR;
+        invoke %tmp.7 %tmp.8(%tmp.10, %tmp.12);
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerGoalView.mc" 45 8 ]
+        %tmp.13 = lgetv %dc;
+        %tmp.14 = getv function %tmp.13 :fillRectangle;
+        %tmp.15 = 0;
+        %tmp.16 = 0;
+        %tmp.18 = lgetv %width.1;
+        %tmp.20 = lgetv %height.2;
+        invoke %tmp.13 %tmp.14(%tmp.15, %tmp.16, %tmp.18, %tmp.20);
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerGoalView.mc" 48 8 ]
+        %tmp.21 = lgetv %dc;
+        %tmp.22 = getv function %tmp.21 :setColor;
+        %tmp.24 = getv ? :FONT_COLOR;
+        %tmp.25 = getm $.Toybox.Graphics;
+        %tmp.26 = getv %tmp.25 :COLOR_TRANSPARENT;
+        invoke %tmp.21 %tmp.22(%tmp.24, %tmp.26);
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerGoalView.mc" 51 8 ]
+        %tmp.27 = lgetv %dc;
+        %tmp.28 = getv function %tmp.27 :drawText;
+        %tmp.30 = lgetv %width.1;
+        %tmp.31 = 2;
+        %tmp.32 = div %tmp.30 %tmp.31;
+        %tmp.34 = lgetv %height.2;
+        %tmp.35 = 4;
+        %tmp.36 = div %tmp.34 %tmp.35;
+        %tmp.37 = 12;
+        %tmp.38 = add %tmp.36 %tmp.37;
+        %tmp.39 = getm $.Toybox.Graphics;
+        %tmp.40 = getv %tmp.39 :FONT_SMALL;
+        %tmp.41 = "You did a good job!";
+        %tmp.42 = getm $.Toybox.Graphics;
+        %tmp.43 = getv %tmp.42 :TEXT_JUSTIFY_CENTER;
+        invoke %tmp.27 %tmp.28(%tmp.32, %tmp.38, %tmp.40, %tmp.41, %tmp.43);
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerGoalView.mc" 52 8 ]
+        %tmp.44 = lgetv %dc;
+        %tmp.45 = getv function %tmp.44 :drawText;
+        %tmp.47 = lgetv %width.1;
+        %tmp.48 = 2;
+        %tmp.49 = div %tmp.47 %tmp.48;
+        %tmp.51 = lgetv %height.2;
+        %tmp.52 = 2;
+        %tmp.53 = div %tmp.51 %tmp.52;
+        %tmp.54 = 7;
+        %tmp.55 = sub %tmp.53 %tmp.54;
+        %tmp.56 = getm $.Toybox.Graphics;
+        %tmp.57 = getv %tmp.56 :FONT_LARGE;
+        %tmp.59 = getv ? :_goalString;
+        %tmp.60 = getm $.Toybox.Graphics;
+        %tmp.61 = getv %tmp.60 :TEXT_JUSTIFY_CENTER;
+        invoke %tmp.44 %tmp.45(%tmp.49, %tmp.55, %tmp.57, %tmp.59, %tmp.61);
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerGoalView.mc" 53 8 ]
+        %tmp.62 = lgetv %dc;
+        %tmp.63 = getv function %tmp.62 :drawText;
+        %tmp.65 = lgetv %width.1;
+        %tmp.66 = 2;
+        %tmp.67 = div %tmp.65 %tmp.66;
+        %tmp.69 = lgetv %height.2;
+        %tmp.70 = 0.62;
+        %tmp.71 = mul %tmp.69 %tmp.70;
+        %tmp.72 = 12;
+        %tmp.73 = add %tmp.71 %tmp.72;
+        %tmp.74 = getm $.Toybox.Graphics;
+        %tmp.75 = getv %tmp.74 :FONT_SMALL;
+        %tmp.76 = "Keep it up!";
+        %tmp.77 = getm $.Toybox.Graphics;
+        %tmp.78 = getv %tmp.77 :TEXT_JUSTIFY_CENTER;
+        invoke %tmp.62 %tmp.63(%tmp.67, %tmp.73, %tmp.75, %tmp.76, %tmp.78);
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_views_KozzerGoalView_mc_39_26_54_4_stop:
+    }
+}
+[ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\views\KozzerGoalView.mc"; @line = 1; ]
+<init> {
+}
