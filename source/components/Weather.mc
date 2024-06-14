@@ -60,7 +60,7 @@ class Weather {
         ThemeController.setColor(dc, ThemeController.FONT_COLOR);
 
         // current temp, high temp, low temp
-        dc.drawText(_weatherX + 30,  _weatherY + 9, Graphics.FONT_TINY, currentTemp, Graphics.TEXT_JUSTIFY_CENTER);
+        dc.drawText(_weatherX + 30,  _weatherY + 9,  Graphics.FONT_TINY, currentTemp, Graphics.TEXT_JUSTIFY_CENTER);
         dc.drawText(_weatherX + 118, _weatherY + 6,  _veryTinyFont,      highTemp,    Graphics.TEXT_JUSTIFY_CENTER);
         dc.drawText(_weatherX + 118, _weatherY + 24, _veryTinyFont,      lowTemp,     Graphics.TEXT_JUSTIFY_CENTER);
 
@@ -76,118 +76,113 @@ class Weather {
 
     private function getIconForConditions(conditions){
 
-        var rez;
-
         var val = conditions.getCurrentConditions();
-        if (val == null){
+        if (val == null || val.condition == null){
             // If no conditions found return tornado 
-            rez = Rez.Drawables.night_clear_32;
-        } else {
-            switch (val.condition){
-                case Weather.CONDITION_CLEAR:
-                case Weather.CONDITION_FAIR: 
-                    rez = Rez.Drawables.sunny_32;
-                    break;
-                case Weather.CONDITION_PARTLY_CLOUDY: 
-                case Weather.CONDITION_MOSTLY_CLEAR: 
-                case Weather.CONDITION_THIN_CLOUDS: 
-                    rez = Rez.Drawables.partly_cloudy_32; 
-                    break;
-                case Weather.CONDITION_MOSTLY_CLOUDY: 
-                case Weather.CONDITION_PARTLY_CLEAR: 
-                    rez = Rez.Drawables.mostly_cloudy_32; 
-                    break;
-                case Weather.CONDITION_SCATTERED_SHOWERS: 
-                case Weather.CONDITION_RAIN: 
-                    rez = Rez.Drawables.rain_32; 
-                    break;
-                case Weather.CONDITION_SNOW: 
-                case Weather.CONDITION_ICE: 
-                    rez = Rez.Drawables.snow_32; 
-                    break;
-                case Weather.CONDITION_WINDY: 
-                    rez = Rez.Drawables.windy_32; 
-                    break;
-                case Weather.CONDITION_THUNDERSTORMS: 
-                case Weather.CONDITION_SQUALL: 
-                case Weather.CONDITION_HURRICANE: 
-                case Weather.CONDITION_TROPICAL_STORM: 
-                    rez = Rez.Drawables.thunderstorm_32; 
-                    break;
-                case Weather.CONDITION_WINTRY_MIX: 
-                    rez = Rez.Drawables.wintry_mix_32; 
-                    break;
-                case Weather.CONDITION_FOG: 
-                    rez = Rez.Drawables.fog_32; 
-                    break;
-                case Weather.CONDITION_HAZY: 
-                case Weather.CONDITION_MIST: 
-                case Weather.CONDITION_SMOKE: 
-                case Weather.CONDITION_HAZE: 
-                    rez = Rez.Drawables.haze_32; 
-                    break;
-                case Weather.CONDITION_HAIL: 
-                    rez = Rez.Drawables.hail_32; 
-                    break;
-                case Weather.CONDITION_SCATTERED_THUNDERSTORMS: 
-                case Weather.CONDITION_CHANCE_OF_THUNDERSTORMS: 
-                    rez = Rez.Drawables.scattered_thunderstorms_32; 
-                    break;
-                case Weather.CONDITION_LIGHT_RAIN: 
-                case Weather.CONDITION_LIGHT_SHOWERS: 
-                    rez = Rez.Drawables.light_rain_32; 
-                    break;
-                case Weather.CONDITION_HEAVY_RAIN: 
-                case Weather.CONDITION_HEAVY_SHOWERS: 
-                    rez = Rez.Drawables.heavy_rain_32; 
-                    break;
-                case Weather.CONDITION_LIGHT_SNOW: 
-                case Weather.CONDITION_CHANCE_OF_SNOW: 
-                case Weather.CONDITION_CLOUDY_CHANCE_OF_SNOW: 
-                case Weather.CONDITION_FLURRIES: 
-                    rez = Rez.Drawables.light_snow_32; 
-                    break;
-                case Weather.CONDITION_HEAVY_SNOW: 
-                    rez = Rez.Drawables.heavy_snow_32; 
-                    break;
-                case Weather.CONDITION_RAIN_SNOW: 
-                case Weather.CONDITION_LIGHT_RAIN_SNOW: 
-                case Weather.CONDITION_HEAVY_RAIN_SNOW: 
-                case Weather.CONDITION_CHANCE_OF_RAIN_SNOW: 
-                case Weather.CONDITION_CLOUDY_CHANCE_OF_RAIN_SNOW: 
-                case Weather.CONDITION_FREEZING_RAIN: 
-                case Weather.CONDITION_SLEET: 
-                case Weather.CONDITION_ICE_SNOW: 
-                    rez = Rez.Drawables.wintry_mix_32; 
-                    break;
-                case Weather.CONDITION_CLOUDY: 
-                    rez = Rez.Drawables.cloudy_32; 
-                    break;
-                case Weather.CONDITION_CHANCE_OF_SHOWERS: 
-                case Weather.CONDITION_CLOUDY_CHANCE_OF_RAIN: 
-                    rez = Rez.Drawables.rain_cloud_32; 
-                    break;
-                case Weather.CONDITION_DUST: 
-                case Weather.CONDITION_SAND: 
-                case Weather.CONDITION_SANDSTORM: 
-                case Weather.CONDITION_VOLCANIC_ASH: 
-                    rez = Rez.Drawables.dust_32; 
-                    break;
-                case Weather.CONDITION_DRIZZLE: 
-                    rez = Rez.Drawables.drizzle_32; 
-                    break;
-                case Weather.CONDITION_TORNADO: 
-                    rez = Rez.Drawables.tornado_32; 
-                    break;
-
-                case Weather.CONDITION_UNKNOWN_PRECIPITATION: 
-                case Weather.CONDITION_UNKNOWN: 
-                default:
-                    rez = Rez.Drawables.night_clear_32; 
-                    break;
-            }
+            return Rez.Drawables.night_clear_32;
         }
-        
-        return rez;
+
+        switch (val.condition){
+
+            case Weather.CONDITION_CLEAR:
+            case Weather.CONDITION_FAIR: 
+                return Rez.Drawables.sunny_32;
+
+            case Weather.CONDITION_PARTLY_CLOUDY: 
+            case Weather.CONDITION_MOSTLY_CLEAR: 
+            case Weather.CONDITION_THIN_CLOUDS: 
+                return Rez.Drawables.partly_cloudy_32; 
+
+            case Weather.CONDITION_MOSTLY_CLOUDY: 
+            case Weather.CONDITION_PARTLY_CLEAR: 
+                return Rez.Drawables.mostly_cloudy_32; 
+
+            case Weather.CONDITION_SCATTERED_SHOWERS: 
+            case Weather.CONDITION_RAIN: 
+                return Rez.Drawables.rain_32; 
+
+            case Weather.CONDITION_SNOW: 
+            case Weather.CONDITION_ICE: 
+                return Rez.Drawables.snow_32; 
+
+            case Weather.CONDITION_WINDY: 
+                return Rez.Drawables.windy_32; 
+
+            case Weather.CONDITION_THUNDERSTORMS: 
+            case Weather.CONDITION_SQUALL: 
+            case Weather.CONDITION_HURRICANE: 
+            case Weather.CONDITION_TROPICAL_STORM: 
+                return Rez.Drawables.thunderstorm_32; 
+
+            case Weather.CONDITION_WINTRY_MIX: 
+                return Rez.Drawables.wintry_mix_32; 
+
+            case Weather.CONDITION_FOG: 
+                return Rez.Drawables.fog_32; 
+
+            case Weather.CONDITION_HAZY: 
+            case Weather.CONDITION_MIST: 
+            case Weather.CONDITION_SMOKE: 
+            case Weather.CONDITION_HAZE: 
+                return Rez.Drawables.haze_32; 
+
+            case Weather.CONDITION_HAIL: 
+                return Rez.Drawables.hail_32; 
+
+            case Weather.CONDITION_SCATTERED_THUNDERSTORMS: 
+            case Weather.CONDITION_CHANCE_OF_THUNDERSTORMS: 
+                return Rez.Drawables.scattered_thunderstorms_32; 
+
+            case Weather.CONDITION_LIGHT_RAIN: 
+            case Weather.CONDITION_LIGHT_SHOWERS: 
+                return Rez.Drawables.light_rain_32; 
+
+            case Weather.CONDITION_HEAVY_RAIN: 
+            case Weather.CONDITION_HEAVY_SHOWERS: 
+                return Rez.Drawables.heavy_rain_32; 
+
+            case Weather.CONDITION_LIGHT_SNOW: 
+            case Weather.CONDITION_CHANCE_OF_SNOW: 
+            case Weather.CONDITION_CLOUDY_CHANCE_OF_SNOW: 
+            case Weather.CONDITION_FLURRIES: 
+                return Rez.Drawables.light_snow_32; 
+
+            case Weather.CONDITION_HEAVY_SNOW: 
+                return Rez.Drawables.heavy_snow_32; 
+
+            case Weather.CONDITION_RAIN_SNOW: 
+            case Weather.CONDITION_LIGHT_RAIN_SNOW: 
+            case Weather.CONDITION_HEAVY_RAIN_SNOW: 
+            case Weather.CONDITION_CHANCE_OF_RAIN_SNOW: 
+            case Weather.CONDITION_CLOUDY_CHANCE_OF_RAIN_SNOW: 
+            case Weather.CONDITION_FREEZING_RAIN: 
+            case Weather.CONDITION_SLEET: 
+            case Weather.CONDITION_ICE_SNOW: 
+                return Rez.Drawables.wintry_mix_32; 
+
+            case Weather.CONDITION_CLOUDY: 
+                return Rez.Drawables.cloudy_32; 
+
+            case Weather.CONDITION_CHANCE_OF_SHOWERS: 
+            case Weather.CONDITION_CLOUDY_CHANCE_OF_RAIN: 
+                return Rez.Drawables.rain_cloud_32; 
+
+            case Weather.CONDITION_DUST: 
+            case Weather.CONDITION_SAND: 
+            case Weather.CONDITION_SANDSTORM: 
+            case Weather.CONDITION_VOLCANIC_ASH: 
+                return Rez.Drawables.dust_32;
+                
+            case Weather.CONDITION_DRIZZLE: 
+                return Rez.Drawables.drizzle_32; 
+
+            case Weather.CONDITION_TORNADO: 
+                return Rez.Drawables.tornado_32; 
+
+            case Weather.CONDITION_UNKNOWN_PRECIPITATION: 
+            case Weather.CONDITION_UNKNOWN: 
+            default:
+                return Rez.Drawables.night_clear_32; 
+        }
     }
 }
