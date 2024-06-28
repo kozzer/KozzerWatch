@@ -119,57 +119,58 @@ C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_StepsCount_mc_18_28
 C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_StepsCount_mc_34_4_47_4_start:
 [ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\StepsCount.mc" 35 8 ]
         [ "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_StepsCount_mc_34_4_47_4_start" "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_StepsCount_mc_34_4_47_4_stop" ]
-        %dataString.1 = local;
-        %tmp.1 = lgetv %info;
-        %tmp.2 = getv %tmp.1 :steps;
-        %tmp.3 = getv function %tmp.2 :toString;
-        %tmp.4 = invoke %tmp.2 %tmp.3();
-        lputv %dataString.1 %tmp.4;
+        %displayString.1 = local;
+        %tmp.2 = getv ? :CommonMethods;
+        %tmp.3 = getv function %tmp.2 :getFormattedStringForNumber;
+        %tmp.4 = lgetv %info;
+        %tmp.5 = getv %tmp.4 :steps;
+        %tmp.6 = invoke %tmp.2 %tmp.3(%tmp.5);
+        lputv %displayString.1 %tmp.6;
 [ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\StepsCount.mc" 36 8 ]
         [ "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_StepsCount_mc_34_4_47_4_start" "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_StepsCount_mc_34_4_47_4_stop" ]
         %stepPerc.2 = local;
-        %tmp.5 = lgetv %info;
-        %tmp.6 = getv %tmp.5 :steps;
-        %tmp.7 = 100;
-        %tmp.8 = mul %tmp.6 %tmp.7;
-        %tmp.9 = lgetv %info;
-        %tmp.10 = getv %tmp.9 :stepGoal;
-        %tmp.11 = div %tmp.8 %tmp.10;
-        %tmp.12 = getv function %tmp.11 :toNumber;
-        %tmp.13 = invoke %tmp.11 %tmp.12();
-        lputv %stepPerc.2 %tmp.13;
+        %tmp.7 = lgetv %info;
+        %tmp.8 = getv %tmp.7 :steps;
+        %tmp.9 = 100;
+        %tmp.10 = mul %tmp.8 %tmp.9;
+        %tmp.11 = lgetv %info;
+        %tmp.12 = getv %tmp.11 :stepGoal;
+        %tmp.13 = div %tmp.10 %tmp.12;
+        %tmp.14 = getv function %tmp.13 :toNumber;
+        %tmp.15 = invoke %tmp.13 %tmp.14();
+        lputv %stepPerc.2 %tmp.15;
 [ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\StepsCount.mc" 38 8 ]
-        %tmp.14 = self;
-        %tmp.15 = getv function %tmp.14 :setStepsDisplayLevelColor;
-        %tmp.17 = lgetv %dc;
-        %tmp.19 = lgetv %stepPerc.2;
-        invoke %tmp.14 %tmp.15(%tmp.17, %tmp.19);
+        %tmp.16 = self;
+        %tmp.17 = getv function %tmp.16 :setStepsDisplayLevelColor;
+        %tmp.19 = lgetv %dc;
+        %tmp.21 = lgetv %stepPerc.2;
+        invoke %tmp.16 %tmp.17(%tmp.19, %tmp.21);
 [ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\StepsCount.mc" 40 8 ]
-        %tmp.21 = getv ? :CommonMethods;
-        %tmp.22 = getv function %tmp.21 :setDrawingClip;
-        %tmp.24 = lgetv %dc;
-        %tmp.26 = getv ? :_stepsPoints;
-        invoke %tmp.21 %tmp.22(%tmp.24, %tmp.26);
+        %tmp.23 = getv ? :CommonMethods;
+        %tmp.24 = getv function %tmp.23 :setDrawingClip;
+        %tmp.26 = lgetv %dc;
+        %tmp.28 = getv ? :_stepsPoints;
+        invoke %tmp.23 %tmp.24(%tmp.26, %tmp.28);
 [ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\StepsCount.mc" 42 8 ]
-        %tmp.27 = lgetv %dc;
-        %tmp.28 = getv function %tmp.27 :drawText;
-        %tmp.30 = getv ? :_stepsX;
-        %tmp.32 = getv ? :_stepsY;
-        %tmp.34 = getv ? :_tinyFont;
-        %tmp.36 = lgetv %dataString.1;
-        %tmp.37 = getm $.Toybox.Graphics;
-        %tmp.38 = getv %tmp.37 :TEXT_JUSTIFY_LEFT;
-        invoke %tmp.27 %tmp.28(%tmp.30, %tmp.32, %tmp.34, %tmp.36, %tmp.38);
+        %tmp.29 = lgetv %dc;
+        %tmp.30 = getv function %tmp.29 :drawText;
+        %tmp.32 = getv ? :_stepsX;
+        %tmp.34 = getv ? :_stepsY;
+        %tmp.36 = getv ? :_tinyFont;
+        %tmp.38 = lgetv %displayString.1;
+        %tmp.39 = getm $.Toybox.Graphics;
+        %tmp.40 = getv %tmp.39 :TEXT_JUSTIFY_LEFT;
+        invoke %tmp.29 %tmp.30(%tmp.32, %tmp.34, %tmp.36, %tmp.38, %tmp.40);
 [ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\StepsCount.mc" 44 8 ]
-        %tmp.40 = getv ? :CommonMethods;
-        %tmp.41 = getv function %tmp.40 :clearDrawingClip;
-        %tmp.43 = lgetv %dc;
-        invoke %tmp.40 %tmp.41(%tmp.43);
+        %tmp.42 = getv ? :CommonMethods;
+        %tmp.43 = getv function %tmp.42 :clearDrawingClip;
+        %tmp.45 = lgetv %dc;
+        invoke %tmp.42 %tmp.43(%tmp.45);
 [ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\StepsCount.mc" 46 8 ]
-        %tmp.44 = getm $.ThemeController;
-        %tmp.45 = getv function %tmp.44 :resetColors;
-        %tmp.47 = lgetv %dc;
-        invoke %tmp.44 %tmp.45(%tmp.47);
+        %tmp.46 = getm $.ThemeController;
+        %tmp.47 = getv function %tmp.46 :resetColors;
+        %tmp.49 = lgetv %dc;
+        invoke %tmp.46 %tmp.47(%tmp.49);
 C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_StepsCount_mc_34_4_47_4_stop:
     }
     [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\StepsCount.mc"; @line = 49; ]

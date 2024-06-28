@@ -62,7 +62,7 @@ class Weather {
         // current temp, high temp, low temp
         dc.drawText(_weatherX + 30,  _weatherY + 9,  Graphics.FONT_TINY, currentTemp, Graphics.TEXT_JUSTIFY_CENTER);
         dc.drawText(_weatherX + 118, _weatherY + 6,  _veryTinyFont,      highTemp,    Graphics.TEXT_JUSTIFY_CENTER);
-        dc.drawText(_weatherX + 118, _weatherY + 24, _veryTinyFont,      lowTemp,     Graphics.TEXT_JUSTIFY_CENTER);
+        dc.drawText(_weatherX + 118, _weatherY + 25, _veryTinyFont,      lowTemp,     Graphics.TEXT_JUSTIFY_CENTER);
 
         // line between high and low
         dc.drawLine(_weatherX + 98, _weatherY + 26, _weatherX + 132, _weatherY + 26);

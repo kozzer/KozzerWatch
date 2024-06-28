@@ -248,7 +248,7 @@ C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_Weather_mc_52_53_69
         %tmp.82 = 118;
         %tmp.83 = add %tmp.81 %tmp.82;
         %tmp.85 = getv ? :_weatherY;
-        %tmp.86 = 24;
+        %tmp.86 = 25;
         %tmp.87 = add %tmp.85 %tmp.86;
         %tmp.89 = getv ? :_veryTinyFont;
         %tmp.91 = lgetv %lowTemp.3;

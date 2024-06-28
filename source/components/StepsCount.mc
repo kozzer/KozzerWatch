@@ -32,14 +32,14 @@ class StepsCount {
 
     function drawOnScreen(dc, info)
     {
-        var dataString = info.steps.toString();
-        var stepPerc   = ((info.steps * 100) / info.stepGoal).toNumber();
+        var displayString = CommonMethods.getFormattedStringForNumber(info.steps);
+        var stepPerc      = ((info.steps * 100) / info.stepGoal).toNumber();
 
         setStepsDisplayLevelColor(dc, stepPerc);
 
         CommonMethods.setDrawingClip(dc, _stepsPoints);
 
-        dc.drawText(_stepsX, _stepsY, _tinyFont, dataString, Graphics.TEXT_JUSTIFY_LEFT);
+        dc.drawText(_stepsX, _stepsY, _tinyFont, displayString, Graphics.TEXT_JUSTIFY_LEFT);
 
         CommonMethods.clearDrawingClip(dc);
 
