@@ -9,12 +9,6 @@ class SolarStatus {
     // Reference to solar intensity sun icon
     private var _sunIcon;   
 
-    // The screen dimensions
-    private var _screenWidth;
-    private var _screenHeight;      
-
-    // Sun's size & location
-    private var _sunDiameter = 16;    
     private var _center_sunX;
     private var _center_sunY;  
 
@@ -29,13 +23,9 @@ class SolarStatus {
         // Load bitmap resource
         _sunIcon = WatchUi.loadResource(Rez.Drawables.SunIcon);
 
-        // dc dimensions
-        var _screenWidth  = dc.getWidth();
-        var _screenHeight = dc.getHeight();
-
         // set Sun's location
-        _center_sunX = _screenWidth / 2;
-        _center_sunY = _screenHeight - 60;
+        _center_sunX = dc.getWidth() / 2;
+        _center_sunY = dc.getHeight() - 60;
 
         // Get upper-left location for sun
         _sunX = _center_sunX - 16;

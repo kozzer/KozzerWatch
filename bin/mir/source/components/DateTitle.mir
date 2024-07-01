@@ -67,7 +67,7 @@ C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_DateTitle_mc_23_24_
         %tmp.15 = lgetv %dc;
         %tmp.16 = getv function %tmp.15 :getWidth;
         %tmp.17 = invoke %tmp.15 %tmp.16();
-        %tmp.18 = 40;
+        %tmp.18 = 34;
         %tmp.19 = sub %tmp.17 %tmp.18;
         putv self :_dateX %tmp.19;
 [ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\DateTitle.mc" 25 12 ]
@@ -76,7 +76,7 @@ C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_DateTitle_mc_23_24_
         %tmp.22 = invoke %tmp.20 %tmp.21();
         %tmp.23 = 2;
         %tmp.24 = div %tmp.22 %tmp.23;
-        %tmp.25 = 14;
+        %tmp.25 = 8;
         %tmp.26 = sub %tmp.24 %tmp.25;
         putv self :_dateY %tmp.26;
 C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_DateTitle_mc_23_24_26_8_stop:

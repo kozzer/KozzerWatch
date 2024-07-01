@@ -107,7 +107,6 @@ class MainClock {
     // Draws the clock tick marks around the outside edges of the screen
     private function drawHashMarks(dc) {
         var width  = dc.getWidth();
-        var height = dc.getHeight();
 
         // Forerunner 645 Music has a round face
         var sX, sY;

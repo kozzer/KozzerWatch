@@ -479,128 +479,121 @@ C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MainClock_mc_89_96_
     [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\MainClock.mc"; @line = 108; ]
     private
     function drawHashMarks(dc) {
-C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MainClock_mc_108_39_126_4_start:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MainClock_mc_108_39_125_4_start:
 [ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\MainClock.mc" 109 8 ]
-        [ "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MainClock_mc_108_39_126_4_start" "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MainClock_mc_108_39_126_4_stop" ]
+        [ "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MainClock_mc_108_39_125_4_start" "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MainClock_mc_108_39_125_4_stop" ]
         %width.1 = local;
         %tmp.1 = lgetv %dc;
         %tmp.2 = getv function %tmp.1 :getWidth;
         %tmp.3 = invoke %tmp.1 %tmp.2();
         lputv %width.1 %tmp.3;
-[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\MainClock.mc" 110 8 ]
-        [ "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MainClock_mc_108_39_126_4_start" "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MainClock_mc_108_39_126_4_stop" ]
-        %height.2 = local;
-        %tmp.4 = lgetv %dc;
-        %tmp.5 = getv function %tmp.4 :getHeight;
-        %tmp.6 = invoke %tmp.4 %tmp.5();
-        lputv %height.2 %tmp.6;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\MainClock.mc" 112 8 ]
+        [ "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MainClock_mc_108_39_125_4_start" "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MainClock_mc_108_39_125_4_stop" ]
+        %sX.2 = local;
+        [ "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MainClock_mc_108_39_125_4_start" "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MainClock_mc_108_39_125_4_stop" ]
+        %sY.3 = local;
 [ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\MainClock.mc" 113 8 ]
-        [ "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MainClock_mc_108_39_126_4_start" "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MainClock_mc_108_39_126_4_stop" ]
-        %sX.3 = local;
-        [ "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MainClock_mc_108_39_126_4_start" "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MainClock_mc_108_39_126_4_stop" ]
-        %sY.4 = local;
+        [ "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MainClock_mc_108_39_125_4_start" "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MainClock_mc_108_39_125_4_stop" ]
+        %eX.4 = local;
+        [ "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MainClock_mc_108_39_125_4_start" "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MainClock_mc_108_39_125_4_stop" ]
+        %eY.5 = local;
 [ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\MainClock.mc" 114 8 ]
-        [ "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MainClock_mc_108_39_126_4_start" "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MainClock_mc_108_39_126_4_stop" ]
-        %eX.5 = local;
-        [ "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MainClock_mc_108_39_126_4_start" "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MainClock_mc_108_39_126_4_stop" ]
-        %eY.6 = local;
+        [ "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MainClock_mc_108_39_125_4_start" "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MainClock_mc_108_39_125_4_stop" ]
+        %outerRad.6 = local;
+        %tmp.5 = lgetv %width.1;
+        %tmp.6 = 2;
+        %tmp.7 = div %tmp.5 %tmp.6;
+        lputv %outerRad.6 %tmp.7;
 [ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\MainClock.mc" 115 8 ]
-        [ "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MainClock_mc_108_39_126_4_start" "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MainClock_mc_108_39_126_4_stop" ]
-        %outerRad.7 = local;
-        %tmp.8 = lgetv %width.1;
-        %tmp.9 = 2;
-        %tmp.10 = div %tmp.8 %tmp.9;
-        lputv %outerRad.7 %tmp.10;
-[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\MainClock.mc" 116 8 ]
-        [ "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MainClock_mc_108_39_126_4_start" "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MainClock_mc_108_39_126_4_stop" ]
-        %innerRad.8 = local;
-        %tmp.12 = lgetv %outerRad.7;
-        %tmp.13 = 10;
-        %tmp.14 = sub %tmp.12 %tmp.13;
-        lputv %innerRad.8 %tmp.14;
-[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\MainClock.mc" 119 8 ]
-        for @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MainClock_mc_119_8_125_8_for_test @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MainClock_mc_119_8_125_8_for_incr @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MainClock_mc_119_8_125_8_for_end;
-C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MainClock_mc_119_8_125_8_for_init:
-        [ "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MainClock_mc_119_8_125_8_for_begin" "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MainClock_mc_119_8_125_8_for_end" ]
-        %i.9 = local;
-        %tmp.16 = getv ? :Math;
-        %tmp.17 = getv %tmp.16 :PI;
-        %tmp.18 = 6;
-        %tmp.19 = div %tmp.17 %tmp.18;
-        lputv %i.9 %tmp.19;
-C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MainClock_mc_119_8_125_8_for_test:
-        %tmp.21 = lgetv %i.9;
-        %tmp.22 = 12;
-        %tmp.24 = getv ? :Math;
-        %tmp.25 = getv %tmp.24 :PI;
-        %tmp.26 = mul %tmp.22 %tmp.25;
-        %tmp.27 = 6;
-        %tmp.28 = div %tmp.26 %tmp.27;
-        %tmp.29 = lte %tmp.21 %tmp.28;
-        bf %tmp.29 @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MainClock_mc_119_8_125_8_for_end;
-C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MainClock_mc_119_8_125_8_for_begin:
-C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MainClock_mc_119_77_125_8_start:
+        [ "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MainClock_mc_108_39_125_4_start" "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MainClock_mc_108_39_125_4_stop" ]
+        %innerRad.7 = local;
+        %tmp.9 = lgetv %outerRad.6;
+        %tmp.10 = 10;
+        %tmp.11 = sub %tmp.9 %tmp.10;
+        lputv %innerRad.7 %tmp.11;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\MainClock.mc" 118 8 ]
+        for @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MainClock_mc_118_8_124_8_for_test @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MainClock_mc_118_8_124_8_for_incr @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MainClock_mc_118_8_124_8_for_end;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MainClock_mc_118_8_124_8_for_init:
+        [ "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MainClock_mc_118_8_124_8_for_begin" "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MainClock_mc_118_8_124_8_for_end" ]
+        %i.8 = local;
+        %tmp.13 = getv ? :Math;
+        %tmp.14 = getv %tmp.13 :PI;
+        %tmp.15 = 6;
+        %tmp.16 = div %tmp.14 %tmp.15;
+        lputv %i.8 %tmp.16;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MainClock_mc_118_8_124_8_for_test:
+        %tmp.18 = lgetv %i.8;
+        %tmp.19 = 12;
+        %tmp.21 = getv ? :Math;
+        %tmp.22 = getv %tmp.21 :PI;
+        %tmp.23 = mul %tmp.19 %tmp.22;
+        %tmp.24 = 6;
+        %tmp.25 = div %tmp.23 %tmp.24;
+        %tmp.26 = lte %tmp.18 %tmp.25;
+        bf %tmp.26 @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MainClock_mc_118_8_124_8_for_end;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MainClock_mc_118_8_124_8_for_begin:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MainClock_mc_118_77_124_8_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\MainClock.mc" 119 12 ]
+        %tmp.28 = lgetv %outerRad.6;
+        %tmp.30 = lgetv %innerRad.7;
+        %tmp.32 = getv ? :Math;
+        %tmp.33 = getv function %tmp.32 :sin;
+        %tmp.35 = lgetv %i.8;
+        %tmp.36 = invoke %tmp.32 %tmp.33(%tmp.35);
+        %tmp.37 = mul %tmp.30 %tmp.36;
+        %tmp.38 = add %tmp.28 %tmp.37;
+        lputv %sY.3 %tmp.38;
 [ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\MainClock.mc" 120 12 ]
-        %tmp.31 = lgetv %outerRad.7;
-        %tmp.33 = lgetv %innerRad.8;
-        %tmp.35 = getv ? :Math;
-        %tmp.36 = getv function %tmp.35 :sin;
-        %tmp.38 = lgetv %i.9;
-        %tmp.39 = invoke %tmp.35 %tmp.36(%tmp.38);
-        %tmp.40 = mul %tmp.33 %tmp.39;
-        %tmp.41 = add %tmp.31 %tmp.40;
-        lputv %sY.4 %tmp.41;
+        %tmp.40 = lgetv %outerRad.6;
+        %tmp.42 = lgetv %outerRad.6;
+        %tmp.44 = getv ? :Math;
+        %tmp.45 = getv function %tmp.44 :sin;
+        %tmp.47 = lgetv %i.8;
+        %tmp.48 = invoke %tmp.44 %tmp.45(%tmp.47);
+        %tmp.49 = mul %tmp.42 %tmp.48;
+        %tmp.50 = add %tmp.40 %tmp.49;
+        lputv %eY.5 %tmp.50;
 [ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\MainClock.mc" 121 12 ]
-        %tmp.43 = lgetv %outerRad.7;
-        %tmp.45 = lgetv %outerRad.7;
-        %tmp.47 = getv ? :Math;
-        %tmp.48 = getv function %tmp.47 :sin;
-        %tmp.50 = lgetv %i.9;
-        %tmp.51 = invoke %tmp.47 %tmp.48(%tmp.50);
-        %tmp.52 = mul %tmp.45 %tmp.51;
-        %tmp.53 = add %tmp.43 %tmp.52;
-        lputv %eY.6 %tmp.53;
+        %tmp.52 = lgetv %outerRad.6;
+        %tmp.54 = lgetv %innerRad.7;
+        %tmp.56 = getv ? :Math;
+        %tmp.57 = getv function %tmp.56 :cos;
+        %tmp.59 = lgetv %i.8;
+        %tmp.60 = invoke %tmp.56 %tmp.57(%tmp.59);
+        %tmp.61 = mul %tmp.54 %tmp.60;
+        %tmp.62 = add %tmp.52 %tmp.61;
+        lputv %sX.2 %tmp.62;
 [ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\MainClock.mc" 122 12 ]
-        %tmp.55 = lgetv %outerRad.7;
-        %tmp.57 = lgetv %innerRad.8;
-        %tmp.59 = getv ? :Math;
-        %tmp.60 = getv function %tmp.59 :cos;
-        %tmp.62 = lgetv %i.9;
-        %tmp.63 = invoke %tmp.59 %tmp.60(%tmp.62);
-        %tmp.64 = mul %tmp.57 %tmp.63;
-        %tmp.65 = add %tmp.55 %tmp.64;
-        lputv %sX.3 %tmp.65;
+        %tmp.64 = lgetv %outerRad.6;
+        %tmp.66 = lgetv %outerRad.6;
+        %tmp.68 = getv ? :Math;
+        %tmp.69 = getv function %tmp.68 :cos;
+        %tmp.71 = lgetv %i.8;
+        %tmp.72 = invoke %tmp.68 %tmp.69(%tmp.71);
+        %tmp.73 = mul %tmp.66 %tmp.72;
+        %tmp.74 = add %tmp.64 %tmp.73;
+        lputv %eX.4 %tmp.74;
 [ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\MainClock.mc" 123 12 ]
-        %tmp.67 = lgetv %outerRad.7;
-        %tmp.69 = lgetv %outerRad.7;
-        %tmp.71 = getv ? :Math;
-        %tmp.72 = getv function %tmp.71 :cos;
-        %tmp.74 = lgetv %i.9;
-        %tmp.75 = invoke %tmp.71 %tmp.72(%tmp.74);
-        %tmp.76 = mul %tmp.69 %tmp.75;
-        %tmp.77 = add %tmp.67 %tmp.76;
-        lputv %eX.5 %tmp.77;
-[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\MainClock.mc" 124 12 ]
-        %tmp.78 = lgetv %dc;
-        %tmp.79 = getv function %tmp.78 :drawLine;
-        %tmp.81 = lgetv %sX.3;
-        %tmp.83 = lgetv %sY.4;
-        %tmp.85 = lgetv %eX.5;
-        %tmp.87 = lgetv %eY.6;
-        invoke %tmp.78 %tmp.79(%tmp.81, %tmp.83, %tmp.85, %tmp.87);
-C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MainClock_mc_119_77_125_8_stop:
-C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MainClock_mc_119_8_125_8_for_incr:
-[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\MainClock.mc" 119 ]
-        %tmp.88 = lgetv %i.9;
-        %tmp.90 = getv ? :Math;
-        %tmp.91 = getv %tmp.90 :PI;
-        %tmp.92 = 6;
-        %tmp.93 = div %tmp.91 %tmp.92;
-        %tmp.94 = add %tmp.88 %tmp.93;
-        lputv %i.9 %tmp.94;
-        goto @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MainClock_mc_119_8_125_8_for_test;
-C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MainClock_mc_119_8_125_8_for_end:
-C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MainClock_mc_108_39_126_4_stop:
+        %tmp.75 = lgetv %dc;
+        %tmp.76 = getv function %tmp.75 :drawLine;
+        %tmp.78 = lgetv %sX.2;
+        %tmp.80 = lgetv %sY.3;
+        %tmp.82 = lgetv %eX.4;
+        %tmp.84 = lgetv %eY.5;
+        invoke %tmp.75 %tmp.76(%tmp.78, %tmp.80, %tmp.82, %tmp.84);
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MainClock_mc_118_77_124_8_stop:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MainClock_mc_118_8_124_8_for_incr:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\MainClock.mc" 118 ]
+        %tmp.85 = lgetv %i.8;
+        %tmp.87 = getv ? :Math;
+        %tmp.88 = getv %tmp.87 :PI;
+        %tmp.89 = 6;
+        %tmp.90 = div %tmp.88 %tmp.89;
+        %tmp.91 = add %tmp.85 %tmp.90;
+        lputv %i.8 %tmp.91;
+        goto @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MainClock_mc_118_8_124_8_for_test;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MainClock_mc_118_8_124_8_for_end:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MainClock_mc_108_39_125_4_stop:
     }
 }
 [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\MainClock.mc"; @line = 1; ]

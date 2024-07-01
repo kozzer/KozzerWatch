@@ -18,34 +18,25 @@ class SolarStatus{
     [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\SolarStatus.mc"; @line = 10; @position = 16; ]
     private
     var _sunIcon;
-    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\SolarStatus.mc"; @line = 13; @position = 16; ]
-    private
-    var _screenWidth;
-    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\SolarStatus.mc"; @line = 14; @position = 16; ]
-    private
-    var _screenHeight;
-    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\SolarStatus.mc"; @line = 17; @position = 16; ]
-    private
-    var _sunDiameter = 16;
-    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\SolarStatus.mc"; @line = 18; @position = 16; ]
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\SolarStatus.mc"; @line = 12; @position = 16; ]
     private
     var _center_sunX;
-    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\SolarStatus.mc"; @line = 19; @position = 16; ]
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\SolarStatus.mc"; @line = 13; @position = 16; ]
     private
     var _center_sunY;
-    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\SolarStatus.mc"; @line = 21; @position = 16; ]
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\SolarStatus.mc"; @line = 15; @position = 16; ]
     private
     var _sunX;
-    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\SolarStatus.mc"; @line = 22; @position = 16; ]
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\SolarStatus.mc"; @line = 16; @position = 16; ]
     private
     var _sunY;
-    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\SolarStatus.mc"; @line = 25; @position = 16; ]
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\SolarStatus.mc"; @line = 19; @position = 16; ]
     private
     var _sunPoints;
-    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\SolarStatus.mc"; @line = 28; ]
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\SolarStatus.mc"; @line = 22; ]
     function initialize(dc) as Void {
-C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_SolarStatus_mc_28_28_53_4_start:
-[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\SolarStatus.mc" 30 8 ]
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_SolarStatus_mc_22_28_43_4_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\SolarStatus.mc" 24 8 ]
         %tmp.1 = getm $.Toybox.WatchUi;
         %tmp.2 = getv function %tmp.1 :loadResource;
         %tmp.4 = getv ? :Rez;
@@ -53,144 +44,134 @@ C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_SolarStatus_mc_28_2
         %tmp.6 = getv %tmp.5 :SunIcon;
         %tmp.7 = invoke %tmp.1 %tmp.2(%tmp.6);
         putv self :_sunIcon %tmp.7;
-[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\SolarStatus.mc" 33 8 ]
-        [ "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_SolarStatus_mc_28_28_53_4_start" "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_SolarStatus_mc_28_28_53_4_stop" ]
-        %_screenWidth.1 = local;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\SolarStatus.mc" 27 8 ]
         %tmp.8 = lgetv %dc;
         %tmp.9 = getv function %tmp.8 :getWidth;
         %tmp.10 = invoke %tmp.8 %tmp.9();
-        lputv %_screenWidth.1 %tmp.10;
-[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\SolarStatus.mc" 34 8 ]
-        [ "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_SolarStatus_mc_28_28_53_4_start" "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_SolarStatus_mc_28_28_53_4_stop" ]
-        %_screenHeight.2 = local;
-        %tmp.11 = lgetv %dc;
-        %tmp.12 = getv function %tmp.11 :getHeight;
-        %tmp.13 = invoke %tmp.11 %tmp.12();
-        lputv %_screenHeight.2 %tmp.13;
-[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\SolarStatus.mc" 37 8 ]
-        %tmp.15 = lgetv %_screenWidth.1;
-        %tmp.16 = 2;
-        %tmp.17 = div %tmp.15 %tmp.16;
-        putv self :_center_sunX %tmp.17;
-[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\SolarStatus.mc" 38 8 ]
-        %tmp.19 = lgetv %_screenHeight.2;
-        %tmp.20 = 60;
+        %tmp.11 = 2;
+        %tmp.12 = div %tmp.10 %tmp.11;
+        putv self :_center_sunX %tmp.12;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\SolarStatus.mc" 28 8 ]
+        %tmp.13 = lgetv %dc;
+        %tmp.14 = getv function %tmp.13 :getHeight;
+        %tmp.15 = invoke %tmp.13 %tmp.14();
+        %tmp.16 = 60;
+        %tmp.17 = sub %tmp.15 %tmp.16;
+        putv self :_center_sunY %tmp.17;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\SolarStatus.mc" 31 8 ]
+        %tmp.19 = getv ? :_center_sunX;
+        %tmp.20 = 16;
         %tmp.21 = sub %tmp.19 %tmp.20;
-        putv self :_center_sunY %tmp.21;
-[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\SolarStatus.mc" 41 8 ]
-        %tmp.23 = getv ? :_center_sunX;
-        %tmp.24 = 16;
+        putv self :_sunX %tmp.21;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\SolarStatus.mc" 32 8 ]
+        %tmp.23 = getv ? :_center_sunY;
+        %tmp.24 = 15;
         %tmp.25 = sub %tmp.23 %tmp.24;
-        putv self :_sunX %tmp.25;
-[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\SolarStatus.mc" 42 8 ]
-        %tmp.27 = getv ? :_center_sunY;
-        %tmp.28 = 15;
-        %tmp.29 = sub %tmp.27 %tmp.28;
-        putv self :_sunY %tmp.29;
-[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\SolarStatus.mc" 45 8 ]
-        [ "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_SolarStatus_mc_28_28_53_4_start" "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_SolarStatus_mc_28_28_53_4_stop" ]
-        %sunPixelSize.3 = local;
-        %tmp.30 = 32;
-        lputv %sunPixelSize.3 %tmp.30;
-[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\SolarStatus.mc" 46 8 ]
-        %tmp.31 = newa 4;
-        %tmp.32 = newa 2;
-        %tmp.34 = getv ? :_sunX;
+        putv self :_sunY %tmp.25;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\SolarStatus.mc" 35 8 ]
+        [ "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_SolarStatus_mc_22_28_43_4_start" "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_SolarStatus_mc_22_28_43_4_stop" ]
+        %sunPixelSize.1 = local;
+        %tmp.26 = 32;
+        lputv %sunPixelSize.1 %tmp.26;
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\SolarStatus.mc" 36 8 ]
+        %tmp.27 = newa 4;
+        %tmp.28 = newa 2;
+        %tmp.30 = getv ? :_sunX;
+        %tmp.31 = dup %tmp.28;
+        %tmp.32 = aputv %tmp.31 0 %tmp.30;
+        %tmp.34 = getv ? :_sunY;
         %tmp.35 = dup %tmp.32;
-        %tmp.36 = aputv %tmp.35 0 %tmp.34;
-        %tmp.38 = getv ? :_sunY;
-        %tmp.39 = dup %tmp.36;
-        %tmp.40 = aputv %tmp.39 1 %tmp.38;
-        %tmp.41 = dup %tmp.31;
-        %tmp.42 = aputv %tmp.41 0 %tmp.40;
-        %tmp.43 = newa 2;
-        %tmp.45 = getv ? :_sunX;
-        %tmp.47 = lgetv %sunPixelSize.3;
-        %tmp.48 = add %tmp.45 %tmp.47;
-        %tmp.49 = dup %tmp.43;
-        %tmp.50 = aputv %tmp.49 0 %tmp.48;
-        %tmp.52 = getv ? :_sunY;
-        %tmp.53 = dup %tmp.50;
-        %tmp.54 = aputv %tmp.53 1 %tmp.52;
-        %tmp.55 = dup %tmp.42;
-        %tmp.56 = aputv %tmp.55 1 %tmp.54;
-        %tmp.57 = newa 2;
-        %tmp.59 = getv ? :_sunX;
-        %tmp.61 = lgetv %sunPixelSize.3;
-        %tmp.62 = add %tmp.59 %tmp.61;
-        %tmp.63 = dup %tmp.57;
-        %tmp.64 = aputv %tmp.63 0 %tmp.62;
-        %tmp.66 = getv ? :_sunY;
-        %tmp.68 = lgetv %sunPixelSize.3;
-        %tmp.69 = add %tmp.66 %tmp.68;
-        %tmp.70 = dup %tmp.64;
-        %tmp.71 = aputv %tmp.70 1 %tmp.69;
-        %tmp.72 = dup %tmp.56;
-        %tmp.73 = aputv %tmp.72 2 %tmp.71;
-        %tmp.74 = newa 2;
-        %tmp.76 = getv ? :_sunX;
-        %tmp.77 = dup %tmp.74;
-        %tmp.78 = aputv %tmp.77 0 %tmp.76;
-        %tmp.80 = getv ? :_sunY;
-        %tmp.82 = lgetv %sunPixelSize.3;
-        %tmp.83 = add %tmp.80 %tmp.82;
-        %tmp.84 = dup %tmp.78;
-        %tmp.85 = aputv %tmp.84 1 %tmp.83;
-        %tmp.86 = dup %tmp.73;
-        %tmp.87 = aputv %tmp.86 3 %tmp.85;
-        putv self :_sunPoints %tmp.87;
-C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_SolarStatus_mc_28_28_53_4_stop:
+        %tmp.36 = aputv %tmp.35 1 %tmp.34;
+        %tmp.37 = dup %tmp.27;
+        %tmp.38 = aputv %tmp.37 0 %tmp.36;
+        %tmp.39 = newa 2;
+        %tmp.41 = getv ? :_sunX;
+        %tmp.43 = lgetv %sunPixelSize.1;
+        %tmp.44 = add %tmp.41 %tmp.43;
+        %tmp.45 = dup %tmp.39;
+        %tmp.46 = aputv %tmp.45 0 %tmp.44;
+        %tmp.48 = getv ? :_sunY;
+        %tmp.49 = dup %tmp.46;
+        %tmp.50 = aputv %tmp.49 1 %tmp.48;
+        %tmp.51 = dup %tmp.38;
+        %tmp.52 = aputv %tmp.51 1 %tmp.50;
+        %tmp.53 = newa 2;
+        %tmp.55 = getv ? :_sunX;
+        %tmp.57 = lgetv %sunPixelSize.1;
+        %tmp.58 = add %tmp.55 %tmp.57;
+        %tmp.59 = dup %tmp.53;
+        %tmp.60 = aputv %tmp.59 0 %tmp.58;
+        %tmp.62 = getv ? :_sunY;
+        %tmp.64 = lgetv %sunPixelSize.1;
+        %tmp.65 = add %tmp.62 %tmp.64;
+        %tmp.66 = dup %tmp.60;
+        %tmp.67 = aputv %tmp.66 1 %tmp.65;
+        %tmp.68 = dup %tmp.52;
+        %tmp.69 = aputv %tmp.68 2 %tmp.67;
+        %tmp.70 = newa 2;
+        %tmp.72 = getv ? :_sunX;
+        %tmp.73 = dup %tmp.70;
+        %tmp.74 = aputv %tmp.73 0 %tmp.72;
+        %tmp.76 = getv ? :_sunY;
+        %tmp.78 = lgetv %sunPixelSize.1;
+        %tmp.79 = add %tmp.76 %tmp.78;
+        %tmp.80 = dup %tmp.74;
+        %tmp.81 = aputv %tmp.80 1 %tmp.79;
+        %tmp.82 = dup %tmp.69;
+        %tmp.83 = aputv %tmp.82 3 %tmp.81;
+        putv self :_sunPoints %tmp.83;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_SolarStatus_mc_22_28_43_4_stop:
     }
-    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\SolarStatus.mc"; @line = 55; ]
+    [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\SolarStatus.mc"; @line = 45; ]
     function drawOnScreen(dc) {
-C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_SolarStatus_mc_56_4_80_4_start:
-[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\SolarStatus.mc" 58 8 ]
-        [ "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_SolarStatus_mc_56_4_80_4_start" "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_SolarStatus_mc_56_4_80_4_stop" ]
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_SolarStatus_mc_46_4_70_4_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\SolarStatus.mc" 48 8 ]
+        [ "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_SolarStatus_mc_46_4_70_4_start" "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_SolarStatus_mc_46_4_70_4_stop" ]
         %stats.1 = local;
         %tmp.1 = getm $.Toybox.System;
         %tmp.2 = getv function %tmp.1 :getSystemStats;
         %tmp.3 = invoke %tmp.1 %tmp.2();
         lputv %stats.1 %tmp.3;
-[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\SolarStatus.mc" 59 8 ]
-        [ "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_SolarStatus_mc_56_4_80_4_start" "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_SolarStatus_mc_56_4_80_4_stop" ]
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\SolarStatus.mc" 49 8 ]
+        [ "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_SolarStatus_mc_46_4_70_4_start" "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_SolarStatus_mc_46_4_70_4_stop" ]
         %solar.2 = local;
         %tmp.4 = lgetv %stats.1;
         %tmp.5 = getv %tmp.4 :solarIntensity;
         lputv %solar.2 %tmp.5;
-[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\SolarStatus.mc" 62 8 ]
-C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_SolarStatus_mc_62_8_64_8_if_stmt:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\SolarStatus.mc" 52 8 ]
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_SolarStatus_mc_52_8_54_8_if_stmt:
         %tmp.7 = lgetv %solar.2;
         %tmp.8 = 0;
         %tmp.9 = lte %tmp.7 %tmp.8;
-        bf %tmp.9 @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_SolarStatus_mc_62_8_64_8_if_end;
-C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_SolarStatus_mc_62_8_64_8_if_true:
-C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_SolarStatus_mc_62_24_64_8_start:
-[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\SolarStatus.mc" 63 12 ]
+        bf %tmp.9 @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_SolarStatus_mc_52_8_54_8_if_end;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_SolarStatus_mc_52_8_54_8_if_true:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_SolarStatus_mc_52_24_54_8_start:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\SolarStatus.mc" 53 12 ]
         ret ?;
-C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_SolarStatus_mc_62_24_64_8_stop:
-        goto @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_SolarStatus_mc_62_8_64_8_if_end;
-C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_SolarStatus_mc_62_8_64_8_if_end:
-[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\SolarStatus.mc" 67 8 ]
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_SolarStatus_mc_52_24_54_8_stop:
+        goto @C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_SolarStatus_mc_52_8_54_8_if_end;
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_SolarStatus_mc_52_8_54_8_if_end:
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\SolarStatus.mc" 57 8 ]
         %tmp.11 = getv ? :CommonMethods;
         %tmp.12 = getv function %tmp.11 :setDrawingClip;
         %tmp.14 = lgetv %dc;
         %tmp.16 = getv ? :_sunPoints;
         invoke %tmp.11 %tmp.12(%tmp.14, %tmp.16);
-[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\SolarStatus.mc" 70 8 ]
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\SolarStatus.mc" 60 8 ]
         %tmp.17 = lgetv %dc;
         %tmp.18 = getv function %tmp.17 :drawBitmap;
         %tmp.20 = getv ? :_sunX;
         %tmp.22 = getv ? :_sunY;
         %tmp.24 = getv ? :_sunIcon;
         invoke %tmp.17 %tmp.18(%tmp.20, %tmp.22, %tmp.24);
-[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\SolarStatus.mc" 73 8 ]
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\SolarStatus.mc" 63 8 ]
         %tmp.25 = getm $.ThemeController;
         %tmp.26 = getv function %tmp.25 :setColor;
         %tmp.28 = lgetv %dc;
         %tmp.30 = getv ? :ThemeController;
         %tmp.31 = getv %tmp.30 :LOW_COLOR;
         invoke %tmp.25 %tmp.26(%tmp.28, %tmp.31);
-[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\SolarStatus.mc" 74 8 ]
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\SolarStatus.mc" 64 8 ]
         %tmp.32 = lgetv %dc;
         %tmp.33 = getv function %tmp.32 :drawText;
         %tmp.35 = getv ? :_center_sunX;
@@ -203,17 +184,17 @@ C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_SolarStatus_mc_62_8
         %tmp.44 = getm $.Toybox.Graphics;
         %tmp.45 = getv %tmp.44 :TEXT_JUSTIFY_CENTER;
         invoke %tmp.32 %tmp.33(%tmp.35, %tmp.39, %tmp.41, %tmp.43, %tmp.45);
-[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\SolarStatus.mc" 77 8 ]
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\SolarStatus.mc" 67 8 ]
         %tmp.47 = getv ? :CommonMethods;
         %tmp.48 = getv function %tmp.47 :clearDrawingClip;
         %tmp.50 = lgetv %dc;
         invoke %tmp.47 %tmp.48(%tmp.50);
-[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\SolarStatus.mc" 79 8 ]
+[ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\SolarStatus.mc" 69 8 ]
         %tmp.51 = getm $.ThemeController;
         %tmp.52 = getv function %tmp.51 :resetColors;
         %tmp.54 = lgetv %dc;
         invoke %tmp.51 %tmp.52(%tmp.54);
-C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_SolarStatus_mc_56_4_80_4_stop:
+C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_SolarStatus_mc_46_4_70_4_stop:
     }
 }
 [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\SolarStatus.mc"; @line = 1; ]

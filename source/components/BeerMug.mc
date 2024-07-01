@@ -90,8 +90,8 @@ class BeerMug {
         if (_isInstinct2){
             _mugWidth   = 26;
             _mugHeight  = 39;
-            _mugX       = dc.getWidth() - 44;
-            _mugY       = 12;
+            _mugX       = dc.getWidth() - 38;
+            _mugY       = 8;
         } else {
             _mugWidth  = 17;
             _mugHeight = 26;

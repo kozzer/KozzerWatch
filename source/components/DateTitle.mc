@@ -21,8 +21,8 @@ class DateTitle {
         //var app = Application.getApp();
         var isInstinct2 = Application.Properties.getValue("IsInstinct2");
         if (isInstinct2){
-            _dateX = dc.getWidth() - 40;
-            _dateY = (dc.getHeight() / 2) - 14;
+            _dateX = dc.getWidth() - 34;
+            _dateY = (dc.getHeight() / 2) - 8;
         }
 
         var dateHeight = Graphics.getFontHeight(_dateFont) + 1;

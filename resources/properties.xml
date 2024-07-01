@@ -1,5 +1,5 @@
 <properties>
     <property id="LightThemeActive"   type="boolean">true</property>
     <property id="ShowSolarIntensity" type="boolean">true</property>
-    <property id="IsInstinct2" type="boolean">false</property>
+    <property id="IsInstinct2"        type="boolean">false</property>
 </properties>

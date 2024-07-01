@@ -1,5 +1,5 @@
 using Toybox.ActivityMonitor;
-using Toybox.Application;
+using Toybox.Application as Application;
 using Toybox.Graphics;
 using Toybox.Lang;
 using Toybox.Math;
@@ -30,6 +30,9 @@ class KozzerWatchView extends WatchUi.WatchFace
     var _beerMug;                            // Reference to BeerMug object
     var _solarStatus;                        // Reference to SolarStatus object
 
+    // Instinct 2
+    var _isInstinct2;                        // Flag indicating whether this is running on the Instinct 2                 
+
     // Initialize variables for this view
     function initialize() {
 
@@ -37,7 +40,8 @@ class KozzerWatchView extends WatchUi.WatchFace
         WatchFace.initialize();
 
         // Set class-level flags
-        _fullScreenRefresh     = true;
+        _isInstinct2          = Application.Properties.getValue("IsInstinct2");
+        _fullScreenRefresh    = true;
         partialUpdatesAllowed = ( Toybox.WatchUi.WatchFace has :onPartialUpdate ); // Will be set to true until KozzerWatchViewDelegate.onPowerBudgetExceeded() is fired
     }
 
@@ -139,11 +143,15 @@ class KozzerWatchView extends WatchUi.WatchFace
         _mainClock     = new MainClock(dc);
         _dateTitle     = new DateTitle(dc);
         _moveBar       = new MoveBar(dc);
-        _weather       = new Weather(dc);
         _stepsCount    = new StepsCount(dc);
         _bluetoothIcon = new BluetoothIcon(dc);
         _batteryStatus = new BatteryStatus(dc);
         _beerMug       = new BeerMug(dc);
+
+        // No weather for Instinct2 (for now) ... color palette issues
+        if (_isInstinct2 == false){
+            _weather = new Weather(dc);
+        }
 
         // Only initialize Solar Status if flag is true
         if (CommonMethods.showSolarIntensity){
@@ -158,10 +166,14 @@ class KozzerWatchView extends WatchUi.WatchFace
         // Draw UI components onto the passed-in DC (buffer)
         _dateTitle.drawOnScreen(dc);
         _moveBar.drawOnScreen(dc);
-        _weather.drawOnScreen(dc);
         _batteryStatus.drawOnScreen(dc);
         _stepsCount.drawOnScreen(dc, stepsInfo);
         _beerMug.drawOnScreen(dc, stepsInfo);
+
+        // No weather for Instinct2 (for now) ... color palette issues
+        if (_isInstinct2 == false){
+            _weather.drawOnScreen(dc);
+        }
     }
 
     function writeBufferThenDrawForPartialUpdate(dc, buffer){

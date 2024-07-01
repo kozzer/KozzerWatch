@@ -7,7 +7,7 @@ using ThemeController as Theme;
 class StepsCount {
 
     private var _screenHeight;
-    private var _tinyFont;
+    private var _stepsFont;
     private var _fontHeight;
 
     private var _stepsX;
@@ -17,11 +17,24 @@ class StepsCount {
 
     function initialize(dc) {
         _screenHeight = dc.getHeight();
-        _tinyFont     = CommonMethods.getTinyFont(dc);
-        _fontHeight   = Graphics.getFontHeight(_tinyFont);
+        _stepsFont    = CommonMethods.getTinyFont(dc);
+        _fontHeight   = Graphics.getFontHeight(_stepsFont);
+
+        var isInstinct2 = Application.Properties.getValue("IsInstinct2");
+        if (isInstinct2){
+            _stepsFont = Graphics.FONT_SMALL;
+        } else {
+            _stepsFont = CommonMethods.getTinyFont(dc);
+        }
 
         _stepsX = 14;
-        _stepsY = (_screenHeight / 2) - (_fontHeight / 2);
+
+        if (isInstinct2){
+            _stepsY = (dc.getHeight() / 2) - 8;
+        } else {
+            _stepsY = (_screenHeight / 2) - (_fontHeight / 2);
+        }
+        
         _stepsPoints = [
                         [_stepsX, _stepsY],
                         [_stepsX + 100, _stepsY],
@@ -39,7 +52,7 @@ class StepsCount {
 
         CommonMethods.setDrawingClip(dc, _stepsPoints);
 
-        dc.drawText(_stepsX, _stepsY, _tinyFont, displayString, Graphics.TEXT_JUSTIFY_LEFT);
+        dc.drawText(_stepsX, _stepsY, _stepsFont, displayString, Graphics.TEXT_JUSTIFY_LEFT);
 
         CommonMethods.clearDrawingClip(dc);
 
