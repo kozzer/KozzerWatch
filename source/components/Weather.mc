@@ -2,6 +2,7 @@ using Toybox.System;
 using Toybox.WatchUi;
 using Toybox.Weather as Weather;
 using Toybox.Graphics as Graphics;
+using Toybox.Time.Gregorian;
 
 using ThemeController as Theme;
 
@@ -18,6 +19,13 @@ class Weather {
     private var _weatherPoints;
 
     function initialize(dc) {
+
+        var greg    = Gregorian.info(Time.now(), Time.FORMAT_MEDIUM);
+        var dateStr = Lang.format("$1$ $2$ $3$:$4$:$5$", [greg.month, greg.day, greg.hour, greg.min.format("%02d"), greg.sec.format("%02d")]);
+        System.println(dateStr);
+
+        System.println("*** in Weather.initialize(dc) ");
+
         _screenWidth  = dc.getWidth();
         _veryTinyFont = Graphics.FONT_SYSTEM_XTINY;
         _fontHeight   = Graphics.getFontHeight(_veryTinyFont);
@@ -32,21 +40,37 @@ class Weather {
                         [_weatherX + 144, _weatherY + _widgetHeight],
                         [_weatherX,       _weatherY + _widgetHeight]
                      ];
+
+        dateStr = Lang.format("$1$ $2$ $3$:$4$:$5$", [greg.month, greg.day, greg.hour, greg.min.format("%02d"), greg.sec.format("%02d")]);
+        System.println(dateStr);
+        System.println("*** End of Weather.initialize(dc) ***");
     }
 
-    function drawOnScreen(dc)
-    {
-        var conditions = Weather.getCurrentConditions();
+    function drawOnScreen(dc) {
+        try { 
 
-        // Draw current, high and low temps
-        drawTemperatures(dc, conditions);
+            var conditions = Weather.getCurrentConditions();
 
-        // conditions icon (should be centered on screen horizontally)
-        drawIconForConditions(dc, conditions);
+            // Draw current, high and low temps
+            drawTemperatures(dc, conditions);
 
-        CommonMethods.clearDrawingClip(dc);
+            // conditions icon (should be centered on screen horizontally)
+            drawIconForConditions(dc, conditions);
 
-        Theme.resetColors(dc);
+            CommonMethods.clearDrawingClip(dc);
+
+            Theme.resetColors(dc);
+
+        } catch (ex instanceof Toybox.Lang.Exception) {
+
+            var greg    = Gregorian.info(Time.now(), Time.FORMAT_MEDIUM);
+            var dateStr = Lang.format("$1$ $2$ $3$:$4$:$5$", [greg.month, greg.day, greg.hour, greg.min.format("%02d"), greg.sec.format("%02d")]);
+
+            System.println("***** ERROR IN Weather.drawOnScreen(dc) ******");
+            System.println(dateStr);
+            System.println(ex.getErrorMessage());
+            ex.printStackTrace();
+        }
     }
 
     private function drawTemperatures(dc, conditions){
