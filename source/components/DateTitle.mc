@@ -8,7 +8,7 @@ using ThemeController as Theme;
 
 class DateTitle {
 
-    private const _dateFont = Graphics.FONT_SMALL;
+    private const _dateFont = Graphics.FONT_MEDIUM;
     private var _dateX;
     private var _dateY;
 

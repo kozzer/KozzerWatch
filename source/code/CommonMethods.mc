@@ -1,5 +1,7 @@
+using Toybox.System;
 using Toybox.Application;
 using Toybox.Graphics;
+using Toybox.Time.Gregorian;
 
 using ThemeController as Theme;
 
@@ -70,6 +72,18 @@ module CommonMethods {
         } else {
             return Graphics.FONT_TINY;
         }
+
+    }
+
+    function printExceptionToConsole(ex, message){
+
+            var greg    = Gregorian.info(Toybox.Time.now(), Toybox.Time.FORMAT_MEDIUM);
+            var dateStr = Toybox.Lang.format("$1$ $2$ $3$:$4$:$5$", [greg.month, greg.day, greg.hour, greg.min.format("%02d"), greg.sec.format("%02d")]);
+
+            System.println(message);
+            System.println(dateStr);
+            System.println("\t\tMessage: " + ex.getErrorMessage());
+            ex.printStackTrace();
 
     }
 

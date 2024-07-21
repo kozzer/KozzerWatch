@@ -2,7 +2,6 @@ using Toybox.System;
 using Toybox.WatchUi;
 using Toybox.Weather as Weather;
 using Toybox.Graphics as Graphics;
-using Toybox.Time.Gregorian;
 
 using ThemeController as Theme;
 
@@ -20,12 +19,6 @@ class Weather {
 
     function initialize(dc) {
 
-        var greg    = Gregorian.info(Time.now(), Time.FORMAT_MEDIUM);
-        var dateStr = Lang.format("$1$ $2$ $3$:$4$:$5$", [greg.month, greg.day, greg.hour, greg.min.format("%02d"), greg.sec.format("%02d")]);
-        System.println(dateStr);
-
-        System.println("*** in Weather.initialize(dc) ");
-
         _screenWidth  = dc.getWidth();
         _veryTinyFont = Graphics.FONT_SYSTEM_XTINY;
         _fontHeight   = Graphics.getFontHeight(_veryTinyFont);
@@ -40,10 +33,6 @@ class Weather {
                         [_weatherX + 144, _weatherY + _widgetHeight],
                         [_weatherX,       _weatherY + _widgetHeight]
                      ];
-
-        dateStr = Lang.format("$1$ $2$ $3$:$4$:$5$", [greg.month, greg.day, greg.hour, greg.min.format("%02d"), greg.sec.format("%02d")]);
-        System.println(dateStr);
-        System.println("*** End of Weather.initialize(dc) ***");
     }
 
     function drawOnScreen(dc) {
@@ -62,14 +51,7 @@ class Weather {
             Theme.resetColors(dc);
 
         } catch (ex instanceof Toybox.Lang.Exception) {
-
-            var greg    = Gregorian.info(Time.now(), Time.FORMAT_MEDIUM);
-            var dateStr = Lang.format("$1$ $2$ $3$:$4$:$5$", [greg.month, greg.day, greg.hour, greg.min.format("%02d"), greg.sec.format("%02d")]);
-
-            System.println("***** ERROR IN Weather.drawOnScreen(dc) ******");
-            System.println(dateStr);
-            System.println(ex.getErrorMessage());
-            ex.printStackTrace();
+            CommonMethods.printExceptionToConsole(ex, "*** ERROR IN Weather.drawOnScreen(dc) ***");
         }
     }
 
@@ -83,13 +65,15 @@ class Weather {
 
         ThemeController.setColor(dc, ThemeController.FONT_COLOR);
 
-        // current temp, high temp, low temp
-        dc.drawText(_weatherX + 30,  _weatherY + 9,  Graphics.FONT_TINY, currentTemp, Graphics.TEXT_JUSTIFY_CENTER);
-        dc.drawText(_weatherX + 118, _weatherY + 6,  _veryTinyFont,      highTemp,    Graphics.TEXT_JUSTIFY_CENTER);
-        dc.drawText(_weatherX + 118, _weatherY + 25, _veryTinyFont,      lowTemp,     Graphics.TEXT_JUSTIFY_CENTER);
+        // current temp
+        dc.drawText(_weatherX + 40,  _weatherY + 9,  Graphics.FONT_TINY, currentTemp, Graphics.TEXT_JUSTIFY_CENTER);
+ 
+        // high temp, low temp
+        dc.drawText(_weatherX + 108, _weatherY + 6,  _veryTinyFont,      highTemp,    Graphics.TEXT_JUSTIFY_CENTER);
+        dc.drawText(_weatherX + 108, _weatherY + 25, _veryTinyFont,      lowTemp,     Graphics.TEXT_JUSTIFY_CENTER);
 
         // line between high and low
-        dc.drawLine(_weatherX + 98, _weatherY + 26, _weatherX + 132, _weatherY + 26);
+        dc.drawLine(_weatherX + 92, _weatherY + 26, _weatherX + 118, _weatherY + 26);
     }
 
     private function drawIconForConditions(dc, conditions){

@@ -16,7 +16,7 @@ class DateTitle{
     <init> {
 [ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\DateTitle.mc" 11 18 ]
         %tmp.1 = getm $.Toybox.Graphics;
-        %tmp.2 = getv %tmp.1 :FONT_SMALL;
+        %tmp.2 = getv %tmp.1 :FONT_MEDIUM;
         putv self :_dateFont %tmp.2;
     }
     [ @file = "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\DateTitle.mc"; @line = 9; ]
