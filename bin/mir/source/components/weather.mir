@@ -71,7 +71,7 @@ C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_Weather_mc_20_28_36
         %tmp.22 = sub %tmp.20 %tmp.21;
         putv self :_weatherX %tmp.22;
 [ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\Weather.mc" 28 8 ]
-        %tmp.23 = 52;
+        %tmp.23 = 58;
         putv self :_weatherY %tmp.23;
 [ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\Weather.mc" 30 8 ]
         %tmp.24 = newa 4;

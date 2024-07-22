@@ -25,7 +25,7 @@ class Weather {
         _widgetHeight = (_fontHeight * 2) + 6;
 
         _weatherX = (_screenWidth / 2) - 72;
-        _weatherY = 52;
+        _weatherY = 58;
 
         _weatherPoints = [
                         [_weatherX,       _weatherY],

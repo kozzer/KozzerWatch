@@ -16,7 +16,7 @@ class DateTitle {
 
     function initialize(dc) {
         _dateX = dc.getWidth() / 2;
-        _dateY = 14;
+        _dateY = 18;
 
         //var app = Application.getApp();
         var isInstinct2 = Application.Properties.getValue("IsInstinct2");
