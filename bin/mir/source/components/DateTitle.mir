@@ -46,7 +46,7 @@ C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_DateTitle_mc_17_28_
         %tmp.5 = div %tmp.3 %tmp.4;
         putv self :_dateX %tmp.5;
 [ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\DateTitle.mc" 19 8 ]
-        %tmp.6 = 18;
+        %tmp.6 = 12;
         putv self :_dateY %tmp.6;
 [ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\DateTitle.mc" 22 8 ]
         [ "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_DateTitle_mc_17_28_36_4_start" "C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_DateTitle_mc_17_28_36_4_stop" ]

@@ -50,7 +50,7 @@ C_Users_David_ConnectIQ_kozzer_KozzerWatch_source_components_MoveBar_mc_17_27_28
         %tmp.13 = getm $.Toybox.Graphics;
         %tmp.14 = getv %tmp.13 :FONT_MEDIUM;
         %tmp.15 = invoke %tmp.11 %tmp.12(%tmp.14);
-        %tmp.16 = 12;
+        %tmp.16 = 16;
         %tmp.17 = add %tmp.15 %tmp.16;
         putv self :_barY %tmp.17;
 [ "C:\Users\David\ConnectIQ\kozzer\KozzerWatch\source\components\MoveBar.mc" 22 8 ]

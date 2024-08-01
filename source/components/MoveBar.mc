@@ -17,7 +17,7 @@ class MoveBar {
     function initialize(dc){
         // Get location of the blue bar
         _barX = ((dc.getWidth() / 2) - (_moveBarWidth / 2));      // Total 78px wide, so 39px left of center
-        _barY = Graphics.getFontHeight(Graphics.FONT_MEDIUM) + 12;
+        _barY = Graphics.getFontHeight(Graphics.FONT_MEDIUM) + 16;
 
         _barPoints = [
                         [_barX, _barY], 
