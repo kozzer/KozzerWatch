@@ -80,9 +80,9 @@ module CommonMethods {
             var greg    = Gregorian.info(Toybox.Time.now(), Toybox.Time.FORMAT_MEDIUM);
             var dateStr = Toybox.Lang.format("$1$ $2$ $3$:$4$:$5$", [greg.month, greg.day, greg.hour, greg.min.format("%02d"), greg.sec.format("%02d")]);
 
-            System.println(message);
-            System.println(dateStr);
-            System.println("\t\tMessage: " + ex.getErrorMessage());
+            Toybox.System.println(message);
+            Toybox.System.println(dateStr);
+            Toybox.System.println("\t\tMessage: " + ex.getErrorMessage());
             ex.printStackTrace();
 
     }
